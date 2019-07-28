@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text } from 'native-base';
 
-import { HomeScreenProps } from 'src/index'
+import { HomeScreenProps } from 'src/index';
+import Skyway from '../lib/Skyway';
+import { observer } from 'mobx-react';
+import Ob from '../component/Ob';
 
+@observer
 export default class Main extends Component<HomeScreenProps> {
     push = () => {
         const { navigation } = this.props
@@ -32,6 +36,8 @@ export default class Main extends Component<HomeScreenProps> {
                         <Text>モーダル表示</Text>
                     </Button>
                 </View>
+                <Ob />
+                <Text>{Skyway.state.toString()}</Text>
             </Container>
         );
     }
