@@ -13,3 +13,6 @@ android/.idea
 android/.gradle
 android/**/build
 ios/Pods
+UserInterfaceState.xcuserstate
+*bak
+*bk
