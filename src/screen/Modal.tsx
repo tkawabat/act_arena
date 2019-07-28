@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
-import { HomeScreenProps } from '../index'
+import { HomeScreenProps } from 'src/index'
 
 export default class Modal extends Component<HomeScreenProps> {
     render() {

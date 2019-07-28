@@ -1,9 +1,9 @@
 import { createStackNavigator, NavigationScreenProp, createAppContainer } from 'react-navigation'
 
 //画面
-import Main from './screens/Main'
-import Push from './screens/Push'
-import Modal from './screens/Modal'
+import Main from './screen/Main'
+import Push from './screen/Push'
+import Modal from './screen/Modal'
 
 export interface HomeScreenProps {
     navigation: NavigationScreenProp<any, any>

@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import io.sentry.RNSentryPackage;
 import jp.micin.react.skyway.SkyWayPackage;
 
@@ -31,6 +32,7 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
 
         // Needed for `react-native link`
         // new MainReactPackage(),
+            //new RNGestureHandlerPackage(),
             new RNSentryPackage(),
             new SkyWayPackage()
     );

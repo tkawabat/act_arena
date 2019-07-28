@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text } from 'native-base';
 
-import { HomeScreenProps } from '../index'
+import { HomeScreenProps } from 'src/index'
 
 export default class Main extends Component<HomeScreenProps> {
     push = () => {
