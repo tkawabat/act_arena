@@ -12,3 +12,4 @@ web-report/
 android/.idea
 android/.gradle
 android/**/build
+ios/Pods
