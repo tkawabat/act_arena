@@ -17,6 +17,7 @@ const options = {
 
 class Skyway {
     @observable state = Status.INIT;
+    private peer : Peer;
 
     constructor() {
         const m = Moment();
@@ -61,15 +62,11 @@ class Skyway {
     private onPeerOpen() {
         console.log("onPeerOpen");
         this.state = Status.OPEN;
-        this.peer.joinRoom("hogehoge");
-        //this.setState({ open: true });
     }
 
     private onPeerCall() {
         console.log("onPeerCall");
         this.state = Status.OPEN;
-        this.peer.joinRoom("hogehoge");
-        //this.setState({ open: true });
     }
 
     private onPeerError() {
@@ -84,54 +81,58 @@ class Skyway {
         // TODO
     }
 
-    onMediaConnectionError() {
+    private onMediaConnectionError() {
         console.log("onMediaConnectionError");
         //this.dispose();
     }
 
-    onMediaConnectionClose() {
+    private onMediaConnectionClose() {
         console.log("onMediaConnectionClose");
         //this.dispose();
         //this.dispose();
     }
 
-    onRoomOpen() {
+    private onRoomOpen() {
         console.log("onRoomOpen");
         this.state = Status.JOIN;
     }
 
-    onRoomPeerJoin() {
+    private onRoomPeerJoin() {
         console.log("onRoomPeerJoin");
         this.peer.listAllPeers(console.log)
     }
 
-    onRoomPeerLeave() {
+    private onRoomPeerLeave() {
         console.log("onRoomPeerLeave");
     }
 
-    onRoomLog() {
+    private onRoomLog() {
         console.log("onRoomLog");
     }
 
-    onRoomStream() {
+    private onRoomStream() {
         console.log("onRoomStream");
     }
 
-    onRoomRemoveStream() {
+    private onRoomRemoveStream() {
         console.log("onRoomRemoveStream");
     }
 
-    onRoomData() {
+    private onRoomData() {
         console.log("onRoomData");
         this.peer.disconnect();
     }
 
-    onRoomClose() {
+    private onRoomClose() {
         console.log("onRoomClose");
     }
 
-    onRoomError() {
+    private onRoomError() {
         console.log("onRoomError");
+    }
+
+    public join() {
+        this.peer.joinRoom("hogehoge");
     }
 
     //const roomId = 'hogehoge';

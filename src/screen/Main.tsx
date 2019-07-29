@@ -38,6 +38,9 @@ export default class Main extends Component<HomeScreenProps> {
                 </View>
                 <Ob />
                 <Text>{Skyway.state.toString()}</Text>
+                <Button small iconRight transparent onPress={() => Skyway.join()}>
+                    <Text>call</Text>
+                </Button>
             </Container>
         );
     }
