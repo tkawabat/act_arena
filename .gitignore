@@ -15,6 +15,7 @@ android/.gradle
 android/**/build
 ios/Pods
 ios/act_arena/Supporting
+ios/build
 UserInterfaceState.xcuserstate
 *bak
 *bk
