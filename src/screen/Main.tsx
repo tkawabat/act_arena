@@ -39,7 +39,16 @@ export default class Main extends Component<HomeScreenProps> {
                 <Ob />
                 <Text>{Skyway.state.toString()}</Text>
                 <Button small iconRight transparent onPress={() => Skyway.join()}>
-                    <Text>call</Text>
+                    <Text>join</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Skyway.leave()}>
+                    <Text>leave</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Skyway.setLocalStreamStatus(true)}>
+                    <Text>open</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Skyway.setLocalStreamStatus(false)}>
+                    <Text>close</Text>
                 </Button>
             </Container>
         );

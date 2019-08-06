@@ -120,19 +120,32 @@ class Skyway {
 
     private onRoomData() {
         console.log("onRoomData");
-        this.peer.disconnect();
     }
 
     private onRoomClose() {
         console.log("onRoomClose");
+        this.state = Status.OPEN;
     }
 
     private onRoomError() {
         console.log("onRoomError");
     }
 
+    public disconnect() {
+        this.peer.disconnect();
+    }
+
     public join() {
         this.peer.joinRoom("hogehoge");
+    }
+
+    public leave() {
+        console.log("leave");
+        this.peer.leaveRoom();
+    }
+
+    public setLocalStreamStatus(status) {
+        this.peer.setLocalStreamStatus(status);
     }
 
     //const roomId = 'hogehoge';

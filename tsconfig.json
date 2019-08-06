@@ -5,7 +5,6 @@
     "jsx": "react-native",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "baseDir": "."
+    "skipLibCheck": true
   }
 }
