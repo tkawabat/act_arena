@@ -5,6 +5,7 @@ import { HomeScreenProps } from 'src/index';
 import Skyway from '../lib/Skyway';
 import { observer } from 'mobx-react';
 import Ob from '../component/Ob';
+import Firebase from '../lib/Firebase';
 
 @observer
 export default class Main extends Component<HomeScreenProps> {
@@ -49,6 +50,21 @@ export default class Main extends Component<HomeScreenProps> {
                 </Button>
                 <Button small iconRight transparent onPress={() => Skyway.setLocalStreamStatus(false)}>
                     <Text>close</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Firebase.signup("random.matching@gmail.com", "cccccc")}>
+                    <Text>signup</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Firebase.login("random.matching@gmail.com", "cccccc")}>
+                    <Text>login</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Firebase.twitterLogin()}>
+                    <Text>TwitterLogin</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Firebase.anonymousLogin()}>
+                    <Text>anonymousLogin</Text>
+                </Button>
+                <Button small iconRight transparent onPress={() => Firebase.logout()}>
+                    <Text>logout</Text>
                 </Button>
             </Container>
         );
