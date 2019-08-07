@@ -1,9 +1,10 @@
 import { createStackNavigator, NavigationScreenProp, createAppContainer } from 'react-navigation'
 
 //画面
-import Main from './screen/Main'
-import Push from './screen/Push'
-import Modal from './screen/Modal'
+import Main from './screen/Main';
+import Push from './screen/Push';
+import Modal from './screen/Modal';
+import Arena from './screen/Arena';
 
 export interface HomeScreenProps {
     navigation: NavigationScreenProp<any, any>
@@ -12,7 +13,7 @@ export interface HomeScreenProps {
 export const MainNavigation = createStackNavigator(
     {
         Main: { screen: Main },
-        Push: { screen: Push },
+        Push: { screen: Arena },
     },
     { initialRouteName: 'Main', mode: 'card', headerMode: 'none' }
 )
