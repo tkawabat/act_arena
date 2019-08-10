@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
-import * as C from '../model/Const';
+import * as C from '../lib/Const';
 import User from '../model/User';
 
 import UserIcon from './UserIcon';
