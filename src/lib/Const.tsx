@@ -8,3 +8,10 @@ export enum Sex {
     Male
     , Female
 }
+
+export enum ArenaState {
+    READY
+    , CONFIRM
+    , CHECK
+    , ACT
+}

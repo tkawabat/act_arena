@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text } from 'native-base';
-
-import { HomeScreenProps } from 'src/index';
-import Skyway from '../lib/Skyway';
 import { observer } from 'mobx-react';
-import Ob from '../component/Ob';
+
+import ScreenProps from './ScreenProps';
+
+import Skyway from '../lib/Skyway';
 import Firebase from '../lib/Firebase';
 
 @observer
-export default class Main extends Component<HomeScreenProps> {
+export default class LobbyScreen extends Component<ScreenProps> {
     push = () => {
         const { navigation } = this.props
         navigation.navigate('Push')
@@ -37,7 +37,6 @@ export default class Main extends Component<HomeScreenProps> {
                         <Text>モーダル表示</Text>
                     </Button>
                 </View>
-                <Ob />
                 <Text>{Skyway.state.toString()}</Text>
                 <Button small iconRight transparent onPress={() => Skyway.join()}>
                     <Text>join</Text>

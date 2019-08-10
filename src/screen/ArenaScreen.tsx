@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
+
+import ScreenProps from './ScreenProps';
+
 import ScenarioMaster from '../component/ScenarioMaster';
+import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
 
-import { HomeScreenProps } from '../navigator'
-
-interface Props extends HomeScreenProps {
+interface Props extends ScreenProps {
     agreement: string;
     url: string;
     start: string;
@@ -33,6 +35,7 @@ export default class Arena extends Component<Props> {
                     <Right />
                 </Header>
                 <View style={styles.container}>
+                    <Timer />
                     <ActInfo />
                     {/*
                     <ScenarioMaster
