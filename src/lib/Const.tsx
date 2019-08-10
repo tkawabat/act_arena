@@ -15,3 +15,15 @@ export enum ArenaState {
     , CHECK
     , ACT
 }
+
+export enum SkywayState {
+    INIT
+    , OPEN
+    , JOIN
+}
+
+export enum SpeakState {
+    SPEAK,
+    MUTE,
+    DISABLED
+}

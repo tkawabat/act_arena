@@ -15,15 +15,15 @@ interface props {
 @observer
 export default class Timer extends Component<props> {
     componentDidMount() {
-        console.log('componentDidMount');
+        console.log('timer componentDidMount');
     }
 
     componentDidUpdate() {
-        console.log('componentDidUpdate');
+        console.log('timer componentDidUpdate');
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount');
+        console.log('timer componentWillUnmount');
     }
 
     render() {

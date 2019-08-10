@@ -4,9 +4,15 @@ import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
 
 import ScreenProps from './ScreenProps';
 
+import * as C from '../lib/Const';
+
+import SkywayStore from '../model/SkywayStore';
+
 import ScenarioMaster from '../component/ScenarioMaster';
 import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
+import Microphone from '../component/Microphone';
+
 
 interface Props extends ScreenProps {
     agreement: string;
@@ -16,6 +22,20 @@ interface Props extends ScreenProps {
 }
 
 export default class Arena extends Component<Props> {
+    componentDidMount() {
+        SkywayStore.join('aaa');
+        console.log('ArenaScreen componentDidMount');
+    }
+
+    componentDidUpdate() {
+        console.log('ArenaScreen componentDidUpdate');
+    }
+
+    componentWillUnmount() {
+        SkywayStore.leave();
+        console.log('ArenaScreen componentWillUnmount');
+    }
+
     onPress = (text) => {
         console.log(text);
     }
@@ -25,7 +45,10 @@ export default class Arena extends Component<Props> {
             <Container>
                 <Header>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
+                        <Button transparent onPress={() => {
+                            
+                            this.props.navigation.goBack();
+                        }}>
                             <Icon name='arrow-back' />
                         </Button>
                     </Left>
@@ -59,6 +82,7 @@ export default class Arena extends Component<Props> {
                         end='セオドア：観光と、仕事と、半分半分かな。'
                     />
                     */}
+                    <Microphone />
                     <Text style={styles.instructions}>
                         エントリーボタン他
                     </Text>

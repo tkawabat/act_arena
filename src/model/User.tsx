@@ -1,4 +1,4 @@
-import C from '../lib/Const';
+import * as C from '../lib/Const';
 
 export default interface User {
     id: String

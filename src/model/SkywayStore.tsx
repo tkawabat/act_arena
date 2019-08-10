@@ -2,11 +2,8 @@ import Moment from 'moment';
 import { Peer } from 'react-native-skyway';
 import { observable, action } from 'mobx';
 
-enum Status {
-    INIT
-    , OPEN
-    , JOIN
-}
+import * as C from '../lib/Const';
+
 
 const options = {
     key: '9b68cd86-829d-4e0e-884e-bbe6c75e12e5'
@@ -16,7 +13,9 @@ const options = {
 };
 
 class Skyway {
-    @observable state = Status.INIT;
+    @observable state = C.SkywayState.INIT;
+    @observable speakState = C.SpeakState.DISABLED;
+
     private peer : Peer;
 
     constructor() {
@@ -40,6 +39,8 @@ class Skyway {
         this.onRoomClose = this.onRoomClose.bind(this);
         this.onRoomError = this.onRoomError.bind(this);
 
+        this.toggleMicrophone = this.toggleMicrophone.bind(this);
+
         this.peer.addEventListener('peer-open', this.onPeerOpen);
         this.peer.addEventListener('peer-close', this.onPeerClose);
         this.peer.addEventListener('peer-call', this.onPeerCall);
@@ -61,12 +62,13 @@ class Skyway {
 
     private onPeerOpen() {
         console.log("onPeerOpen");
-        this.state = Status.OPEN;
+        this.state = C.SkywayState.OPEN;
+        this.speakState = C.SpeakState.DISABLED;
     }
 
     private onPeerCall() {
         console.log("onPeerCall");
-        this.state = Status.OPEN;
+        //this.state = C.SkywayState.OPEN;
     }
 
     private onPeerError() {
@@ -77,6 +79,8 @@ class Skyway {
 
     private onPeerClose() {
         console.log("onPeerClose");
+        this.state = C.SkywayState.INIT;
+        this.speakState = C.SpeakState.DISABLED;
         //this.dispose();
         // TODO
     }
@@ -89,17 +93,18 @@ class Skyway {
     private onMediaConnectionClose() {
         console.log("onMediaConnectionClose");
         //this.dispose();
-        //this.dispose();
     }
 
     private onRoomOpen() {
         console.log("onRoomOpen");
-        this.state = Status.JOIN;
+        this.state = C.SkywayState.JOIN;
+        this.setLocalStreamStatus(false);
+        this.speakState = C.SpeakState.MUTE;
     }
 
     private onRoomPeerJoin() {
         console.log("onRoomPeerJoin");
-        this.peer.listAllPeers(console.log)
+        this.peer.listAllPeers(console.log);
     }
 
     private onRoomPeerLeave() {
@@ -124,28 +129,46 @@ class Skyway {
 
     private onRoomClose() {
         console.log("onRoomClose");
-        this.state = Status.OPEN;
+        this.state = C.SkywayState.OPEN;
+        this.speakState = C.SpeakState.DISABLED;
     }
 
     private onRoomError() {
         console.log("onRoomError");
+        this.state = C.SkywayState.OPEN;
+        this.speakState = C.SpeakState.DISABLED;
     }
 
-    public disconnect() {
+    public disconnect() :void {
         this.peer.disconnect();
     }
 
-    public join() {
-        this.peer.joinRoom("hogehoge");
+    public join(roomName:string) :void {
+        this.peer.joinRoom(roomName);
     }
 
-    public leave() {
-        console.log("leave");
+    public leave() :void {
         this.peer.leaveRoom();
     }
 
-    public setLocalStreamStatus(status) {
+    public setLocalStreamStatus(status) :void {
         this.peer.setLocalStreamStatus(status);
+    }
+
+    public toggleMicrophone() :void {
+        switch (this.speakState) {
+            case C.SpeakState.SPEAK:
+                this.peer.setLocalStreamStatus(false);
+                this.speakState = C.SpeakState.MUTE;
+                break;
+            case C.SpeakState.MUTE:
+                this.peer.setLocalStreamStatus(true);
+                this.speakState = C.SpeakState.SPEAK;
+                break;
+            case C.SpeakState.DISABLED:
+                break;
+        }
+        return;
     }
 
     //const roomId = 'hogehoge';

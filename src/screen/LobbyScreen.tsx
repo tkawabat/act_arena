@@ -4,14 +4,14 @@ import { observer } from 'mobx-react';
 
 import ScreenProps from './ScreenProps';
 
-import Skyway from '../lib/Skyway';
+import SkywayStore from '../model/SkywayStore';
 import Firebase from '../lib/Firebase';
 
 @observer
 export default class LobbyScreen extends Component<ScreenProps> {
-    push = () => {
-        const { navigation } = this.props
-        navigation.navigate('Push')
+    join = () => {
+        const { navigation } = this.props;
+        navigation.navigate('Push');
     }
     modal = () => {
         const { navigation } = this.props
@@ -23,12 +23,12 @@ export default class LobbyScreen extends Component<ScreenProps> {
                 <Header>
                     <Left />
                     <Body>
-                        <Title>メイン</Title>
+                        <Title>ロビー</Title>
                     </Body>
                     <Right />
                 </Header>
                 <View>
-                    <Button small iconRight transparent primary onPress={this.push}>
+                    <Button small iconRight primary onPress={this.join}>
                         <Text>プッシュ表示</Text>
                     </Button>
                 </View>
@@ -37,17 +37,17 @@ export default class LobbyScreen extends Component<ScreenProps> {
                         <Text>モーダル表示</Text>
                     </Button>
                 </View>
-                <Text>{Skyway.state.toString()}</Text>
-                <Button small iconRight transparent onPress={() => Skyway.join()}>
+                <Text>{SkywayStore.state.toString()}</Text>
+                <Button small iconRight transparent onPress={() => SkywayStore.join()}>
                     <Text>join</Text>
                 </Button>
-                <Button small iconRight transparent onPress={() => Skyway.leave()}>
+                <Button small iconRight transparent onPress={() => SkywayStore.leave()}>
                     <Text>leave</Text>
                 </Button>
-                <Button small iconRight transparent onPress={() => Skyway.setLocalStreamStatus(true)}>
+                <Button small iconRight transparent onPress={() => SkywayStore.setLocalStreamStatus(true)}>
                     <Text>open</Text>
                 </Button>
-                <Button small iconRight transparent onPress={() => Skyway.setLocalStreamStatus(false)}>
+                <Button small iconRight transparent onPress={() => SkywayStore.setLocalStreamStatus(false)}>
                     <Text>close</Text>
                 </Button>
                 <Button small iconRight transparent onPress={() => Firebase.signup("random.matching@gmail.com", "cccccc")}>
