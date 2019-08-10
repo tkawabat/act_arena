@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "noEmit": true,
-    "lib": ["dom", "esnext"],
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "jsx": "react-native",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
