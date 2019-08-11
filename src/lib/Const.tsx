@@ -10,10 +10,17 @@ export enum Sex {
 }
 
 export enum ArenaState {
-    READY
+    WAIT
+    , READY
     , CONFIRM
     , CHECK
     , ACT
+}
+
+export enum AgreementState {
+    NONE
+    , READ
+    , AGREE
 }
 
 export enum SkywayState {

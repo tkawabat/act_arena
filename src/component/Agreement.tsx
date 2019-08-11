@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import { Platform, StyleSheet, TouchableOpacity, TextInput, Text, View, WebView } from 'react-native';
+import { observer } from 'mobx-react';
 
-let js : String = `
+import ArenaStore from '../model/ArenaStore';
+
+
+const js = (agreementScroll: number) => {
+    return `
 var post = true;
 
 // patch post message
@@ -15,50 +20,44 @@ patchedPostMessage.toString = function() {
 };
 window.postMessage = patchedPostMessage;
 
-window.addEventListener('scroll', function() {
+function checkScroll() {
     var h = window.scrollY + window.parent.screen.height;
-    if (post && h > 2500) {
+    if (post && h >= ${agreementScroll}) {
         post = false;
         window.postMessage('read');
-    }
-});
+    }    
+}
+
+window.addEventListener('scroll', checkScroll);
+//checkScroll();
 `;
-
-interface AgreementState {
-read: boolean;
 }
 
-interface AgreementProps {
-    url: string;
-    onPress: Function;
-}
-
-export default class Agreement extends Component<AgreementProps, AgreementState> {
-    public state : AgreementState = {
-        read: false
-    }
+@observer
+export default class Agreement extends Component {
 
     private onMessage = (event) => {
         const { data } = event.nativeEvent;
         if (data === 'read') {
-            this.setState({read: true});
+            ArenaStore.readAgreement();
         }
     };
 
     render() {
+        console.log(js(ArenaStore.agreementScroll));
         return (
             <View style={styles.container}>
                 <WebView style={styles.webview}
                     javaScriptEnabled={true}
-                    injectedJavaScript={js}
-                    source={{uri: this.props.url}}
+                    injectedJavaScript={js(ArenaStore.agreementScroll)}
+                    source={{uri: ArenaStore.agreementUrl}}
                     onMessage={this.onMessage}
                 />
                 <Button
                     style={styles.button}
-                    onPress={this.props.onPress}
-                    disabled={!this.state.read}
-                    success={this.state.read}
+                    onPress={ArenaStore.agree}
+                    disabled={!ArenaStore.isReadAgreement}
+                    success={ArenaStore.isReadAgreement}
                 >
                     <Text style={styles.buttonText}>規約に同意</Text>
                 </Button>

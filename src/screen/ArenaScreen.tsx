@@ -13,17 +13,13 @@ import Chat from '../component/Chat';
 import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
 import Microphone from '../component/Microphone';
+import ArenaStore from '../model/ArenaStore';
 
 
-interface Props extends ScreenProps {
-    agreement: string;
-    url: string;
-    start: string;
-    end: string;
-}
+export default class Arena extends Component<ScreenProps> {
 
-export default class Arena extends Component<Props> {
     componentDidMount() {
+        ArenaStore.join();
         SkywayStore.join('aaa');
         console.log('ArenaScreen componentDidMount');
     }
@@ -37,8 +33,8 @@ export default class Arena extends Component<Props> {
         console.log('ArenaScreen componentWillUnmount');
     }
 
-    onPress = (text) => {
-        console.log(text);
+    leave = () => {
+        this.props.navigation.goBack();
     }
 
     render() {
@@ -46,7 +42,7 @@ export default class Arena extends Component<Props> {
             <Container style={styles.container}>
                 <Header>
                     <Left>
-                        <Button transparent onPress={() => this.props.navigation.goBack()}>
+                        <Button transparent onPress={() => this.leave()}>
                             <Icon name='arrow-back' />
                         </Button>
                     </Left>
@@ -58,34 +54,12 @@ export default class Arena extends Component<Props> {
                 <Content style={styles.content}>
                     <View style={styles.info}>
                         <Timer />
-                        <ActInfo style={styles.actInfo} />
+                        <ActInfo />
                     </View>
                     <View style={styles.body}>
                         <Tabs scrollWithoutAnimation={false}>
                             <Tab heading='台本'>
-                                <ScenarioMaster
-                                    agreement='http://doodletxt.web.fc2.com/'
-                                    url='http://doodletxt.web.fc2.com/paranormansboogie3.html'
-                                    start='宝屋敷：ちょっとぉ、ボケるには早いんじゃないのぉ？'
-                                    end='セオドア：観光と、仕事と、半分半分かな。'
-                                />
-                                {/*
-                    <ScenarioMaster
-                        agreement={'http://uriuriko.web.fc2.com/about.html'}
-                        url={'http://uriuriko.web.fc2.com/kizuato12.htm'}
-                        start={'レイス「あは…はははっ！」'}
-                        end={'レイス「剣の脆弱（ぜいじゃく）さ、思い知らせてあげるよ。」'}
-                    />
-                    */}
-
-                                {/*
-                    <ScenarioMaster
-                        agreement='http://doodletxt.web.fc2.com/' 
-                        url='http://doodletxt.web.fc2.com/paranormansboogie3.html'
-                        start='宝屋敷：ちょっとぉ、ボケるには早いんじゃないのぉ？'
-                        end='セオドア：観光と、仕事と、半分半分かな。'
-                    />
-                    */}
+                                <ScenarioMaster />
                             </Tab>
                             <Tab heading='チャット'>
                                 <Chat />

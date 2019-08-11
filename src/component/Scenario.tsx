@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
+import { observer } from 'mobx-react';
+
+import ArenaStore from '../model/ArenaStore';
+
 
 const js = (start, end) => {
     return `
@@ -60,19 +64,14 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", 
 `;
 }
 
-interface props {
-    url: string;
-    start: string;
-    end: string;
-}
-
-export default class Scenario extends Component<props> {
+@observer
+export default class Scenario extends Component {
     render() {
         return (
             <WebView
                 javaScriptEnabled={true}
-                injectedJavaScript={js(this.props.start, this.props.end)}
-                source={{ uri: this.props.url }}
+                injectedJavaScript={js(ArenaStore.startText, ArenaStore.endText)}
+                source={{ uri: ArenaStore.scenarioUrl }}
             />
         );
     }
