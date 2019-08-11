@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
 
@@ -60,27 +60,20 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", 
 `;
 }
 
-interface ScenarioProps {
+interface props {
     url: string;
     start: string;
     end: string;
 }
 
-export default class Scenario extends Component<ScenarioProps> {
-
+export default class Scenario extends Component<props> {
     render() {
         return (
-                <WebView style={styles.webview}
-                    javaScriptEnabled={true}
-                    injectedJavaScript={js(this.props.start, this.props.end)}
-                    source={{uri: this.props.url}}
-                />
-               );
+            <WebView
+                javaScriptEnabled={true}
+                injectedJavaScript={js(this.props.start, this.props.end)}
+                source={{ uri: this.props.url }}
+            />
+        );
     }
 }
-
-
-const styles = StyleSheet.create({
-webview: {
-},
-});

@@ -24,20 +24,18 @@ export default class ActInfo extends Component<props> {
         };
 
         return (
-            <Container style={styles.welcome}>
+            <Container style={styles.body}>
                 <Text>
                     上演情報
                 </Text>
                 <UserIcon size={C.UserIconSize.S} user={user} />
-                <UserIcon size={C.UserIconSize.M} user={user} />
-                <UserIcon size={C.UserIconSize.L} user={user} />
             </Container>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    welcome: {
+    body: {
         height: 100,
         fontSize: 20,
         textAlign: 'center',

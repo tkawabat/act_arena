@@ -16,23 +16,30 @@ interface props {
 export default class Timer extends Component<props> {
     private time: number;
     componentDidMount() {
-        console.log('timer componentDidMount');
+        console.log('chat componentDidMount');
     }
 
     componentDidUpdate() {
-        console.log('timer componentDidUpdate');
+        console.log('chat componentDidUpdate');
     }
 
     componentWillUnmount() {
-        console.log('timer componentWillUnmount');
+        console.log('chat componentWillUnmount');
     }
 
     render() {
+
         return (
-            <Container style={styles.root}>
+            <Container>
                 <H1>
                     {ArenaStore.time}
                 </H1>
+                <Button onPress={() => ArenaStore.decrement()}>
+                    <Text>-1</Text>
+                </Button>
+                <Button onPress={() => ArenaStore.hoge()}>
+                    <Text>hoge</Text>
+                </Button>
             </Container>
 
         );
@@ -40,13 +47,12 @@ export default class Timer extends Component<props> {
 }
 
 const styles = StyleSheet.create({
-    root: {
-        height: 72
-        , width: 72
-        , textAlign: 'center'
-        , color: '#FFF'
-        , backgroundColor: 'blue'
-        , fontWeight: '800'
-        , margin: 10
+    welcome: {
+        height: 100,
+        fontSize: 20,
+        textAlign: 'center',
+        color: '#FFF',
+        backgroundColor: 'gray',
+        margin: 10,
     }
 });
