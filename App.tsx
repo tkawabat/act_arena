@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navigator from './src/index';
 import { Sentry } from 'react-native-sentry';
 Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
-import SkywayStore from './src/model/SkywayStore';
+import SkywayStore from './src/store/SkywayStore';
 
 
 export default class App extends Component {

@@ -3,7 +3,7 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'nativ
 import { Platform, StyleSheet, TouchableOpacity, TextInput, Text, View, WebView } from 'react-native';
 import { observer } from 'mobx-react';
 
-import ArenaStore from '../model/ArenaStore';
+import ArenaStore from '../store/ArenaStore';
 
 
 const js = (agreementScroll: number) => {
@@ -44,7 +44,6 @@ export default class Agreement extends Component {
     };
 
     render() {
-        console.log(js(ArenaStore.agreementScroll));
         return (
             <View style={styles.container}>
                 <WebView style={styles.webview}

@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View, WebView, Image } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 import * as C from '../lib/Const';
-import User from '../model/User';
+import User from '../store/User';
 
 
 interface props {

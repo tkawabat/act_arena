@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 
 import ScreenProps from './ScreenProps';
 
-import SkywayStore from '../model/SkywayStore';
+import SkywayStore from '../store/SkywayStore';
 import Firebase from '../lib/Firebase';
 
 import LobbyCard from '../component/LobbyCard';

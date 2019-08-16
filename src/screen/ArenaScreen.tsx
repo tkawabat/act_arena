@@ -6,14 +6,14 @@ import ScreenProps from './ScreenProps';
 
 import * as C from '../lib/Const';
 
-import SkywayStore from '../model/SkywayStore';
+import SkywayStore from '../store/SkywayStore';
 
 import ScenarioMaster from '../component/ScenarioMaster';
 import Chat from '../component/Chat';
 import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
 import Microphone from '../component/Microphone';
-import ArenaStore from '../model/ArenaStore';
+import ArenaStore from '../store/ArenaStore';
 
 
 export default class Arena extends Component<ScreenProps> {

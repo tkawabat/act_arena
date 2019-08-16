@@ -3,7 +3,7 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'nativ
 import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
 import { observer } from 'mobx-react';
 
-import ArenaStore from '../model/ArenaStore';
+import ArenaStore from '../store/ArenaStore';
 
 
 const js = (start, end) => {

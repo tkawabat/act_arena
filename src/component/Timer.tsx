@@ -4,7 +4,7 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title, H1, H2, H3} 
 import { observer } from 'mobx-react';
 
 import * as C from '../lib/Const';
-import ArenaStore from '../model/ArenaStore';
+import ArenaStore from '../store/ArenaStore';
 
 interface props {
     // url: string;

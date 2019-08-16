@@ -4,7 +4,7 @@ import { Container, Header, Content, Icon, Button } from 'native-base';
 import { observer } from 'mobx-react';
 
 import * as C from '../lib/Const';
-import SkywayStore from '../model/SkywayStore';
+import SkywayStore from '../store/SkywayStore';
 
 
 @observer
