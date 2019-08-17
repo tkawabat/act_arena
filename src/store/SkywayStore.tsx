@@ -3,14 +3,8 @@ import { Peer } from 'react-native-skyway';
 import { observable, action } from 'mobx';
 
 import * as C from '../lib/Const';
+import Secret from '../lib/Secret';
 
-
-const options = {
-    key: '9b68cd86-829d-4e0e-884e-bbe6c75e12e5'
-    , domain: 'localhost'
-    , mode: 'sfu'
-    , debug: 3
-};
 
 class Skyway {
     @observable state = C.SkywayState.INIT;
@@ -21,7 +15,7 @@ class Skyway {
     constructor() {
         const m = Moment();
         const PEER_ID = m.format("YYYYMMDDHHmmss");  
-        this.peer = new Peer(PEER_ID, options);
+        this.peer = new Peer(PEER_ID, Secret.skyway);
 
         this.onPeerOpen = this.onPeerOpen.bind(this);
         this.onPeerClose = this.onPeerClose.bind(this);
