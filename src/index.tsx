@@ -1,17 +1,21 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation'
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-//画面
+import RegisterScreen from './screen/RegisterScreen';
 import LobbyScreen from './screen/LobbyScreen';
 import Modal from './screen/Modal';
 import ArenaScreen from './screen/ArenaScreen';
 
+import UserStore from './store/UserStore';
 
+
+const initailScreen = UserStore.uid == null ? 'Register' : 'Lobby';
 export const MainNavigation = createStackNavigator(
     {
-        Main: { screen: LobbyScreen },
-        Push: { screen: ArenaScreen },
+        Register: { screen: RegisterScreen },
+        Lobby: { screen: LobbyScreen },
+        Arena: { screen: ArenaScreen },
     },
-    { initialRouteName: 'Main', mode: 'card', headerMode: 'none' }
+    { initialRouteName: initailScreen, mode: 'card', headerMode: 'none' }
 )
 
 const Navigation = createStackNavigator(
@@ -22,6 +26,5 @@ const Navigation = createStackNavigator(
     { initialRouteName: 'MainNavigation', mode: 'modal', headerMode: 'none' },
 )
 
-const App = createAppContainer(Navigation);
 
-export default App;
+export default createAppContainer(Navigation);

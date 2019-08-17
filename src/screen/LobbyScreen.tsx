@@ -4,8 +4,7 @@ import { observer } from 'mobx-react';
 
 import ScreenProps from './ScreenProps';
 
-import SkywayStore from '../store/SkywayStore';
-import Firebase from '../lib/Firebase';
+import ArenaStore from '../store/ArenaStore';
 
 import LobbyCard from '../component/LobbyCard';
 
@@ -19,7 +18,7 @@ export default class LobbyScreen extends Component<ScreenProps> {
     
     private joinArena() :void {
         const { navigation } = this.props;
-        navigation.navigate('Push');
+        navigation.navigate('Arena');
     }
     private modal() :void {
         const { navigation } = this.props
@@ -27,11 +26,6 @@ export default class LobbyScreen extends Component<ScreenProps> {
     }
 
     render() {
-        const cardItems = [
-            {
-                
-            }
-        ]
         return (
             <Container>
                 <Header>
@@ -54,12 +48,16 @@ export default class LobbyScreen extends Component<ScreenProps> {
                     </Button>
                 </View> */}
 
-                {/* <Button small iconRight transparent onPress={() => Firebase.signup("random.matching@gmail.com", "cccccc")}>
-                    <Text>signup</Text>
+                <Button small iconRight onPress={() => ArenaStore.set()}>
+                    <Text>set</Text>
                 </Button>
-                <Button small iconRight transparent onPress={() => Firebase.login("random.matching@gmail.com", "cccccc")}>
-                    <Text>login</Text>
+                <Button small iconRight onPress={() => ArenaStore.update()}>
+                    <Text>update</Text>
                 </Button>
+                <Button small iconRight onPress={() => ArenaStore.get('arena1')}>
+                    <Text>get</Text>
+                </Button>
+                {/* 
                 <Button small iconRight transparent onPress={() => Firebase.twitterLogin()}>
                     <Text>TwitterLogin</Text>
                 </Button>

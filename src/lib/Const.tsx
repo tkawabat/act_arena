@@ -4,9 +4,10 @@ export enum UserIconSize {
     , L = 64
 }
 
-export enum Sex {
-    Male
-    , Female
+export enum Gender {
+    Unknown = 0
+    , Male = 1
+    , Female = 2
 }
 
 export enum ArenaState {

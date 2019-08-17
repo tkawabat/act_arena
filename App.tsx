@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
-import Navigator from './src/index';
+import { observer } from 'mobx-react';
+
 import { Sentry } from 'react-native-sentry';
 Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
-import SkywayStore from './src/store/SkywayStore';
+
+import Navigator from './src/index';
+import LoadStore from './src/store/LoadStore';
 
 
+@observer
 export default class App extends Component {
-    state = { fontLoaded: false };
     constructor(props) {
-        super(props);
-    }
-
-    async componentWillMount() {
-        await Expo.Font.loadAsync({
+        super(props);        
+        Expo.Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+        }).then(() => {
+            LoadStore.font = true;
         });
-        this.setState({ fontLoaded: true });
     }
 
     render() {
-        if (!this.state.fontLoaded) return null;
+        if (!LoadStore.isLoaded) return null;
 
         return (
             <Navigator />

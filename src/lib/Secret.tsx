@@ -7,4 +7,3 @@ if (!__DEV__) {
 }
 
 export default secret;
-

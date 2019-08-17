@@ -3,24 +3,18 @@ import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
 import * as C from '../lib/Const';
-import User from '../store/User';
+import UserStore, {User} from '../store/UserStore';
 
 import UserIcon from './UserIcon';
 
 
-interface props {
-    // url: string;
-    // start: string;
-    // end: string;
-}
-
-export default class ActInfo extends Component<props> {
+export default class ActInfo extends Component {
     render() {
         const user: User = {
             id: 'a'
             , name: 'b'
-            , sex: C.Sex.Female
-            , icon_url: 'https://facebook.github.io/react-native/img/header_logo.png'
+            , gender: C.Gender.Female
+            , iconUrl: 'https://facebook.github.io/react-native/img/header_logo.png'
         };
 
         return (

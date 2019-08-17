@@ -5,8 +5,10 @@ import { observable, action } from 'mobx';
 import * as C from '../lib/Const';
 import Secret from '../lib/Secret';
 
+import LoadStore from './LoadStore';
 
-class Skyway {
+
+class SkywayStore {
     @observable state = C.SkywayState.INIT;
     @observable speakState = C.SpeakState.DISABLED;
 
@@ -57,6 +59,7 @@ class Skyway {
     private onPeerOpen() {
         console.log("onPeerOpen");
         this.state = C.SkywayState.OPEN;
+        LoadStore.skyway = true;
         this.speakState = C.SpeakState.DISABLED;
     }
 
@@ -66,7 +69,7 @@ class Skyway {
     }
 
     private onPeerError() {
-        console.log("onPeerError");
+        LoadStore.skyway = false;
         //this.dispose();
         // TODO
     }
@@ -75,6 +78,7 @@ class Skyway {
         console.log("onPeerClose");
         this.state = C.SkywayState.INIT;
         this.speakState = C.SpeakState.DISABLED;
+        LoadStore.skyway = false;
         //this.dispose();
         // TODO
     }
@@ -169,4 +173,4 @@ class Skyway {
 }
 
 
-export default new Skyway();
+export default new SkywayStore();
