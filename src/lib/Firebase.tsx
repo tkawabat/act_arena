@@ -1,5 +1,6 @@
 import firebase from 'firebase';
-import secret from '../../secret.json';
+import 'firebase/firestore';
+import secret from './Secret';
 
 
 class Firebase {
@@ -79,6 +80,10 @@ class Firebase {
             .catch(error => {
                 console.log(error)
             })
+    }
+
+    get firestore() {
+        return firebase.firestore();
     }
 }
 
