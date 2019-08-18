@@ -22,12 +22,10 @@ export default class App extends Component {
     }
 
     render() {
-        if (!LoadStore.isLoaded) {
+        if (!LoadStore.isInitLoaded) {
             return (
                 <Spinner
                     visible
-                    textContent={'読み込み中'}
-                    textStyle={{ color: 'white' }}
                 />
             )
         }

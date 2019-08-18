@@ -8,7 +8,8 @@ import ArenaScreen from './screen/ArenaScreen';
 import UserStore from './store/UserStore';
 
 
-const initailScreen = UserStore.uid == null ? 'Register' : 'Lobby';
+const initailScreen = UserStore.name ? 'Lobby' : 'Register';
+//const initailScreen = 'Lobby';
 export const MainNavigation = createStackNavigator(
     {
         Register: { screen: RegisterScreen },
