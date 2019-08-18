@@ -2,16 +2,18 @@ import { observable, computed } from 'mobx';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
-import Amplitude from '../lib/Amplitude';
+import Amplitude, { Error } from '../lib/Amplitude';
 
 import LoadStore from './LoadStore';
 
 
 export interface User {
     id: string
-    , name: string
-    , gender: C.Gender
-    , iconUrl: string
+    name: string
+    gender: C.Gender
+    iconUrl: string
+    // createdAt: Firebase.firestore.FieldValue
+    // updatedAt: Firebase.firestore.FieldValue
 }
 
 class UserStore implements User {
@@ -19,6 +21,8 @@ class UserStore implements User {
     @observable name:string;
     @observable gender: C.Gender;
     @observable iconUrl: string;
+    createdAt: Firebase.firestore.FieldValue
+    updatedAt: Firebase.firestore.FieldValue
 
     @computed get isRegisted() :boolean {
         return this.name ? true : false;
@@ -42,55 +46,47 @@ class UserStore implements User {
             this.id = user.uid;
             Amplitude.setUserId(this.id);
             Amplitude.logEvent('login');
+            console.log(this.id);
 
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
-            this.onSnapshot = this.db.where('id', '==', this.id).onSnapshot(this.setSnapshot2field);
-            console.log('login ' + user.uid);
-            this.get(this.id);
-            LoadStore.user = true;
+            this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
+            this.get(this.id).then(() => {LoadStore.user = true;})
         });
-
-        // サインインしているかどうかの判定２
-        //const currentUser = firebase.auth().currentUser;
     }
 
     private get = async (uid:string) :Promise<void> => {
-        this.db
-            .where('id', '==', this.id)
+        return this.db
+            .doc(this.id)
             .get()
-            .then(this.setSnapshot2field);
+            .then(this.setSnapshot2field)
+            .catch((error) => Error('UserStore get', error))
+            ;
     }
 
-    private setSnapshot2field = (snapshot:Firebase.firestore.QuerySnapshot) => {
-        snapshot.forEach((doc) => {
-            let data = doc.data();
-            this.name = data.name;
-            this.gender = data.gender;
-            this.iconUrl = data.iconUrl;
-        });
+    private setSnapshot2field = (doc:Firebase.firestore.DocumentSnapshot) => {
+        const data = doc.data();
+        if (!data) return;
+
+        this.name = data.name;
+        this.gender = data.gender;
+        this.iconUrl = data.iconUrl;
     }
 
     public set = async (name:string, gender:number) :Promise<void> => {
         Amplitude.logEventWithProperties('set user', {name:name, gender:gender});
-        this.db.doc(this.id).set({
+        return this.db.doc(this.id).set({
             name: name
             , gender: gender
+            , createdAt: Firebase.firestore.FieldValue.serverTimestamp()
+            , updatedAt: Firebase.firestore.FieldValue.serverTimestamp()
         }, {merge: true})
-        .then(() => {
-            this.get(this.id);
-        })
-        .catch(() => {
-            Amplitude.logEvent('set user error');
-        })
+        .catch((error) => Error('UserStore set', error))
         ;
     }
 
     public anonymousLogin() {
-        Firebase.auth().signInAnonymously().then(result => {
-            
-        }).catch(error => {
-            console.log(error);
-        });
+        Firebase.auth().signInAnonymously()
+        .catch((error) => Error('UserStore anonymousLogin', error))
     }
 
     // public signup(email, password) {

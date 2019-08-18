@@ -4,6 +4,7 @@ import { observable, computed, action } from 'mobx';
 import * as C from '../lib/Const';
 import firebase from '../lib/Firebase';
 
+
 class ArenaStore {
     private db:firebase.firestore.CollectionReference;
 
@@ -37,7 +38,9 @@ class ArenaStore {
               return doc.data();
             });
             console.log('hoge');
-            console.log(messages);
+        });
+        this.db.where('id', '==', 1).onSnapshot((snapshot) => {
+            console.log('fuga');
         });
     }
     public set = () => {
@@ -46,7 +49,16 @@ class ArenaStore {
         this.db.doc('arena1').set({
             createdAt
             , updatedAt
-        });
+        })
+        .then((hoge) => {
+            console.log("then");
+            console.log(hoge);
+        })
+        .catch((err) => {
+            console.log("err");
+            console.log(err);
+        })
+        ;
     }
 
     public update = () => {
@@ -54,6 +66,7 @@ class ArenaStore {
         this.db.doc('arena1').update({
             updatedAt
         })
+        .catch((err) => {console.log(err)})
     }
 
     public get = async (id:string) :Promise<firebase.firestore.DocumentData> => {
