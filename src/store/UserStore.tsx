@@ -1,7 +1,8 @@
 import { observable, computed } from 'mobx';
 
 import * as C from '../lib/Const';
-import firebase from '../lib/Firebase';
+import Firebase from '../lib/Firebase';
+import Amplitude from '../lib/Amplitude';
 
 import LoadStore from './LoadStore';
 
@@ -24,21 +25,23 @@ class UserStore implements User {
     }
 
     private providerTwitter;
-    private db:firebase.firestore.CollectionReference;
+    private db:Firebase.firestore.CollectionReference;
     private onSnapshot;
 
     constructor() {
-        this.db = firebase.firestore().collection('User');
-        this.providerTwitter = new firebase.auth.TwitterAuthProvider();
+        this.db = Firebase.firestore().collection('User');
+        this.providerTwitter = new Firebase.auth.TwitterAuthProvider();
 
         // サインインしているかどうかの判定
-        firebase.auth().onAuthStateChanged(user => {
+        Firebase.auth().onAuthStateChanged(user => {
             if (!user) {
                 this.anonymousLogin();
                 return;
             }
 
             this.id = user.uid;
+            Amplitude.setUserId(this.id);
+            Amplitude.logEvent('login');
 
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.where('id', '==', this.id).onSnapshot(this.setSnapshot2field);
@@ -58,7 +61,7 @@ class UserStore implements User {
             .then(this.setSnapshot2field);
     }
 
-    private setSnapshot2field = (snapshot:firebase.firestore.QuerySnapshot) => {
+    private setSnapshot2field = (snapshot:Firebase.firestore.QuerySnapshot) => {
         snapshot.forEach((doc) => {
             let data = doc.data();
             this.name = data.name;
@@ -68,6 +71,7 @@ class UserStore implements User {
     }
 
     public set = async (name:string, gender:number) :Promise<void> => {
+        Amplitude.logEventWithProperties('set user', {name:name, gender:gender});
         this.db.doc(this.id).set({
             name: name
             , gender: gender
@@ -75,28 +79,31 @@ class UserStore implements User {
         .then(() => {
             this.get(this.id);
         })
-    }
-
-    // ユーザ登録
-    public signup(email, password) {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(user => {
-                if (user) {
-                    console.log("Success to Signup")
-                }
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        .catch(() => {
+            Amplitude.logEvent('set user error');
+        })
+        ;
     }
 
     public anonymousLogin() {
-        firebase.auth().signInAnonymously().then(result => {
+        Firebase.auth().signInAnonymously().then(result => {
             
         }).catch(error => {
             console.log(error);
         });
     }
+
+    // public signup(email, password) {
+    //     Firebase.auth().createUserWithEmailAndPassword(email, password)
+    //         .then(user => {
+    //             if (user) {
+    //                 console.log("Success to Signup")
+    //             }
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
 
     // public login(email, password) {
     //     firebase.auth().signInWithEmailAndPassword(email, password)

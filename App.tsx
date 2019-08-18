@@ -12,6 +12,7 @@ import LoadStore from './src/store/LoadStore';
 export default class App extends Component {
     constructor(props) {
         super(props);        
+        
         Expo.Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
