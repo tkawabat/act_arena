@@ -11,11 +11,11 @@ export enum Gender {
 }
 
 export enum ArenaState {
-    WAIT
-    , READY
-    , CONFIRM
-    , CHECK
-    , ACT
+    WAIT = 0
+    , READY = 1
+    , CONFIRM = 2
+    , CHECK = 3
+    , ACT = 4
 }
 
 export enum AgreementState {
