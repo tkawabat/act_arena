@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, WebView, Dimensions } from 'react-native';
-import { Container, Header, Body, Content, Left, Right, Button, Icon, Title, Tabs, Tab } from 'native-base';
+import { StyleSheet, Dimensions } from 'react-native';
+import { Container, Header, Content, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
 
 import ScreenProps from './ScreenProps';
 

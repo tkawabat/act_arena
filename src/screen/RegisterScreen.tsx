@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, WebView, Dimensions } from 'react-native';
-import { Container, View, Header, Content, Left, Body, Right, Button, Title, Text, Form, Item, Input, Picker, Icon } from 'native-base';
+import { StyleSheet, Dimensions, Alert } from 'react-native';
+import { Container, Content, View, Button, H1, Text, Form, Item, Input, Picker, Icon } from 'native-base';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { observer } from 'mobx-react';
 
@@ -23,12 +23,15 @@ export default class RegisterScreen extends Component<ScreenProps> {
     constructor(props) {
         super(props);
     }
+
+    private confirmRegist = () => {
+        Alert.alert('', '一度決定すると変更できません。\nデータを保存してよろしいでしょうか？', [
+            { text: 'OK', onPress: this.regist}
+            , { text: 'Cancel'}
+        ]);
+    }
     
     private regist = async () => {
-        if (this.state.name.length < 3) {
-            alert('ハンドルネームは3~20文字にしてください');
-            return;
-        }
         LoadStore.load(true);
         UserStore.set(this.state.name, this.state.gender).then(() => {
             LoadStore.load(false);
@@ -39,9 +42,10 @@ export default class RegisterScreen extends Component<ScreenProps> {
 
     private onNameChange = (value: string) => {
         let disabled = true;
-        if (this.state.gender) {
+        if (this.state.gender && value.length >= 3) {
             disabled = false;
         }
+
         this.setState({
             name: value
             , disabled: disabled
@@ -50,9 +54,10 @@ export default class RegisterScreen extends Component<ScreenProps> {
 
     private onGenderChange = (value: number) => {
         let disabled = true;
-        if (this.state.name) {
+        if (this.state.name && this.state.name.length >= 3) {
             disabled = false;
         }
+
         this.setState({
             gender: value
             , disabled: disabled
@@ -66,13 +71,14 @@ export default class RegisterScreen extends Component<ScreenProps> {
             return null;
         }
         return (
-            <Container style={styles.container}>
+            <Container>
                 <Spinner visible={LoadStore.isLoad} />
-                <Content>
-                    <Form>
+                <Content style={styles.content}>
+                    <H1 style={styles.title}>ユーザー登録</H1>
+                    <View style={styles.view}>
                         <Item>
                             <Input
-                                placeholder='ハンドルネーム(3~20文字)'
+                                placeholder='ハンドルネーム (3~20文字)'
                                 placeholderTextColor='#ccc'
                                 onChangeText={this.onNameChange}
                                 maxLength={20}
@@ -84,31 +90,53 @@ export default class RegisterScreen extends Component<ScreenProps> {
                             iosIcon={<Icon name='arrow-down' />}
                             selectedValue={this.state.gender}
                             onValueChange={this.onGenderChange}
+                            style={styles.picker}
                         >
                             <Picker.Item label="男性" value={C.Gender.Male} />
                             <Picker.Item label="女性" value={C.Gender.Female} />
                         </Picker>
-                    </Form>
-                    <Button style={styles.button} onPress={this.regist} disabled={this.state.disabled}>
-                        <Text>登録</Text>
-                    </Button>
+                        <View style={styles.buttonView}>
+                            <Button style={styles.button} onPress={this.confirmRegist} disabled={this.state.disabled}>
+                                <Text style={styles.buttonText}>登録</Text>
+                            </Button>
+                        </View>
+                    </View>
                 </Content>
             </Container>
         );
     }
 }
 
+let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
-    container: {
-        top: 200
-        , padding: 20
+    content: {
+        width: width
+        , height: height
+        , padding: 30
+    }
+    , title: {
+        marginTop: 50
+    }
+    , view: {
+        padding: 10
+        , marginTop: 20
     }
     , picker: {
-        marginLeft: 5
+        
+    }
+    , buttonView: {
+        padding: 10
+        , marginTop: 20
+        , justifyContent:'center'
+        , alignItems: 'center'
     }
     , button: {
         width: 100
-        , marginTop: 10
+        , marginTop: 5  
         , justifyContent:'center'
+        , textAlign: 'center'      
+    }
+    , buttonText: {
+        
     }
 });
