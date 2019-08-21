@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
+import { GiftedChat, IMessage } from 'react-native-gifted-chat';
+import { observer } from 'mobx-react';
 
 import ScreenProps from './ScreenProps';
 
@@ -14,6 +16,7 @@ import Microphone from '../component/Microphone';
 import ArenaStore from '../store/ArenaStore';
 
 
+@observer
 export default class Arena extends Component<ScreenProps> {
 
     componentDidMount() {  
@@ -51,17 +54,26 @@ export default class Arena extends Component<ScreenProps> {
                         <Tabs scrollWithoutAnimation={false}>
                             <Tab heading='台本'>
                                 <ScenarioMaster />
+                                <View style={styles.action}>
+                                    <Microphone />
+                                    <Text>
+                                        エントリーボタン他
+                                    </Text>
+                                </View>
                             </Tab>
                             <Tab heading='チャット'>
-                                <Chat />
+                                <GiftedChat
+                                    messages={ArenaStore.messages}
+                                    onSend={(messages: Array<IMessage>) => {
+                                        ArenaStore.messages = GiftedChat.append(ArenaStore.messages, messages)
+                                    }}
+                                    user={{
+                                        _id: 1,
+                                        name: 'John Doe'
+                                    }}
+                                />
                             </Tab>
                         </Tabs>
-                    </View>
-                    <View style={styles.action}>
-                        <Microphone />
-                        <Text>
-                            エントリーボタン他
-                        </Text>
                     </View>
                 </Content>
             </Container>
@@ -87,7 +99,7 @@ const styles = StyleSheet.create({
     , actInfo: {
     }
     , body: {
-        height: height - 50 - 50 - 70 - 5 - 5 - 5
+        height: height - 50 - 50 - 5 - 5 - 5
         , justifyContent: 'center'
         , backgroundColor: '#333'
     }

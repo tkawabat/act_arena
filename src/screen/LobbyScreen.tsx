@@ -8,23 +8,21 @@ import ArenaStore from '../store/ArenaStore';
 
 import LobbyCard from '../component/LobbyCard';
 
+
 @observer
 export default class LobbyScreen extends Component<ScreenProps> {
     constructor(props) {
         super(props);
-
-        this.joinArena = this.joinArena.bind(this);
     }
     
-    private joinArena() :void {
-        // const { navigation } = this.props;
-        // navigation.navigate('Arena');
-        ArenaStore.join();
+    private joinArena = () :void => {
+        ArenaStore.join(1);
     }
-    private modal() :void {
-        const { navigation } = this.props
-        navigation.navigate('Modal')
-    }
+
+    // private modal = () :void => {
+    //     const { navigation } = this.props
+    //     navigation.navigate('Modal')
+    // }
 
     render() {
         return (
