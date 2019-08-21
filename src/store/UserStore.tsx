@@ -39,7 +39,6 @@ class UserStore implements User {
         // サインインしているかどうかの判定
         Firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                this.anonymousLogin();
                 return;
             }
 
@@ -87,7 +86,8 @@ class UserStore implements User {
 
     public anonymousLogin() {
         Firebase.auth().signInAnonymously()
-        .catch((error) => Error('UserStore anonymousLogin', error))
+            .catch((error) => Error('UserStore anonymousLogin', error))
+            ;
     }
 
     // public signup(email, password) {

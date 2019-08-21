@@ -7,6 +7,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import AppContainer from './src/screen/AppContainer';
 import Navigator from './src/lib/Navigator';
 import LoadStore from './src/store/LoadStore';
+import UserStore from './src/store/UserStore';
 
 
 @observer
@@ -20,6 +21,7 @@ export default class App extends Component {
         }).then(() => {
             LoadStore.font = true;
         });
+        UserStore.anonymousLogin();
     }
 
     render() {

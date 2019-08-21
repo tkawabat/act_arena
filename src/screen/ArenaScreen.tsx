@@ -16,9 +16,7 @@ import ArenaStore from '../store/ArenaStore';
 
 export default class Arena extends Component<ScreenProps> {
 
-    componentDidMount() {
-        //ArenaStore.join();
-        
+    componentDidMount() {  
         console.log('ArenaScreen componentDidMount');
     }
 
@@ -27,7 +25,6 @@ export default class Arena extends Component<ScreenProps> {
     }
 
     componentWillUnmount() {
-        
         console.log('ArenaScreen componentWillUnmount');
     }
 
