@@ -3,6 +3,9 @@ import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
 import firebase from '../lib/Firebase';
+import Navigator from '../lib/Navigator';
+
+import SkywayStore from './SkywayStore';
 
 
 class ArenaStore {
@@ -87,6 +90,7 @@ class ArenaStore {
     }
 
     public join = async () => {
+        SkywayStore.join('aaa');
         await this.get('arena1');
 
         this.arenaState = C.ArenaState.WAIT;
@@ -104,6 +108,13 @@ class ArenaStore {
         // this.scenarioUrl = 'http://uriuriko.web.fc2.com/kizuato12.htm';
         // this.startText = 'レイス「あは…はははっ！」';
         // this.endText = 'レイス「剣の脆弱（ぜいじゃく）さ、思い知らせてあげるよ。」';
+
+        Navigator.navigate('Arena', null);
+    }
+
+    public leave() {
+        SkywayStore.leave();
+        Navigator.back();
     }
 
     public decrement() {

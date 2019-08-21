@@ -3,7 +3,7 @@ import { observable, computed } from 'mobx';
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
 import Amplitude, { Error } from '../lib/Amplitude';
-
+import Navigator from '../lib/Navigator';
 import LoadStore from './LoadStore';
 
 
@@ -80,6 +80,7 @@ class UserStore implements User {
             , createdAt: Firebase.firestore.FieldValue.serverTimestamp()
             , updatedAt: Firebase.firestore.FieldValue.serverTimestamp()
         }, {merge: true})
+        .then(() => { Navigator.navigate('Lobby', null)})
         .catch((error) => Error('UserStore set', error))
         ;
     }

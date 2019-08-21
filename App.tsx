@@ -4,7 +4,8 @@ Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').inst
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import Navigator from './src/index';
+import AppContainer from './src/screen/AppContainer';
+import Navigator from './src/lib/Navigator';
 import LoadStore from './src/store/LoadStore';
 
 
@@ -31,7 +32,7 @@ export default class App extends Component {
         }
 
         return (
-            <Navigator />
+            <AppContainer ref={(nav) => { Navigator.setNavigator(nav); } } />
         );
     }
 }

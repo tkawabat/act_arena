@@ -1,15 +1,14 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import RegisterScreen from './screen/RegisterScreen';
-import LobbyScreen from './screen/LobbyScreen';
-import Modal from './screen/Modal';
-import ArenaScreen from './screen/ArenaScreen';
+import RegisterScreen from './RegisterScreen';
+import LobbyScreen from './LobbyScreen';
+import Modal from './Modal';
+import ArenaScreen from './ArenaScreen';
 
-import UserStore from './store/UserStore';
+import UserStore from '../store/UserStore';
 
 
 const initailScreen = UserStore.name ? 'Lobby' : 'Register';
-//const initailScreen = 'Lobby';
 export const MainNavigation = createStackNavigator(
     {
         Register: { screen: RegisterScreen },

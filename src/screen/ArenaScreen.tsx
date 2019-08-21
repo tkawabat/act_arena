@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Container, Header, Content, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
+import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
 
 import ScreenProps from './ScreenProps';
 
 import * as C from '../lib/Const';
-
-import SkywayStore from '../store/SkywayStore';
 
 import ScenarioMaster from '../component/ScenarioMaster';
 import Chat from '../component/Chat';
@@ -19,8 +17,8 @@ import ArenaStore from '../store/ArenaStore';
 export default class Arena extends Component<ScreenProps> {
 
     componentDidMount() {
-        ArenaStore.join();
-        SkywayStore.join('aaa');
+        //ArenaStore.join();
+        
         console.log('ArenaScreen componentDidMount');
     }
 
@@ -29,12 +27,8 @@ export default class Arena extends Component<ScreenProps> {
     }
 
     componentWillUnmount() {
-        SkywayStore.leave();
+        
         console.log('ArenaScreen componentWillUnmount');
-    }
-
-    leave = () => {
-        this.props.navigation.goBack();
     }
 
     render() {
@@ -42,7 +36,7 @@ export default class Arena extends Component<ScreenProps> {
             <Container style={styles.container}>
                 <Header>
                     <Left>
-                        <Button transparent onPress={() => this.leave()}>
+                        <Button transparent onPress={() => ArenaStore.leave()}>
                             <Icon name='arrow-back' />
                         </Button>
                     </Left>

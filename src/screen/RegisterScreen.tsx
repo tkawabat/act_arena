@@ -35,8 +35,6 @@ export default class RegisterScreen extends Component<ScreenProps> {
         LoadStore.load(true);
         UserStore.set(this.state.name, this.state.gender).then(() => {
             LoadStore.load(false);
-            const { navigation } = this.props;
-            navigation.navigate('Lobby');
         });
     }
 

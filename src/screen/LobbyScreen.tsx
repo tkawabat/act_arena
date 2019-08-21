@@ -17,8 +17,9 @@ export default class LobbyScreen extends Component<ScreenProps> {
     }
     
     private joinArena() :void {
-        const { navigation } = this.props;
-        navigation.navigate('Arena');
+        // const { navigation } = this.props;
+        // navigation.navigate('Arena');
+        ArenaStore.join();
     }
     private modal() :void {
         const { navigation } = this.props
