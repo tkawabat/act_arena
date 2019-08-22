@@ -8,12 +8,13 @@ import ScreenProps from './ScreenProps';
 
 import * as C from '../lib/Const';
 
+import ArenaStore from '../store/ArenaStore';
+import UserStore from '../store/UserStore';
+
 import ScenarioMaster from '../component/ScenarioMaster';
-import Chat from '../component/Chat';
 import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
 import Microphone from '../component/Microphone';
-import ArenaStore from '../store/ArenaStore';
 
 
 @observer
@@ -64,12 +65,12 @@ export default class Arena extends Component<ScreenProps> {
                             <Tab heading='チャット'>
                                 <GiftedChat
                                     messages={ArenaStore.messages}
-                                    onSend={(messages: Array<IMessage>) => {
-                                        ArenaStore.messages = GiftedChat.append(ArenaStore.messages, messages)
-                                    }}
+                                    onSend={ArenaStore.addChat}
+                                    dateFormat={'MM/DD'}
+                                    timeFormat={"HH:MM"}
                                     user={{
-                                        _id: 1,
-                                        name: 'John Doe'
+                                        _id: UserStore.id,
+                                        name: UserStore.name
                                     }}
                                 />
                             </Tab>

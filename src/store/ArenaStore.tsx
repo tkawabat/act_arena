@@ -1,6 +1,6 @@
 import Moment from 'moment';
 import { observable, computed, action } from 'mobx';
-import { IMessage } from 'react-native-gifted-chat';
+import { IMessage, Time } from 'react-native-gifted-chat';
 
 import * as C from '../lib/Const';
 import firebase from '../lib/Firebase';
@@ -14,6 +14,8 @@ import SkywayStore from './SkywayStore';
 class ArenaStore {
     private db:firebase.firestore.CollectionReference;
     private ref:firebase.firestore.DocumentReference;
+    private chatRef:firebase.firestore.CollectionReference;
+    private chatUnsubscribe:Function;
 
     // Arena
     private id :number;
@@ -46,7 +48,7 @@ class ArenaStore {
         this.db = firebase.firestore().collection('Arena');
     }
 
-    private setSnapshotData = (snapshot :firebase.firestore.QuerySnapshot) => {
+    private onArenaUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
         const data = snapshot.docs[0].data();
         this.time = 100;
 
@@ -63,6 +65,16 @@ class ArenaStore {
         // this.endText = 'レイス「剣の脆弱（ぜいじゃく）さ、思い知らせてあげるよ。」';
     }
 
+    private onChatUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
+        const messages = snapshot.docs.map((doc) => {
+            const data = doc.data();
+            const ts = data.createdAt as firebase.firestore.Timestamp;
+            data.createdAt = ts.toDate();
+            return data as IMessage;;
+          });
+          this.messages = messages;
+    }
+
     public get = async (id:number) :Promise<void> => {
         this.db
             .where('id', '==', id)
@@ -73,7 +85,9 @@ class ArenaStore {
                     return;
                 }
                 this.ref = snapshot.docs[0].ref;
-                this.setSnapshotData(snapshot);
+                this.chatRef = this.ref.collection('Chat');
+                this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.onChatUpdate);
+                this.onArenaUpdate(snapshot);
             })
             .catch((err) => {
                 console.log('Error getting documents', err);
@@ -121,8 +135,8 @@ class ArenaStore {
         this.agreementState = C.AgreementState.NONE;
 
         this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
-            this.setSnapshotData(snapshot);
             console.log('hoge');
+            this.onArenaUpdate(snapshot);
         });
 
         this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
@@ -153,6 +167,13 @@ class ArenaStore {
     public agree = () => {
         this.agreementState = C.AgreementState.AGREE;
     }
+
+    public addChat = (messages:Array<IMessage>) => {
+        messages.forEach((message) => {
+            this.chatRef.add(message);
+        });
+    }
+
 }
 
 
