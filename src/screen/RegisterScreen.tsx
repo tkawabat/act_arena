@@ -63,11 +63,6 @@ export default class RegisterScreen extends Component<ScreenProps> {
     }
 
     render() {
-        if (UserStore.isRegisted) {
-            const { navigation } = this.props;
-            navigation.navigate('Lobby');
-            return null;
-        }
         return (
             <Container>
                 <Spinner visible={LoadStore.isLoad} />

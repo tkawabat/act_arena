@@ -5,17 +5,14 @@ import LobbyScreen from './LobbyScreen';
 import Modal from './Modal';
 import ArenaScreen from './ArenaScreen';
 
-import UserStore from '../store/UserStore';
 
-
-const initailScreen = UserStore.name ? 'Lobby' : 'Register';
 export const MainNavigation = createStackNavigator(
     {
         Register: { screen: RegisterScreen },
         Lobby: { screen: LobbyScreen },
         Arena: { screen: ArenaScreen },
     },
-    { initialRouteName: initailScreen, mode: 'card', headerMode: 'none' }
+    { mode: 'card', headerMode: 'none' }
 )
 
 const Navigation = createStackNavigator(
