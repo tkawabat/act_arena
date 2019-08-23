@@ -1,16 +1,39 @@
-import * as Amplitude from 'expo-analytics-amplitude';
+import moment from 'moment';
+import * as amplitude from 'expo-analytics-amplitude';
 
 import Secret from './Secret';
 
-Amplitude.initialize(Secret.amplitude.apiKey);
-Amplitude.logEvent("init");
 
-export const Error = (event:string, error:any) => {
-    if (__DEV__) {
-        console.error('Error: '+event);
-        console.error(error);    
+class Amplitude {
+    private userId:string;
+
+    constructor() {
+        amplitude.initialize(Secret.amplitude.apiKey);
+        amplitude.logEvent("init");
     }
-    Amplitude.logEventWithProperties('Error: '+event, {error: error});
+
+    public setUserId = (userId:string) => {
+        this.userId = userId;
+        amplitude.setUserId(userId);
+    }
+
+    public info = (event: string, prop: Object) => {
+        if (__DEV__) {
+            const time = moment().format('YYYY/MM/DD HH:mm:ss');
+            const param = prop ? ' ' + prop.toString() : '';
+            console.log(time + ' [Info] ' + event + ' ' + this.userId) + param;
+        }
+        amplitude.logEventWithProperties('[Info]' + event, prop);
+    }
+
+    public error = (event: string, error: Object) => {
+        if (__DEV__) {
+            const time = moment().format('YYYY/MM/DD HH:mm:ss');
+            const errorString = error ? ' ' + error.toString() : '';
+            console.error(time + ' [Error] ' + event + ' ' + this.userId);
+        }
+        amplitude.logEventWithProperties('[Error]' + event, { error: error });
+    }
 }
 
-export default Amplitude;
+export default new Amplitude();

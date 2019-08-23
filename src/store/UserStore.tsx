@@ -2,7 +2,7 @@ import { observable, computed } from 'mobx';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
-import Amplitude, { Error } from '../lib/Amplitude';
+import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import LoadStore from './LoadStore';
 
@@ -44,8 +44,7 @@ class UserStore implements User {
 
             this.id = user.uid;
             Amplitude.setUserId(this.id);
-            Amplitude.logEvent('login');
-            console.log(this.id);
+            Amplitude.info('login', null);
 
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
@@ -58,7 +57,7 @@ class UserStore implements User {
             .doc(this.id)
             .get()
             .then(this.setSnapshot2field)
-            .catch((error) => Error('UserStore get', error))
+            .catch((error) => Amplitude.error('UserStore get', error))
             ;
     }
 
@@ -72,7 +71,7 @@ class UserStore implements User {
     }
 
     public set = async (name:string, gender:number) :Promise<void> => {
-        Amplitude.logEventWithProperties('set user', {name:name, gender:gender});
+        Amplitude.info('set user', {name:name, gender:gender});
         return this.db.doc(this.id).set({
             name: name
             , gender: gender
@@ -80,13 +79,13 @@ class UserStore implements User {
             , updatedAt: Firebase.firestore.FieldValue.serverTimestamp()
         }, {merge: true})
         .then(() => { Navigator.navigate('Lobby', null)})
-        .catch((error) => Error('UserStore set', error))
+        .catch((error) => Amplitude.error('UserStore set', error))
         ;
     }
 
     public anonymousLogin() {
         Firebase.auth().signInAnonymously()
-            .catch((error) => Error('UserStore anonymousLogin', error))
+            .catch((error) => Amplitude.error('UserStore anonymousLogin', error))
             ;
     }
 
