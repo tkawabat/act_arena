@@ -30,6 +30,7 @@ class UserStore implements User {
 
     private providerTwitter;
     private db:Firebase.firestore.CollectionReference;
+    private userStatusDatabaseRef:Firebase.database.Reference;
     private onSnapshot;
 
     constructor() {
@@ -48,10 +49,36 @@ class UserStore implements User {
 
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
+            
+            this.observeConnectionChange();
+
             this.get(this.id).then(() => {LoadStore.user = true;})
         });
     }
 
+    private observeConnectionChange = () => {
+        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
+        Firebase.database().ref('.info/connected').on('value', (snapshot) => {
+            const online = {
+                state: 1
+                , updated: Firebase.database.ServerValue.TIMESTAMP
+            };
+            const offline = {
+                state: 0
+                , updated: Firebase.database.ServerValue.TIMESTAMP
+            };
+
+            if (snapshot.val() == false) {
+                this.userStatusDatabaseRef.set(offline);
+                return;
+            };
+
+            this.userStatusDatabaseRef.onDisconnect().set(offline).then(() => {
+                this.userStatusDatabaseRef.set(online);
+            });
+        });
+    }
+ 
     private get = async (uid:string) :Promise<void> => {
         return this.db
             .doc(this.id)

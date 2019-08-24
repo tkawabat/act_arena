@@ -30,9 +30,9 @@ class Amplitude {
         if (__DEV__) {
             const time = moment().format('YYYY/MM/DD HH:mm:ss');
             const errorString = error ? ' ' + error.toString() : '';
-            console.error(time + ' [Error] ' + event + ' ' + this.userId);
+            console.error(time + ' [Error] ' + event + ' ' + this.userId + errorString);
         }
-        amplitude.logEventWithProperties('[Error]' + event, { error: error });
+        amplitude.logEventWithProperties('[Error]' + event, { 'error': error });
     }
 }
 
