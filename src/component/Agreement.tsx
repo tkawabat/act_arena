@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
         , padding: 20
     }
     , button: {
-        height: 50
-        , width: 150
+        height: 40
+        , width: 100
         , alignSelf: 'flex-end'
         , justifyContent: 'center'
         , marginTop: 10

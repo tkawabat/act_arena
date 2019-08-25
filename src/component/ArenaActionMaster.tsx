@@ -50,17 +50,17 @@ export default class ArenaActionMaster extends Component {
 const styles = StyleSheet.create({
     buttonListner: {
         width: 100
-        , height: 50
+        , height: 40
         , justifyContent: 'center'
     }
     , buttonEntry: {
         width: 100
-        , height: 50
+        , height: 40
         , justifyContent: 'center'
         , backgroundColor: '#ccc'
     }
     , buttonText: {
         color: '#FFF'
-        , fontWeight: '500',
+        , fontWeight: '500'
     }
 });

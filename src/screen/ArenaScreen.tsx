@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Alert } from 'react-native';
 import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { observer } from 'mobx-react';
@@ -21,39 +21,31 @@ import ArenaActionMaster from '../component/ArenaActionMaster';
 
 @observer
 export default class Arena extends Component<ScreenProps> {
-
-    componentDidMount() {  
-        console.log('ArenaScreen componentDidMount');
-    }
-
-    componentDidUpdate() {
-        console.log('ArenaScreen componentDidUpdate');
-    }
-
-    componentWillUnmount() {
-        console.log('ArenaScreen componentWillUnmount');
+    private leave = () => {
+        Alert.alert('', 'アリーナから退出します。', [
+            { text: 'OK', onPress: ArenaStore.leave}
+            , { text: 'Cancel'}
+        ]);
     }
 
     render() {
         return (
             <Container style={styles.container}>
                 <Spinner visible={LoadStore.isLoad} />
-                <Header>
+                <Header style={styles.header}>
                     <Left>
-                        <Button transparent onPress={() => ArenaStore.leave()}>
-                            <Icon name='arrow-back' />
-                        </Button>
+                        <Timer />
                     </Left>
                     <Body>
                         <Title>アリーナ</Title>
                     </Body>
-                    <Right />
+                    <Right>
+                        <Button transparent onPress={this.leave}>
+                            <Icon name='sign-out-alt' type='FontAwesome5' fontSize={20} />
+                        </Button>
+                    </Right>
                 </Header>
-                <Content style={styles.content}>
-                    <View style={styles.info}>
-                        <Timer />
-                        <ActInfo />
-                    </View>
+                <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
                         <Tabs scrollWithoutAnimation={false}>
                             <Tab heading='台本'>
@@ -88,30 +80,19 @@ const styles = StyleSheet.create({
         flex: 1
     }
     , header: {
-        height: 50
+        height: 70
     }
     , content: {
-        padding: 5
-    }
-    , info: {
-        flexDirection: 'row'
-        , height: 50
-    }
-    , actInfo: {
+        
     }
     , body: {
-        height: height - 50 - 50 - 5 - 5 - 5
+        height: height - 70 - 2
         , justifyContent: 'center'
         , backgroundColor: '#333'
     }
-    , instructions: {
-        textAlign: 'center',
-        color: '#FFF',
-        marginBottom: 5,
-        height: 100,
-        backgroundColor: 'blue',
-    }
     , action: {
-        height: 70
+        height: 60
+        , alignSelf: 'center'
+        , marginTop: 10
     }
 });

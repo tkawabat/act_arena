@@ -37,8 +37,7 @@ class SkywayStore {
         this.state = C.SkywayState.INIT;
         this.speakState = C.SpeakState.DISABLED;
         LoadStore.skyway = false;
-        //this.dispose();
-        // TODO
+        this.peer.disconnect();
     }
 
     private onMediaConnectionError = () => {
