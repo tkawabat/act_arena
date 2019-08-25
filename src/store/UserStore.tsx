@@ -47,15 +47,6 @@ class UserStore implements User {
             Amplitude.setUserId(this.id);
             Amplitude.info('login', null);
 
-            // Firebase.firestore().collection('Room').doc('arena'+collection('RoomUser')
-            // .where('state', '<=', 1)
-            // .get()
-            // .then((snapshot) => {
-            //     console.log('hoge');
-            //     console.log(snapshot);
-            // })
-            // ;
-
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
             
@@ -119,7 +110,7 @@ class UserStore implements User {
         ;
     }
 
-    public setRoom = async (id:number) :Promise<void> => {
+    public setRoom = async (id:string) :Promise<void> => {
         return this.db.doc(this.id).set({
             arena: id
         }, {merge: true})

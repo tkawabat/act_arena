@@ -3,8 +3,8 @@ import { observable, computed, action } from 'mobx';
 import { IMessage, Time } from 'react-native-gifted-chat';
 
 import * as C from '../lib/Const';
-import firebase from '../lib/Firebase';
-import Amplitude, { Error } from '../lib/Amplitude';
+import Firebase from '../lib/Firebase';
+import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 
 import UserStore, { User } from './UserStore';
@@ -12,9 +12,10 @@ import SkywayStore from './SkywayStore';
 
 
 class ArenaStore {
-    private db:firebase.firestore.CollectionReference;
-    private ref:firebase.firestore.DocumentReference;
-    private chatRef:firebase.firestore.CollectionReference;
+    private db:Firebase.firestore.CollectionReference;
+    private ref:Firebase.firestore.DocumentReference;
+    private userRef:Firebase.firestore.CollectionReference;
+    private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
 
     // Arena
@@ -22,7 +23,6 @@ class ArenaStore {
     @observable scenario :string;
     @observable arenaState :C.ArenaState;
     @observable time :number;
-    @observable users :Array<User>;
     @observable messages:Array<IMessage> = new Array<IMessage>();
 
     // Scenario
@@ -45,10 +45,10 @@ class ArenaStore {
     }
 
     constructor() {
-        this.db = firebase.firestore().collection('Arena');
+        this.db = Firebase.firestore().collection('Arena');
     }
 
-    private onArenaUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
+    private onArenaUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const data = snapshot.docs[0].data();
         this.time = 100;
 
@@ -65,33 +65,41 @@ class ArenaStore {
         // this.endText = 'レイス「剣の脆弱（ぜいじゃく）さ、思い知らせてあげるよ。」';
     }
 
-    private onChatUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
+    private onChatUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const messages = snapshot.docs.map((doc) => {
             const data = doc.data();
-            const ts = data.createdAt as firebase.firestore.Timestamp;
+            const ts = data.createdAt as Firebase.firestore.Timestamp;
             data.createdAt = ts.toDate();
-            return data as IMessage;;
+            return data as IMessage;
           });
           this.messages = messages;
     }
 
+    // private onUserUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
+    //     const users = snapshot.docs.map((doc) => {
+    //         const data = doc.data();
+    //         return data;
+    //       });
+    //       this.users = users;
+    // }
+
     public get = async (id:number) :Promise<void> => {
-        this.db
+        return this.db
             .where('id', '==', id)
             .get()
-            .then((snapshot :firebase.firestore.QuerySnapshot) => {
+            .then((snapshot :Firebase.firestore.QuerySnapshot) => {
                 if (snapshot.size < 1) {
-                    Error('ArenaStore get', {id:id});
+                    Amplitude.error('ArenaStore get', {id:id});
                     return;
                 }
                 this.ref = snapshot.docs[0].ref;
+                this.userRef = this.ref.collection('RoomUser');
                 this.chatRef = this.ref.collection('Chat');
                 this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.onChatUpdate);
                 this.onArenaUpdate(snapshot);
             })
-            .catch((err) => {
-                console.log('Error getting documents', err);
-            });
+            .catch((error) => Amplitude.error('UserStore get', error))
+            ;
     }
 
     // public getScenario = async (id:string) :Promise<firebase.firestore.DocumentData> => {
@@ -129,36 +137,50 @@ class ArenaStore {
         .catch((err) => {console.log(err)})
     }
 
-    public join = async (id) => {
+    public join = async (id:number) => {
         this.id = id;
         this.arenaState = C.ArenaState.WAIT;
         this.agreementState = C.AgreementState.NONE;
 
+        SkywayStore.join('arena'+this.id);
+        await this.get(this.id);
+        await this.userRef.doc(UserStore.id).set({
+            id: UserStore.id
+            , name: UserStore.name
+            , gender: UserStore.gender
+            , state: C.ArenaUserState.LISTNER
+        })
+        .catch((error) => Amplitude.error('ArenaStore join add user', error))
+        ;
+        UserStore.setRoom(this.ref.id);
+
         this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
-            console.log('hoge');
+            Amplitude.info('hoge', null);
             this.onArenaUpdate(snapshot);
         });
 
         this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
-            console.log('fuga');
+            Amplitude.info('fuga', null);
         });
-
-        SkywayStore.join('arena'+this.id);
-        await this.get(this.id);
 
         Navigator.navigate('Arena', null);
     }
 
-    public leave() {
+    public leave = () => {
         SkywayStore.leave();
+        this.userRef.doc(UserStore.id).delete()
+            .catch((error) => Amplitude.error('ArenaStore leave delete user', error))
+            ;
+        this.chatUnsubscribe();
+
         Navigator.back();
     }
 
-    public decrement() {
+    public decrement = () => {
         this.time--;
     }
 
-    public readAgreement() {
+    public readAgreement = () => {
         if (this.agreementState === C.AgreementState.NONE) {
             this.agreementState = C.AgreementState.READ;
         }

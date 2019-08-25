@@ -18,6 +18,12 @@ export enum ArenaState {
     , ACT = 4
 }
 
+export enum ArenaUserState {
+    LISTNER = 0
+    , ENTRY = 1
+    , ACTOR = 2
+}
+
 export enum AgreementState {
     NONE
     , READ
