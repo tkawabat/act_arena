@@ -26,7 +26,8 @@ export default class IconExample extends Component {
 
 const styles = StyleSheet.create({
     button: {
-        width: 50
+        width: 100
         , height: 50
+        , textAlign: 'center'
     }
 });

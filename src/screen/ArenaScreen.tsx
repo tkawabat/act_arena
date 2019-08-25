@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
-import { GiftedChat, IMessage } from 'react-native-gifted-chat';
+import { GiftedChat } from 'react-native-gifted-chat';
 import { observer } from 'mobx-react';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import ScreenProps from './ScreenProps';
 
 import * as C from '../lib/Const';
 
+import LoadStore from '../store/LoadStore';
 import ArenaStore from '../store/ArenaStore';
 import UserStore from '../store/UserStore';
 
 import ScenarioMaster from '../component/ScenarioMaster';
 import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
-import Microphone from '../component/Microphone';
+import ArenaActionMaster from '../component/ArenaActionMaster';
 
 
 @observer
@@ -35,6 +37,7 @@ export default class Arena extends Component<ScreenProps> {
     render() {
         return (
             <Container style={styles.container}>
+                <Spinner visible={LoadStore.isLoad} />
                 <Header>
                     <Left>
                         <Button transparent onPress={() => ArenaStore.leave()}>
@@ -56,10 +59,7 @@ export default class Arena extends Component<ScreenProps> {
                             <Tab heading='台本'>
                                 <ScenarioMaster />
                                 <View style={styles.action}>
-                                    <Microphone />
-                                    <Text>
-                                        エントリーボタン他
-                                    </Text>
+                                    <ArenaActionMaster />
                                 </View>
                             </Tab>
                             <Tab heading='チャット'>

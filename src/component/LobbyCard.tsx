@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, View, WebView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Container, Header, Content, Text, Body, Button, Card, CardItem } from "native-base";
 
 import * as C from '../lib/Const';

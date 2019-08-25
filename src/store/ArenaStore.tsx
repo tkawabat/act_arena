@@ -7,9 +7,17 @@ import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 
+import LoadStore from './LoadStore';
 import UserStore, { User } from './UserStore';
 import SkywayStore from './SkywayStore';
 
+
+interface ArenaUser {
+    name: string
+    gender: C.Gender
+    iconUrl: string
+    state: C.ArenaUserState
+}
 
 class ArenaStore {
     private db:Firebase.firestore.CollectionReference;
@@ -20,9 +28,10 @@ class ArenaStore {
 
     // Arena
     private id :number;
-    @observable scenario :string;
-    @observable arenaState :C.ArenaState;
-    @observable time :number;
+    @observable scenario:string;
+    @observable arenaState:C.ArenaState;
+    @observable time:number;
+    @observable users:{ [id:string]:ArenaUser} = {};
     @observable messages:Array<IMessage> = new Array<IMessage>();
 
     // Scenario
@@ -65,6 +74,14 @@ class ArenaStore {
         // this.endText = 'レイス「剣の脆弱（ぜいじゃく）さ、思い知らせてあげるよ。」';
     }
 
+    private onUserUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
+        const users = {};
+        snapshot.docs.map((doc) => {
+            users[doc.id] = doc.data() as ArenaUser;
+        });
+        this.users = users;
+    }
+
     private onChatUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const messages = snapshot.docs.map((doc) => {
             const data = doc.data();
@@ -94,6 +111,7 @@ class ArenaStore {
                 }
                 this.ref = snapshot.docs[0].ref;
                 this.userRef = this.ref.collection('RoomUser');
+                this.chatUnsubscribe = this.userRef.onSnapshot(this.onUserUpdate);
                 this.chatRef = this.ref.collection('Chat');
                 this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.onChatUpdate);
                 this.onArenaUpdate(snapshot);
@@ -145,8 +163,7 @@ class ArenaStore {
         SkywayStore.join('arena'+this.id);
         await this.get(this.id);
         await this.userRef.doc(UserStore.id).set({
-            id: UserStore.id
-            , name: UserStore.name
+            name: UserStore.name
             , gender: UserStore.gender
             , state: C.ArenaUserState.LISTNER
         })
@@ -169,11 +186,25 @@ class ArenaStore {
     public leave = () => {
         SkywayStore.leave();
         this.userRef.doc(UserStore.id).delete()
-            .catch((error) => Amplitude.error('ArenaStore leave delete user', error))
+            .catch((error) => Amplitude.error('ArenaStore leave', error))
             ;
         this.chatUnsubscribe();
 
         Navigator.back();
+    }
+
+    public entry = (state:C.ArenaUserState) => {
+        if (!this.users[UserStore.id]) return;
+
+        LoadStore.load(true);
+        setTimeout(() => {
+            this.userRef.doc(UserStore.id).update({
+                state: state
+            })
+            .then(() => LoadStore.load(false))
+            .catch((error) => Amplitude.error('ArenaStore entry', error))
+            ;
+        }, 1000);
     }
 
     public decrement = () => {

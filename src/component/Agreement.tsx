@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
-import { Platform, StyleSheet, TouchableOpacity, TextInput, Text, View, WebView } from 'react-native';
+import { StyleSheet, TouchableOpacity, TextInput, Text, View, WebView } from 'react-native';
 import { observer } from 'mobx-react';
 
 import ArenaStore from '../store/ArenaStore';
@@ -67,21 +67,21 @@ export default class Agreement extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        padding: 20,
-    },
-    button: {
-        height: 50,
-        width: 200,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-    },
-    buttonText: {
-        color: '#FFF',
-        fontWeight: '500',
-    },
-    webview: {
-    },
+        flex: 1
+        , padding: 20
+    }
+    , button: {
+        height: 50
+        , width: 150
+        , alignSelf: 'flex-end'
+        , justifyContent: 'center'
+        , marginTop: 10
+        , padding: 10
+    }
+    , buttonText: {
+        color: '#FFF'
+        , fontWeight: '500',
+    }
+    , webview: {
+    }
 });
