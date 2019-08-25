@@ -25,6 +25,7 @@ class ArenaStore {
     private userRef:Firebase.firestore.CollectionReference;
     private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
+    private tick:NodeJS.Timeout;
 
     // Arena
     private id :number;
@@ -59,13 +60,19 @@ class ArenaStore {
 
     private onArenaUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const data = snapshot.docs[0].data();
-        this.time = 100;
+        this.time = 5;
 
         this.agreementUrl = 'http://doodletxt.web.fc2.com/';
         this.agreementScroll = 2500;
         this.scenarioUrl = 'http://doodletxt.web.fc2.com/paranormansboogie3.html';
         this.startText = '宝屋敷：ちょっとぉ、ボケるには早いんじゃないのぉ？';
         this.endText = 'セオドア：観光と、仕事と、半分半分かな。';
+
+        clearInterval(this.tick);
+        this.tick = setInterval(() => {
+            this.time--;
+            if (this.time <= 0) clearInterval(this.tick);
+        }, 1000);
 
         // this.agreementUrl = 'http://uriuriko.web.fc2.com/about.html';
         // this.agreementScroll = 0;
@@ -184,6 +191,7 @@ class ArenaStore {
     }
 
     public leave = () => {
+        clearInterval(this.tick);
         SkywayStore.leave();
         this.userRef.doc(UserStore.id).delete()
             .catch((error) => Amplitude.error('ArenaStore leave', error))
@@ -205,10 +213,6 @@ class ArenaStore {
             .catch((error) => Amplitude.error('ArenaStore entry', error))
             ;
         }, 1000);
-    }
-
-    public decrement = () => {
-        this.time--;
     }
 
     public readAgreement = () => {

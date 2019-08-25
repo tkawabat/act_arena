@@ -28,10 +28,11 @@ export default class Timer extends Component<props> {
     }
 
     render() {
+        const time = ArenaStore.time && ArenaStore.time >= 0 ? ArenaStore.time.toString() : '---';
         return (
             <Container style={styles.root}>
                 <H1>
-                    {ArenaStore.time}
+                    {time}
                 </H1>
             </Container>
 
@@ -44,8 +45,9 @@ const styles = StyleSheet.create({
         height: 72
         , width: 72
         , textAlign: 'center'
+        , justifyContent: 'center'
         , color: '#FFF'
-        , backgroundColor: 'blue'
+        //, backgroundColor: 'blue'
         , fontWeight: '800'
         , margin: 10
     }
