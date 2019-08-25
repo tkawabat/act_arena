@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text } from 'native-base';
 import { observer } from 'mobx-react';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import ScreenProps from './ScreenProps';
 
 import ArenaStore from '../store/ArenaStore';
+import LoadStore from '../store/LoadStore';
 
 import LobbyCard from '../component/LobbyCard';
 
@@ -16,7 +18,10 @@ export default class LobbyScreen extends Component<ScreenProps> {
     }
     
     private joinArena = () :void => {
-        ArenaStore.join(1);
+        LoadStore.load(true);
+        ArenaStore.join(1).then(() => {
+            LoadStore.load(false);
+        });
     }
 
     // private modal = () :void => {
@@ -27,6 +32,7 @@ export default class LobbyScreen extends Component<ScreenProps> {
     render() {
         return (
             <Container>
+                <Spinner visible={LoadStore.isLoad} />
                 <Header>
                     <Left />
                     <Body>
