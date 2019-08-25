@@ -14,30 +14,6 @@ class SkywayStore {
 
     private peer : Peer;
 
-    constructor() {
-        const m = Moment();
-        const PEER_ID = m.format("YYYYMMDDHHmmss");  
-        this.peer = new Peer(PEER_ID, Secret.skyway);
-
-        this.peer.addEventListener('peer-open', this.onPeerOpen);
-        this.peer.addEventListener('peer-close', this.onPeerClose);
-        this.peer.addEventListener('peer-call', this.onPeerCall);
-        this.peer.addEventListener('peer-error', this.onPeerError);
-        this.peer.addEventListener('media-connection-close', this.onMediaConnectionClose);
-        this.peer.addEventListener('media-connection-error', this.onMediaConnectionError);
-        this.peer.addEventListener('room-open', this.onRoomOpen);
-        this.peer.addEventListener('room-peer-join', this.onRoomPeerJoin);
-        this.peer.addEventListener('room-peer-leave', this.onRoomPeerLeave);
-        this.peer.addEventListener('room-log', this.onRoomLog);
-        this.peer.addEventListener('room-stream', this.onRoomStream);
-        this.peer.addEventListener('room-remove-stream', this.onRoomRemoveStream);
-        this.peer.addEventListener('room-data', this.onRoomData);
-        this.peer.addEventListener('room-close', this.onRoomClose);
-        this.peer.addEventListener('room-error', this.onRoomError);
-
-        this.peer.connect();
-    }
-
     private onPeerOpen = () => {
         console.log("onPeerOpen");
         this.state = C.SkywayState.OPEN;
@@ -117,6 +93,28 @@ class SkywayStore {
         console.log("onRoomError");
         this.state = C.SkywayState.OPEN;
         this.speakState = C.SpeakState.DISABLED;
+    }
+
+    public connect = (id: string): void => {
+        this.peer = new Peer(id, Secret.skyway);
+
+        this.peer.addEventListener('peer-open', this.onPeerOpen);
+        this.peer.addEventListener('peer-close', this.onPeerClose);
+        this.peer.addEventListener('peer-call', this.onPeerCall);
+        this.peer.addEventListener('peer-error', this.onPeerError);
+        this.peer.addEventListener('media-connection-close', this.onMediaConnectionClose);
+        this.peer.addEventListener('media-connection-error', this.onMediaConnectionError);
+        this.peer.addEventListener('room-open', this.onRoomOpen);
+        this.peer.addEventListener('room-peer-join', this.onRoomPeerJoin);
+        this.peer.addEventListener('room-peer-leave', this.onRoomPeerLeave);
+        this.peer.addEventListener('room-log', this.onRoomLog);
+        this.peer.addEventListener('room-stream', this.onRoomStream);
+        this.peer.addEventListener('room-remove-stream', this.onRoomRemoveStream);
+        this.peer.addEventListener('room-data', this.onRoomData);
+        this.peer.addEventListener('room-close', this.onRoomClose);
+        this.peer.addEventListener('room-error', this.onRoomError);
+
+        this.peer.connect();
     }
 
     public disconnect = () :void => {

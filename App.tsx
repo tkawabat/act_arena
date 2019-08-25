@@ -6,8 +6,10 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import AppContainer from './src/screen/AppContainer';
 import Navigator from './src/lib/Navigator';
+import Firebase from './src/lib/Firebase';
 import LoadStore from './src/store/LoadStore';
 import UserStore from './src/store/UserStore';
+import SkywayStore from './src/store/SkywayStore';
 
 
 @observer
@@ -21,7 +23,12 @@ export default class App extends Component {
         }).then(() => {
             LoadStore.font = true;
         });
-        UserStore.anonymousLogin();
+        UserStore.anonymousLogin().then((user) => {
+            if (!user) {
+                alert('ユーザー情報の取得に失敗しました。');
+            }
+            SkywayStore.connect((user as Firebase.auth.UserCredential).user.uid);
+        });
     }
 
     render() {

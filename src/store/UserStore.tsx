@@ -21,21 +21,21 @@ class UserStore implements User {
     @observable name:string;
     @observable gender: C.Gender;
     @observable iconUrl: string;
-    createdAt: Firebase.firestore.FieldValue
-    updatedAt: Firebase.firestore.FieldValue
+    createdAt: Firebase.firestore.FieldValue;
+    updatedAt: Firebase.firestore.FieldValue;
 
     @computed get isRegisted() :boolean {
         return this.name ? true : false;
     }
 
-    private providerTwitter;
+    // private providerTwitter;
     private db:Firebase.firestore.CollectionReference;
     private userStatusDatabaseRef:Firebase.database.Reference;
     private onSnapshot;
 
     constructor() {
         this.db = Firebase.firestore().collection('User');
-        this.providerTwitter = new Firebase.auth.TwitterAuthProvider();
+        // this.providerTwitter = new Firebase.auth.TwitterAuthProvider();
 
         // サインインしているかどうかの判定
         Firebase.auth().onAuthStateChanged(user => {
@@ -46,6 +46,15 @@ class UserStore implements User {
             this.id = user.uid;
             Amplitude.setUserId(this.id);
             Amplitude.info('login', null);
+
+            // Firebase.firestore().collection('Room').doc('arena'+collection('RoomUser')
+            // .where('state', '<=', 1)
+            // .get()
+            // .then((snapshot) => {
+            //     console.log('hoge');
+            //     console.log(snapshot);
+            // })
+            // ;
 
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
@@ -110,8 +119,16 @@ class UserStore implements User {
         ;
     }
 
-    public anonymousLogin() {
-        Firebase.auth().signInAnonymously()
+    public setRoom = async (id:number) :Promise<void> => {
+        return this.db.doc(this.id).set({
+            arena: id
+        }, {merge: true})
+        .catch((error) => Amplitude.error('UserStore setRoom', error))
+        ;
+    }
+
+    public anonymousLogin = async () :Promise<void | Firebase.auth.UserCredential> => {
+        return Firebase.auth().signInAnonymously()
             .catch((error) => Amplitude.error('UserStore anonymousLogin', error))
             ;
     }
