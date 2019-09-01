@@ -12,8 +12,7 @@ class LoadStore {
     @observable isLoad:boolean = false;
 
     @computed get isInitLoaded() {
-        //return this.font && this.skyway && this.user;
-        return this.font && this.user;
+        return this.font && this.skyway && this.user;
     }
 
     @action load = (load:boolean) => {

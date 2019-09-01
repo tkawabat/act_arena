@@ -5,6 +5,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
 
+
 import ScreenProps from './ScreenProps';
 
 import * as C from '../lib/Const';
@@ -17,6 +18,7 @@ import ScenarioMaster from '../component/ScenarioMaster';
 import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
 import ArenaActionMaster from '../component/ArenaActionMaster';
+import OverlayMessage from '../component/OverlayMessage';
 
 
 @observer
@@ -40,7 +42,7 @@ export default class Arena extends Component<ScreenProps> {
                         <Title>{C.ArenaStateString[ArenaStore.arenaState]}</Title>
                     </Body>
                     <Right>
-                        <Button transparent onPress={this.leave}>
+                        <Button transparent onPress={this.leave} disabled={!ArenaStore.canLeave}>
                             <Icon name='sign-out-alt' type='FontAwesome5' fontSize={20} />
                         </Button>
                     </Right>
@@ -75,6 +77,7 @@ export default class Arena extends Component<ScreenProps> {
                         </Tabs>
                     </View>
                 </Content>
+                <OverlayMessage />
             </Container>
         );
     }

@@ -10,6 +10,7 @@ import Navigator from '../lib/Navigator';
 import LoadStore from './LoadStore';
 import UserStore, { User } from './UserStore';
 import SkywayStore from './SkywayStore';
+import OverlayMessageStore from '../store/OverlayMessageStore';
 
 
 interface ArenaUser {
@@ -55,6 +56,11 @@ class ArenaStore {
         return this.agreementState != C.AgreementState.AGREE;
     }
 
+    @computed get canLeave() {
+        if (!this.users[UserStore.id]) return true;
+        return this.users[UserStore.id].state !== C.ArenaUserState.ACTOR;
+    }
+
     constructor() {
         this.db = Firebase.firestore().collection('Arena');
     }
@@ -62,26 +68,22 @@ class ArenaStore {
     private onArenaUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const data = snapshot.docs[0].data();
 
+        this.dealArenaStateTransition(this.arenaState, data.state);
+        this.arenaState = data.state;
         this.time = 5;
         this.startAt = Moment(data.startAt);
         this.title = data.title;
         this.agreementUrl = data.agreementUrl;
         this.agreementScroll = data.agreementScroll;
         this.scenarioUrl = data.scenarioUrl;
-        this.startText = '宝屋敷：ちょっとぉ、ボケるには早いんじゃないのぉ？';
-        this.endText = 'セオドア：観光と、仕事と、半分半分かな。';
+        this.startText = data.startText;
+        this.endText = data.endText;
 
         clearInterval(this.tick);
         this.tick = setInterval(() => {
             this.time--;
             if (this.time <= 0) clearInterval(this.tick);
         }, 1000);
-
-        // this.agreementUrl = 'http://uriuriko.web.fc2.com/about.html';
-        // this.agreementScroll = 0;
-        // this.scenarioUrl = 'http://uriuriko.web.fc2.com/kizuato12.htm';
-        // this.startText = 'レイス「あは…はははっ！」';
-        // this.endText = 'レイス「剣の脆弱（ぜいじゃく）さ、思い知らせてあげるよ。」';
     }
 
     private onUserUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
@@ -100,6 +102,15 @@ class ArenaStore {
             return data as IMessage;
           });
           this.messages = messages;
+    }
+
+    private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
+        if (before && before === after) return;
+
+        if (after === C.ArenaState.READY) {
+            OverlayMessageStore.start('マッチング成功');
+        }
+
     }
 
     // private onUserUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
@@ -129,20 +140,6 @@ class ArenaStore {
             .catch((error) => Amplitude.error('UserStore get', error))
             ;
     }
-
-    // public getScenario = async (id:string) :Promise<firebase.firestore.DocumentData> => {
-    //     let data: firebase.firestore.DocumentData;
-    //     this.db.doc(id)
-    //         .get()
-    //         .then((snapshot) => {
-    //             //this.setSnapshotData(snapshot);
-    //         })
-    //         .catch((err) => {
-    //             console.log('Error getting documents', err);
-    //         });
-
-    //     return data;
-    // }
 
     public set = () => {
         const createdAt = Moment().toDate();
