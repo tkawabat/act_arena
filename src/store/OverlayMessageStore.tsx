@@ -30,6 +30,7 @@ class OverlayMessageStore {
             }, 400);
         } else if (this.state === C.OverlayMessageState.SECOND) {
             this.state = C.OverlayMessageState.INIT;
+            this.message = '';
         }
     }
 }

@@ -1,3 +1,4 @@
+import Moment from 'moment';
 import React, {Component} from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title, H1, H2, H3} from 'native-base';
@@ -28,11 +29,10 @@ export default class Timer extends Component<props> {
     }
 
     render() {
-        const time = ArenaStore.time && ArenaStore.time >= 0 ? ArenaStore.time.toString() : '---';
         return (
             <Container style={styles.root}>
                 <H1>
-                    {time}
+                    {ArenaStore.time}
                 </H1>
             </Container>
 

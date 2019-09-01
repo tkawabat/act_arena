@@ -32,8 +32,8 @@ class ArenaStore {
     private id :number;
     @observable scenario:string;
     @observable arenaState:C.ArenaState;
-    @observable time:number;
-    @observable startAt:Moment.Moment;
+    @observable time:string;
+    @observable endAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
     @observable messages:Array<IMessage> = new Array<IMessage>();
 
@@ -70,8 +70,7 @@ class ArenaStore {
 
         this.dealArenaStateTransition(this.arenaState, data.state);
         this.arenaState = data.state;
-        this.time = 5;
-        this.startAt = Moment(data.startAt);
+        this.endAt = Moment.unix(data.endAt.seconds);
         this.title = data.title;
         this.agreementUrl = data.agreementUrl;
         this.agreementScroll = data.agreementScroll;
@@ -81,8 +80,10 @@ class ArenaStore {
 
         clearInterval(this.tick);
         this.tick = setInterval(() => {
-            this.time--;
-            if (this.time <= 0) clearInterval(this.tick);
+            const now = Moment();
+            const diff = this.endAt.diff(now, 'seconds');
+            this.time = diff > 0 ? diff.toString() : '---';
+            if (diff <= 0) clearInterval(this.tick);
         }, 1000);
     }
 
