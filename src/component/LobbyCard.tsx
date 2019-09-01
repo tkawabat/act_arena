@@ -11,7 +11,7 @@ interface props {
     , onPress: () => void
 }
 
-export default class LobbyIcon extends Component<props> {
+export default class LobbyCard extends Component<props> {
     render() {
         return (
             <Card>

@@ -49,3 +49,9 @@ export enum SpeakState {
     MUTE,
     DISABLED
 }
+
+export enum OverlayMessageState {
+    INIT
+    , FIRST
+    , SECOND
+}

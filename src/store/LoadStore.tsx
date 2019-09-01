@@ -2,7 +2,6 @@ import Moment from 'moment';
 import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
-import { userInfo } from 'os';
 
 
 class LoadStore {
@@ -13,7 +12,8 @@ class LoadStore {
     @observable isLoad:boolean = false;
 
     @computed get isInitLoaded() {
-        return this.font && this.skyway && this.user;
+        //return this.font && this.skyway && this.user;
+        return this.font && this.user;
     }
 
     @action load = (load:boolean) => {
