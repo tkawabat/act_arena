@@ -32,11 +32,12 @@ class ArenaStore {
     @observable scenario:string;
     @observable arenaState:C.ArenaState;
     @observable time:number;
+    @observable startAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
     @observable messages:Array<IMessage> = new Array<IMessage>();
 
     // Scenario
-    private scenarioId :string;
+    @observable title:string;
     @observable agreementUrl:string;
     @observable agreementScroll:number;
     @observable scenarioUrl:string;
@@ -60,11 +61,13 @@ class ArenaStore {
 
     private onArenaUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const data = snapshot.docs[0].data();
-        this.time = 5;
 
-        this.agreementUrl = 'http://doodletxt.web.fc2.com/';
-        this.agreementScroll = 2500;
-        this.scenarioUrl = 'http://doodletxt.web.fc2.com/paranormansboogie3.html';
+        this.time = 5;
+        this.startAt = Moment(data.startAt);
+        this.title = data.title;
+        this.agreementUrl = data.agreementUrl;
+        this.agreementScroll = data.agreementScroll;
+        this.scenarioUrl = data.scenarioUrl;
         this.startText = '宝屋敷：ちょっとぉ、ボケるには早いんじゃないのぉ？';
         this.endText = 'セオドア：観光と、仕事と、半分半分かな。';
 

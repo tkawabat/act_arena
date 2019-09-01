@@ -28,7 +28,7 @@ export default class Arena extends Component<ScreenProps> {
         ]);
     }
 
-    render() {
+    render() { 
         return (
             <Container style={styles.container}>
                 <Spinner visible={LoadStore.isLoad} />
@@ -37,7 +37,7 @@ export default class Arena extends Component<ScreenProps> {
                         <Timer />
                     </Left>
                     <Body>
-                        <Title>アリーナ</Title>
+                        <Title>{C.ArenaStateString[ArenaStore.arenaState]}</Title>
                     </Body>
                     <Right>
                         <Button transparent onPress={this.leave}>
@@ -48,6 +48,12 @@ export default class Arena extends Component<ScreenProps> {
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
                         <Tabs scrollWithoutAnimation={false}>
+                            <Tab heading='上演情報'>
+                                <ActInfo />
+                                <View style={styles.action}>
+                                    <ArenaActionMaster />
+                                </View>
+                            </Tab>
                             <Tab heading='台本'>
                                 <ScenarioMaster />
                                 <View style={styles.action}>

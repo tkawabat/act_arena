@@ -18,6 +18,14 @@ export enum ArenaState {
     , ACT = 4
 }
 
+export const ArenaStateString = {
+    [ArenaState.WAIT]: '演者募集中'
+    , [ArenaState.READY]: '準備中'
+    , [ArenaState.CONFIRM]: '準備中'
+    , [ArenaState.CHECK]: '準備中'
+    , [ArenaState.ACT]: '上演中'
+}
+
 export enum ArenaUserState {
     LISTNER = 0
     , ENTRY = 1

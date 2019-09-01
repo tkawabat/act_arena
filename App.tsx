@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Sentry } from 'react-native-sentry';
 Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
 import { observer } from 'mobx-react';
+import moment from 'moment';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import AppContainer from './src/screen/AppContainer';
@@ -27,7 +28,8 @@ export default class App extends Component {
             if (!user) {
                 alert('ユーザー情報の取得に失敗しました。');
             }
-            SkywayStore.connect((user as Firebase.auth.UserCredential).user.uid);
+            //SkywayStore.connect((user as Firebase.auth.UserCredential).user.uid);
+            SkywayStore.connect(moment().unix().toString());
         });
     }
 

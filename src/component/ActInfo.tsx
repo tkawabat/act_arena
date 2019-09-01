@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
-import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
 
 import * as C from '../lib/Const';
 import UserStore, {User} from '../store/UserStore';
+import ArenaStore from '../store/ArenaStore';
 
 import UserIcon from './UserIcon';
 
@@ -18,19 +19,17 @@ export default class ActInfo extends Component {
         };
 
         return (
-            <Container style={styles.body}>
-                <Text>
-                    上演情報
-                </Text>
-                <UserIcon size={C.UserIconSize.S} user={user} />
-            </Container>
+            <View style={styles.body}>
+                <Text>{ArenaStore.title}</Text>
+                {/* <UserIcon size={C.UserIconSize.S} user={user} /> */}
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
     body: {
-        height: 100,
+        //height: 100,
         fontSize: 20,
         textAlign: 'center',
         color: '#FFF',
