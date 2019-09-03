@@ -44,8 +44,8 @@ export default class LobbyScreen extends Component<ScreenProps> {
                 </Header>
                 <View>
                     <LobbyCard
-                        title='セリフバトル'
-                        explain='周りの投票で勝ち負けを決める！君の演技でいい感じに！'
+                        title='アリーナ'
+                        explain='三分でぶち上げる劇体験！'
                         onPress={this.joinArena}
                     />
                 </View>

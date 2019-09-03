@@ -19,11 +19,11 @@ export enum ArenaState {
 }
 
 export const ArenaStateString = {
-    [ArenaState.WAIT]: '演者募集中'
-    , [ArenaState.READY]: '準備中'
-    , [ArenaState.CONFIRM]: '準備中'
-    , [ArenaState.CHECK]: '準備中'
-    , [ArenaState.ACT]: '上演中'
+    [ArenaState.WAIT]: '演者募集'
+    , [ArenaState.READY]: 'マイクチェック'
+    , [ArenaState.CONFIRM]: '準備'
+    , [ArenaState.CHECK]: '台本読込'
+    , [ArenaState.ACT]: '上演'
 }
 
 export enum ArenaUserState {
