@@ -31,7 +31,7 @@ class ArenaStore {
     // Arena
     private id :number;
     @observable scenario:string;
-    @observable arenaState:C.ArenaState;
+    @observable arenaState:C.ArenaState = null;
     @observable time:string;
     @observable endAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
@@ -106,7 +106,7 @@ class ArenaStore {
     }
 
     private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
-        if (before && before === after) return;
+        if (before === null || before === after) return;
 
         if (after === C.ArenaState.READY) {
             OverlayMessageStore.start('マッチング成功');
@@ -165,7 +165,7 @@ class ArenaStore {
 
     public join = async (id:number) => {
         this.id = id;
-        this.arenaState = C.ArenaState.WAIT;
+        this.arenaState = null;
         this.agreementState = C.AgreementState.NONE;
 
         SkywayStore.join('arena'+this.id);
