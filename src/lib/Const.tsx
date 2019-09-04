@@ -12,16 +12,14 @@ export enum Gender {
 
 export enum ArenaState {
     WAIT = 0
-    , READY = 1
-    , CONFIRM = 2
-    , CHECK = 3
-    , ACT = 4
+    , CONFIRM = 1
+    , CHECK = 2
+    , ACT = 3
 }
 
 export const ArenaStateString = {
     [ArenaState.WAIT]: '演者募集'
-    , [ArenaState.READY]: 'マイクチェック'
-    , [ArenaState.CONFIRM]: '準備'
+    , [ArenaState.CONFIRM]: 'マイクチェック'
     , [ArenaState.CHECK]: '台本読込'
     , [ArenaState.ACT]: '上演'
 }

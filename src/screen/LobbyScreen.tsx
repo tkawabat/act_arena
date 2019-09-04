@@ -45,7 +45,7 @@ export default class LobbyScreen extends Component<ScreenProps> {
                 <View>
                     <LobbyCard
                         title='アリーナ'
-                        explain='三分でぶち上げる劇体験！'
+                        explain='三分でぶち上がる劇体験！'
                         onPress={this.joinArena}
                     />
                 </View>

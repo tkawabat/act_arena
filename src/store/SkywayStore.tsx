@@ -14,6 +14,10 @@ class SkywayStore {
 
     private peer : Peer;
 
+    @action setSpeakState = (state:C.SpeakState) => {
+        this.speakState = state;
+    }
+
     private onPeerOpen = () => {
         console.log("onPeerOpen");
         this.state = C.SkywayState.OPEN;
@@ -54,7 +58,7 @@ class SkywayStore {
         console.log("onRoomOpen");
         this.state = C.SkywayState.JOIN;
         this.setLocalStreamStatus(false);
-        this.speakState = C.SpeakState.MUTE;
+        this.speakState = C.SpeakState.DISABLED;
     }
 
     private onRoomPeerJoin = () => {

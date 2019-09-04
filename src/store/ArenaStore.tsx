@@ -12,7 +12,11 @@ import UserStore, { User } from './UserStore';
 import SkywayStore from './SkywayStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
 
-
+interface Charactors {
+    name: string
+    gender: number
+    user: string
+}
 interface ArenaUser {
     name: string
     gender: C.Gender
@@ -44,6 +48,7 @@ class ArenaStore {
     @observable scenarioUrl:string;
     @observable startText:string;
     @observable endText:string;
+    @observable characters:Array<Charactors>;
 
     // private state
     @observable agreementState:C.AgreementState;
@@ -77,6 +82,15 @@ class ArenaStore {
         this.scenarioUrl = data.scenarioUrl;
         this.startText = data.startText;
         this.endText = data.endText;
+        this.characters = data.characters;
+
+        for (const character of this.characters) {
+            if (character.user !== UserStore.id) continue;
+            if (SkywayStore.speakState === C.SpeakState.DISABLED) {
+                SkywayStore.setSpeakState(C.SpeakState.MUTE);
+            }
+            break;
+        }
 
         clearInterval(this.tick);
         this.tick = setInterval(() => {
@@ -140,19 +154,6 @@ class ArenaStore {
             })
             .catch((error) => Amplitude.error('UserStore get', error))
             ;
-    }
-
-    public set = () => {
-        const createdAt = Moment().toDate();
-        const updatedAt = Moment().toDate();
-
-        this.ref.set({
-            createdAt
-            , updatedAt
-        })
-        .then((hoge) => {})
-        .catch((err) => {})
-        ;
     }
 
     public update = () => {
