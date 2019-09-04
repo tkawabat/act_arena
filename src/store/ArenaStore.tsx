@@ -122,7 +122,7 @@ class ArenaStore {
     private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
         if (before === null || before === after) return;
 
-        if (after === C.ArenaState.READY) {
+        if (after === C.ArenaState.CONFIRM) {
             OverlayMessageStore.start('マッチング成功');
         }
 
