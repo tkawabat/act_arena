@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { YellowBox } from 'react-native';
 import { Sentry } from 'react-native-sentry';
 Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
 import { observer } from 'mobx-react';
@@ -31,6 +32,11 @@ export default class App extends Component {
             //SkywayStore.connect((user as Firebase.auth.UserCredential).user.uid);
             SkywayStore.connect(moment().unix().toString());
         });
+
+        YellowBox.ignoreWarnings(['Setting a timer']);
+        console.ignoredYellowBox = [
+            'Setting a timer'
+        ];
     }
 
     render() {
