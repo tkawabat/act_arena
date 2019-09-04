@@ -20,9 +20,7 @@ export default class LobbyCard extends Component<props> {
                 </CardItem>
                 <CardItem button onPress={this.props.onPress}>
                     <Body>
-                        <Text>
-                            {this.props.explain}
-                        </Text>
+                        <Text style={styles.explain}>{this.props.explain}</Text>
                     </Body>
                 </CardItem>
             </Card>
@@ -43,6 +41,6 @@ const styles = StyleSheet.create({
 
     }
     , explain: {
-
+        marginLeft: 20
     }
 });

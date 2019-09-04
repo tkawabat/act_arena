@@ -1,7 +1,7 @@
 import Moment from 'moment';
 import React, {Component} from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import { Container, Header, Left, Body, Right, Button, Icon, Title, H1, H2, H3} from 'native-base';
+import { StyleSheet } from 'react-native';
+import { Container as View, Header, Left, Body, Right, Button, Icon, Title, H1 as Text, H2, H3} from 'native-base';
 import { observer } from 'mobx-react';
 
 import * as C from '../lib/Const';
@@ -15,27 +15,12 @@ interface props {
 
 @observer
 export default class Timer extends Component<props> {
-    private time: number;
-    componentDidMount() {
-        console.log('timer componentDidMount');
-    }
-
-    componentDidUpdate() {
-        console.log('timer componentDidUpdate');
-    }
-
-    componentWillUnmount() {
-        console.log('timer componentWillUnmount');
-    }
-
     render() {
         return (
-            <Container style={styles.root}>
-                <H1>
-                    {ArenaStore.time}
-                </H1>
-            </Container>
-
+            <View style={styles.root}>
+                <Text style={styles.text}>{ArenaStore.time}</Text>
+            </View>
+            
         );
     }
 }
@@ -46,9 +31,13 @@ const styles = StyleSheet.create({
         , width: 72
         , textAlign: 'center'
         , justifyContent: 'center'
-        , color: '#FFF'
+        //, color: '#FFF'
         //, backgroundColor: 'blue'
-        , fontWeight: '800'
         , margin: 10
+    }
+    , text: {
+        alignSelf: 'center'
+        , fontSize: 20
+        , fontWeight: '800'
     }
 });
