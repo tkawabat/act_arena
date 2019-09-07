@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Dimensions, Alert } from 'react-native';
 import { Container, Content, View, Button, H1, Text, Form, Item, Input, Picker, Icon } from 'native-base';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { observer } from 'mobx-react';
 
-import ScreenProps from './ScreenProps';
+import ScreenBase from './ScreenBase';
 
 import * as C from '../lib/Const';
 import LoadStore from '../store/LoadStore';
@@ -14,7 +14,7 @@ import UserStore from '../store/UserStore';
 //import LobbyCard from '../component/LobbyCard';
 
 @observer
-export default class RegisterScreen extends Component<ScreenProps> {
+export default class RegisterScreen extends ScreenBase {
     state = {
         name: undefined
         , gender: C.Gender.Male

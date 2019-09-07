@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Dimensions, Alert } from 'react-native';
 import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
 import { GiftedChat } from 'react-native-gifted-chat';
@@ -6,8 +6,7 @@ import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
-import ScreenProps from './ScreenProps';
-
+import ScreenBase from './ScreenBase';
 import * as C from '../lib/Const';
 
 import LoadStore from '../store/LoadStore';
@@ -22,7 +21,7 @@ import OverlayMessage from '../component/OverlayMessage';
 
 
 @observer
-export default class Arena extends Component<ScreenProps> {
+export default class Arena extends ScreenBase {
     private leave = () => {
         Alert.alert('', 'アリーナから退出します。', [
             { text: 'OK', onPress: ArenaStore.leave}

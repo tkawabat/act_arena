@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text } from 'native-base';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
-import ScreenProps from './ScreenProps';
+import ScreenBase from './ScreenBase';
 
 import ArenaStore from '../store/ArenaStore';
 import LoadStore from '../store/LoadStore';
@@ -13,7 +13,7 @@ import LobbyCard from '../component/LobbyCard';
 
 
 @observer
-export default class LobbyScreen extends Component<ScreenProps> {
+export default class LobbyScreen extends ScreenBase {
     
     constructor(props) {
         super(props);

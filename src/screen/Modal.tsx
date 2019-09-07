@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 
-import ScreenProps from './ScreenProps';
+import ScreenBase from './ScreenBase';
 
-export default class Modal extends Component<ScreenProps> {
+export default class Modal extends ScreenBase {
     render() {
         return (
             <Container>
