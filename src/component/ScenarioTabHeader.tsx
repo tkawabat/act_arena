@@ -8,20 +8,10 @@ import ArenaStore from '../store/ArenaStore';
 
 @observer
 export default class ChatTabHeader extends Component {
-    private badge = () => {
-        if (!ArenaStore.unreadNumber) return null;
-        return (
-            <Badge>
-                <Text style={styles.badge}>{ArenaStore.unreadNumber.toString()}</Text>
-            </Badge>
-        );
-    }
-
     render() {
         return (
             <View style={styles.root}>
-                <Text style={styles.title}>チャット</Text>
-                {this.badge()}
+                <Text style={styles.title}>台本</Text>
             </View>
         );
     }
@@ -35,8 +25,5 @@ const styles = StyleSheet.create({
     title: {
         color: '#FFF',
         fontWeight: '500',
-    },
-    badge: {
-        fontSize: 12,
     },
 });

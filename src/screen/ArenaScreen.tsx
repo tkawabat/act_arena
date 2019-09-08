@@ -18,6 +18,7 @@ import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
 import ArenaActionMaster from '../component/ArenaActionMaster';
 import ChatTabHeader from '../component/ChatTabHeader';
+import ScenarioTabHeader from '../component/ScenarioTabHeader';
 import OverlayMessage from '../component/OverlayMessage';
 
 
@@ -62,14 +63,24 @@ export default class Arena extends ScreenBase {
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
                         <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab}>
-                            <Tab key={'scenario'} heading='台本'>
+                            <Tab
+                                key={'scenario'}
+                                heading={<TabHeading style={styles.tab}>
+                                    <ScenarioTabHeader />
+                                    </TabHeading>
+                            }>
                                 <ScenarioMaster />
                                 <View style={styles.action}>
                                     <ArenaActionMaster />
                                 </View>
                                 <ActInfo />
                             </Tab>
-                            <Tab key={'chat'} heading={<TabHeading><ChatTabHeader /></TabHeading>}>
+                            <Tab
+                                key={'chat'}
+                                heading={<TabHeading style={styles.tab}>
+                                    <ChatTabHeader />
+                                    </TabHeading>}
+                            >
                                 <GiftedChat
                                     messages={ArenaStore.messages}
                                     onSend={ArenaStore.addChat}
@@ -93,22 +104,23 @@ export default class Arena extends ScreenBase {
 let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    }
-    , header: {
-        height: 70
-    }
-    , content: {
-        
-    }
-    , body: {
-        height: height - 70 - 2
-        , justifyContent: 'center'
-        , backgroundColor: '#333'
-    }
-    , action: {
-        height: 60
-        , alignSelf: 'center'
-        , marginTop: 5
-    }
+        flex: 1,
+    },
+    header: {
+        height: 70,
+    },
+    content: {
+    },
+    body: {
+        height: height - 70,
+        justifyContent: 'center',
+    },
+    tab: {
+        backgroundColor: '#000044',
+    },
+    action: {
+        height: 60,
+        marginTop: 5,
+        alignItems: 'center',
+    },
 });

@@ -45,7 +45,7 @@ export default class Agreement extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.root}>
                 <WebView style={styles.webview}
                     javaScriptEnabled={true}
                     injectedJavaScript={js(ArenaStore.agreementScroll)}
@@ -66,22 +66,23 @@ export default class Agreement extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-        , padding: 20
-    }
-    , button: {
-        height: 40
-        , width: 100
-        , alignSelf: 'flex-end'
-        , justifyContent: 'center'
-        , marginTop: 10
-        , padding: 10
-    }
-    , buttonText: {
-        color: '#FFF'
-        , fontWeight: '500',
-    }
-    , webview: {
-    }
+    root: {
+        flex: 1,
+        //padding: 20,
+    },
+    button: {
+        height: 40,
+        width: 100,
+        alignSelf: 'flex-end',
+        justifyContent: 'center',
+        marginTop: 5,
+        marginRight: 10,
+        padding: 10,
+    },
+    buttonText: {
+        color: '#FFF',
+        fontWeight: '500',
+    },
+    webview: {
+    },
 });

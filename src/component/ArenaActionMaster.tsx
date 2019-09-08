@@ -19,7 +19,7 @@ export default class ArenaActionMaster extends Component {
 
         return (
             <Button transparent onPress={() => ArenaStore.setModal(true)}>
-                <Icon name='info-circle' type='FontAwesome5' color='gray' />
+                <Icon style={styles.information} name='info-circle' type='FontAwesome5' />
             </Button>
         );
     }
@@ -73,9 +73,12 @@ export default class ArenaActionMaster extends Component {
 const {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     root: {
+        flex: 1,
         width: width,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#000044',
     },
     left: {
         flex: 1,
@@ -96,11 +99,14 @@ const styles = StyleSheet.create({
         width: 120,
         height: 40,
         justifyContent: 'center',
-        backgroundColor: '#ccc',
+        backgroundColor: '#CCC',
     },
     buttonText: {
         color: '#FFF',
         fontSize: 14,
         fontWeight: '500',
+    },
+    information: {
+        color: '#CC9900',
     },
 });

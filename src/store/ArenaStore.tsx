@@ -76,8 +76,7 @@ class ArenaStore {
     }
 
     @computed get unreadNumber() {
-        const result = this.messages.length;
-        if (!this.readMessage) return result;
+        if (!this.readMessage) return 0;
 
         let i = 0;
         for (i = 0; i < this.messages.length; i++) {

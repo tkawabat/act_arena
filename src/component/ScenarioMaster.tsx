@@ -14,12 +14,12 @@ export default class ScenarioMaster extends Component {
     render() {
         if (ArenaStore.isAgree) {
             return (
-                    <Agreement />
-                   );
+                <Agreement />
+            );
         } else {
             return (
-                    <Scenario />
-                   );
+                <Scenario />
+            );
 
         }
     }
