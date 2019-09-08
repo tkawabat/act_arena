@@ -8,8 +8,6 @@ import ArenaStore from '../store/ArenaStore';
 
 const js = (start, end) => {
     return `
-var b, t, line;
-
 function loadScript(src, callback) {
     var done;
     var head = document.getElementsByTagName('head')[0];
@@ -27,26 +25,27 @@ function loadScript(src, callback) {
 }
 
 var color = function() {
-        b = document.querySelector("body");
-        start = '${start}';
-        end = '${end}';
+    var b = document.querySelector("body");
+    var start = '${start}';
+    var end = '${end}';
 
-        start_pos = b.textContent.indexOf(start);
-        end_pos = b.textContent.indexOf(end);
-        if (start_pos === -1 || end_pos === -1) return;
-        end_pos += end.length;
+    var start_pos = b.textContent.indexOf(start);
+    var end_pos = b.textContent.indexOf(end);
+    if (start_pos === -1 || end_pos === -1) return;
+    end_pos += end.length;
 
-        t = b.textContent.substring(start_pos, end_pos).split(new RegExp('\\r\\n|\\n|\\r', 'g'));
-        for (line of t) {
-            if (!line) continue;
-            if (line.match(/^\s*$/)) continue;
+    var t = b.textContent.substring(start_pos, end_pos).split(new RegExp('\\r\\n|\\n|\\r', 'g'));
+    var line;
+    for (line of t) {
+        if (!line) continue;
+        if (line.match(/^\s*$/)) continue;
 
-            var regexp = new RegExp(line, 'g');
-            $('body').highlightRegex(regexp, {
-                    className: 'act_arena_highlight',
-                    attrs: {'style': 'background: #FFCCCC'},
-            });
-        }
+        var regexp = new RegExp(line, 'g');
+        $('body').highlightRegex(regexp, {
+                className: 'act_arena_highlight',
+                attrs: {'style': 'background: #FFCCCC'},
+        });
+    }
 };
 
 loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", function() {
@@ -54,11 +53,22 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", 
         color();
 
         // scroll
-        var elm = $(".act_arena_highlight").first();
-        if (elm.length) {
-            var pos = elm.get(0).offsetTop - 100;
-            $('body').stop().animate({scrollTop:pos}, 500);   
+        var start = '${start}';
+        var elm;
+        for (elm of $('.act_arena_highlight')) {
+            if (!elm.textContent) continue;
+            if (elm.textContent.indexOf(start) === -1) continue;
+
+            var pos = elm.offsetTop - 100;
+            $('body').stop().animate({scrollTop:pos}, 500);
+            break;
         }
+
+        // var elm = $(".act_arena_highlight").first();
+        // if (elm.length) {
+        //     var pos = elm.get(0).offsetTop - 100;
+        //     $('body').stop().animate({scrollTop:pos}, 500);   
+        // }
     });
 });
 `;
