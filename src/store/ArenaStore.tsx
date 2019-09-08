@@ -39,7 +39,6 @@ class ArenaStore {
     @observable time:string;
     @observable endAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
-    @observable messages:Array<IMessage> = new Array<IMessage>();
 
     // Scenario
     @observable title:string;
@@ -50,8 +49,15 @@ class ArenaStore {
     @observable endText:string;
     @observable characters:Array<Charactors>;
 
+    // Chat
+    @observable messages:Array<IMessage> = new Array<IMessage>();
+    @observable readMessage:IMessage;
+
     // private state
     @observable agreementState:C.AgreementState;
+    private _tab:C.ArenaTab;
+    get tab() { return this._tab }
+    set tab(tab:C.ArenaTab) { this._tab = tab }
 
     @computed get isReadAgreement() {
         return this.agreementState != C.AgreementState.NONE;
@@ -64,6 +70,25 @@ class ArenaStore {
     @computed get canLeave() {
         if (!this.users[UserStore.id]) return true;
         return this.users[UserStore.id].state !== C.ArenaUserState.ACTOR;
+    }
+
+    @computed get unreadNumber() {
+        const result = this.messages.length;
+        if (!this.readMessage) return result;
+
+        let i = 0;
+        for (i = 0; i < this.messages.length; i++) {
+            if (this.readMessage._id === this.messages[i]._id) break;
+        }
+        return i;
+    }
+
+    @action setMessages = (messages) => {
+        this.messages = messages;
+    }
+
+    @action read = () => {
+        this.readMessage = this.messages[0];
     }
 
     constructor() {
@@ -109,14 +134,15 @@ class ArenaStore {
         this.users = users;
     }
 
-    private onChatUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
+    private onChatUpdate = (snapshot: Firebase.firestore.QuerySnapshot) => {
         const messages = snapshot.docs.map((doc) => {
             const data = doc.data();
             const ts = data.createdAt as Firebase.firestore.Timestamp;
             data.createdAt = ts.toDate();
             return data as IMessage;
-          });
-          this.messages = messages;
+        });
+        this.setMessages(messages);
+        if (this.tab === C.ArenaTab.CHAT) this.read();
     }
 
     private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
@@ -126,6 +152,9 @@ class ArenaStore {
             OverlayMessageStore.start('マッチング成功');
         }
 
+        if (after === C.ArenaState.WAIT) {
+            this.agreementState = C.AgreementState.NONE;
+        }
     }
 
     // private onUserUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
@@ -168,6 +197,7 @@ class ArenaStore {
         this.id = id;
         this.arenaState = null;
         this.agreementState = C.AgreementState.NONE;
+        this.tab = C.ArenaTab.SCENARIO;
 
         SkywayStore.join('arena'+this.id);
         await this.get(this.id);
@@ -181,12 +211,8 @@ class ArenaStore {
         UserStore.setRoom(this.ref.id);
 
         this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
-            Amplitude.info('hoge', null);
             this.onArenaUpdate(snapshot);
-        });
-
-        this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
-            Amplitude.info('fuga', null);
+            this.read();
         });
 
         Navigator.navigate('Arena', null);

@@ -36,6 +36,11 @@ export enum AgreementState {
     , AGREE
 }
 
+export enum ArenaTab {
+    SCENARIO
+    , CHAT
+}
+
 export enum SkywayState {
     INIT
     , OPEN

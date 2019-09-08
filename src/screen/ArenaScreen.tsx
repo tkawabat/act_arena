@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Dimensions, Alert } from 'react-native';
-import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab, TabHeading, Badge } from 'native-base';
 import { observer } from 'mobx-react';
+import { GiftedChat } from 'react-native-gifted-chat';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
@@ -17,11 +17,24 @@ import ScenarioMaster from '../component/ScenarioMaster';
 import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
 import ArenaActionMaster from '../component/ArenaActionMaster';
+import ChatTabHeader from '../component/ChatTabHeader';
 import OverlayMessage from '../component/OverlayMessage';
 
 
 @observer
 export default class Arena extends ScreenBase {
+    private onChangeTab = (tab) => {
+        switch (tab.ref.key) {
+            case '.$scenario':
+                ArenaStore.tab = C.ArenaTab.SCENARIO;
+                break;
+            case '.$chat':
+                ArenaStore.tab = C.ArenaTab.CHAT;
+                ArenaStore.read();
+                break;
+        }
+    }
+
     private leave = () => {
         Alert.alert('', 'アリーナから退出します。', [
             { text: 'OK', onPress: ArenaStore.leave}
@@ -48,14 +61,15 @@ export default class Arena extends ScreenBase {
                 </Header>
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
-                        <Tabs scrollWithoutAnimation={false}>
-                            <Tab heading='台本'>
+                        <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab}>
+                            <Tab key={'scenario'} heading='台本'>
                                 <ScenarioMaster />
                                 <View style={styles.action}>
                                     <ArenaActionMaster />
                                 </View>
                             </Tab>
-                            <Tab heading='チャット'>
+                            {/* <Tab heading={<TabHeading><Text>チャット</Text></TabHeading>}> */}
+                            <Tab key={'chat'} heading={<TabHeading><ChatTabHeader /></TabHeading>}>
                                 <GiftedChat
                                     messages={ArenaStore.messages}
                                     onSend={ArenaStore.addChat}
