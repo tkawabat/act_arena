@@ -12,10 +12,11 @@ import UserStore, { User } from './UserStore';
 import SkywayStore from './SkywayStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
 
-interface Charactors {
+interface Characters {
     name: string
     gender: number
     user: string
+    userName: string
 }
 interface ArenaUser {
     name: string
@@ -47,7 +48,7 @@ class ArenaStore {
     @observable scenarioUrl:string;
     @observable startText:string;
     @observable endText:string;
-    @observable characters:Array<Charactors>;
+    @observable characters:Array<Characters>;
 
     // Chat
     @observable messages:Array<IMessage> = new Array<IMessage>();
@@ -58,6 +59,8 @@ class ArenaStore {
     private _tab:C.ArenaTab;
     get tab() { return this._tab }
     set tab(tab:C.ArenaTab) { this._tab = tab }
+
+    @observable modal:boolean;
 
     @computed get isReadAgreement() {
         return this.agreementState != C.AgreementState.NONE;
@@ -89,6 +92,10 @@ class ArenaStore {
 
     @action read = () => {
         this.readMessage = this.messages[0];
+    }
+
+    @action setModal = (modal:boolean) => {
+        this.modal = modal;
     }
 
     constructor() {
@@ -198,6 +205,7 @@ class ArenaStore {
         this.arenaState = null;
         this.agreementState = C.AgreementState.NONE;
         this.tab = C.ArenaTab.SCENARIO;
+        this.setModal(false);
 
         SkywayStore.join('arena'+this.id);
         await this.get(this.id);

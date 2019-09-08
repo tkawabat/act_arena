@@ -67,8 +67,8 @@ export default class Arena extends ScreenBase {
                                 <View style={styles.action}>
                                     <ArenaActionMaster />
                                 </View>
+                                <ActInfo />
                             </Tab>
-                            {/* <Tab heading={<TabHeading><Text>チャット</Text></TabHeading>}> */}
                             <Tab key={'chat'} heading={<TabHeading><ChatTabHeader /></TabHeading>}>
                                 <GiftedChat
                                     messages={ArenaStore.messages}
@@ -109,6 +109,6 @@ const styles = StyleSheet.create({
     , action: {
         height: 60
         , alignSelf: 'center'
-        , marginTop: 10
+        , marginTop: 5
     }
 });

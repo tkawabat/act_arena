@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { StyleSheet } from 'react-native';
-import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
+import { Text, View, Button } from 'native-base';
+import Modal from 'react-native-modal';
+import { observer } from 'mobx-react';
 
 import * as C from '../lib/Const';
 import UserStore, {User} from '../store/UserStore';
@@ -9,19 +11,40 @@ import ArenaStore from '../store/ArenaStore';
 import UserIcon from './UserIcon';
 
 
+@observer
 export default class ActInfo extends Component {
+
+    private getCharactersText = () => {
+        let result = [];
+        for (const character of ArenaStore.characters) {
+            result.push(<Text>{character.name+': '+character.userName}</Text>)
+        }
+        return result;
+    }
+
     render() {
-        const user: User = {
-            id: 'a'
-            , name: 'b'
-            , gender: C.Gender.Female
-            , iconUrl: 'https://facebook.github.io/react-native/img/header_logo.png'
-        };
+        // const user: User = {
+        //     id: 'a'
+        //     , name: 'b'
+        //     , gender: C.Gender.Female
+        //     , iconUrl: 'https://facebook.github.io/react-native/img/header_logo.png'
+        // };
 
         return (
             <View style={styles.body}>
-                <Text>{ArenaStore.title}</Text>
-                {/* <UserIcon size={C.UserIconSize.S} user={user} /> */}
+                <Modal
+                    isVisible={ArenaStore.modal}
+                    onBackdropPress={() => ArenaStore.setModal(false)}
+                    backdropOpacity={0.4}
+                    animationIn='slideInRight'
+                    animationOut='slideOutLeft'
+                >
+                    <View style={styles.modal}>
+                        <Text style={styles.title}>{ArenaStore.title}</Text>
+                        {/* <UserIcon size={C.UserIconSize.S} user={user} /> */}
+                        {this.getCharactersText()}
+                    </View>
+                </Modal>
             </View>
         );
     }
@@ -29,11 +52,21 @@ export default class ActInfo extends Component {
 
 const styles = StyleSheet.create({
     body: {
-        //height: 100,
-        fontSize: 20,
-        textAlign: 'center',
-        color: '#FFF',
-        backgroundColor: 'gray',
-        margin: 10,
+        textAlign: 'center'
+        , marginHorizontal: 10
+    }
+    , modal: {
+        backgroundColor: 'white'
+        , padding: 20
+        , borderColor: 'black'
+        , borderWidth: 2
+        , borderRadius: 5
+    }
+    , title: {
+        marginBottom: 10
+        , fontWeight: '400'
+    }
+    , characters: {
+
     }
 });
