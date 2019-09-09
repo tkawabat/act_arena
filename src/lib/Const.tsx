@@ -12,6 +12,7 @@ export enum Gender {
     , Female = 2
 }
 
+
 export enum ArenaState {
     WAIT = 0
     , CONFIRM = 1
@@ -24,6 +25,13 @@ export const ArenaStateString = {
     , [ArenaState.CONFIRM]: 'マイクチェック'
     , [ArenaState.CHECK]: '台本読込'
     , [ArenaState.ACT]: '上演'
+}
+
+export const ArenaStateTime = {
+    [ArenaState.WAIT]: -1
+    , [ArenaState.CONFIRM]: 15
+    , [ArenaState.CHECK]: 45
+    , [ArenaState.ACT]: 180
 }
 
 export enum ArenaUserState {
