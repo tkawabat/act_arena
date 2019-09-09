@@ -52,7 +52,7 @@ class ArenaStore {
 
     // Chat
     @observable messages:Array<IMessage> = new Array<IMessage>();
-    @observable readMessage:IMessage;
+    @observable latestReadMessage:IMessage;
 
     // private state
     @observable agreementState:C.AgreementState;
@@ -63,11 +63,11 @@ class ArenaStore {
     @observable modal:boolean;
 
     @computed get isReadAgreement() {
-        return this.agreementState != C.AgreementState.NONE;
+        return this.agreementState !== C.AgreementState.NONE;
     }
 
     @computed get isAgree() {
-        return this.agreementState != C.AgreementState.AGREE;
+        return this.agreementState === C.AgreementState.AGREE;
     }
 
     @computed get canLeave() {
@@ -76,31 +76,36 @@ class ArenaStore {
     }
 
     @computed get unreadNumber() {
-        if (!this.readMessage) return 0;
+        if (!this.latestReadMessage) return 0;
 
         let i = 0;
         for (i = 0; i < this.messages.length; i++) {
-            if (this.readMessage._id === this.messages[i]._id) break;
+            if (this.latestReadMessage._id === this.messages[i]._id) break;
         }
         return i;
-    }
-
-    @action setMessages = (messages) => {
-        this.messages = messages;
-    }
-
-    @action read = () => {
-        this.readMessage = this.messages[0];
-    }
-
-    @action setModal = (modal:boolean) => {
-        this.modal = modal;
     }
 
     constructor() {
         this.db = Firebase.firestore().collection('Arena');
     }
 
+    @action setMessages = (messages:Array<IMessage>) => {
+        this.messages = messages;
+    }
+
+    @action readMessage = () => {
+        this.latestReadMessage = this.messages[0];
+    }
+
+    @action setModal = (modal:boolean) => {
+        this.modal = modal;
+    }
+
+    @action public setAgreement = (agreement:C.AgreementState) => {
+        this.agreementState = agreement;
+    }
+
+    @action
     private onArenaUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const data = snapshot.docs[0].data();
 
@@ -148,7 +153,7 @@ class ArenaStore {
             return data as IMessage;
         });
         this.setMessages(messages);
-        if (this.tab === C.ArenaTab.CHAT) this.read();
+        if (this.tab === C.ArenaTab.CHAT) this.readMessage();
     }
 
     private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
@@ -199,6 +204,7 @@ class ArenaStore {
         .catch((err) => {console.log(err)})
     }
 
+    @action
     public join = async (id:number) => {
         this.id = id;
         this.arenaState = null;
@@ -219,7 +225,7 @@ class ArenaStore {
 
         this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
             this.onArenaUpdate(snapshot);
-            this.read();
+            this.readMessage();
         });
 
         Navigator.navigate('Arena', null);
@@ -250,14 +256,11 @@ class ArenaStore {
         }, 1000);
     }
 
+    @action
     public readAgreement = () => {
         if (this.agreementState === C.AgreementState.NONE) {
             this.agreementState = C.AgreementState.READ;
         }
-    }
-
-    public agree = () => {
-        this.agreementState = C.AgreementState.AGREE;
     }
 
     public addChat = (messages:Array<IMessage>) => {

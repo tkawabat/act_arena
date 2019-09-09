@@ -3,13 +3,13 @@ import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'nativ
 import { StyleSheet, TouchableOpacity, TextInput, Text, View, WebView } from 'react-native';
 import { observer } from 'mobx-react';
 
+import * as C from '../lib/Const';
+
 import ArenaStore from '../store/ArenaStore';
 
 
 const js = (agreementScroll: number) => {
     return `
-var post = true;
-
 // patch post message
 var originalPostMessage = window.postMessage;
 var patchedPostMessage = function(message, targetOrigin, transfer) { 
@@ -22,14 +22,13 @@ window.postMessage = patchedPostMessage;
 
 function checkScroll() {
     var h = window.scrollY + window.parent.screen.height;
-    if (post && h >= ${agreementScroll}) {
-        post = false;
+    if (h >= ${agreementScroll}) {
         window.postMessage('read');
     }    
 }
 
 window.addEventListener('scroll', checkScroll);
-//checkScroll();
+checkScroll();
 `;
 }
 
@@ -54,9 +53,9 @@ export default class Agreement extends Component {
                 />
                 <Button
                     style={styles.button}
-                    onPress={ArenaStore.agree}
+                    onPress={() => ArenaStore.setAgreement(C.AgreementState.AGREE)}
                     disabled={!ArenaStore.isReadAgreement}
-                    success={ArenaStore.isReadAgreement}
+                    //success={ArenaStore.isReadAgreement}
                 >
                     <Text style={styles.buttonText}>規約に同意</Text>
                 </Button>

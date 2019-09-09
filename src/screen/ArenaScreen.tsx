@@ -31,7 +31,7 @@ export default class Arena extends ScreenBase {
                 break;
             case '.$chat':
                 ArenaStore.tab = C.ArenaTab.CHAT;
-                ArenaStore.read();
+                ArenaStore.readMessage();
                 break;
         }
     }
