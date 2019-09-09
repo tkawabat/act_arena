@@ -6,8 +6,6 @@ import Secret from '../lib/Secret';
 import Firebase from '../lib/Firebase';
 import Navigator from '../lib/Navigator';
 
-import SkywayStore from './SkywayStore';
-
 
 class ConfigStore {
     private ref:Firebase.firestore.DocumentReference;
@@ -51,11 +49,9 @@ class ConfigStore {
         this.version = data.version;
         if (this.maintenance !== '') {
             this.message = 'ただいまメンテナンス中です。';
-            SkywayStore.disconnect();
             Navigator.navigate('Text', null);
         } else if (this.mustUpdate()) {
             this.message = '新しいバージョンのアプリがあります。アップデートしてください。';
-            SkywayStore.disconnect();
             Navigator.navigate('Text', null);
         }
     }
