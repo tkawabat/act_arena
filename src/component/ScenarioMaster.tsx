@@ -6,8 +6,10 @@ import { observer } from 'mobx-react';
 import * as C from '../lib/Const';
 import ArenaStore from '../store/ArenaStore';
 
-import Scenario from './Scenario';
+import ArenaExplain from './ArenaExplain';
 import Agreement from './Agreement';
+import Scenario from './Scenario';
+
 
 
 @observer
@@ -20,11 +22,14 @@ export default class ScenarioMaster extends Component {
     render() {
         return (
             <View style={styles.root}>
-                {!ArenaStore.isAgree && <Agreement />}
-                {ArenaStore.isAgree && <Scenario />}
-                <Button style={styles.button} onPress={this.reloadAgreement}>
-                    <Icon style={styles.icon} name='redo' type='FontAwesome5' />
-                </Button>
+                {ArenaStore.arenaState === C.ArenaState.WAIT && <ArenaExplain />}
+                {ArenaStore.arenaState !== C.ArenaState.WAIT && !ArenaStore.isAgree && <Agreement />}
+                {ArenaStore.arenaState !== C.ArenaState.WAIT && ArenaStore.isAgree && <Scenario />}
+                {ArenaStore.arenaState !== C.ArenaState.WAIT &&
+                    <Button style={styles.button} onPress={this.reloadAgreement}>
+                        <Icon style={styles.icon} name='redo' type='FontAwesome5' />
+                    </Button>
+                }
             </View>
         );
     }
