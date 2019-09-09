@@ -7,7 +7,7 @@ import { observer } from 'mobx-react';
 import ScreenBase from './ScreenBase';
 
 import * as C from '../lib/Const';
-import LoadStore from '../store/LoadStore';
+import ConfigStore from '../store/ConfigStore';
 import UserStore from '../store/UserStore';
 
 //import ArenaStore from '../store/ArenaStore';
@@ -32,9 +32,9 @@ export default class RegisterScreen extends ScreenBase {
     }
     
     private regist = async () => {
-        LoadStore.load(true);
+        ConfigStore.load(true);
         UserStore.set(this.state.name, this.state.gender).then(() => {
-            LoadStore.load(false);
+            ConfigStore.load(false);
         });
     }
 
@@ -65,7 +65,7 @@ export default class RegisterScreen extends ScreenBase {
     render() {
         return (
             <Container>
-                <Spinner visible={LoadStore.isLoad} />
+                <Spinner visible={ConfigStore.isLoad} />
                 <Content style={styles.content}>
                     <H1 style={styles.title}>ユーザー登録</H1>
                     <View style={styles.view}>

@@ -7,7 +7,7 @@ import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 
-import LoadStore from './LoadStore';
+import ConfigStore from './ConfigStore';
 import UserStore, { User } from './UserStore';
 import SkywayStore from './SkywayStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
@@ -245,12 +245,12 @@ class ArenaStore {
     public entry = (state:C.ArenaUserState) => {
         if (!this.users[UserStore.id]) return;
 
-        LoadStore.load(true);
+        ConfigStore.load(true);
         setTimeout(() => {
             this.userRef.doc(UserStore.id).update({
                 state: state
             })
-            .then(() => LoadStore.load(false))
+            .then(() => ConfigStore.load(false))
             .catch((error) => Amplitude.error('ArenaStore entry', error))
             ;
         }, 1000);

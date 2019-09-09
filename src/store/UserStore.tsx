@@ -4,7 +4,7 @@ import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
-import LoadStore from './LoadStore';
+import ConfigStore from './ConfigStore';
 
 
 export interface User {
@@ -52,7 +52,7 @@ class UserStore implements User {
             
             this.observeConnectionChange();
 
-            this.get(this.id).then(() => {LoadStore.user = true;})
+            this.get(this.id).then(() => {ConfigStore.user = true;})
         });
     }
 

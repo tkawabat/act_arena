@@ -9,7 +9,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import ScreenBase from './ScreenBase';
 import * as C from '../lib/Const';
 
-import LoadStore from '../store/LoadStore';
+import ConfigStore from '../store/ConfigStore';
 import ArenaStore from '../store/ArenaStore';
 import UserStore from '../store/UserStore';
 
@@ -46,7 +46,7 @@ export default class Arena extends ScreenBase {
     render() { 
         return (
             <Container style={styles.container}>
-                <Spinner visible={LoadStore.isLoad} />
+                <Spinner visible={ConfigStore.isLoad} />
                 <Header style={styles.header}>
                     <Left>
                         <Timer />

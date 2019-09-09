@@ -5,7 +5,7 @@ import { observable, action } from 'mobx';
 import * as C from '../lib/Const';
 import Secret from '../lib/Secret';
 
-import LoadStore from './LoadStore';
+import ConfigStore from './ConfigStore';
 
 
 class SkywayStore {
@@ -21,7 +21,7 @@ class SkywayStore {
     private onPeerOpen = () => {
         console.log("onPeerOpen");
         this.state = C.SkywayState.OPEN;
-        LoadStore.skyway = true;
+        ConfigStore.skyway = true;
         this.speakState = C.SpeakState.DISABLED;
     }
 
@@ -31,7 +31,7 @@ class SkywayStore {
     }
 
     private onPeerError = () => {
-        LoadStore.skyway = false;
+        ConfigStore.skyway = false;
         //this.dispose();
         // TODO
     }
@@ -40,7 +40,7 @@ class SkywayStore {
         console.log("onPeerClose");
         this.state = C.SkywayState.INIT;
         this.speakState = C.SpeakState.DISABLED;
-        LoadStore.skyway = false;
+        ConfigStore.skyway = false;
         this.peer.disconnect();
     }
 

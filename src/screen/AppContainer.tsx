@@ -1,14 +1,16 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import RegisterScreen from './RegisterScreen';
+import TextScreen from './TextScreen';
 import LobbyScreen from './LobbyScreen';
 import Modal from './Modal';
 import ArenaScreen from './ArenaScreen';
 
 
-export const MainNavigation = createStackNavigator(
+const MainNavigation = createStackNavigator(
     {
         Register: { screen: RegisterScreen },
+        Text: { screen: TextScreen },
         Lobby: { screen: LobbyScreen },
         Arena: { screen: ArenaScreen },
     },
@@ -22,6 +24,5 @@ const Navigation = createStackNavigator(
     },
     { initialRouteName: 'MainNavigation', mode: 'modal', headerMode: 'none' },
 )
-
 
 export default createAppContainer(Navigation);

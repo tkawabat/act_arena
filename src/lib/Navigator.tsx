@@ -21,6 +21,7 @@ function back() {
     );
 }
 
+
 export default {
     setNavigator
     , navigate

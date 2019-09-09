@@ -7,7 +7,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import ScreenBase from './ScreenBase';
 
 import ArenaStore from '../store/ArenaStore';
-import LoadStore from '../store/LoadStore';
+import ConfigStore from '../store/ConfigStore';
 
 import LobbyCard from '../component/LobbyCard';
 
@@ -20,9 +20,9 @@ export default class LobbyScreen extends ScreenBase {
     }
     
     private joinArena = () :void => {
-        LoadStore.load(true);
+        ConfigStore.load(true);
         ArenaStore.join(1).then(() => {
-            LoadStore.load(false);
+            ConfigStore.load(false);
         });
     }
 
@@ -34,7 +34,7 @@ export default class LobbyScreen extends ScreenBase {
     render() {
         return (
             <Container>
-                <Spinner visible={LoadStore.isLoad} />
+                <Spinner visible={ConfigStore.isLoad} />
                 <Header>
                     <Left />
                     <Body>
@@ -49,27 +49,6 @@ export default class LobbyScreen extends ScreenBase {
                         onPress={this.joinArena}
                     />
                 </View>
-                {/* <View>
-                    <Button small iconRight primary onPress={this.join}>
-                        <Text>プッシュ表示</Text>
-                    </Button>
-                </View>
-                <View>
-                    <Button small iconRight transparent primary onPress={this.modal}>
-                        <Text>モーダル表示</Text>
-                    </Button>
-                </View> */}
-
-                {/* 
-                <Button small iconRight transparent onPress={() => Firebase.twitterLogin()}>
-                    <Text>TwitterLogin</Text>
-                </Button>
-                <Button small iconRight transparent onPress={() => Firebase.anonymousLogin()}>
-                    <Text>anonymousLogin</Text>
-                </Button>
-                <Button small iconRight transparent onPress={() => Firebase.logout()}>
-                    <Text>logout</Text>
-                </Button> */}
             </Container>
         );
     }

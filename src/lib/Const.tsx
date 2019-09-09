@@ -1,3 +1,5 @@
+export const CONFIG_ID = 'config';
+
 export enum UserIconSize {
     S = 24
     , M = 32
