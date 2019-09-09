@@ -1,4 +1,4 @@
-export const CONFIG_ID = 'config';
+export const ConfigId = 'config';
 
 export enum UserIconSize {
     S = 24
@@ -23,14 +23,14 @@ export enum ArenaState {
 export const ArenaStateString = {
     [ArenaState.WAIT]: '演者募集'
     , [ArenaState.CONFIRM]: 'マイクチェック'
-    , [ArenaState.CHECK]: '台本読込'
+    , [ArenaState.CHECK]: '台本チェック'
     , [ArenaState.ACT]: '上演'
 }
 
 export const ArenaStateTime = {
     [ArenaState.WAIT]: -1
-    , [ArenaState.CONFIRM]: 15
-    , [ArenaState.CHECK]: 45
+    , [ArenaState.CONFIRM]: 30
+    , [ArenaState.CHECK]: 60
     , [ArenaState.ACT]: 180
 }
 
@@ -68,3 +68,5 @@ export enum OverlayMessageState {
     , FIRST
     , SECOND
 }
+
+export const OverlayDuration = 1000;

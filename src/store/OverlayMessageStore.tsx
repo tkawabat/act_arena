@@ -17,7 +17,7 @@ class OverlayMessageStore {
         this.message = message;
         this.from = width * 2;
         this.to = width;
-        this.duration = 700;
+        this.duration = C.OverlayDuration;
     }
 
     @action animationEnd = () => {
@@ -26,8 +26,8 @@ class OverlayMessageStore {
                 this.state = C.OverlayMessageState.SECOND;
                 this.from = width;
                 this.to = 0;
-                this.duration = 400;
-            }, 400);
+                this.duration = C.OverlayDuration / 2;
+            }, C.OverlayDuration / 2);
         } else if (this.state === C.OverlayMessageState.SECOND) {
             this.state = C.OverlayMessageState.INIT;
             this.message = '';

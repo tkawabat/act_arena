@@ -28,7 +28,7 @@ class ConfigStore {
     }
 
     constructor() {
-        this.ref = Firebase.firestore().collection('Config').doc(C.CONFIG_ID);
+        this.ref = Firebase.firestore().collection('Config').doc(C.ConfigId);
         this.ref.onSnapshot(this.setSnapshot2field);
         this.ref.get().then((snapshot) => {
             this.setSnapshot2field(snapshot);

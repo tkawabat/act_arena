@@ -28,17 +28,14 @@ export default class OverlayMessage extends Component {
 const {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     body: {
-        top: height / 2 - 150
-        , right: width
-        , width: width
-        , position: 'absolute'
-        , fontSize: 32
-        , fontWeight: '600'
-        //, fontFamily: 'Open Sans'
-        , textAlign: 'center'
-        , color: '#FF9900'
-        //, color: 'blue'
-        //, backgroundColor: 'gray'
-        //, opacity: 0.8
+        top: height / 2 - 150,
+        right: width,
+        width: width,
+        backgroundColor: 'rgba(255,255,255,0.8)',
+        position: 'absolute',
+        fontSize: 32,
+        fontWeight: '600',
+        textAlign: 'center',
+        color: '#FF9900',
     }
 });

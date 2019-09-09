@@ -159,11 +159,26 @@ class ArenaStore {
     private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
         if (before === null || before === after) return;
 
-        if (after === C.ArenaState.CONFIRM) {
-            OverlayMessageStore.start('マッチング成功');
+        switch (after) {
+            case C.ArenaState.WAIT:
+                OverlayMessageStore.start('上演終了');
+                this.setModal(false);
+                break;
+            case C.ArenaState.CONFIRM:
+                OverlayMessageStore.start('マッチング成功');
+                setTimeout(() => this.setModal(true), C.OverlayDuration);
+                setTimeout(() => this.setModal(false), C.OverlayDuration * 2);
+                break;
+            case C.ArenaState.CHECK:
+                OverlayMessageStore.start('台本チェック');
+                break;
+            case C.ArenaState.ACT:
+                OverlayMessageStore.start('上演開始');
+                break;
         }
 
         if (after === C.ArenaState.WAIT) {
+            OverlayMessageStore.start('上演終了');
             this.agreementState = C.AgreementState.NONE;
         }
     }
