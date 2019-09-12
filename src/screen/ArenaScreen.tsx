@@ -85,7 +85,7 @@ export default class Arena extends ScreenBase {
                                     messages={ArenaStore.messages}
                                     onSend={ArenaStore.addChat}
                                     dateFormat={'MM/DD'}
-                                    timeFormat={"HH:MM"}
+                                    timeFormat={"HH:mm"}
                                     user={{
                                         _id: UserStore.id,
                                         name: UserStore.name
