@@ -180,7 +180,10 @@ class ArenaStore {
 
     private dealArenaMessageTransition = (before:string, after:string) :void => {
         if (before === null || before === after) return;
-        OverlayMessageStore.start(after);
+
+        if (after !== '') {
+            OverlayMessageStore.start(after);
+        }
     }
 
     // private onUserUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
