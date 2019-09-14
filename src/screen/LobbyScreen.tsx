@@ -19,9 +19,9 @@ export default class LobbyScreen extends ScreenBase {
         super(props);
     }
     
-    private joinArena = () :void => {
+    private joinArena = (id:number) :void => {
         ConfigStore.load(true);
-        ArenaStore.join(1).then(() => {
+        ArenaStore.join(id).then(() => {
             ConfigStore.load(false);
         });
     }
@@ -46,7 +46,13 @@ export default class LobbyScreen extends ScreenBase {
                     <LobbyCard
                         title='アリーナ'
                         explain='三分でぶち上がる劇体験！'
-                        onPress={this.joinArena}
+                        onPress={() => this.joinArena(0)}
+                    />
+                    <LobbyCard
+                        title='アリーナ'
+                        explain='三分でぶち上がる劇体験！'
+                        onPress={() => this.joinArena(1)}
+
                     />
                 </View>
             </Container>
