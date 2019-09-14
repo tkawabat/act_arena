@@ -40,6 +40,7 @@ class ArenaStore {
     @observable time:string;
     @observable endAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
+    @observable message:string = null;
 
     // Scenario
     @observable title:string;
@@ -110,6 +111,8 @@ class ArenaStore {
         const data = snapshot.docs[0].data();
 
         this.dealArenaStateTransition(this.arenaState, data.state);
+        this.dealArenaMessageTransition(this.message, data.message);
+
         this.arenaState = data.state;
         this.endAt = Moment.unix(data.endAt.seconds);
         this.title = data.title;
@@ -118,6 +121,7 @@ class ArenaStore {
         this.scenarioUrl = data.scenarioUrl;
         this.startText = data.startText;
         this.endText = data.endText;
+        this.message = data.message;
         this.characters = data.characters;
 
         for (const character of this.characters) {
@@ -161,26 +165,22 @@ class ArenaStore {
 
         switch (after) {
             case C.ArenaState.WAIT:
-                OverlayMessageStore.start('上演終了');
+                this.agreementState = C.AgreementState.NONE;
                 this.setModal(false);
                 break;
             case C.ArenaState.CONFIRM:
-                OverlayMessageStore.start('マッチング成功');
-                setTimeout(() => this.setModal(true), C.OverlayDuration);
-                setTimeout(() => this.setModal(false), C.OverlayDuration * 2);
+                this.setModal(true);
                 break;
             case C.ArenaState.CHECK:
-                OverlayMessageStore.start('台本チェック');
                 break;
             case C.ArenaState.ACT:
-                OverlayMessageStore.start('上演開始');
                 break;
-        }
+        } 
+    }
 
-        if (after === C.ArenaState.WAIT) {
-            OverlayMessageStore.start('上演終了');
-            this.agreementState = C.AgreementState.NONE;
-        }
+    private dealArenaMessageTransition = (before:string, after:string) :void => {
+        if (before === null || before === after) return;
+        OverlayMessageStore.start(after);
     }
 
     // private onUserUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
