@@ -57,6 +57,8 @@ target 'act_arena' do
 
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
 
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   post_install do |installer|

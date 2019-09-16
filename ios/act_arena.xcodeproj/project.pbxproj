@@ -5,8 +5,13 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		71A7CF180BB543469BF9B9FB /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1949E2DEA01444C82FE9D12 /* libRNSkyWay.a */; };
+		A7CF9FAC232FE85000493FBF /* neverend.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FA9232FE85000493FBF /* neverend.mp3 */; };
+		A7CF9FAD232FE85000493FBF /* amanojack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAB232FE85000493FBF /* amanojack.mp3 */; };
+		A7CF9FB0232FECA300493FBF /* yoake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAE232FECA200493FBF /* yoake.mp3 */; };
+		A7CF9FB1232FECA300493FBF /* sayonara3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
 		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
@@ -39,6 +44,10 @@
 		A47FE4D7F70906B7DC8CE39B /* Pods-act_arena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-act_arena.release.xcconfig"; path = "Pods/Target Support Files/Pods-act_arena/Pods-act_arena.release.xcconfig"; sourceTree = "<group>"; };
 		A7145A1E22EB30DA009F97BA /* SkyWay */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = SkyWay; path = SkyWay_iOS_1.2.0/SkyWay.framework/SkyWay; sourceTree = "<group>"; };
 		A7145A2522EB323A009F97BA /* SkyWay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyWay.framework; path = SkyWay_iOS_1.2.0/SkyWay.framework; sourceTree = "<group>"; };
+		A7CF9FA9232FE85000493FBF /* neverend.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = neverend.mp3; path = ../resource/music/neverend.mp3; sourceTree = "<group>"; };
+		A7CF9FAB232FE85000493FBF /* amanojack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = amanojack.mp3; path = ../resource/music/amanojack.mp3; sourceTree = "<group>"; };
+		A7CF9FAE232FECA200493FBF /* yoake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yoake.mp3; path = ../resource/music/yoake.mp3; sourceTree = "<group>"; };
+		A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sayonara3.mp3; path = ../resource/music/sayonara3.mp3; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* act_arena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = act_arena.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,6 +127,10 @@
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
+				A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */,
+				A7CF9FAE232FECA200493FBF /* yoake.mp3 */,
+				A7CF9FAB232FE85000493FBF /* amanojack.mp3 */,
+				A7CF9FA9232FE85000493FBF /* neverend.mp3 */,
 				B56386431DB9693800A0598C /* act_arena */,
 				B56386421DB9693800A0598C /* Products */,
 				5B29BC350A332C58878A9F13 /* Pods */,
@@ -161,30 +174,6 @@
 				B563865E1DB96A5E00A0598C /* main.m */,
 			);
 			path = Supporting;
-			sourceTree = "<group>";
-		};
-		51A611050F644DA99EE08249 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
-			sourceTree = "<group>";
-		};
-		5B6F9B1A32394721A0F069C0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
-			sourceTree = "<group>";
-		};
-		716E9A4628BF486EBB1E71BA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,10 +257,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7CF9FB0232FECA300493FBF /* yoake.mp3 in Resources */,
 				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
+				A7CF9FAC232FE85000493FBF /* neverend.mp3 in Resources */,
+				A7CF9FAD232FE85000493FBF /* amanojack.mp3 in Resources */,
 				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
 				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
 				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
+				A7CF9FB1232FECA300493FBF /* sayonara3.mp3 in Resources */,
 				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
 				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
 				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
