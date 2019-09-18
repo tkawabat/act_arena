@@ -246,12 +246,15 @@ class ArenaStore {
             this.readMessage();
         });
 
+        UserStore.observeConnectionChange();
         Navigator.navigate('Arena', null);
     }
 
     public leave = () => {
-        clearInterval(this.tick);
         SkywayStore.leave();
+        UserStore.stopObserveConnectionChange();
+        UserStore.disconnect();
+        clearInterval(this.tick);
         this.userRef.doc(UserStore.id).delete()
             .catch((error) => Amplitude.error('ArenaStore leave', error))
             ;

@@ -49,36 +49,11 @@ class UserStore implements User {
 
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
-            
-            this.observeConnectionChange();
 
             this.get(this.id).then(() => {ConfigStore.user = true;})
         });
     }
-
-    private observeConnectionChange = () => {
-        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
-        Firebase.database().ref('.info/connected').on('value', (snapshot) => {
-            const online = {
-                state: 1
-                , updated: Firebase.database.ServerValue.TIMESTAMP
-            };
-            const offline = {
-                state: 0
-                , updated: Firebase.database.ServerValue.TIMESTAMP
-            };
-
-            if (snapshot.val() == false) {
-                this.userStatusDatabaseRef.set(offline);
-                return;
-            };
-
-            this.userStatusDatabaseRef.onDisconnect().set(offline).then(() => {
-                this.userStatusDatabaseRef.set(online);
-            });
-        });
-    }
- 
+     
     private get = async (uid:string) :Promise<void> => {
         return this.db
             .doc(this.id)
@@ -95,6 +70,48 @@ class UserStore implements User {
         this.name = data.name;
         this.gender = data.gender;
         this.iconUrl = data.iconUrl;
+    }
+
+    public disconnect = () => {
+        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
+        const offline = {
+            state: 0
+            , updated: Firebase.database.ServerValue.TIMESTAMP
+        };
+        this.userStatusDatabaseRef.set(offline)
+            .catch((error) => Amplitude.error('UserStore disconnect', error))
+        ;
+    }
+
+    public observeConnectionChange = () => {
+        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
+        Firebase.database().ref('.info/connected').on('value', (snapshot) => {
+            const online = {
+                state: 1
+                , updated: Firebase.database.ServerValue.TIMESTAMP
+            };
+            const offline = {
+                state: 0
+                , updated: Firebase.database.ServerValue.TIMESTAMP
+            };
+
+            if (snapshot.val() == false) {
+                this.userStatusDatabaseRef.set(offline)
+                    .catch((error) => Amplitude.error('UserStore observeConnectionChange to offline', error))
+                ;
+                return;
+            };
+
+            this.userStatusDatabaseRef.onDisconnect().set(offline).then(() => {
+                this.userStatusDatabaseRef.set(online)
+                    .catch((error) => Amplitude.error('UserStore observeConnectionChange to online', error))
+                    ;
+            });
+        });
+    }
+
+    public stopObserveConnectionChange = () => {
+        Firebase.database().ref('.info/connected').off('value');
     }
 
     public set = async (name:string, gender:number) :Promise<void> => {
