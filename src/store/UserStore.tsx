@@ -51,6 +51,8 @@ class UserStore implements User {
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
 
             this.get(this.id).then(() => {ConfigStore.user = true;})
+
+            this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
         });
     }
      
@@ -72,40 +74,29 @@ class UserStore implements User {
         this.iconUrl = data.iconUrl;
     }
 
-    public disconnect = () => {
-        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
-        const offline = {
-            state: 0
+    public asyncSetConnect = (connect:boolean) => {
+        return this.userStatusDatabaseRef.set({
+            state: connect ? 1 : 0
             , updated: Firebase.database.ServerValue.TIMESTAMP
-        };
-        this.userStatusDatabaseRef.set(offline)
-            .catch((error) => Amplitude.error('UserStore disconnect', error))
+        })
+        .catch((error) => Amplitude.error('UserStore asyncSetConnect', error))
         ;
     }
 
     public observeConnectionChange = () => {
-        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
         Firebase.database().ref('.info/connected').on('value', (snapshot) => {
-            const online = {
-                state: 1
-                , updated: Firebase.database.ServerValue.TIMESTAMP
-            };
-            const offline = {
-                state: 0
-                , updated: Firebase.database.ServerValue.TIMESTAMP
-            };
-
             if (snapshot.val() == false) {
-                this.userStatusDatabaseRef.set(offline)
-                    .catch((error) => Amplitude.error('UserStore observeConnectionChange to offline', error))
-                ;
+                this.asyncSetConnect(false);
                 return;
             };
 
+            const offline = {
+                state: 0
+                , updated: Firebase.database.ServerValue.TIMESTAMP
+            }
+
             this.userStatusDatabaseRef.onDisconnect().set(offline).then(() => {
-                this.userStatusDatabaseRef.set(online)
-                    .catch((error) => Amplitude.error('UserStore observeConnectionChange to online', error))
-                    ;
+                this.asyncSetConnect(true);
             });
         });
     }
@@ -127,10 +118,10 @@ class UserStore implements User {
         ;
     }
 
-    public setRoom = async (id:string) :Promise<void> => {
-        return this.db.doc(this.id).set({
+    public asyncSetRoom = async (id:string) :Promise<void> => {
+        return this.db.doc(this.id).update({
             arena: id
-        }, {merge: true})
+        })
         .catch((error) => Amplitude.error('UserStore setRoom', error))
         ;
     }

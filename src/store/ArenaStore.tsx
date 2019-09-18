@@ -28,6 +28,7 @@ interface ArenaUser {
 class ArenaStore {
     private db:Firebase.firestore.CollectionReference;
     private ref:Firebase.firestore.DocumentReference;
+    private unsubscribe:Function;
     private userRef:Firebase.firestore.CollectionReference;
     private userUnsubscribe:Function;
     private chatRef:Firebase.firestore.CollectionReference;
@@ -108,7 +109,7 @@ class ArenaStore {
     }
 
     @action
-    private onArenaUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
+    private arenaUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const data = snapshot.docs[0].data();
 
         this.dealArenaStateTransition(this.arenaState, data.state);
@@ -142,15 +143,23 @@ class ArenaStore {
         }, 1000);
     }
 
-    private onUserUpdate = (snapshot :Firebase.firestore.QuerySnapshot) => {
+    private usersUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const users = {};
         snapshot.docs.map((doc) => {
             users[doc.id] = doc.data() as ArenaUser;
         });
+
         this.users = users;
+
+        // 退室チェック
+        if (!this.users[UserStore.id]) {
+            OverlayMessageStore.start('接続切れのため退室します');
+            setTimeout(() => this.leave(), 2000);
+            return;
+        }
     }
 
-    private onChatUpdate = (snapshot: Firebase.firestore.QuerySnapshot) => {
+    private chatUpdated = (snapshot: Firebase.firestore.QuerySnapshot) => {
         const messages = snapshot.docs.map((doc) => {
             const data = doc.data();
             const ts = data.createdAt as Firebase.firestore.Timestamp;
@@ -187,6 +196,32 @@ class ArenaStore {
         }
     }
 
+    private asyncSetRoomUser = async () :Promise<void> => {
+        return this.userRef.doc(UserStore.id).set({
+            name: UserStore.name,
+            gender: UserStore.gender,
+            state: C.ArenaUserState.LISTNER,
+        })
+        .catch((error) => Amplitude.error('ArenaStore join add user', error))
+        ;
+    }
+
+    private observe = () => {
+        this.unsubscribe = this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
+            this.arenaUpdated(snapshot);
+            this.readMessage();
+        });
+
+        this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
+        this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.chatUpdated);
+    }
+
+    private stopObserve = () => {
+        this.unsubscribe();
+        this.userUnsubscribe();
+        this.chatUnsubscribe();
+    }
+
     public get = async (id:number) :Promise<void> => {
         return this.db
             .where('id', '==', id)
@@ -198,10 +233,8 @@ class ArenaStore {
                 }
                 this.ref = snapshot.docs[0].ref;
                 this.userRef = this.ref.collection('RoomUser');
-                this.userUnsubscribe = this.userRef.onSnapshot(this.onUserUpdate);
                 this.chatRef = this.ref.collection('Chat');
-                this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.onChatUpdate);
-                this.onArenaUpdate(snapshot);
+                this.arenaUpdated(snapshot);
             })
             .catch((error) => Amplitude.error('UserStore get', error))
             ;
@@ -222,22 +255,17 @@ class ArenaStore {
         this.agreementState = C.AgreementState.NONE;
         this.tab = C.ArenaTab.SCENARIO;
         this.setModal(false);
-
         SkywayStore.join('arena'+this.id);
-        await this.get(this.id);
-        await this.userRef.doc(UserStore.id).set({
-            name: UserStore.name
-            , gender: UserStore.gender
-            , state: C.ArenaUserState.LISTNER
-        })
-        .catch((error) => Amplitude.error('ArenaStore join add user', error))
-        ;
-        UserStore.setRoom(this.ref.id);
 
-        this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
-            this.onArenaUpdate(snapshot);
-            this.readMessage();
-        });
+        await this.get(this.id);
+
+        const p = [];
+        p.push(this.asyncSetRoomUser());
+        p.push(UserStore.asyncSetRoom(this.ref.id));
+        //p.push(UserStore.asyncSetConnect(true));
+        await Promise.all(p);
+
+        this.observe();
 
         UserStore.observeConnectionChange();
         Navigator.navigate('Arena', null);
@@ -245,14 +273,14 @@ class ArenaStore {
 
     public leave = () => {
         SkywayStore.leave();
+        this.stopObserve();
         UserStore.stopObserveConnectionChange();
-        UserStore.disconnect();
+        
+        UserStore.asyncSetConnect(false);
         clearInterval(this.tick);
         this.userRef.doc(UserStore.id).delete()
             .catch((error) => Amplitude.error('ArenaStore leave', error))
         ;
-        this.userUnsubscribe();
-        this.chatUnsubscribe();
 
         Navigator.back();
     }
