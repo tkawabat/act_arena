@@ -29,6 +29,7 @@ class ArenaStore {
     private db:Firebase.firestore.CollectionReference;
     private ref:Firebase.firestore.DocumentReference;
     private userRef:Firebase.firestore.CollectionReference;
+    private userUnsubscribe:Function;
     private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
     private tick:NodeJS.Timeout;
@@ -186,14 +187,6 @@ class ArenaStore {
         }
     }
 
-    // private onUserUpdate = (snapshot :firebase.firestore.QuerySnapshot) => {
-    //     const users = snapshot.docs.map((doc) => {
-    //         const data = doc.data();
-    //         return data;
-    //       });
-    //       this.users = users;
-    // }
-
     public get = async (id:number) :Promise<void> => {
         return this.db
             .where('id', '==', id)
@@ -205,7 +198,7 @@ class ArenaStore {
                 }
                 this.ref = snapshot.docs[0].ref;
                 this.userRef = this.ref.collection('RoomUser');
-                this.chatUnsubscribe = this.userRef.onSnapshot(this.onUserUpdate);
+                this.userUnsubscribe = this.userRef.onSnapshot(this.onUserUpdate);
                 this.chatRef = this.ref.collection('Chat');
                 this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.onChatUpdate);
                 this.onArenaUpdate(snapshot);
@@ -257,7 +250,8 @@ class ArenaStore {
         clearInterval(this.tick);
         this.userRef.doc(UserStore.id).delete()
             .catch((error) => Amplitude.error('ArenaStore leave', error))
-            ;
+        ;
+        this.userUnsubscribe();
         this.chatUnsubscribe();
 
         Navigator.back();
