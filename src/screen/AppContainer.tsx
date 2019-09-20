@@ -3,6 +3,9 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import RegisterScreen from './RegisterScreen';
 import TextScreen from './TextScreen';
 import LobbyScreen from './LobbyScreen';
+import SettingScreen from './SettingScreen';
+import TermsScreen from './TermsScreen';
+import CopyrightScreen from './CopyrightScreen';
 import Modal from './Modal';
 import ArenaScreen from './ArenaScreen';
 
@@ -12,6 +15,9 @@ const MainNavigation = createStackNavigator(
         Register: { screen: RegisterScreen },
         Text: { screen: TextScreen },
         Lobby: { screen: LobbyScreen },
+        Setting: { screen: SettingScreen },
+        Terms: { screen: TermsScreen },
+        Copyright: { screen: CopyrightScreen },
         Arena: { screen: ArenaScreen },
     },
     { mode: 'card', headerMode: 'none' }
