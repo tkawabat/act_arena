@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Dimensions, Linking } from 'react-native';
+import { StyleSheet, Linking } from 'react-native';
 import { Container, Content, Header, Left, Body, Right, Button, Title, Text, Icon, ListItem, Separator } from 'native-base';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
+import licenseJson from '../../license.json';
 import ScreenBase from './ScreenBase';
 import Navigator from '../lib/Navigator';
 
@@ -13,9 +14,13 @@ import ConfigStore from '../store/ConfigStore';
 
 @observer
 export default class CopyrightScreen extends ScreenBase {
+    private softwares = []
     
     constructor(props) {
         super(props);
+        for (const name in licenseJson) {
+            this.softwares.push(name+'\n');
+        }
     }
 
     render() {
@@ -34,6 +39,7 @@ export default class CopyrightScreen extends ScreenBase {
                     <Right />
                 </Header>
                 <Content>
+
                     <Separator bordered>
                         <Text>台本</Text>
                     </Separator>
@@ -42,6 +48,7 @@ export default class CopyrightScreen extends ScreenBase {
                         <Icon name='external-link-alt' type='FontAwesome5' style={styles.linkIcon}
                             onPress={() =>  Linking.openURL('http://doodletxt.web.fc2.com/')} />
                     </ListItem>
+
                     <Separator bordered>
                         <Text>BGM</Text>
                     </Separator>
@@ -50,17 +57,29 @@ export default class CopyrightScreen extends ScreenBase {
                         <Icon name='external-link-alt' type='FontAwesome5' style={styles.linkIcon}
                             onPress={() =>  Linking.openURL('https://noiselessworld.net')} />
                     </ListItem>
+
+                    <Separator bordered>
+                        <Text>ソフトウェア</Text>
+                    </Separator>
+                    <Text style={styles.software}>
+                    {this.softwares}
+                    </Text>
                 </Content>
             </Container>
         );
     }
 }
 
-let {height, width} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
     linkIcon: {
         marginLeft: 'auto',
         fontSize: 20,
         color: 'gray',
     },
+    software: {
+        marginHorizontal: 10,
+        fontSize: 16,
+        lineHeight: 24,
+    }
 });
