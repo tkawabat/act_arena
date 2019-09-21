@@ -38,7 +38,7 @@ var color = function() {
     var line;
     for (line of t) {
         if (!line) continue;
-        if (line.match(/^\s*$/)) continue;
+        if (line.match(/^[\s　]*$/)) continue;
 
         var regexp = new RegExp(line, 'g');
         $('body').highlightRegex(regexp, {
