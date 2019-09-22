@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Text, View, Button, Icon } from 'native-base';
 import { StyleSheet, Dimensions } from 'react-native';
+import { Text, View, Button, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 
 import * as C from '../lib/Const';

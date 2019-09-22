@@ -21,17 +21,15 @@ export default class Timer extends Component {
 
 const styles = StyleSheet.create({
     root: {
-        height: 72
-        , width: 60
-        , textAlign: 'center'
-        , justifyContent: 'center'
-        //, color: '#FFF'
-        //, backgroundColor: 'blue'
-        , margin: 10
-    }
-    , text: {
-        alignSelf: 'center'
-        , fontSize: 20
-        , fontWeight: '800'
-    }
+        width: 30,
+        textAlign: 'center',
+        justifyContent: 'center',
+        //color: '#FFF',
+        // padding: 10,
+    },
+    text: {
+        alignSelf: 'center',
+        fontSize: 20,
+        fontWeight: '800',
+    },
 });

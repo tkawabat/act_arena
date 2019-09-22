@@ -14,8 +14,8 @@ import ArenaStore from '../store/ArenaStore';
 import UserStore from '../store/UserStore';
 
 import ScenarioMaster from '../component/ScenarioMaster';
-import Timer from '../component/Timer';
 import ActInfo from '../component/ActInfo';
+import ArenaHeader from '../component/ArenaHeader';
 import ArenaActionMaster from '../component/ArenaActionMaster';
 import ChatTabHeader from '../component/ChatTabHeader';
 import ScenarioTabHeader from '../component/ScenarioTabHeader';
@@ -36,30 +36,11 @@ export default class Arena extends ScreenBase {
         }
     }
 
-    private leave = () => {
-        Alert.alert('', 'アリーナから退出します。', [
-            { text: 'OK', onPress: ArenaStore.leave}
-            , { text: 'Cancel'}
-        ]);
-    }
-
     render() { 
         return (
             <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Header style={styles.header}>
-                    <Left>
-                        <Timer />
-                    </Left>
-                    <Body>
-                        <Title>{C.ArenaStateString[ArenaStore.arenaState]}</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent onPress={this.leave} disabled={!ArenaStore.canLeave}>
-                            <Icon name='sign-out-alt' type='FontAwesome5' fontSize={20} />
-                        </Button>
-                    </Right>
-                </Header>
+                <ArenaHeader />
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
                         <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab}>
@@ -105,9 +86,6 @@ let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    header: {
-        height: 70,
     },
     content: {
     },

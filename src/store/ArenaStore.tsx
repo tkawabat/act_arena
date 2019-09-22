@@ -88,6 +88,11 @@ class ArenaStore {
         return i;
     }
 
+    @computed get userNum() {
+        if (!this.users) return 0;
+        return Object.keys(this.users).length;
+    }
+
     constructor() {
         this.db = Firebase.firestore().collection('Arena');
     }
