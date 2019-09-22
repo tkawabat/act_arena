@@ -18,13 +18,24 @@ import SkywayStore from './src/store/SkywayStore';
 export default class App extends Component {
     constructor(props) {
         super(props);
+
+        YellowBox.ignoreWarnings(['Setting a timer']);
+        console.ignoredYellowBox = [
+            'Setting a timer'
+        ];
         
+        ConfigStore.setInitLoad('font');
+        ConfigStore.setInitLoad('skyway');
+        ConfigStore.setInitLoad('user');
+        ConfigStore.setInitLoadComplete('init');
+
         Expo.Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
             'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
         }).then(() => {
-            ConfigStore.font = true;
+            ConfigStore.setInitLoadComplete('font');
         });
+        
         UserStore.anonymousLogin().then((user) => {
             if (!user) {
                 alert('ユーザー情報の取得に失敗しました。');
@@ -32,11 +43,6 @@ export default class App extends Component {
             //SkywayStore.connect((user as Firebase.auth.UserCredential).user.uid);
             SkywayStore.connect(moment().unix().toString());
         });
-
-        YellowBox.ignoreWarnings(['Setting a timer']);
-        console.ignoredYellowBox = [
-            'Setting a timer'
-        ];
     }
 
     render() {

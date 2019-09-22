@@ -21,7 +21,7 @@ class SkywayStore {
     private onPeerOpen = () => {
         console.log("onPeerOpen");
         this.state = C.SkywayState.OPEN;
-        ConfigStore.skyway = true;
+        ConfigStore.setInitLoadComplete('skyway');
         this.speakState = C.SpeakState.DISABLED;
     }
 
@@ -31,7 +31,6 @@ class SkywayStore {
     }
 
     private onPeerError = () => {
-        ConfigStore.skyway = false;
         //this.dispose();
         // TODO
     }
@@ -40,7 +39,6 @@ class SkywayStore {
         console.log("onPeerClose");
         this.state = C.SkywayState.INIT;
         this.speakState = C.SpeakState.DISABLED;
-        ConfigStore.skyway = false;
         this.peer.disconnect();
     }
 

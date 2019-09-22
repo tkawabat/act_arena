@@ -15,29 +15,40 @@ class ConfigStore {
     private version:string = '0.0.0';
 
     // no db
-    @observable font:boolean = false;
-    @observable skyway:boolean = false;
-    @observable user:boolean = false;
-    @observable config:boolean = false;
+    @observable init = {
+        'init': false,
+    };
 
     @observable isLoad:boolean = false;
     @observable message:string = '';
 
-    @computed get isInitLoaded() {
-        return this.font && this.skyway && this.user && this.config;
+    @computed get isInitLoaded() :boolean {
+        for (const key in this.init) {
+            if (!this.init[key]) return false;
+        }
+        return true;
     }
 
     constructor() {
         this.ref = Firebase.firestore().collection('Config').doc(C.ConfigId);
         this.ref.onSnapshot(this.setSnapshot2field);
+        this.setInitLoad('config');
         this.ref.get().then((snapshot) => {
             this.setSnapshot2field(snapshot);
-            this.config = true;
+            this.setInitLoadComplete('config');
         });
     }
 
     private mustUpdate = () :boolean => {
         return Secret.version < this.version;
+    }
+
+    @action setInitLoad = (name:string) :void => {
+        this.init[name] = false;
+    }
+
+    @action setInitLoadComplete = (name:string) :void => {
+        this.init[name] = true;
     }
 
     @action

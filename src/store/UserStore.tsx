@@ -50,7 +50,7 @@ class UserStore implements User {
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
 
-            this.get(this.id).then(() => {ConfigStore.user = true;})
+            this.get(this.id).then(() => {ConfigStore.setInitLoadComplete('user');})
 
             this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
         });
