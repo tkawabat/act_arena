@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, Alert } from 'react-native';
-import { Container, Content, View, Button, H1, Text, Form, Item, Input, Picker, Icon } from 'native-base';
+import { Container, Content, View, Button, H1, H2, Text, Item, Input, Picker, Icon } from 'native-base';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { observer } from 'mobx-react';
 
@@ -10,8 +10,8 @@ import * as C from '../lib/Const';
 import ConfigStore from '../store/ConfigStore';
 import UserStore from '../store/UserStore';
 
-//import ArenaStore from '../store/ArenaStore';
-//import LobbyCard from '../component/LobbyCard';
+import Terms from '../component/Terms';
+
 
 @observer
 export default class RegisterScreen extends ScreenBase {
@@ -64,9 +64,9 @@ export default class RegisterScreen extends ScreenBase {
 
     render() {
         return (
-            <Container>
+            <Container　style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Content style={styles.content}>
+                <Content style={styles.content} scrollEnabled={false}>
                     <H1 style={styles.title}>ユーザー登録</H1>
                     <View style={styles.view}>
                         <Item>
@@ -88,11 +88,19 @@ export default class RegisterScreen extends ScreenBase {
                             <Picker.Item label="男性" value={C.Gender.Male} />
                             <Picker.Item label="女性" value={C.Gender.Female} />
                         </Picker>
-                        <View style={styles.buttonView}>
-                            <Button style={styles.button} onPress={this.confirmRegist} disabled={this.state.disabled}>
-                                <Text style={styles.buttonText}>登録</Text>
-                            </Button>
-                        </View>
+                    </View>
+
+                    <H2 style={styles.termsTitle}>利用規約</H2>
+                    <Terms />
+                    <Text style={styles.termsCaution}>
+                        ※特に第3章の「台本の利用」については、{'\n'}
+                        よく読み、ご確認してください。
+                    </Text>
+
+                    <View style={styles.buttonView}>
+                        <Button style={styles.button} onPress={this.confirmRegist} disabled={this.state.disabled}>
+                            <Text style={styles.buttonText}>規約に同意し、登録</Text>
+                        </Button>
                     </View>
                 </Content>
             </Container>
@@ -102,34 +110,49 @@ export default class RegisterScreen extends ScreenBase {
 
 let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
+    container: {
+        width: width,
+    },
     content: {
-        width: width
-        , height: height
-        , padding: 30
-    }
-    , title: {
-        marginTop: 50
-    }
-    , view: {
-        padding: 10
-        , marginTop: 20
-    }
-    , picker: {
+        padding: 10,
+    },
+    title: {
+        marginTop: 40,
+        marginLeft: 20,
+    },
+    view: {
+        marginTop: 20,
+        width: 250,
+        alignSelf: 'center',
+    },
+    picker: {
+
+    },
+    termsTitle: {
+        marginTop: 20,
+        marginLeft: 20,
+    },
+    terms: {
+        marginTop: 10,
+    },
+    termsCaution: {
+        marginTop: 10,
+        textAlign: 'center',
+        fontSize: 16,
+        textDecorationLine: 'underline',
+    },
+    buttonView: {
+        padding: 10,
+        marginTop: 20,
+        justifyContent:'center',
+        alignItems: 'center',
+    },
+    button: {
+        marginTop: 5,
+        justifyContent:'center',
+        textAlign: 'center',
+    },
+    buttonText: {
         
-    }
-    , buttonView: {
-        padding: 10
-        , marginTop: 20
-        , justifyContent:'center'
-        , alignItems: 'center'
-    }
-    , button: {
-        width: 100
-        , marginTop: 5  
-        , justifyContent:'center'
-        , textAlign: 'center'      
-    }
-    , buttonText: {
-        
-    }
+    },
 });

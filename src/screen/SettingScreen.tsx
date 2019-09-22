@@ -33,9 +33,9 @@ export default class SettingScreen extends ScreenBase {
                     <Right />
                 </Header>
                 <Content>
-                    <Separator bordered>
+                    {/* <Separator bordered>
                         <Text>その他</Text>
-                    </Separator>
+                    </Separator> */}
                     <ListItem>
                         <Button transparent onPress={() => Navigator.navigate('Terms', null)}>
                             <Text>利用規約</Text>
