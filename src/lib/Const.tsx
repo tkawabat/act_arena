@@ -12,6 +12,7 @@ export enum Gender {
     Female = 2,
 }
 
+export const RoomUserLimit = 10;
 
 export enum ArenaState {
     WAIT = 0,
@@ -82,5 +83,4 @@ export const MusicList = [
 ]
 
 export const SoundFadeDuration = 8000;
-
 export const OverlayDuration = 1000;

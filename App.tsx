@@ -11,6 +11,7 @@ import AppContainer from './src/screen/AppContainer';
 import Navigator from './src/lib/Navigator';
 import ConfigStore from './src/store/ConfigStore';
 import UserStore from './src/store/UserStore';
+import ArenaStore from './src/store/ArenaStore';
 import SkywayStore from './src/store/SkywayStore';
 
 
@@ -27,6 +28,7 @@ export default class App extends Component {
         ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoad('skyway');
         ConfigStore.setInitLoad('user');
+        ConfigStore.setInitLoad('arena');
         ConfigStore.setInitLoadComplete('init');
 
         Expo.Font.loadAsync({
@@ -35,7 +37,7 @@ export default class App extends Component {
         }).then(() => {
             ConfigStore.setInitLoadComplete('font');
         });
-        
+
         UserStore.anonymousLogin().then((user) => {
             if (!user) {
                 alert('ユーザー情報の取得に失敗しました。');

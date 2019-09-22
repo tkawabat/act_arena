@@ -55,12 +55,6 @@ export default class LobbyScreen extends ScreenBase {
                         explain='三分でぶち上がる劇体験！'
                         onPress={() => this.joinArena(0)}
                     />
-                    <LobbyCard
-                        title='アリーナ'
-                        explain='三分でぶち上がる劇体験！'
-                        onPress={() => this.joinArena(1)}
-
-                    />
                     <Button onPress={() => { SoundStore.playRondom(0.5); }}>
                         <Text>play</Text>
                     </Button>

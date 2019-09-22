@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -50,13 +50,13 @@ class UserStore implements User {
             if (this.onSnapshot) this.onSnapshot(); // delete old listener
             this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
 
-            this.get(this.id).then(() => {ConfigStore.setInitLoadComplete('user');})
+            this.get().then(() => {ConfigStore.setInitLoadComplete('user');})
 
             this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
         });
     }
      
-    private get = async (uid:string) :Promise<void> => {
+    private get = async () :Promise<void> => {
         return this.db
             .doc(this.id)
             .get()
@@ -65,10 +65,11 @@ class UserStore implements User {
             ;
     }
 
+    @action
     private setSnapshot2field = (doc:Firebase.firestore.DocumentSnapshot) => {
         const data = doc.data();
         if (!data) return;
-
+        
         this.name = data.name;
         this.gender = data.gender;
         this.iconUrl = data.iconUrl;

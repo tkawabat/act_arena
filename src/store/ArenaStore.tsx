@@ -36,7 +36,7 @@ class ArenaStore {
     private tick:NodeJS.Timeout;
 
     // Arena
-    private id :number;
+    private id :number; // entered arena
     @observable scenario:string;
     @observable arenaState:C.ArenaState = null;
     @observable time:string;
@@ -95,6 +95,14 @@ class ArenaStore {
 
     constructor() {
         this.db = Firebase.firestore().collection('Arena');
+
+        this.get(0)
+            .then(() => {
+                this.userRef.get().then(this.usersUpdated);
+                this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
+                ConfigStore.setInitLoadComplete('arena');
+            })
+        ;
     }
 
     @action setMessages = (messages:Array<IMessage>) => {
@@ -114,8 +122,8 @@ class ArenaStore {
     }
 
     @action
-    private arenaUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
-        const data = snapshot.docs[0].data();
+    private arenaUpdated = (snapshot :Firebase.firestore.DocumentSnapshot) => {
+        const data = snapshot.data();
 
         this.dealArenaStateTransition(this.arenaState, data.state);
         this.dealArenaMessageTransition(this.message, data.message);
@@ -154,14 +162,14 @@ class ArenaStore {
             users[doc.id] = doc.data() as ArenaUser;
         });
 
-        this.users = users;
-
         // 退室チェック
-        if (!this.users[UserStore.id]) {
+        if (this.id && !users[UserStore.id]) {
             OverlayMessageStore.start('接続切れのため退室します');
             setTimeout(() => this.leave(), 2000);
             return;
         }
+
+        this.users = users;
     }
 
     private chatUpdated = (snapshot: Firebase.firestore.QuerySnapshot) => {
@@ -212,18 +220,18 @@ class ArenaStore {
     }
 
     private observe = () => {
-        this.unsubscribe = this.db.where('id', '==', this.id).onSnapshot((snapshot) => {
+        this.unsubscribe = this.ref.onSnapshot((snapshot) => {
             this.arenaUpdated(snapshot);
             this.readMessage();
         });
 
-        this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
+        //this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
         this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.chatUpdated);
     }
 
     private stopObserve = () => {
         this.unsubscribe();
-        this.userUnsubscribe();
+        //this.userUnsubscribe();
         this.chatUnsubscribe();
     }
 
@@ -239,7 +247,7 @@ class ArenaStore {
                 this.ref = snapshot.docs[0].ref;
                 this.userRef = this.ref.collection('RoomUser');
                 this.chatRef = this.ref.collection('Chat');
-                this.arenaUpdated(snapshot);
+                this.arenaUpdated(snapshot.docs[0]);
             })
             .catch((error) => Amplitude.error('UserStore get', error))
             ;
@@ -255,6 +263,11 @@ class ArenaStore {
 
     @action
     public join = async (id:number) => {
+        if (this.userNum > C.RoomUserLimit) {
+            alert('申し訳ありません、満員のため入室できません。');
+            return;
+        }
+
         this.id = id;
         this.arenaState = null;
         this.agreementState = C.AgreementState.NONE;
@@ -262,7 +275,8 @@ class ArenaStore {
         this.setModal(false);
         SkywayStore.join('arena'+this.id);
 
-        await this.get(this.id);
+        // ID一個で先にgetしておくようにしている
+        // await this.get(this.id);
 
         const p = [];
         p.push(this.asyncSetRoomUser());
@@ -277,6 +291,7 @@ class ArenaStore {
     }
 
     public leave = () => {
+        this.id = null;
         SkywayStore.leave();
         this.stopObserve();
         UserStore.stopObserveConnectionChange();

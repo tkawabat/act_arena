@@ -39,7 +39,7 @@ class SkywayStore {
         console.log("onPeerClose");
         this.state = C.SkywayState.INIT;
         this.speakState = C.SpeakState.DISABLED;
-        this.peer.disconnect();
+        //this.peer.disconnect();
     }
 
     private onMediaConnectionError = () => {
