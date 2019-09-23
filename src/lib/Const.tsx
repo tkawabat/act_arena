@@ -31,7 +31,7 @@ export const ArenaStateString = {
 export const ArenaStateTime = {
     [ArenaState.WAIT]: -1,
     [ArenaState.CONFIRM]: 30,
-    [ArenaState.CHECK]: 60,
+    [ArenaState.CHECK]: 30,
     [ArenaState.ACT]: 180,
 }
 
@@ -39,6 +39,12 @@ export enum ArenaUserState {
     LISTNER = 0,
     ENTRY = 1,
     ACTOR = 2,
+}
+
+export const ArenaUserStateString = {
+    [ArenaUserState.LISTNER]: 'リスナー',
+    [ArenaUserState.ENTRY]: 'エントリー中',
+    [ArenaUserState.ACTOR]: 'アクター',
 }
 
 export enum AgreementState {

@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     left: {
         flex: 1,
         flexDirection: 'row',
+        alignItems: 'flex-start',
     },
     center: {
         flex: 1,
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'black',
+        fontWeight: '800',
     },
     timer: {
         marginLeft: 20,

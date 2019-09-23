@@ -74,6 +74,11 @@ class ArenaStore {
         return this.agreementState === C.AgreementState.AGREE;
     }
 
+    @computed get userState() {
+        if (!this.users[UserStore.id]) return C.ArenaUserState.LISTNER;
+        return this.users[UserStore.id].state;
+    }
+
     @computed get canLeave() {
         if (!this.users[UserStore.id]) return true;
         return this.users[UserStore.id].state !== C.ArenaUserState.ACTOR;
@@ -165,6 +170,13 @@ class ArenaStore {
             users[doc.id] = doc.data() as ArenaUser;
         });
 
+        // マイクチェック
+        if (this.id && users[UserStore.id]) {
+            OverlayMessageStore.start('接続切れのため退室します');
+            setTimeout(() => this.leave(), 2000);
+            return;
+        }
+
         // 退室チェック
         if (this.id && !users[UserStore.id]) {
             OverlayMessageStore.start('接続切れのため退室します');
@@ -191,6 +203,7 @@ class ArenaStore {
 
         switch (after) {
             case C.ArenaState.WAIT:
+                SkywayStore.setDisabled();
                 this.agreementState = C.AgreementState.NONE;
                 this.setModal(false);
                 break;

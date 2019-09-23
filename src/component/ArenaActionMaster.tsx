@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
-import { Text, View, Button, Icon } from 'native-base';
+import { Text, View, Button, Icon, Badge } from 'native-base';
 import { observer } from 'mobx-react';
 
 import * as C from '../lib/Const';
@@ -64,6 +64,9 @@ export default class ArenaActionMaster extends Component {
                 {this.entryButton()}
                 </View>
                 <View style={styles.right}>
+                    <Badge warning style={styles.badge}>
+                        <Text style={styles.badgeText}>{C.ArenaUserStateString[ArenaStore.userState]}</Text>
+                    </Badge>
                 </View>
             </View>
         )
@@ -89,6 +92,8 @@ const styles = StyleSheet.create({
     },
     right: {
         flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
     },
     buttonListner: {
         width: 120,
@@ -109,4 +114,10 @@ const styles = StyleSheet.create({
     information: {
         color: '#CC9900',
     },
+    badge: {
+        margin: 5,
+    },
+    badgeText: {
+        fontSize: 12,
+    }
 });

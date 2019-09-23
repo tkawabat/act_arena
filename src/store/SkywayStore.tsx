@@ -149,6 +149,11 @@ class SkywayStore {
         }
         return;
     }
+
+    public setDisabled = () :void => {
+        this.peer.setLocalStreamStatus(false);
+        this.speakState = C.SpeakState.DISABLED;
+    }
 }
 
 
