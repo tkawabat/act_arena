@@ -31,7 +31,7 @@ export default class ArenaHeader extends Component {
                     </View>
                 </View>
                 <View style={styles.center}>
-                    <Title>{C.ArenaStateString[ArenaStore.arenaState]}</Title>
+                    <Title style={styles.title}>{C.ArenaStateString[ArenaStore.arenaState]}</Title>
                 </View>
                 <View style={styles.right}>
                     <Icon name='user' type='FontAwesome5' style={styles.userNumIcon} />
@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
+    },
+    title: {
+        color: 'black',
     },
     timer: {
         marginLeft: 20,

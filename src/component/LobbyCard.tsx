@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     root: {
         height: 100,
         margin: 20,
-        padding: 20,
+        padding: 15,
         color: '#000',
     },
     title: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     explain: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 20,
+        marginTop: 15,
     },
     explainText: {
         marginLeft: 20
