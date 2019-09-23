@@ -215,7 +215,7 @@ class ArenaStore {
     private preAct = () => {
         const now = Moment();
 
-        const t1 = this.endAt.diff(now, 'seconds') * 1000 - C.SoundFadeDuration - 000;
+        const t1 = this.endAt.diff(now, 'seconds') * 1000 - C.SoundFadeDuration - 5000;
         if (t1 > 0) {
             setTimeout(() => {
                 SoundStore.setVolume(0.75);
