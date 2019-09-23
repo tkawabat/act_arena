@@ -76,9 +76,9 @@ export enum MusicState {
 }
 
 export const MusicList = [
-    { file: 'amanojack.mp3', name: '天邪鬼の子', site: '騒音のない世界'},
+    //{ file: 'amanojack.mp3', name: '天邪鬼の子', site: '騒音のない世界'},
     { file: 'neverend.mp3', name: '終わりのない物語', site: '騒音のない世界'},
-    { file: 'yoake.mp3', name: 'この夜が明けるまで', site: '騒音のない世界'},
+    //{ file: 'yoake.mp3', name: 'この夜が明けるまで', site: '騒音のない世界'},
     { file: 'sayonara3.mp3', name: 'さよなら', site: '騒音のない世界'},
 ]
 

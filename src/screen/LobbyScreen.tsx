@@ -55,7 +55,7 @@ export default class LobbyScreen extends ScreenBase {
                         explain='三分でぶち上がる劇体験！'
                         onPress={() => this.joinArena(0)}
                     />
-                    <Button onPress={() => { SoundStore.playRondom(0.5); }}>
+                    <Button onPress={() => { SoundStore.playRondom(0.5, true); }}>
                         <Text>play</Text>
                     </Button>
                     <Button onPress={() => { SoundStore.stop(); }}>

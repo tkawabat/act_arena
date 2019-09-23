@@ -15,10 +15,18 @@ class SoundStore {
         Sound.setCategory('Playback');
     }
 
-    @action playRondom = async (volume) => {
+    @action playRondom = async (volume:number, restart:boolean) => {
+        if (!restart && this.state === C.MusicState.PLAY) {
+            this.setVolume(volume);
+            return;
+        }
+
         const n = C.MusicList.length;
         const music = C.MusicList[Math.floor(Math.random() * n)];
-        if (this.player) this.player.release();
+        if (this.player) {
+            this.stop();
+            this.player.release();
+        }
         this.player = new Sound(music.file, Sound.MAIN_BUNDLE, (error) => {
             if (error) {
                 Amplitude.error('SoundStore setRondomMusic', error)
@@ -33,7 +41,7 @@ class SoundStore {
 
     @action stop = () => {
         this.state = C.MusicState.STOP;
-        this.player.stop();
+        this.player.pause();
     }
 
     @action fadeIn = (n) => {
@@ -63,15 +71,18 @@ class SoundStore {
     }
 
     public setVolume = (n:number) => {
+        if (!this.player) return;
         this.player.setVolume(n);
     }
 
     public incrementVolume = (n:number) => {
+        if (!this.player) return;
         const newVolume = Math.min(1.0, this.player.getVolume() + n);
         this.player.setVolume(newVolume);
     }
 
     public decrementVolume = (n:number) => {
+        if (!this.player) return;
         const newVolume = Math.max(0, this.player.getVolume() - n);
         this.player.setVolume(newVolume);
     }

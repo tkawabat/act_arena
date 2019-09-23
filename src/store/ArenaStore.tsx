@@ -10,6 +10,7 @@ import Navigator from '../lib/Navigator';
 import ConfigStore from './ConfigStore';
 import UserStore, { User } from './UserStore';
 import SkywayStore from './SkywayStore';
+import SoundStore from './SoundStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
 
 interface Characters {
@@ -36,7 +37,7 @@ class ArenaStore {
     private tick:NodeJS.Timeout;
 
     // Arena
-    private id :number; // entered arena
+    private id :number = null; // entered arena
     @observable scenario:string;
     @observable arenaState:C.ArenaState = null;
     @observable time:string;
@@ -154,6 +155,8 @@ class ArenaStore {
             this.time = diff > 0 ? diff.toString() : '---';
             if (diff <= 0) clearInterval(this.tick);
         }, 1000);
+
+        this.playSound();
     }
 
     private usersUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
@@ -198,7 +201,7 @@ class ArenaStore {
                 break;
             case C.ArenaState.ACT:
                 break;
-        } 
+        }
     }
 
     private dealArenaMessageTransition = (before:string, after:string) :void => {
@@ -206,6 +209,42 @@ class ArenaStore {
 
         if (after !== '') {
             OverlayMessageStore.start(after);
+        }
+    }
+
+    private preAct = () => {
+        const now = Moment();
+
+        const t1 = this.endAt.diff(now, 'seconds') * 1000 - C.SoundFadeDuration - 000;
+        if (t1 > 0) {
+            setTimeout(() => {
+                SoundStore.setVolume(0.75);
+            }, t1);
+        }
+
+        const t2 = this.endAt.diff(now, 'seconds') * 1000 - C.SoundFadeDuration;
+        if (t2 < 0) SoundStore.stop();
+        setTimeout(() => {
+            SoundStore.fadeOut();
+        }, t2);
+    }
+
+    private playSound = () => {
+        if (this.id === null) return;
+
+        switch (this.arenaState) {
+            case C.ArenaState.WAIT:
+                SoundStore.playRondom(0.5, true);
+                break;
+            case C.ArenaState.CONFIRM:
+                SoundStore.playRondom(0.15, false);
+                break;
+            case C.ArenaState.CHECK:
+                SoundStore.playRondom(0.15, false);
+                this.preAct();
+                break;
+            case C.ArenaState.ACT:
+                break;
         }
     }
 
@@ -288,6 +327,7 @@ class ArenaStore {
 
         UserStore.observeConnectionChange();
         Navigator.navigate('Arena', null);
+        this.playSound();
     }
 
     public leave = () => {
@@ -302,6 +342,7 @@ class ArenaStore {
             .catch((error) => Amplitude.error('ArenaStore leave', error))
         ;
 
+        SoundStore.stop();
         Navigator.back();
     }
 
