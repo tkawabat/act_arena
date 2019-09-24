@@ -10,16 +10,20 @@ import * as C from '../lib/Const';
 import ConfigStore from '../store/ConfigStore';
 import UserStore from '../store/UserStore';
 
+import Intro from '../component/Intro';
 import Terms from '../component/Terms';
 
 
 @observer
 export default class RegisterScreen extends ScreenBase {
+    
     state = {
-        name: undefined
-        , gender: C.Gender.Male
-        , disabled: true
+        name: undefined,
+        gender: C.Gender.Male,
+        disabled: true,
+        intro: true,
     }
+
     constructor(props) {
         super(props);
     }
@@ -63,6 +67,10 @@ export default class RegisterScreen extends ScreenBase {
     }
 
     render() {
+        if (this.state.intro) {
+            return (<Intro done={() => this.setState({intro:false})} />);
+        }
+        
         return (
             <Container　style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />

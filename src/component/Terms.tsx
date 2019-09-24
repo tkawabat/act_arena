@@ -41,8 +41,10 @@ const styles = StyleSheet.create({
     scrollView: {
         marginHorizontal: 10,
         height: 250,
+        padding: 10,
         borderWidth: 2,
         borderColor: 'gray',
+        backgroundColor: 'white',
     },
     chapterTitle: {
         marginTop: 20,
