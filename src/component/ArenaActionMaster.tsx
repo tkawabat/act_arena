@@ -64,7 +64,7 @@ export default class ArenaActionMaster extends Component {
                 {this.entryButton()}
                 </View>
                 <View style={styles.right}>
-                    <Badge warning style={styles.badge}>
+                    <Badge {...(C.ArenaUserStateStyle[ArenaStore.userState])} style={styles.badge}>
                         <Text style={styles.badgeText}>{C.ArenaUserStateString[ArenaStore.userState]}</Text>
                     </Badge>
                 </View>

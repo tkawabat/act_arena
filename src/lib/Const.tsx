@@ -43,8 +43,14 @@ export enum ArenaUserState {
 
 export const ArenaUserStateString = {
     [ArenaUserState.LISTNER]: 'リスナー',
-    [ArenaUserState.ENTRY]: 'エントリー中',
+    [ArenaUserState.ENTRY]: 'リスナー',
     [ArenaUserState.ACTOR]: 'アクター',
+}
+
+export const ArenaUserStateStyle = {
+    [ArenaUserState.LISTNER]: {'warning':true},
+    [ArenaUserState.ENTRY]: {'warning':true},
+    [ArenaUserState.ACTOR]: {'danger':true},
 }
 
 export enum AgreementState {

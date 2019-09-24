@@ -52,27 +52,9 @@ export default class LobbyScreen extends ScreenBase {
                 <View>
                     <LobbyCard
                         title='アリーナ'
-                        explain='三分でぶち上がる劇体験！'
+                        explain='３分でブチ上がる劇体験！'
                         onPress={() => this.joinArena(0)}
                     />
-                    <Button onPress={() => { SoundStore.playRondom(0.5, true); }}>
-                        <Text>play</Text>
-                    </Button>
-                    <Button onPress={() => { SoundStore.stop(); }}>
-                        <Text>stop</Text>
-                    </Button>
-                    <Button onPress={() => { SoundStore.setVolume(0.75); }}>
-                        <Text>volume high</Text>
-                    </Button>
-                    <Button onPress={() => { SoundStore.setVolume(0.25); }}>
-                        <Text>volume low</Text>
-                    </Button>
-                    <Button onPress={() => { SoundStore.decrementVolume(0.1); }}>
-                        <Text>volume down</Text>
-                    </Button>
-                    <Button onPress={() => { SoundStore.fadeOut(); }}>
-                        <Text>fadeout</Text>
-                    </Button>
                 </View>
             </Container>
         );
