@@ -170,15 +170,8 @@ class ArenaStore {
             users[doc.id] = doc.data() as ArenaUser;
         });
 
-        // マイクチェック
-        if (this.id && users[UserStore.id]) {
-            OverlayMessageStore.start('接続切れのため退室します');
-            setTimeout(() => this.leave(), 2000);
-            return;
-        }
-
         // 退室チェック
-        if (this.id && !users[UserStore.id]) {
+        if (this.id !== null && !users[UserStore.id]) {
             OverlayMessageStore.start('接続切れのため退室します');
             setTimeout(() => this.leave(), 2000);
             return;
