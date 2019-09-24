@@ -7,25 +7,30 @@ import { observer } from 'mobx-react';
 import ScreenBase from './ScreenBase';
 
 import * as C from '../lib/Const';
+import Navigator from '../lib/Navigator';
 import ConfigStore from '../store/ConfigStore';
 import UserStore from '../store/UserStore';
 
 import Intro from '../component/Intro';
-import Terms from '../component/Terms';
 
 
 @observer
 export default class RegisterScreen extends ScreenBase {
     
     state = {
+        intro: true,
         name: undefined,
         gender: C.Gender.Male,
-        disabled: true,
-        intro: true,
+        validName: false,
+        terms: false,
     }
 
     constructor(props) {
         super(props);
+    }
+
+    get disabled() {
+        return !this.state.validName || !this.state.terms;
     }
 
     private confirmRegist = () => {
@@ -43,27 +48,41 @@ export default class RegisterScreen extends ScreenBase {
     }
 
     private onNameChange = (value: string) => {
-        let disabled = true;
-        if (this.state.gender && value.length >= 3) {
-            disabled = false;
+        let validName = false;
+        if (value.length >= 3) {
+            validName = true;
         }
 
         this.setState({
-            name: value
-            , disabled: disabled
+            name: value,
+            validName: validName,
         });
     }
 
-    private onGenderChange = (value: number) => {
-        let disabled = true;
-        if (this.state.name && this.state.name.length >= 3) {
-            disabled = false;
+    private readTerms = () => {
+        Navigator.navigate('Terms', null);
+        this.setState({terms:true});
+    }
+
+    get registCaution() {
+        const ret = [];
+        
+        if (!this.state.validName) {
+            ret.push(
+                <Text style={styles.registCaution}>
+                    ※ハンドルネームを入力してください。
+                </Text>
+                );
+        }
+        if (!this.state.terms) {
+            ret.push(
+                <Text style={styles.registCaution}>
+                    ※利用規約を読んでください。
+                </Text>
+                );
         }
 
-        this.setState({
-            gender: value
-            , disabled: disabled
-        });
+        return ret;
     }
 
     render() {
@@ -76,7 +95,7 @@ export default class RegisterScreen extends ScreenBase {
                 <Spinner visible={ConfigStore.isLoad} />
                 <Content style={styles.content} scrollEnabled={false}>
                     <H1 style={styles.title}>ユーザー登録</H1>
-                    <View style={styles.view}>
+                    <View style={styles.inputView}>
                         <Item>
                             <Input
                                 placeholder='ハンドルネーム (3~20文字)'
@@ -90,26 +109,33 @@ export default class RegisterScreen extends ScreenBase {
                             placeholder='性別'
                             iosIcon={<Icon name='arrow-down' />}
                             selectedValue={this.state.gender}
-                            onValueChange={this.onGenderChange}
-                            style={styles.picker}
+                            onValueChange={(value:number) => {this.setState({gender: value});}}
                         >
                             <Picker.Item label="男性" value={C.Gender.Male} />
                             <Picker.Item label="女性" value={C.Gender.Female} />
                         </Picker>
                     </View>
 
-                    <H2 style={styles.termsTitle}>利用規約</H2>
-                    <Terms />
+                    <H2 style={styles.title}>利用規約</H2>
+                    <Button warning style={styles.termsButton} onPress={this.readTerms}>
+                        <Text style={styles.termsText}>利用規約を確認</Text>
+                    </Button>
                     <Text style={styles.termsCaution}>
                         ※特に第3章の「台本の利用」については、{'\n'}
                         よく読み、ご確認してください。
                     </Text>
+                    
+                    <Button
+                        info
+                        style={styles.registButton}
+                        onPress={this.confirmRegist}
+                        disabled={this.disabled}
+                    >
+                        <Text style={styles.registText}>規約に同意し、登録</Text>
+                    </Button>
 
-                    <View style={styles.buttonView}>
-                        <Button style={styles.button} onPress={this.confirmRegist} disabled={this.state.disabled}>
-                            <Text style={styles.buttonText}>規約に同意し、登録</Text>
-                        </Button>
-                    </View>
+                    {this.registCaution}
+                    
                 </Content>
             </Container>
         );
@@ -128,20 +154,18 @@ const styles = StyleSheet.create({
         marginTop: 40,
         marginLeft: 20,
     },
-    view: {
+    inputView: {
         marginTop: 20,
         width: 250,
         alignSelf: 'center',
     },
-    picker: {
-
-    },
-    termsTitle: {
+    termsButton: {
         marginTop: 20,
-        marginLeft: 20,
+        alignSelf: 'center',
+        alignItems: 'center',
     },
-    terms: {
-        marginTop: 10,
+    termsText: {
+        
     },
     termsCaution: {
         marginTop: 10,
@@ -149,18 +173,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textDecorationLine: 'underline',
     },
-    buttonView: {
-        padding: 10,
-        marginTop: 20,
-        justifyContent:'center',
+    registButton: {
+        marginTop: 70,
+        alignSelf: 'center',
         alignItems: 'center',
     },
-    button: {
-        marginTop: 5,
-        justifyContent:'center',
-        textAlign: 'center',
-    },
-    buttonText: {
+    registText: {
         
+    },
+    registCaution: {
+        marginTop: 10,
+        textAlign: 'center',
+        fontSize: 16,
+        color: 'gray'
     },
 });

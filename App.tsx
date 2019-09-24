@@ -57,7 +57,7 @@ export default class App extends Component {
         return (
             <AppContainer ref={(nav) => {
                 Navigator.setNavigator(nav);
-                let initailScreen = UserStore.isRegisted ? 'Lobby' : 'Register';
+                const initailScreen = UserStore.isRegisted ? 'Lobby' : 'Register';
                 Navigator.navigate(initailScreen, null);
             } } />
         );
