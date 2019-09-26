@@ -29,7 +29,7 @@ export const ArenaStateString = {
 }
 
 export const ArenaStateTime = {
-    [ArenaState.WAIT]: -1,
+    [ArenaState.WAIT]: 0,
     [ArenaState.CONFIRM]: 30,
     [ArenaState.CHECK]: 30,
     [ArenaState.ACT]: 180,

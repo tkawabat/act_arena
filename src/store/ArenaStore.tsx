@@ -34,13 +34,13 @@ class ArenaStore {
     private userUnsubscribe:Function;
     private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
-    private tick:NodeJS.Timeout;
+    private tickTimeout:NodeJS.Timeout;
 
     // Arena
     private id :number = null; // entered arena
     @observable scenario:string;
     @observable arenaState:C.ArenaState = null;
-    @observable time:string;
+    @observable time:number;
     @observable endAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
     @observable message:string = null;
@@ -128,13 +128,40 @@ class ArenaStore {
     }
 
     @action
+    private tick = () => {
+        // stateと残り時間の計算
+        let diff = this.endAt.diff(Moment(), 'seconds');
+        let state:C.ArenaState;
+        const stateList = [
+            C.ArenaState.WAIT,
+            C.ArenaState.ACT,
+            C.ArenaState.CHECK,
+            C.ArenaState.CONFIRM,
+        ];
+        for (state of stateList) {
+            // 遅延対策のため全stateの合計時間以上になることがあるので、マイクチェックなら終了させる
+            if (state === C.ArenaState.CONFIRM) break;
+            if (diff <= C.ArenaStateTime[state]) break;
+            diff -= C.ArenaStateTime[state];
+        }
+
+        this.dealArenaStateTransition(this.arenaState, state);
+        this.arenaState = state;
+        this.time = diff;
+
+        this.playSound();
+        
+        if (diff <= 0) clearInterval(this.tickTimeout);
+    }
+
+    @action
     private arenaUpdated = (snapshot :Firebase.firestore.DocumentSnapshot) => {
         const data = snapshot.data();
 
-        this.dealArenaStateTransition(this.arenaState, data.state);
+        //this.dealArenaStateTransition(this.arenaState, data.state);
         this.dealArenaMessageTransition(this.message, data.message);
 
-        this.arenaState = data.state;
+        //this.arenaState = data.state;
         this.endAt = Moment.unix(data.endAt.seconds);
         this.title = data.title;
         this.agreementUrl = data.agreementUrl;
@@ -153,15 +180,8 @@ class ArenaStore {
             break;
         }
 
-        clearInterval(this.tick);
-        this.tick = setInterval(() => {
-            const now = Moment();
-            const diff = this.endAt.diff(now, 'seconds');
-            this.time = diff > 0 ? diff.toString() : '---';
-            if (diff <= 0) clearInterval(this.tick);
-        }, 1000);
-
-        this.playSound();
+        clearInterval(this.tickTimeout);
+        this.tickTimeout = setInterval(this.tick, 1000);
     }
 
     private usersUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
@@ -221,14 +241,14 @@ class ArenaStore {
     private preAct = () => {
         const now = Moment();
 
-        const t1 = this.endAt.diff(now, 'seconds') * 1000 - C.SoundFadeDuration - 5000;
+        const t1 = this.time * 1000 - C.SoundFadeDuration - 5000;
         if (t1 > 0) {
             setTimeout(() => {
                 SoundStore.setVolume(0.75);
             }, t1);
         }
 
-        const t2 = this.endAt.diff(now, 'seconds') * 1000 - C.SoundFadeDuration;
+        const t2 = this.time * 1000 - C.SoundFadeDuration;
         if (t2 < 0) SoundStore.stop();
         setTimeout(() => {
             SoundStore.fadeOut();
@@ -320,7 +340,7 @@ class ArenaStore {
         this.setModal(false);
         SkywayStore.join('arena'+this.id);
 
-        // ID一個で先にgetしておくようにしている
+        // ID一個で先にgetしておくのでコメントアウト
         // await this.get(this.id);
 
         const p = [];
@@ -337,13 +357,15 @@ class ArenaStore {
     }
 
     public leave = () => {
+        if (this.id === null) return;
+        
         this.id = null;
         SkywayStore.leave();
         this.stopObserve();
         UserStore.stopObserveConnectionChange();
         
         UserStore.asyncSetConnect(false);
-        clearInterval(this.tick);
+        clearInterval(this.tickTimeout);
         this.userRef.doc(UserStore.id).delete()
             .catch((error) => Amplitude.error('ArenaStore leave', error))
         ;

@@ -10,10 +10,11 @@ import ArenaStore from '../store/ArenaStore';
 @observer
 export default class Timer extends Component {
     render() {
+        const time = ArenaStore.time > 0 ? ArenaStore.time.toString() : '---';
         return (
             <View style={styles.root}>
                 <Icon name='clock' type='FontAwesome5' style={styles.clockIcon} />
-                <Text style={styles.text}>{ArenaStore.time}</Text>
+                <Text style={styles.text}>{time}</Text>
             </View>
             
         );
