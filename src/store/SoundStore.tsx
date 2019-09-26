@@ -41,10 +41,13 @@ class SoundStore {
 
     @action stop = () => {
         this.state = C.MusicState.STOP;
+        if (!this.player) return;
         this.player.pause();
     }
 
     @action fadeIn = (n) => {
+        if (!this.player) return;
+
         // TODO play開始
         const step = n * 100 / C.SoundFadeDuration;
         const fadeFunction = () => {
@@ -58,6 +61,8 @@ class SoundStore {
     }
 
     @action fadeOut = () => {
+        if (!this.player) return;
+        
         const step = this.player.getVolume() * 100 / C.SoundFadeDuration;
         const fadeFunction = () => {
             if (this.player.getVolume() <= 0) {
