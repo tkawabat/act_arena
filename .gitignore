@@ -13,6 +13,7 @@ web-report/
 android/.idea
 android/.gradle
 android/**/build
+android/gradle.properties
 ios/Pods
 ios/act_arena/Supporting
 ios/build
@@ -24,3 +25,4 @@ sentry.properties
 secret.json
 secret-dev.json
 .DS_Store
+*.keystore
