@@ -174,6 +174,8 @@ class ArenaStore {
 
         for (const character of this.characters) {
             if (character.user !== UserStore.id) continue;
+
+            Amplitude.info('ArenaBeActor', null);
             if (SkywayStore.speakState === C.SpeakState.DISABLED) {
                 SkywayStore.setSpeakState(C.SpeakState.MUTE);
             }
@@ -358,7 +360,8 @@ class ArenaStore {
 
     public leave = () => {
         if (this.id === null) return;
-        
+        Amplitude.info('ArenaLeave', null);
+
         this.id = null;
         SkywayStore.leave();
         this.stopObserve();
@@ -382,7 +385,10 @@ class ArenaStore {
             this.userRef.doc(UserStore.id).update({
                 state: state
             })
-            .then(() => ConfigStore.load(false))
+            .then(() => {
+                Amplitude.info('ArenaEntry', null);
+                ConfigStore.load(false);
+            })
             .catch((error) => Amplitude.error('ArenaStore entry', error))
             ;
         }, 1000);
@@ -396,6 +402,7 @@ class ArenaStore {
     }
 
     public addChat = (messages:Array<IMessage>) => {
+        Amplitude.info('ArenaAddChat', null);
         messages.forEach((message) => {
             this.chatRef.add(message);
         });
