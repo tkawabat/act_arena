@@ -56,6 +56,29 @@ export default class LobbyScreen extends ScreenBase {
                         onPress={() => this.joinArena(0)}
                     />
                 </View>
+
+                {/* <Button onPress={() => { SoundStore.playRondom(0.5, true); }}>
+                    <Text>play</Text>
+                </Button>
+                <Button onPress={() => { SoundStore.stop(); }}>
+                    <Text>stop</Text>
+                </Button>
+                <Button onPress={() => { SoundStore.setVolume(0.75); }}>
+                    <Text>volume high</Text>
+                </Button>
+                <Button onPress={() => { SoundStore.setVolume(0.25); }}>
+                    <Text>volume low</Text>
+                </Button>
+                <Button onPress={() => { SoundStore.incrementVolume(0.1); }}>
+                    <Text>volume up</Text>
+                </Button>
+                <Button onPress={() => { SoundStore.decrementVolume(0.1); }}>
+                    <Text>volume down</Text>
+                </Button>
+                <Button onPress={() => { SoundStore.fadeOut(); }}>
+                    <Text>fadeout</Text>
+                </Button> */}
+
             </Container>
         );
     }
