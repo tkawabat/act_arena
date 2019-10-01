@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, Alert } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -20,6 +20,7 @@ export default class LobbyScreen extends ScreenBase {
     
     constructor(props) {
         super(props);
+        ArenaStore.asyncCheckPermissions();
     }
     
     private joinArena = (id:number) :void => {

@@ -1,6 +1,8 @@
 import Moment from 'moment';
 import { observable, computed, action } from 'mobx';
-import { IMessage, Time } from 'react-native-gifted-chat';
+import { IMessage } from 'react-native-gifted-chat';
+import { Alert, Platform } from 'react-native';
+import * as Permissions from 'react-native-permissions';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -302,6 +304,26 @@ class ArenaStore {
         this.chatUnsubscribe();
     }
 
+    public asyncCheckPermissions = async () => {
+        const p = Platform.OS === 'ios' ? Permissions.PERMISSIONS.IOS.MICROPHONE : Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO;
+        switch (await Permissions.check(p)) {
+            case Permissions.RESULTS.UNAVAILABLE:
+                alert('このデバイスではマイクをご利用いただけません。');
+                return false;
+            case Permissions.RESULTS.BLOCKED:
+                Alert.alert('', '劇に参加するためにはマイクの利用許可が必要です。', [
+                    { text: '設定へ', onPress: Permissions.openSettings}
+                    , { text: 'Cancel'}
+                ]);
+                return false;
+            case Permissions.RESULTS.DENIED:
+                Permissions.request(p);
+                return false;
+            case Permissions.RESULTS.GRANTED:
+                return true;
+        }
+    }
+
     public get = async (id:number) :Promise<void> => {
         return this.db
             .where('id', '==', id)
@@ -377,8 +399,10 @@ class ArenaStore {
         Navigator.back();
     }
 
-    public entry = (state:C.ArenaUserState) => {
+    public entry = async (state:C.ArenaUserState) => {
         if (!this.users[UserStore.id]) return;
+
+        if (!await this.asyncCheckPermissions()) return;
 
         ConfigStore.load(true);
         setTimeout(() => {

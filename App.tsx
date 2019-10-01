@@ -11,7 +11,6 @@ import Amplitude from './src/lib/Amplitude';
 import Navigator from './src/lib/Navigator';
 import ConfigStore from './src/store/ConfigStore';
 import UserStore from './src/store/UserStore';
-import ArenaStore from './src/store/ArenaStore';
 import SkywayStore from './src/store/SkywayStore';
 
 
