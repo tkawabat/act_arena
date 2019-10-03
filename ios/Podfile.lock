@@ -284,6 +284,10 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNCAsyncStorage (1.6.2):
+    - React
+  - RNPermissions (2.0.0):
+    - React
   - RNSound (0.11.0):
     - React
     - RNSound/Core (= 0.11.0)
@@ -375,6 +379,8 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNSound (from `../node_modules/react-native-sound`)
   - SentryReactNative (from `../node_modules/react-native-sentry`)
   - SkyWay
@@ -393,7 +399,7 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Amplitude-iOS
     - Analytics
     - AppAuth
@@ -561,6 +567,10 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNSound:
     :path: "../node_modules/react-native-sound"
   SentryReactNative:
@@ -679,6 +689,8 @@ SPEC CHECKSUMS:
   JKBigInteger2: e91672035c42328c48b7dd015b66812ddf40ca9b
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
+  RNCAsyncStorage: 5ae4d57458804e99f73d427214442a6b10a53856
+  RNPermissions: 43fe093bcfe89d3a05a4b82a695db9db9e7dcf21
   RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
   Sentry: 4e8a17b61ddd116f89536cc81d567fdee1ebca96
   SentryReactNative: 07237139c00366ea2e75ae3e5c566e7a71c27a90
@@ -697,6 +709,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 2d2d591bbd0de47f2a8ef46cea775edcd82d4afd
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
 
-PODFILE CHECKSUM: b1072f95b2553cc2bdf5fa16ecaa5f470cae9661
+PODFILE CHECKSUM: 7fb3d0ae236d70f57de80199a91d6d68e667d896
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.8.1
