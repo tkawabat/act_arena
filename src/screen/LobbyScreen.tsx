@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert, Platform } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
-
+import * as Permissions from 'react-native-permissions';
 
 import ScreenBase from './ScreenBase';
 import Navigator from '../lib/Navigator';
@@ -20,10 +20,35 @@ export default class LobbyScreen extends ScreenBase {
     
     constructor(props) {
         super(props);
-        ArenaStore.asyncCheckPermissions();
+        
+    }
+
+    private asyncCheckPermissions = async () => {
+        const p = Platform.OS === 'ios' ? Permissions.PERMISSIONS.IOS.MICROPHONE : Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO;
+        switch (await Permissions.check(p)) {
+            case Permissions.RESULTS.UNAVAILABLE:
+                alert('このデバイスではマイクをご利用いただけません。');
+                return false;
+            case Permissions.RESULTS.BLOCKED:
+                Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
+                    { text: '設定へ', onPress: Permissions.openSettings}
+                    , { text: 'Cancel'}
+                ]);
+                return false;
+            case Permissions.RESULTS.DENIED:
+                Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
+                    { text: '設定へ', onPress: Permissions.openSettings }
+                    , { text: 'Cancel' }
+                ]);
+                return false;
+            case Permissions.RESULTS.GRANTED:
+                return true;
+        }
     }
     
-    private joinArena = (id:number) :void => {
+    private joinArena = async (id:number) => {
+        if (!await this.asyncCheckPermissions()) return;
+
         ConfigStore.load(true);
         ArenaStore.join(id).then(() => {
             ConfigStore.load(false);

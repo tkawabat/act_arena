@@ -1,8 +1,6 @@
 import Moment from 'moment';
 import { observable, computed, action } from 'mobx';
 import { IMessage } from 'react-native-gifted-chat';
-import { Alert, Platform } from 'react-native';
-import * as Permissions from 'react-native-permissions';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -243,8 +241,6 @@ class ArenaStore {
     }
 
     private preAct = () => {
-        const now = Moment();
-
         const t1 = this.time * 1000 - C.SoundFadeDuration - 5000;
         if (t1 > 0) {
             setTimeout(() => {
@@ -304,33 +300,13 @@ class ArenaStore {
         this.chatUnsubscribe();
     }
 
-    public asyncCheckPermissions = async () => {
-        const p = Platform.OS === 'ios' ? Permissions.PERMISSIONS.IOS.MICROPHONE : Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO;
-        switch (await Permissions.check(p)) {
-            case Permissions.RESULTS.UNAVAILABLE:
-                alert('このデバイスではマイクをご利用いただけません。');
-                return false;
-            case Permissions.RESULTS.BLOCKED:
-                Alert.alert('', '劇に参加するためにはマイクの利用許可が必要です。', [
-                    { text: '設定へ', onPress: Permissions.openSettings}
-                    , { text: 'Cancel'}
-                ]);
-                return false;
-            case Permissions.RESULTS.DENIED:
-                Permissions.request(p);
-                return false;
-            case Permissions.RESULTS.GRANTED:
-                return true;
-        }
-    }
-
     public get = async (id:number) :Promise<void> => {
         return this.db
             .where('id', '==', id)
             .get()
             .then((snapshot :Firebase.firestore.QuerySnapshot) => {
                 if (snapshot.size < 1) {
-                    Amplitude.error('ArenaStore get', {id:id});
+                    Amplitude.error('ArenaStore get', {'id':id});
                     return;
                 }
                 this.ref = snapshot.docs[0].ref;
@@ -401,8 +377,6 @@ class ArenaStore {
 
     public entry = async (state:C.ArenaUserState) => {
         if (!this.users[UserStore.id]) return;
-
-        if (!await this.asyncCheckPermissions()) return;
 
         ConfigStore.load(true);
         setTimeout(() => {

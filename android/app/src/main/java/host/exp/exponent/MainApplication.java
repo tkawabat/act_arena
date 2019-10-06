@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import io.sentry.RNSentryPackage;
@@ -33,6 +34,7 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
 
         // Needed for `react-native link`
         // new MainReactPackage(),
+            new RNPermissionsPackage(),
             new RNSoundPackage(),
             //new RNGestureHandlerPackage(),
             new RNSentryPackage(),

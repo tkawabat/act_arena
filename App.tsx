@@ -8,6 +8,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import AppContainer from './src/screen/AppContainer';
 import Amplitude from './src/lib/Amplitude';
+import Firebase from './src/lib/Firebase';
 import Navigator from './src/lib/Navigator';
 import ConfigStore from './src/store/ConfigStore';
 import UserStore from './src/store/UserStore';
@@ -43,8 +44,9 @@ export default class App extends Component {
             if (!user) {
                 alert('ユーザー情報の取得に失敗しました。');
             }
-            //SkywayStore.connect((user as Firebase.auth.UserCredential).user.uid);
-            SkywayStore.connect(moment().unix().toString());
+            const userId = (user as Firebase.auth.UserCredential).user.uid;
+            //SkywayStore.connect(userId);
+            SkywayStore.connect(userId + moment().unix().toString());
         });
     }
 
