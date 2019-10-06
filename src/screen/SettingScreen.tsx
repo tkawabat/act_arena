@@ -41,6 +41,11 @@ export default class SettingScreen extends ScreenBase {
                             <Text>利用規約</Text>
                         </Button>
                     </ListItem>
+                    <ListItem>
+                        <Button transparent onPress={() => Navigator.navigate('Privacy', null)}>
+                            <Text>プライバシーポリシー</Text>
+                        </Button>
+                    </ListItem>
                     <ListItem last>
                         <Button transparent onPress={() => Navigator.navigate('Copyright', null)}>
                             <Text>著作権表示</Text>

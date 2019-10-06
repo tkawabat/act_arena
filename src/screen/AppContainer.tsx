@@ -5,6 +5,7 @@ import TextScreen from './TextScreen';
 import LobbyScreen from './LobbyScreen';
 import SettingScreen from './SettingScreen';
 import TermsScreen from './TermsScreen';
+import PrivacyScreen from './PrivacyScreen';
 import CopyrightScreen from './CopyrightScreen';
 import Modal from './Modal';
 import ArenaScreen from './ArenaScreen';
@@ -17,6 +18,7 @@ const MainNavigation = createStackNavigator(
         Text: { screen: TextScreen },
         Setting: { screen: SettingScreen },
         Terms: { screen: TermsScreen },
+        Privacy: { screen: PrivacyScreen },
         Copyright: { screen: CopyrightScreen },
         Arena: { screen: ArenaScreen },
     },

@@ -64,6 +64,10 @@ export default class RegisterScreen extends ScreenBase {
         this.setState({terms:true});
     }
 
+    private readPrivacy = () => {
+        Navigator.navigate('Privacy', null);
+    }
+
     get registCaution() {
         const ret = [];
         
@@ -116,9 +120,12 @@ export default class RegisterScreen extends ScreenBase {
                         </Picker>
                     </View>
 
-                    <H2 style={styles.title}>利用規約</H2>
+                    <H2 style={styles.title}>規約</H2>
                     <Button warning style={styles.termsButton} onPress={this.readTerms}>
                         <Text style={styles.termsText}>利用規約を確認</Text>
+                    </Button>
+                    <Button warning style={styles.termsButton} onPress={this.readPrivacy}>
+                        <Text style={styles.termsText}>プライバシーポリシーを確認</Text>
                     </Button>
                     <Text style={styles.termsCaution}>
                         ※特に第3章の「台本の利用」については、{'\n'}
