@@ -4,6 +4,7 @@ import { observable, action } from 'mobx';
 
 import * as C from '../lib/Const';
 import Secret from '../lib/Secret';
+import Amplitude from '../lib/Amplitude';
 
 import ConfigStore from './ConfigStore';
 
@@ -19,79 +20,70 @@ class SkywayStore {
     }
 
     private onPeerOpen = () => {
-        console.log("onPeerOpen");
+        Amplitude.info('onPeerOpen', null);
         this.state = C.SkywayState.OPEN;
         ConfigStore.setInitLoadComplete('skyway');
         this.speakState = C.SpeakState.DISABLED;
     }
 
     private onPeerCall = () => {
-        console.log("onPeerCall");
         //this.state = C.SkywayState.OPEN;
     }
 
     private onPeerError = () => {
         //this.dispose();
-        // TODO
+        Amplitude.error('onPeerError', null);
     }
 
     private onPeerClose = () => {
-        console.log("onPeerClose");
+        Amplitude.info('onPeerClose', null);
         this.state = C.SkywayState.INIT;
         this.speakState = C.SpeakState.DISABLED;
         //this.peer.disconnect();
     }
 
     private onMediaConnectionError = () => {
-        console.log("onMediaConnectionError");
+        Amplitude.error('onMediaConnectionError', null);
         //this.dispose();
     }
 
     private onMediaConnectionClose = () => {
-        console.log("onMediaConnectionClose");
+        Amplitude.info('onMediaConnectionClose', null);
         //this.dispose();
     }
 
     private onRoomOpen = () => {
-        console.log("onRoomOpen");
         this.state = C.SkywayState.JOIN;
         this.setLocalStreamStatus(false);
         this.speakState = C.SpeakState.DISABLED;
     }
 
     private onRoomPeerJoin = () => {
-        console.log("onRoomPeerJoin");
-        this.peer.listAllPeers(console.log);
+        //this.peer.listAllPeers(console.log);
     }
 
     private onRoomPeerLeave = () => {
-        console.log("onRoomPeerLeave");
     }
 
     private onRoomLog = () => {
-        console.log("onRoomLog");
     }
 
     private onRoomStream = () => {
-        console.log("onRoomStream");
     }
 
     private onRoomRemoveStream = () => {
-        console.log("onRoomRemoveStream");
     }
 
     private onRoomData = () => {
-        console.log("onRoomData");
     }
 
     private onRoomClose = () => {
-        console.log("onRoomClose");
         this.state = C.SkywayState.OPEN;
         this.speakState = C.SpeakState.DISABLED;
     }
 
     private onRoomError = () => {
-        console.log("onRoomError");
+        Amplitude.error('onRoomError', null);
         this.state = C.SkywayState.OPEN;
         this.speakState = C.SpeakState.DISABLED;
     }
