@@ -12,9 +12,9 @@ import ArenaScreen from './ArenaScreen';
 
 const MainNavigation = createStackNavigator(
     {
+        Lobby: { screen: LobbyScreen },
         Register: { screen: RegisterScreen },
         Text: { screen: TextScreen },
-        Lobby: { screen: LobbyScreen },
         Setting: { screen: SettingScreen },
         Terms: { screen: TermsScreen },
         Copyright: { screen: CopyrightScreen },
