@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		71A7CF180BB543469BF9B9FB /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1949E2DEA01444C82FE9D12 /* libRNSkyWay.a */; };
+		A7947CCA2349FE220059FB50 /* SkyWay.framework in Headers */ = {isa = PBXBuildFile; fileRef = A7145A2522EB323A009F97BA /* SkyWay.framework */; };
 		A7CF9FAC232FE85000493FBF /* neverend.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FA9232FE85000493FBF /* neverend.mp3 */; };
 		A7CF9FAD232FE85000493FBF /* amanojack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAB232FE85000493FBF /* amanojack.mp3 */; };
 		A7CF9FB0232FECA300493FBF /* yoake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAE232FECA200493FBF /* yoake.mp3 */; };
@@ -178,6 +179,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		A7947CC82349FE0A0059FB50 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7947CCA2349FE220059FB50 /* SkyWay.framework in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		B56386401DB9693800A0598C /* act_arena */ = {
 			isa = PBXNativeTarget;
@@ -185,6 +197,7 @@
 			buildPhases = (
 				23539343DCC44EF8449429EE /* [CP] Check Pods Manifest.lock */,
 				B5722AD01DFB7E3F0084848F /* Prepare Expo */,
+				A7947CC82349FE0A0059FB50 /* Headers */,
 				B563863D1DB9693800A0598C /* Sources */,
 				B563863E1DB9693800A0598C /* Frameworks */,
 				B563863F1DB9693800A0598C /* Resources */,
@@ -446,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -494,7 +507,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
