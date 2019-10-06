@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Alert, Platform } from 'react-native';
+import { StyleSheet, Alert, Platform, } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -36,10 +36,14 @@ export default class LobbyScreen extends ScreenBase {
                 ]);
                 return false;
             case Permissions.RESULTS.DENIED:
-                Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
-                    { text: '設定へ', onPress: Permissions.openSettings }
-                    , { text: 'Cancel' }
-                ]);
+                if (Platform.OS === 'ios') {
+                    Permissions.request(p);
+                } else {
+                    Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
+                        { text: '設定へ', onPress: Permissions.openSettings }
+                        , { text: 'Cancel' }
+                    ]);
+                }
                 return false;
             case Permissions.RESULTS.GRANTED:
                 return true;
