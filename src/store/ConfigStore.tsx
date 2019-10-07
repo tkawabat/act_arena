@@ -10,11 +10,7 @@ import Navigator from '../lib/Navigator';
 class ConfigStore {
     private ref:Firebase.firestore.DocumentReference;
 
-    // db
-    private maintenance:string = '';
     private version:string = '0.0.0';
-
-    // no db
     @observable init = {
         'init': false,
     };
@@ -30,9 +26,9 @@ class ConfigStore {
     }
 
     constructor() {
+        this.setInitLoad('config');
         this.ref = Firebase.firestore().collection('Config').doc(C.ConfigId);
         this.ref.onSnapshot(this.setSnapshot2field);
-        this.setInitLoad('config');
         this.ref.get().then((snapshot) => {
             this.setSnapshot2field(snapshot);
             this.setInitLoadComplete('config');
@@ -56,18 +52,15 @@ class ConfigStore {
         const data = doc.data();
         if (!data) return;
 
-        this.maintenance = data.maintenance;
+        this.message = data.maintenance as string;
         this.version = data.version;
-        if (this.maintenance !== '') {
-            this.message = 'ただいまメンテナンス中です。';
-            Navigator.navigate('Text', null);
-        } else if (this.mustUpdate()) {
+        if (this.mustUpdate()) {
             this.message = '新しいバージョンのアプリがあります。アップデートしてください。';
-            Navigator.navigate('Text', null);
         }
     }
 
-    @action load = (load:boolean) => {
+    @action
+    public load = (load:boolean) => {
         this.isLoad = load;
     }
 }

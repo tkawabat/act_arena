@@ -1,7 +1,6 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import RegisterScreen from './RegisterScreen';
-import TextScreen from './TextScreen';
 import LobbyScreen from './LobbyScreen';
 import SettingScreen from './SettingScreen';
 import TermsScreen from './TermsScreen';
@@ -15,7 +14,6 @@ const MainNavigation = createStackNavigator(
     {
         Lobby: { screen: LobbyScreen },
         Register: { screen: RegisterScreen },
-        Text: { screen: TextScreen },
         Setting: { screen: SettingScreen },
         Terms: { screen: TermsScreen },
         Privacy: { screen: PrivacyScreen },

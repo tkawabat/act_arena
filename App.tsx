@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { YellowBox } from 'react-native';
+import { StyleSheet, YellowBox, Dimensions, View, Text } from 'react-native';
 import { Sentry } from 'react-native-sentry';
 Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
 import { observer } from 'mobx-react';
@@ -57,6 +57,14 @@ export default class App extends Component {
             )
         }
 
+        if (ConfigStore.message !== '') {
+            return (
+                <View style={styles.root}>
+                    <Text style={styles.text}>{ConfigStore.message}</Text>
+                </View>
+            )
+        }
+
         return (
             <AppContainer ref={(nav) => {
                 Navigator.setNavigator(nav);
@@ -66,3 +74,17 @@ export default class App extends Component {
         );
     }
 }
+
+const {height, width} = Dimensions.get('window');
+const styles = StyleSheet.create({
+    root: {
+        height: height,
+        flex: 1,
+        justifyContent: 'center',
+    },
+    text: {
+        alignSelf: 'center',
+        fontSize: 24,
+        fontWeight: '400',
+    },
+});
