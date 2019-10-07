@@ -220,6 +220,7 @@ class ArenaStore {
             case C.ArenaState.WAIT:
                 SkywayStore.setDisabled();
                 this.agreementState = C.AgreementState.NONE;
+                if (this.userState === C.ArenaUserState.ACTOR) this.asyncSetRoomUser();
                 this.setModal(false);
                 break;
             case C.ArenaState.CONFIRM:
