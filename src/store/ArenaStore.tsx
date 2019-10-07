@@ -148,8 +148,6 @@ class ArenaStore {
         this.dealArenaStateTransition(this.arenaState, state);
         this.arenaState = state;
         this.time = diff;
-
-        this.playSound();
         
         if (diff <= 0) clearInterval(this.tickTimeout);
     }
@@ -218,19 +216,24 @@ class ArenaStore {
 
         switch (after) {
             case C.ArenaState.WAIT:
+                OverlayMessageStore.start('上演終了');
                 SkywayStore.setDisabled();
                 this.agreementState = C.AgreementState.NONE;
                 if (this.userState === C.ArenaUserState.ACTOR) this.asyncSetRoomUser();
                 this.setModal(false);
                 break;
             case C.ArenaState.CONFIRM:
+                OverlayMessageStore.start('マイクチェック');
                 this.setModal(true);
                 break;
             case C.ArenaState.CHECK:
+                OverlayMessageStore.start('台本チェック');
                 break;
             case C.ArenaState.ACT:
+                OverlayMessageStore.start('上演開始');
                 break;
         }
+        setTimeout(this.playSound, 100);
     }
 
     private dealArenaMessageTransition = (before:string, after:string) :void => {
@@ -242,7 +245,7 @@ class ArenaStore {
     }
 
     private preAct = () => {
-        const t1 = this.time * 1000 - C.SoundFadeDuration - 5000;
+        const t1 = this.time * 1000 - C.SoundFadeDuration - 7000;
         if (t1 > 0) {
             setTimeout(() => {
                 SoundStore.setVolume(0.75);
@@ -250,10 +253,13 @@ class ArenaStore {
         }
 
         const t2 = this.time * 1000 - C.SoundFadeDuration;
-        if (t2 < 0) SoundStore.stop();
-        setTimeout(() => {
-            SoundStore.fadeOut();
-        }, t2);
+        if (t2 < 0) {
+            SoundStore.stop();
+        } else {
+            setTimeout(() => {
+                SoundStore.fadeOut();
+            }, t2);
+        }
     }
 
     private playSound = () => {
@@ -264,13 +270,14 @@ class ArenaStore {
                 SoundStore.playRondom(0.5, true);
                 break;
             case C.ArenaState.CONFIRM:
-                SoundStore.playRondom(0.15, false);
+                SoundStore.playRondom(0.25, false);
                 break;
             case C.ArenaState.CHECK:
-                SoundStore.playRondom(0.15, false);
+                SoundStore.playRondom(0.25, false);
                 this.preAct();
                 break;
             case C.ArenaState.ACT:
+                SoundStore.stop();
                 break;
         }
     }
@@ -335,7 +342,6 @@ class ArenaStore {
         }
 
         this.id = id;
-        this.arenaState = null;
         this.agreementState = C.AgreementState.NONE;
         this.tab = C.ArenaTab.SCENARIO;
         this.setModal(false);
