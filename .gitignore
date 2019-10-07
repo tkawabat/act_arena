@@ -27,3 +27,7 @@ secret-dev.json
 .DS_Store
 *.keystore
 ios/SkyWay*
+
+android/app/src/main/java/host/exp/exponent/generated/AppConstants.java
+shell-app-manifest.json
+shell-app.bundle
