@@ -15,6 +15,7 @@ import Microphone from './Microphone';
 @observer
 export default class ArenaActionMaster extends Component {
     informationButton() {
+        if (ArenaStore.arenaState === C.ArenaState.WAIT) return null;
         if (!ArenaStore.title || ArenaStore.title === '') return null;
 
         return (
