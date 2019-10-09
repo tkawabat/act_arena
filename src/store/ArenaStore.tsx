@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { Alert, } from 'react-native';
 import { observable, computed, action } from 'mobx';
 import { IMessage } from 'react-native-gifted-chat';
 
@@ -201,12 +202,17 @@ class ArenaStore {
     }
 
     private chatUpdated = (snapshot: Firebase.firestore.QuerySnapshot) => {
-        const messages = snapshot.docs.map((doc) => {
+        const messages:Array<IMessage> = [];
+        for (let doc of snapshot.docs) {
             const data = doc.data();
+
+            // 通報したコメントを非表示
+            if (data.reporter && data.reporter.indexOf(UserStore.id) !== -1) continue;
+
             const ts = data.createdAt as Firebase.firestore.Timestamp;
             data.createdAt = ts.toDate();
-            return data as IMessage;
-        });
+            messages.push(data as IMessage);
+        };
         this.setMessages(messages);
         if (this.tab === C.ArenaTab.CHAT) this.readMessage();
     }
@@ -409,8 +415,30 @@ class ArenaStore {
     public addChat = (messages:Array<IMessage>) => {
         Amplitude.info('ArenaAddChat', null);
         messages.forEach((message) => {
-            this.chatRef.add(message);
+            this.chatRef.doc(message._id).set(message)
+                .catch((error) => Amplitude.error('ArenaStore addChat', error))
+            ;
         });
+    }
+
+    public reportChat = (message:any) => {
+        Amplitude.info('ArenaReportChat', {user: message.user});
+        const reporter = message.reporter ? message.reporter : [];
+        reporter.push(UserStore.id);
+        this.chatRef.doc(message._id).update({
+            reporter: reporter
+        })
+            .catch((error) => Amplitude.error('ArenaStore reportChat', error))
+        ;
+    }
+
+    public reportChatAlert = (context, message:IMessage) => {
+        if (message.user._id === UserStore.id) return;
+
+        Alert.alert('', '発言"'+message.text+'"を通報しますか？', [
+            { text: '通報する', onPress: () => {this.reportChat(message)} },
+            { text: 'Cancel' }
+        ]);
     }
 
 }

@@ -65,8 +65,10 @@ export default class Arena extends ScreenBase {
                                 <GiftedChat
                                     messages={ArenaStore.messages}
                                     onSend={ArenaStore.addChat}
+                                    onLongPress={ArenaStore.reportChatAlert}
                                     dateFormat={'MM/DD'}
                                     timeFormat={"HH:mm"}
+                                    maxInputLength={40}
                                     user={{
                                         _id: UserStore.id,
                                         name: UserStore.name
