@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		71A7CF180BB543469BF9B9FB /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1949E2DEA01444C82FE9D12 /* libRNSkyWay.a */; };
-		A7947CCA2349FE220059FB50 /* SkyWay.framework in Headers */ = {isa = PBXBuildFile; fileRef = A7145A2522EB323A009F97BA /* SkyWay.framework */; };
+		A714AF1F2352342D0099A059 /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74580F2235228FB008985B4 /* libRNSkyWay.a */; };
 		A7CF9FAC232FE85000493FBF /* neverend.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FA9232FE85000493FBF /* neverend.mp3 */; };
 		A7CF9FAD232FE85000493FBF /* amanojack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAB232FE85000493FBF /* amanojack.mp3 */; };
 		A7CF9FB0232FECA300493FBF /* yoake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAE232FECA200493FBF /* yoake.mp3 */; };
@@ -29,9 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A7145A1A22EB0D98009F97BA /* PBXContainerItemProxy */ = {
+		A74580F1235228FB008985B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 5F5AC246BDA5452EB874D562 /* RNSkyWay.xcodeproj */;
+			containerPortal = AC095B7DB2BE46E48B971DE2 /* RNSkyWay.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNSkyWay;
@@ -40,15 +39,16 @@
 
 /* Begin PBXFileReference section */
 		2C1548D9E4CB1AEFA5CCAE6D /* Pods-act_arena.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-act_arena.debug.xcconfig"; path = "Pods/Target Support Files/Pods-act_arena/Pods-act_arena.debug.xcconfig"; sourceTree = "<group>"; };
-		5F5AC246BDA5452EB874D562 /* RNSkyWay.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSkyWay.xcodeproj; path = "../node_modules/react-native-skyway/ios/RNSkyWay.xcodeproj"; sourceTree = "<group>"; };
 		8C6DD662A02948BEB74BC3A2 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A47FE4D7F70906B7DC8CE39B /* Pods-act_arena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-act_arena.release.xcconfig"; path = "Pods/Target Support Files/Pods-act_arena/Pods-act_arena.release.xcconfig"; sourceTree = "<group>"; };
 		A7145A1E22EB30DA009F97BA /* SkyWay */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = SkyWay; path = SkyWay_iOS_1.2.0/SkyWay.framework/SkyWay; sourceTree = "<group>"; };
 		A7145A2522EB323A009F97BA /* SkyWay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyWay.framework; path = SkyWay_iOS_1.2.0/SkyWay.framework; sourceTree = "<group>"; };
+		A74580FA23522C82008985B4 /* SkyWay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyWay.framework; path = System/Library/Frameworks/SkyWay_iOS_1.2.0/SkyWay.framework; sourceTree = SDKROOT; };
 		A7CF9FA9232FE85000493FBF /* neverend.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = neverend.mp3; path = ../resource/music/neverend.mp3; sourceTree = "<group>"; };
 		A7CF9FAB232FE85000493FBF /* amanojack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = amanojack.mp3; path = ../resource/music/amanojack.mp3; sourceTree = "<group>"; };
 		A7CF9FAE232FECA200493FBF /* yoake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yoake.mp3; path = ../resource/music/yoake.mp3; sourceTree = "<group>"; };
 		A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sayonara3.mp3; path = ../resource/music/sayonara3.mp3; sourceTree = "<group>"; };
+		AC095B7DB2BE46E48B971DE2 /* RNSkyWay.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSkyWay.xcodeproj; path = "../node_modules/react-native-skyway/ios/RNSkyWay.xcodeproj"; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
 		B56386411DB9693800A0598C /* act_arena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = act_arena.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		B5DB047E1F3A684600E91581 /* shell-app-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shell-app-manifest.json"; sourceTree = "<group>"; };
 		B5DB047F1F3A684600E91581 /* shell-app.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shell-app.bundle"; sourceTree = "<group>"; };
 		C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-act_arena.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1949E2DEA01444C82FE9D12 /* libRNSkyWay.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSkyWay.a; sourceTree = "<group>"; };
+		F1AA52C9AEE44B73966D46A3 /* libRNSkyWay.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSkyWay.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +72,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A714AF1F2352342D0099A059 /* libRNSkyWay.a in Frameworks */,
 				EBB8117C1BFA0514F79CAF74 /* libPods-act_arena.a in Frameworks */,
-				71A7CF180BB543469BF9B9FB /* libRNSkyWay.a in Frameworks */,
 				D2E8EDB0B33A43228A80751A /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				A7145A2522EB323A009F97BA /* SkyWay.framework */,
+				A74580FA23522C82008985B4 /* SkyWay.framework */,
 				A7145A1E22EB30DA009F97BA /* SkyWay */,
 				C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */,
 				8C6DD662A02948BEB74BC3A2 /* libz.tbd */,
@@ -104,7 +105,7 @@
 		6CD1A619093C42B380762126 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				5F5AC246BDA5452EB874D562 /* RNSkyWay.xcodeproj */,
+				AC095B7DB2BE46E48B971DE2 /* RNSkyWay.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -112,15 +113,15 @@
 		A7145A1622EB0D97009F97BA /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				D1949E2DEA01444C82FE9D12 /* libRNSkyWay.a */,
+				F1AA52C9AEE44B73966D46A3 /* libRNSkyWay.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		A7145A1722EB0D97009F97BA /* Products */ = {
+		A74580EE235228FB008985B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A7145A1B22EB0D98009F97BA /* libRNSkyWay.a */,
+				A74580F2235228FB008985B4 /* libRNSkyWay.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,7 +185,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7947CCA2349FE220059FB50 /* SkyWay.framework in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +244,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = A7145A1722EB0D97009F97BA /* Products */;
-					ProjectRef = 5F5AC246BDA5452EB874D562 /* RNSkyWay.xcodeproj */;
+					ProductGroup = A74580EE235228FB008985B4 /* Products */;
+					ProjectRef = AC095B7DB2BE46E48B971DE2 /* RNSkyWay.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -256,11 +256,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A7145A1B22EB0D98009F97BA /* libRNSkyWay.a */ = {
+		A74580F2235228FB008985B4 /* libRNSkyWay.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRNSkyWay.a;
-			remoteRef = A7145A1A22EB0D98009F97BA /* PBXContainerItemProxy */;
+			remoteRef = A74580F1235228FB008985B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -518,23 +518,29 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2C1548D9E4CB1AEFA5CCAE6D /* Pods-act_arena.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = GCMQSQK766;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/act_arena/Supporting/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0/SkyWay.framework",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = act.arena;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks/SkyWay_iOS_1.2.0";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -542,23 +548,29 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A47FE4D7F70906B7DC8CE39B /* Pods-act_arena.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = GCMQSQK766;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/act_arena/Supporting/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0/SkyWay.framework",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = act.arena;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks/SkyWay_iOS_1.2.0";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};

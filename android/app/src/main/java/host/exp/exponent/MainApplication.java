@@ -13,11 +13,11 @@ import okhttp3.OkHttpClient;
 
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import jp.micin.react.skyway.SkyWayPackage;
 import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import io.sentry.RNSentryPackage;
-import jp.micin.react.skyway.SkyWayPackage;
 
 public class MainApplication extends ExpoApplication implements AppLoaderPackagesProviderInterface<ReactPackage> {
 
@@ -34,11 +34,11 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
 
         // Needed for `react-native link`
         // new MainReactPackage(),
+            new SkyWayPackage(),
             new RNPermissionsPackage(),
             new RNSoundPackage(),
             //new RNGestureHandlerPackage(),
-            new RNSentryPackage(),
-            new SkyWayPackage()
+            new RNSentryPackage()
     );
   }
 
