@@ -44,7 +44,7 @@ class ArenaStore {
     @observable time:number;
     @observable endAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
-    @observable message:string = null;
+    @observable overlayMessage:string = null;
 
     // Scenario
     @observable title:string;
@@ -56,7 +56,7 @@ class ArenaStore {
     @observable characters:Array<Characters>;
 
     // Chat
-    @observable messages:Array<IMessage> = new Array<IMessage>();
+    @observable _messages:Array<IMessage> = new Array<IMessage>();
     @observable latestReadMessage:IMessage;
 
     // private state
@@ -85,6 +85,18 @@ class ArenaStore {
         return this.users[UserStore.id].state !== C.ArenaUserState.ACTOR;
     }
 
+    @computed get messages() {
+        return this._messages.filter((v:any, i) => {
+            if (v.reporter && v.reporter.indexOf(UserStore.id) !== -1) return false;
+            if (UserStore.ngList && UserStore.ngList.indexOf(v.user._id) !== -1) return false;
+            return true;
+        });
+    }
+
+    set messages(messages:Array<IMessage>) {
+        this._messages = messages;
+    }
+
     @computed get unreadNumber() {
         if (!this.latestReadMessage) return 0;
 
@@ -110,10 +122,6 @@ class ArenaStore {
                 ConfigStore.setInitLoadComplete('arena');
             })
         ;
-    }
-
-    @action setMessages = (messages:Array<IMessage>) => {
-        this.messages = messages;
     }
 
     @action readMessage = () => {
@@ -158,7 +166,7 @@ class ArenaStore {
         const data = snapshot.data();
 
         //this.dealArenaStateTransition(this.arenaState, data.state);
-        this.dealArenaMessageTransition(this.message, data.message);
+        this.dealArenaMessageTransition(this.overlayMessage, data.message);
 
         //this.arenaState = data.state;
         this.endAt = Moment.unix(data.endAt.seconds);
@@ -168,7 +176,7 @@ class ArenaStore {
         this.scenarioUrl = data.scenarioUrl;
         this.startText = data.startText;
         this.endText = data.endText;
-        this.message = data.message;
+        this.overlayMessage = data.message;
         this.characters = data.characters;
 
         for (const character of this.characters) {
@@ -206,14 +214,11 @@ class ArenaStore {
         for (let doc of snapshot.docs) {
             const data = doc.data();
 
-            // 通報したコメントを非表示
-            if (data.reporter && data.reporter.indexOf(UserStore.id) !== -1) continue;
-
             const ts = data.createdAt as Firebase.firestore.Timestamp;
             data.createdAt = ts.toDate();
             messages.push(data as IMessage);
         };
-        this.setMessages(messages);
+        this.messages = messages;
         if (this.tab === C.ArenaTab.CHAT) this.readMessage();
     }
 
@@ -328,7 +333,13 @@ class ArenaStore {
                 this.chatRef = this.ref.collection('Chat');
                 this.arenaUpdated(snapshot.docs[0]);
             })
-            .catch((error) => Amplitude.error('UserStore get', error))
+            .catch((error) => Amplitude.error('ArenaStore get', error))
+            ;
+    }
+
+    public getChat = () => {
+        return this.chatRef.get()
+            .catch((error) => Amplitude.error('ArenaStore getChat', error))
             ;
     }
 
@@ -437,6 +448,29 @@ class ArenaStore {
 
         Alert.alert('', '発言"'+message.text+'"を通報しますか？', [
             { text: '通報する', onPress: () => {this.reportChat(message)} },
+            { text: 'Cancel' }
+        ]);
+    }
+
+    public addNgListAlert = (user:any) => {
+        if (UserStore.ngList && UserStore.ngList.indexOf(user._id) !== -1) return;
+        if (UserStore.ngList && UserStore.ngList.length >= C.UserNgLimit) {
+            alert('NGリストは'+C.UserNgLimit+'件までです。');
+            return;
+        }
+
+        const text = 'ユーザー"'+user.name+'"をNGリストに追加しますか？\n'
+            +'NGリストに追加するとチャットが表示されなくなります。'
+            +'NGリストからの削除機能は今後実装予定です。'
+        ;
+
+        Alert.alert('', text, [
+            {
+                text: '追加する', onPress: () => {
+                    UserStore.asyncAddNgList(user)
+                    .then(() => this.messages = this._messages) // update
+                }
+            },
             { text: 'Cancel' }
         ]);
     }

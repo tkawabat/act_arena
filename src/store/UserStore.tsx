@@ -5,6 +5,7 @@ import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import ConfigStore from './ConfigStore';
+import { Alert } from 'react-native';
 
 
 export interface User {
@@ -12,6 +13,7 @@ export interface User {
     name: string
     gender: C.Gender
     iconUrl: string
+    ngList: Array<String>
     // createdAt: Firebase.firestore.FieldValue
     // updatedAt: Firebase.firestore.FieldValue
 }
@@ -21,6 +23,7 @@ class UserStore implements User {
     @observable name:string;
     @observable gender: C.Gender;
     @observable iconUrl: string;
+    @observable ngList: Array<string>;
     createdAt: Firebase.firestore.FieldValue;
     updatedAt: Firebase.firestore.FieldValue;
 
@@ -73,6 +76,7 @@ class UserStore implements User {
         this.name = data.name;
         this.gender = data.gender;
         this.iconUrl = data.iconUrl;
+        this.ngList = data.ngList;
     }
 
     public asyncSetConnect = (connect:boolean) => {
@@ -124,6 +128,16 @@ class UserStore implements User {
             arena: id
         })
         .catch((error) => Amplitude.error('UserStore setRoom', error))
+        ;
+    }
+
+    public asyncAddNgList = async (user:any) => {
+        Amplitude.info('asyncBlockUser', null);
+
+        return this.db.doc(this.id).update({
+            ngList: Firebase.firestore.FieldValue.arrayUnion(user._id)
+        })
+        .catch((error) => Amplitude.error('UserStore asyncBlockUser', error))
         ;
     }
 

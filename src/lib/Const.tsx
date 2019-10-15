@@ -12,6 +12,8 @@ export enum Gender {
     Female = 2,
 }
 
+export const UserNgLimit = 50;
+
 export const RoomUserLimit = 10;
 
 export enum ArenaState {

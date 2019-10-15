@@ -65,6 +65,7 @@ export default class Arena extends ScreenBase {
                                 <GiftedChat
                                     messages={ArenaStore.messages}
                                     onSend={ArenaStore.addChat}
+                                    onPressAvatar={ArenaStore.addNgListAlert}
                                     onLongPress={ArenaStore.reportChatAlert}
                                     dateFormat={'MM/DD'}
                                     timeFormat={"HH:mm"}
