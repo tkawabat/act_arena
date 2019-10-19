@@ -110,13 +110,13 @@ export default class RegisterScreen extends ScreenBase {
                         </Item>
                         <Picker
                             mode='dropdown'
-                            placeholder='性別'
+                            placeholder='演じる役'
                             iosIcon={<Icon name='arrow-down' />}
                             selectedValue={this.state.gender}
                             onValueChange={(value:number) => {this.setState({gender: value});}}
                         >
-                            <Picker.Item label="男性" value={C.Gender.Male} />
-                            <Picker.Item label="女性" value={C.Gender.Female} />
+                            <Picker.Item label="男役" value={C.Gender.Male} />
+                            <Picker.Item label="女役" value={C.Gender.Female} />
                         </Picker>
                     </View>
 
