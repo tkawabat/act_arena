@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Alert, Platform, } from 'react-native';
+import { StyleSheet, Alert, Platform, Dimensions, } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
@@ -69,7 +69,7 @@ export default class LobbyScreen extends ScreenBase {
         return (
             <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Header>
+                <Header style={styles.header}>
                     <Left />
                     <Body>
                         <Title>ロビー</Title>
@@ -115,11 +115,16 @@ export default class LobbyScreen extends ScreenBase {
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: getStatusBarHeight(),
         marginBottom: getBottomSpace(),
+    },
+    header: {
+        paddingTop: 0,
+        height: 50,
     },
     config: {
         fontSize: 20,

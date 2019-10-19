@@ -109,16 +109,19 @@ export default class RegisterScreen extends ScreenBase {
                                 maxLength={20}
                             />
                         </Item>
-                        <Picker
-                            mode='dropdown'
-                            placeholder='演じる役'
-                            iosIcon={<Icon name='arrow-down' />}
-                            selectedValue={this.state.gender}
-                            onValueChange={(value:number) => {this.setState({gender: value});}}
-                        >
-                            <Picker.Item label="男役" value={C.Gender.Male} />
-                            <Picker.Item label="女役" value={C.Gender.Female} />
-                        </Picker>
+                        <Item>
+                            <Text>演じる役</Text>
+                            <Picker
+                                style={styles.gender}
+                                mode='dropdown'
+                                iosIcon={<Icon name='arrow-down' />}
+                                selectedValue={this.state.gender}
+                                onValueChange={(value: number) => { this.setState({ gender: value }); }}
+                            >
+                                <Picker.Item label="男役" value={C.Gender.Male} />
+                                <Picker.Item label="女役" value={C.Gender.Female} />
+                            </Picker>
+                        </Item>
                     </View>
 
                     <H2 style={styles.title}>規約</H2>
@@ -169,6 +172,9 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: 250,
         alignSelf: 'center',
+    },
+    gender: {
+        alignSelf: 'flex-end',
     },
     termsButton: {
         marginTop: 20,

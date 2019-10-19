@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
         width: width,
         height: 50,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         //backgroundColor: '#000044',
     },

@@ -28,7 +28,7 @@ export default class CopyrightScreen extends ScreenBase {
         return (
             <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Header>
+                <Header style={styles.header}>
                     <Left>
                         <Button transparent>
                             <Icon name='arrow-back' onPress={Navigator.back} />
@@ -77,6 +77,10 @@ const styles = StyleSheet.create({
         flex: 1,
         marginTop: getStatusBarHeight(),
         marginBottom: getBottomSpace(),
+    },
+    header: {
+        paddingTop: 0,
+        height: 50,
     },
     linkIcon: {
         marginLeft: 'auto',
