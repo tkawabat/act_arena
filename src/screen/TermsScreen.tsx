@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, ScrollView, } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon, H3 } from 'native-base';
 import { observer } from 'mobx-react';
+import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import TermsJson from '../../terms.json';
@@ -39,7 +40,7 @@ export default class TermsScreen extends ScreenBase {
 
     render() {
         return (
-            <Container>
+            <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
                 <Header>
                     <Left>
@@ -64,6 +65,11 @@ export default class TermsScreen extends ScreenBase {
 
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: getStatusBarHeight(),
+        marginBottom: getBottomSpace(),
+    },
     scrollView: {
         marginHorizontal: 10,
         paddingVertical: 10,

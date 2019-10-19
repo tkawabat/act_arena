@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Dimensions, Alert } from 'react-native';
 import { Container, Content, View, Button, H1, H2, Text, Item, Input, Picker, Icon } from 'native-base';
-import Spinner from 'react-native-loading-spinner-overlay';
+import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import { observer } from 'mobx-react';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import ScreenBase from './ScreenBase';
 
@@ -152,7 +153,10 @@ export default class RegisterScreen extends ScreenBase {
 let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         width: width,
+        marginTop: getStatusBarHeight(),
+        marginBottom: getBottomSpace(),
     },
     content: {
         padding: 10,

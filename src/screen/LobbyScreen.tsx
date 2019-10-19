@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Alert, Platform, } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
 import { observer } from 'mobx-react';
+import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import Spinner from 'react-native-loading-spinner-overlay';
 import * as Permissions from 'react-native-permissions';
 
@@ -66,7 +67,7 @@ export default class LobbyScreen extends ScreenBase {
 
     render() {
         return (
-            <Container>
+            <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
                 <Header>
                     <Left />
@@ -115,6 +116,11 @@ export default class LobbyScreen extends ScreenBase {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: getStatusBarHeight(),
+        marginBottom: getBottomSpace(),
+    },
     config: {
         fontSize: 20,
         color: 'gray',

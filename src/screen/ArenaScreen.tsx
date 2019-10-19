@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Dimensions, Alert } from 'react-native';
 import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab, TabHeading, Badge } from 'native-base';
 import { observer } from 'mobx-react';
+import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import { GiftedChat } from 'react-native-gifted-chat';
 import Spinner from 'react-native-loading-spinner-overlay';
 
@@ -89,11 +90,13 @@ let {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: getStatusBarHeight(),
+        marginBottom: getBottomSpace(),
     },
     content: {
     },
     body: {
-        height: height - 70,
+        height: height - 50 - getStatusBarHeight() - getBottomSpace(),
         justifyContent: 'center',
     },
     tab: {

@@ -1,6 +1,8 @@
 import React from 'react';
+import { StyleSheet} from 'react-native';
 import { Container, Content, Header, Left, Body, Right, Button, Title, Text, Icon, List, ListItem, Separator } from 'native-base';
 import { observer } from 'mobx-react';
+import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
@@ -19,7 +21,7 @@ export default class SettingScreen extends ScreenBase {
 
     render() {
         return (
-            <Container>
+            <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
                 <Header>
                     <Left>
@@ -56,3 +58,11 @@ export default class SettingScreen extends ScreenBase {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: getStatusBarHeight(),
+        marginBottom: getBottomSpace(),
+    },
+});
