@@ -362,7 +362,7 @@ class ArenaStore {
         this.agreementState = C.AgreementState.NONE;
         this.tab = C.ArenaTab.SCENARIO;
         this.setModal(false);
-        //SkywayStore.join('arena'+this.id);
+        SkywayStore.join('arena'+this.id);
 
         // ID一個で先にgetしておくのでコメントアウト
         // await this.get(this.id);
