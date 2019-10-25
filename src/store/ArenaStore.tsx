@@ -259,7 +259,7 @@ class ArenaStore {
         const t1 = this.time * 1000 - C.SoundFadeDuration - 7000;
         if (t1 > 0) {
             setTimeout(() => {
-                SoundStore.setVolume(0.75);
+                SoundStore.setVolume(0.5);
             }, t1);
         }
 
@@ -278,13 +278,13 @@ class ArenaStore {
 
         switch (this.arenaState) {
             case C.ArenaState.WAIT:
-                SoundStore.playRondom(0.5, true);
+                SoundStore.playRondom(0.4, true);
                 break;
             case C.ArenaState.CONFIRM:
-                SoundStore.playRondom(0.25, false);
+                SoundStore.playRondom(0.1, false);
                 break;
             case C.ArenaState.CHECK:
-                SoundStore.playRondom(0.25, false);
+                SoundStore.playRondom(0.1, false);
                 this.preAct();
                 break;
             case C.ArenaState.ACT:

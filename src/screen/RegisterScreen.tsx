@@ -50,7 +50,7 @@ export default class RegisterScreen extends ScreenBase {
 
     private onNameChange = (value: string) => {
         let validName = false;
-        if (value.length >= 3) {
+        if (value.length >= C.UserNameMin) {
             validName = true;
         }
 
@@ -103,7 +103,7 @@ export default class RegisterScreen extends ScreenBase {
                     <View style={styles.inputView}>
                         <Item>
                             <Input
-                                placeholder='ハンドルネーム (3~20文字)'
+                                placeholder={'ハンドルネーム (~'+C.UserNameMax+'文字)'}
                                 placeholderTextColor='#ccc'
                                 onChangeText={this.onNameChange}
                                 maxLength={20}

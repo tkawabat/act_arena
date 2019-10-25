@@ -12,6 +12,9 @@ export enum Gender {
     Female = 2,
 }
 
+export const UserNameMin = 1;
+export const UserNameMax = 20;
+
 export const UserNgLimit = 50;
 
 export const RoomUserLimit = 10;
@@ -33,8 +36,8 @@ export const ArenaStateString = {
 export const ArenaStateTime = {
     [ArenaState.WAIT]: 0,
     [ArenaState.CONFIRM]: 30,
-    [ArenaState.CHECK]: 30,
-    [ArenaState.ACT]: 180,
+    [ArenaState.CHECK]: 60,
+    [ArenaState.ACT]: 240,
 }
 
 export enum ArenaUserState {

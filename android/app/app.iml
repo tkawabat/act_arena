@@ -83,6 +83,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/build/.DS_Store" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotation_processor_list" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/apk_list" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
@@ -372,6 +373,7 @@
     <orderEntry type="module" module-name="expo-analytics-segment" />
     <orderEntry type="module" module-name="expo-app-auth" />
     <orderEntry type="module" module-name="expo-background-fetch" />
+    <orderEntry type="module" module-name="react-native-permissions" />
     <orderEntry type="module" module-name="expo-crypto" />
     <orderEntry type="module" module-name="expo-local-authentication" />
     <orderEntry type="module" module-name="expo-sqlite" />
