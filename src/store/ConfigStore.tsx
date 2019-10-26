@@ -55,7 +55,7 @@ class ConfigStore {
         this.message = data.maintenance as string;
         this.version = data.version;
         if (this.mustUpdate()) {
-            this.message = '新しいバージョンのアプリがあります。アップデートしてください。';
+            this.message = '新しいバージョンのアプリがあります。アプリのアップデート・再起動をしてください。';
         }
     }
 
