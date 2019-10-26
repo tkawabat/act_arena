@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Dimensions, Alert } from 'react-native';
-import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab, TabHeading, Badge } from 'native-base';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
+import { Container, Content, Text, View, Button, Icon, Title, Tabs, Tab, TabHeading, Badge } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import { GiftedChat } from 'react-native-gifted-chat';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
@@ -18,6 +19,7 @@ import ScenarioMaster from '../component/ScenarioMaster';
 import ActInfo from '../component/ActInfo';
 import ArenaHeader from '../component/ArenaHeader';
 import ArenaActionMaster from '../component/ArenaActionMaster';
+import ArenaFooter from '../component/ArenaFooter';
 import ChatTabHeader from '../component/ChatTabHeader';
 import ScenarioTabHeader from '../component/ScenarioTabHeader';
 import OverlayMessage from '../component/OverlayMessage';
@@ -53,7 +55,8 @@ export default class Arena extends ScreenBase {
                             }>
                                 <ScenarioMaster />
                                 <View style={styles.action}>
-                                    <ArenaActionMaster />
+                                    {/* <ArenaActionMaster /> */}
+                                    <ArenaFooter />
                                 </View>
                                 <ActInfo />
                             </Tab>
@@ -61,21 +64,24 @@ export default class Arena extends ScreenBase {
                                 key={'chat'}
                                 heading={<TabHeading style={styles.tab}>
                                     <ChatTabHeader />
-                                    </TabHeading>}
+                                </TabHeading>}
                             >
-                                <GiftedChat
-                                    messages={ArenaStore.messages}
-                                    onSend={ArenaStore.addChat}
-                                    onPressAvatar={ArenaStore.addNgListAlert}
-                                    onLongPress={ArenaStore.reportChatAlert}
-                                    dateFormat={'MM/DD'}
-                                    timeFormat={"HH:mm"}
-                                    maxInputLength={40}
-                                    user={{
-                                        _id: UserStore.id,
-                                        name: UserStore.name
-                                    }}
-                                />
+                                <View style={{ flex: 1 }}>
+                                    <GiftedChat
+                                        messages={ArenaStore.messages}
+                                        onSend={ArenaStore.addChat}
+                                        onPressAvatar={ArenaStore.addNgListAlert}
+                                        onLongPress={ArenaStore.reportChatAlert}
+                                        dateFormat={'MM/DD'}
+                                        timeFormat={'HH:mm'}
+                                        maxInputLength={40}
+                                        user={{
+                                            _id: UserStore.id,
+                                            name: UserStore.name
+                                        }}
+                                    />
+                                    {Platform.OS === 'android' && <KeyboardSpacer />}
+                                </View>
                             </Tab>
                         </Tabs>
                     </View>

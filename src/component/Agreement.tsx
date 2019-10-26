@@ -55,7 +55,6 @@ export default class Agreement extends Component {
                     style={styles.button}
                     onPress={() => ArenaStore.setAgreement(C.AgreementState.AGREE)}
                     disabled={!ArenaStore.isReadAgreement}
-                    //success={ArenaStore.isReadAgreement}
                 >
                     <Text style={styles.buttonText}>規約に同意</Text>
                 </Button>
