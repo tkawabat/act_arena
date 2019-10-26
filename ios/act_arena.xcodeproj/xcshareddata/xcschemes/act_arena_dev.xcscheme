@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B56386401DB9693800A0598C"
-            BuildableName = "act_arena.app"
-            BlueprintName = "act_arena"
+            BlueprintIdentifier = "A78450E02364A0D1004FBA49"
+            BuildableName = "act_arena_dev.app"
+            BlueprintName = "act_arena_dev"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B56386401DB9693800A0598C"
-            BuildableName = "act_arena.app"
-            BlueprintName = "act_arena"
+            BlueprintIdentifier = "A78450E02364A0D1004FBA49"
+            BuildableName = "act_arena_dev.app"
+            BlueprintName = "act_arena_dev"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
