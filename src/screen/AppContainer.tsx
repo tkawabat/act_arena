@@ -6,19 +6,23 @@ import SettingScreen from './SettingScreen';
 import TermsScreen from './TermsScreen';
 import PrivacyScreen from './PrivacyScreen';
 import CopyrightScreen from './CopyrightScreen';
-import Modal from './Modal';
+//import Modal from './Modal';
 import ArenaScreen from './ArenaScreen';
 
 
+const navigationOptions = {
+    gesturesEnabled: false,
+};
+
 const MainNavigation = createStackNavigator(
     {
-        Lobby: { screen: LobbyScreen },
-        Register: { screen: RegisterScreen },
-        Setting: { screen: SettingScreen },
-        Terms: { screen: TermsScreen },
-        Privacy: { screen: PrivacyScreen },
-        Copyright: { screen: CopyrightScreen },
-        Arena: { screen: ArenaScreen },
+        Lobby: { screen: LobbyScreen, navigationOptions: navigationOptions },
+        Register: { screen: RegisterScreen, navigationOptions: navigationOptions },
+        Setting: { screen: SettingScreen, navigationOptions: navigationOptions },
+        Terms: { screen: TermsScreen, navigationOptions: navigationOptions },
+        Privacy: { screen: PrivacyScreen, navigationOptions: navigationOptions },
+        Copyright: { screen: CopyrightScreen, navigationOptions: navigationOptions },
+        Arena: { screen: ArenaScreen, navigationOptions: navigationOptions },
     },
     { mode: 'card', headerMode: 'none' }
 )
@@ -26,7 +30,7 @@ const MainNavigation = createStackNavigator(
 const Navigation = createStackNavigator(
     {
         MainNavigation: { screen: MainNavigation },
-        Modal: { screen: Modal },
+        //Modal: { screen: Modal },
     },
     { initialRouteName: 'MainNavigation', mode: 'modal', headerMode: 'none' },
 )

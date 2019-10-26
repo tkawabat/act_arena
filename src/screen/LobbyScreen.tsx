@@ -24,11 +24,11 @@ export default class LobbyScreen extends ScreenBase {
         
     }
 
-    private asyncCheckPermissions = async () => {
-        const p = Platform.OS === 'ios' ? Permissions.PERMISSIONS.IOS.MICROPHONE : Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO;
+    private asyncCheckIosPermissions = async () => {
+        const p = Permissions.PERMISSIONS.IOS.MICROPHONE;
         switch (await Permissions.check(p)) {
             case Permissions.RESULTS.UNAVAILABLE:
-                alert('このデバイスではマイクをご利用いただけません。');
+                alert('このデバイスではマイクをご利用できないため、アリーナに参加できません。');
                 return false;
             case Permissions.RESULTS.BLOCKED:
                 Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
@@ -37,22 +37,39 @@ export default class LobbyScreen extends ScreenBase {
                 ]);
                 return false;
             case Permissions.RESULTS.DENIED:
-                if (Platform.OS === 'ios') {
-                    Permissions.request(p);
-                } else {
-                    Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
-                        { text: '設定へ', onPress: Permissions.openSettings }
-                        , { text: 'Cancel' }
-                    ]);
-                }
+                Permissions.request(p);
                 return false;
             case Permissions.RESULTS.GRANTED:
                 return true;
         }
     }
+
+    private asyncCheckAndroidPermissions = async () => {
+        const microphone = await Permissions.check(Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO);
+        const camera = await Permissions.check(Permissions.PERMISSIONS.ANDROID.CAMERA);
+        if (microphone === Permissions.RESULTS.UNAVAILABLE || camera === Permissions.RESULTS.UNAVAILABLE) {
+            alert('このデバイスではマイク・カメラをご利用できないため、アリーナに参加できません。');
+            return false;
+        }
+
+        if (microphone === Permissions.RESULTS.GRANTED && camera === Permissions.RESULTS.GRANTED) {
+            return true;
+        }
+        
+        Alert.alert('', 'アリーナに参加するためにはマイク・カメラの利用許可が必要です。（カメラは実際には使用しません。）', [
+            { text: '設定へ', onPress: Permissions.openSettings }
+            , { text: 'Cancel' }
+        ]);
+
+        return false;
+    }
     
     private joinArena = async (id:number) => {
-        if (!await this.asyncCheckPermissions()) return;
+        if (Platform.OS === 'ios') {
+            if (!await this.asyncCheckIosPermissions()) return;
+        } else {
+            if (!await this.asyncCheckAndroidPermissions()) return;
+        }
 
         ConfigStore.load(true);
         ArenaStore.join(id).then(() => {
