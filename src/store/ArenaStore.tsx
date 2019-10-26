@@ -184,7 +184,7 @@ class ArenaStore {
 
             Amplitude.info('ArenaBeActor', null);
             if (SkywayStore.speakState === C.SpeakState.DISABLED) {
-                SkywayStore.setSpeakState(C.SpeakState.MUTE);
+                SkywayStore.setSpeakState(C.SpeakState.SPEAK);
             }
             break;
         }
