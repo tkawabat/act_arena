@@ -83,7 +83,7 @@ export default class LobbyScreen extends ScreenBase {
                 <View>
                     <LobbyCard
                         title='アリーナ'
-                        explain='３分で演じる名場面！'
+                        explain='４分で演じる名場面！'
                         onPress={() => this.joinArena(0)}
                     />
                 </View>
