@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, Alert } from 'react-native';
-import { Container, Content, View, Button, H1, H2, Text, Item, Input, Picker, Icon } from 'native-base';
+import { Container, Content, View, Button, Text, Item, Input, Picker, Icon, Header, Left, Right, Body, Title } from 'native-base';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -98,8 +98,14 @@ export default class RegisterScreen extends ScreenBase {
         return (
             <Container　style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Content style={styles.content} scrollEnabled={false}>
-                    <H1 style={styles.title}>ユーザー登録</H1>
+                <Header style={styles.header}>
+                    <Left></Left>
+                    <Body>
+                        <Title>ユーザー登録</Title>
+                    </Body>
+                    <Right />
+                </Header>
+                <Content style={styles.content}>
                     <View style={styles.inputView}>
                         <Item>
                             <Input
@@ -124,13 +130,14 @@ export default class RegisterScreen extends ScreenBase {
                         </Item>
                     </View>
 
-                    <H2 style={styles.title}>規約</H2>
+                    <View style={styles.terms}>
                     <Button warning style={styles.termsButton} onPress={this.readTerms}>
-                        <Text style={styles.termsText}>利用規約を確認</Text>
+                        <Text style={styles.termsText}>利用規約</Text>
                     </Button>
                     <Button warning style={styles.termsButton} onPress={this.readPrivacy}>
-                        <Text style={styles.termsText}>プライバシーポリシーを確認</Text>
+                        <Text style={styles.termsText}>プライバシーポリシー</Text>
                     </Button>
+                    </View>
                     <Text style={styles.termsCaution}>
                         ※特に第3章の「台本の利用」については、{'\n'}
                         よく読み、ご確認してください。
@@ -161,28 +168,35 @@ const styles = StyleSheet.create({
         marginTop: getStatusBarHeight(),
         marginBottom: getBottomSpace(),
     },
-    content: {
-        padding: 10,
+    header: {
+        paddingTop: 0,
+        height: 50,
     },
-    title: {
-        marginTop: 40,
-        marginLeft: 20,
+    content: {
+        //padding: 10,
     },
     inputView: {
-        marginTop: 20,
+        marginTop: 50,
         width: 250,
         alignSelf: 'center',
     },
     gender: {
         alignSelf: 'flex-end',
     },
+    terms: {
+        marginTop: 50,
+        width: 300,
+        flexDirection: 'row',
+        alignSelf: 'center',
+        justifyContent: 'space-between',
+    },
     termsButton: {
-        marginTop: 20,
+        width: 120,
         alignSelf: 'center',
         alignItems: 'center',
     },
     termsText: {
-        
+        textAlign: 'center',
     },
     termsCaution: {
         marginTop: 10,
@@ -191,7 +205,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
     },
     registButton: {
-        marginTop: 70,
+        marginTop: 50,
         alignSelf: 'center',
         alignItems: 'center',
     },
