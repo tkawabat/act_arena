@@ -20,10 +20,9 @@ export default class App extends Component {
     constructor(props) {
         super(props);
 
-        YellowBox.ignoreWarnings(['Setting a timer']);
-        console.ignoredYellowBox = [
-            'Setting a timer'
-        ];
+        const ignoreWarnings = ['Setting a timer for a long period of time,'];
+        YellowBox.ignoreWarnings(ignoreWarnings);
+        console.ignoredYellowBox = ignoreWarnings;
 
         Amplitude.info('init', null);
         
