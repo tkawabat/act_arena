@@ -46,7 +46,7 @@ export default class Arena extends ScreenBase {
                 <ArenaHeader />
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
-                        <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab}>
+                        <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} locked={true}>
                             <Tab
                                 key={'scenario'}
                                 heading={<TabHeading style={styles.tab}>
