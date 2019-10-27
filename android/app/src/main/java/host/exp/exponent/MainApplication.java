@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import com.apsl.versionnumber.RNVersionNumberPackage;
 import jp.micin.react.skyway.SkyWayPackage;
 import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 import com.zmxv.RNSound.RNSoundPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
 
         // Needed for `react-native link`
         // new MainReactPackage(),
+            new RNVersionNumberPackage(),
             new SkyWayPackage(),
             new RNPermissionsPackage(),
             new RNSoundPackage(),

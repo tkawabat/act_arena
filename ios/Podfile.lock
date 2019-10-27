@@ -236,6 +236,8 @@ PODS:
     - RNPermissions
   - React (0.59.8):
     - React/Core (= 0.59.8)
+  - react-native-version-number (0.3.6):
+    - React
   - React/ART (0.59.8):
     - React/Core
   - React/Core (0.59.8):
@@ -373,6 +375,7 @@ DEPENDENCIES:
   - Permission-Microphone (from `../node_modules/react-native-permissions/ios/Microphone.podspec`)
   - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
   - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary.podspec`)
+  - react-native-version-number (from `../node_modules/react-native-version-number`)
   - React/ART (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -579,6 +582,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions/ios/PhotoLibrary.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-version-number:
+    :path: "../node_modules/react-native-version-number"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNSound:
@@ -702,6 +707,7 @@ SPEC CHECKSUMS:
   Permission-Notifications: db1a88bded0b2b23edb41ac56168f487636c2379
   Permission-PhotoLibrary: 15c3b4badf2225fbb1bc0c55168e0ce0e9288d35
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
+  react-native-version-number: 15563dc4145a94aabfc1faab2a9af10174a4204e
   RNPermissions: 43fe093bcfe89d3a05a4b82a695db9db9e7dcf21
   RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
   Sentry: 4e8a17b61ddd116f89536cc81d567fdee1ebca96
@@ -721,6 +727,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: 2d2d591bbd0de47f2a8ef46cea775edcd82d4afd
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
 
-PODFILE CHECKSUM: 8f898e4ebc20389bf5dc602b25d24a2bf111be18
+PODFILE CHECKSUM: 25741d5f2153aaff43f61ce440a9834c11f06ae7
 
 COCOAPODS: 1.8.1

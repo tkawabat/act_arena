@@ -1,10 +1,9 @@
 import Moment from 'moment';
+import VersionNumber from 'react-native-version-number';
 import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
-import Secret from '../lib/Secret';
 import Firebase from '../lib/Firebase';
-import Navigator from '../lib/Navigator';
 
 
 class ConfigStore {
@@ -36,7 +35,8 @@ class ConfigStore {
     }
 
     private mustUpdate = () :boolean => {
-        return Secret.version < this.version;
+        console.log(VersionNumber.appVersion);
+        return VersionNumber.appVersion < this.version;
     }
 
     @action setInitLoad = (name:string) :void => {
