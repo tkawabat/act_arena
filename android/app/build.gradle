@@ -74,6 +74,7 @@ android {
   buildTypes {
     debug {
       debuggable true
+      applicationIdSuffix ".debug"
       ext.enableCrashlytics = false
     }
     release {
