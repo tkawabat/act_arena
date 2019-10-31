@@ -179,15 +179,17 @@ class ArenaStore {
         this.overlayMessage = data.message;
         this.characters = data.characters;
 
-        for (const character of this.characters) {
-            if (character.user !== UserStore.id) continue;
+        if (this.arenaState !== C.ArenaState.WAIT) {
+            for (const character of this.characters) {
+                if (character.user !== UserStore.id) continue;
 
-            Amplitude.info('ArenaBeActor', null);
-            if (SkywayStore.speakState === C.SpeakState.DISABLED) {
-                SkywayStore.setSpeakState(C.SpeakState.MUTE);
-                SkywayStore.toggleMicrophone();
+                Amplitude.info('ArenaBeActor', null);
+                if (SkywayStore.speakState === C.SpeakState.DISABLED) {
+                    SkywayStore.setSpeakState(C.SpeakState.MUTE);
+                    SkywayStore.toggleMicrophone();
+                }
+                break;
             }
-            break;
         }
 
         clearInterval(this.tickTimeout);
