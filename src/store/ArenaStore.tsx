@@ -237,6 +237,17 @@ class ArenaStore {
                 this.setModal(false);
                 break;
             case C.ArenaState.CONFIRM:
+                // マイクオン
+                for (const character of this.characters) {
+                    if (character.user !== UserStore.id) continue;
+
+                    Amplitude.info('ArenaBeActor', null);
+                    if (SkywayStore.speakState === C.SpeakState.DISABLED) {
+                        SkywayStore.setSpeakState(C.SpeakState.MUTE);
+                        SkywayStore.toggleMicrophone();
+                    }
+                    break;
+                }
                 OverlayMessageStore.start('マイクチェック');
                 this.setModal(true);
                 break;
