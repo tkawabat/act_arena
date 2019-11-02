@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7BA40C323688F6E005EEF62"
+               BlueprintIdentifier = "A7159AFF236B115D00C7293B"
                BuildableName = "act_arena_stg.app"
                BlueprintName = "act_arena_stg"
                ReferencedContainer = "container:act_arena.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7BA40C323688F6E005EEF62"
+            BlueprintIdentifier = "A7159AFF236B115D00C7293B"
             BuildableName = "act_arena_stg.app"
             BlueprintName = "act_arena_stg"
             ReferencedContainer = "container:act_arena.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7BA40C323688F6E005EEF62"
+            BlueprintIdentifier = "A7159AFF236B115D00C7293B"
             BuildableName = "act_arena_stg.app"
             BlueprintName = "act_arena_stg"
             ReferencedContainer = "container:act_arena.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7BA40C323688F6E005EEF62"
+            BlueprintIdentifier = "A7159AFF236B115D00C7293B"
             BuildableName = "act_arena_stg.app"
             BlueprintName = "act_arena_stg"
             ReferencedContainer = "container:act_arena.xcodeproj">

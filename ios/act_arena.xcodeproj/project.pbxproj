@@ -10,6 +10,26 @@
 		9E3CDA230073E91818A174E5 /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
 		A0B815BCA85956B696E40C9A /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
 		A714AF1F2352342D0099A059 /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74580F2235228FB008985B4 /* libRNSkyWay.a */; };
+		A7159B04236B115D00C7293B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
+		A7159B05236B115D00C7293B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
+		A7159B07236B115D00C7293B /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74580F2235228FB008985B4 /* libRNSkyWay.a */; };
+		A7159B08236B115D00C7293B /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
+		A7159B09236B115D00C7293B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6DD662A02948BEB74BC3A2 /* libz.tbd */; };
+		A7159B0A236B115D00C7293B /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
+		A7159B0B236B115D00C7293B /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
+		A7159B0D236B115D00C7293B /* yoake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAE232FECA200493FBF /* yoake.mp3 */; };
+		A7159B0E236B115D00C7293B /* launch_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8F1FABD46800307FA4 /* launch_background_image.png */; };
+		A7159B0F236B115D00C7293B /* neverend.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FA9232FE85000493FBF /* neverend.mp3 */; };
+		A7159B10236B115D00C7293B /* amanojack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAB232FE85000493FBF /* amanojack.mp3 */; };
+		A7159B11236B115D00C7293B /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
+		A7159B12236B115D00C7293B /* EXBuildConstants.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */; };
+		A7159B13236B115D00C7293B /* EXSDKVersions.plist in Resources */ = {isa = PBXBuildFile; fileRef = B56386661DB9994300A0598C /* EXSDKVersions.plist */; };
+		A7159B14236B115D00C7293B /* sayonara3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */; };
+		A7159B15236B115D00C7293B /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E901FABD46800307FA4 /* launch_icon.png */; };
+		A7159B16236B115D00C7293B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */; };
+		A7159B17236B115D00C7293B /* shell-app-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047E1F3A684600E91581 /* shell-app-manifest.json */; };
+		A7159B18236B115D00C7293B /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
+		A7159B19236B115D00C7293B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
 		A7828B5B2365FAB40068E5FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
 		A7828B5C2365FAB40068E5FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
 		A7828B5E2365FAB40068E5FE /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74580F2235228FB008985B4 /* libRNSkyWay.a */; };
@@ -30,26 +50,6 @@
 		A7828B6E2365FAB40068E5FE /* shell-app-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047E1F3A684600E91581 /* shell-app-manifest.json */; };
 		A7828B6F2365FAB40068E5FE /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
 		A7828B702365FAB40068E5FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
-		A7BA40C823688F6E005EEF62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
-		A7BA40C923688F6E005EEF62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
-		A7BA40CB23688F6E005EEF62 /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74580F2235228FB008985B4 /* libRNSkyWay.a */; };
-		A7BA40CC23688F6E005EEF62 /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
-		A7BA40CD23688F6E005EEF62 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C6DD662A02948BEB74BC3A2 /* libz.tbd */; };
-		A7BA40CE23688F6E005EEF62 /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
-		A7BA40CF23688F6E005EEF62 /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
-		A7BA40D123688F6E005EEF62 /* yoake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAE232FECA200493FBF /* yoake.mp3 */; };
-		A7BA40D223688F6E005EEF62 /* launch_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8F1FABD46800307FA4 /* launch_background_image.png */; };
-		A7BA40D323688F6E005EEF62 /* neverend.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FA9232FE85000493FBF /* neverend.mp3 */; };
-		A7BA40D423688F6E005EEF62 /* amanojack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAB232FE85000493FBF /* amanojack.mp3 */; };
-		A7BA40D623688F6E005EEF62 /* EXBuildConstants.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */; };
-		A7BA40D723688F6E005EEF62 /* EXSDKVersions.plist in Resources */ = {isa = PBXBuildFile; fileRef = B56386661DB9994300A0598C /* EXSDKVersions.plist */; };
-		A7BA40D823688F6E005EEF62 /* sayonara3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */; };
-		A7BA40D923688F6E005EEF62 /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E901FABD46800307FA4 /* launch_icon.png */; };
-		A7BA40DA23688F6E005EEF62 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */; };
-		A7BA40DB23688F6E005EEF62 /* shell-app-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047E1F3A684600E91581 /* shell-app-manifest.json */; };
-		A7BA40DC23688F6E005EEF62 /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
-		A7BA40DD23688F6E005EEF62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
-		A7BA40E92368946C005EEF62 /* EXShell.plist.stg in Resources */ = {isa = PBXBuildFile; fileRef = A7BA40E82368946C005EEF62 /* EXShell.plist.stg */; };
 		A7CF9FAC232FE85000493FBF /* neverend.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FA9232FE85000493FBF /* neverend.mp3 */; };
 		A7CF9FAD232FE85000493FBF /* amanojack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAB232FE85000493FBF /* amanojack.mp3 */; };
 		A7CF9FB0232FECA300493FBF /* yoake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A7CF9FAE232FECA200493FBF /* yoake.mp3 */; };
@@ -84,14 +84,14 @@
 		8C6DD662A02948BEB74BC3A2 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A7145A1E22EB30DA009F97BA /* SkyWay */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = SkyWay; path = SkyWay_iOS_1.2.0/SkyWay.framework/SkyWay; sourceTree = "<group>"; };
 		A7145A2522EB323A009F97BA /* SkyWay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyWay.framework; path = SkyWay_iOS_1.2.0/SkyWay.framework; sourceTree = "<group>"; };
+		A7159B21236B115D00C7293B /* act_arena_stg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = act_arena_stg.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7159B22236B115E00C7293B /* act_arena copy4-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "act_arena copy4-Info.plist"; path = "/Users/tune/git/act_arena/ios/act_arena copy4-Info.plist"; sourceTree = "<absolute>"; };
 		A720A3722365D54D00296225 /* act_arena copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "act_arena copy-Info.plist"; path = "/Users/tune/git/act_arena/ios/act_arena copy-Info.plist"; sourceTree = "<absolute>"; };
 		A74580FA23522C82008985B4 /* SkyWay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyWay.framework; path = System/Library/Frameworks/SkyWay_iOS_1.2.0/SkyWay.framework; sourceTree = SDKROOT; };
 		A7828B782365FAB40068E5FE /* act_arena_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = act_arena_dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7828B792365FAB40068E5FE /* act_arena copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "act_arena copy2-Info.plist"; path = "/Users/tune/git/act_arena/ios/act_arena copy2-Info.plist"; sourceTree = "<absolute>"; };
 		A78451012364A0D1004FBA49 /* act_arena copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "act_arena copy-Info.plist"; path = "/Users/tune/git/act_arena/ios/act_arena copy-Info.plist"; sourceTree = "<absolute>"; };
-		A7BA40E523688F6E005EEF62 /* act_arena_stg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = act_arena_stg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7BA40E723688F6F005EEF62 /* act_arena copy3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "act_arena copy3-Info.plist"; path = "/Users/tune/git/act_arena/ios/act_arena copy3-Info.plist"; sourceTree = "<absolute>"; };
-		A7BA40E82368946C005EEF62 /* EXShell.plist.stg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = EXShell.plist.stg; path = act_arena/Supporting/EXShell.plist.stg; sourceTree = "<group>"; };
 		A7CF9FA9232FE85000493FBF /* neverend.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = neverend.mp3; path = ../resource/music/neverend.mp3; sourceTree = "<group>"; };
 		A7CF9FAB232FE85000493FBF /* amanojack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = amanojack.mp3; path = ../resource/music/amanojack.mp3; sourceTree = "<group>"; };
 		A7CF9FAE232FECA200493FBF /* yoake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yoake.mp3; path = ../resource/music/yoake.mp3; sourceTree = "<group>"; };
@@ -117,6 +117,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A7159B06236B115D00C7293B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7159B07236B115D00C7293B /* libRNSkyWay.a in Frameworks */,
+				A7159B08236B115D00C7293B /* libPods-act_arena.a in Frameworks */,
+				A7159B09236B115D00C7293B /* libz.tbd in Frameworks */,
+				A7159B0A236B115D00C7293B /* libPods-act_arena.a in Frameworks */,
+				A7159B0B236B115D00C7293B /* libPods-act_arena.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7828B5D2365FAB40068E5FE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,18 +138,6 @@
 				A7828B602365FAB40068E5FE /* libz.tbd in Frameworks */,
 				A7828B612365FAB40068E5FE /* libPods-act_arena.a in Frameworks */,
 				A7828B622365FAB40068E5FE /* libPods-act_arena.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7BA40CA23688F6E005EEF62 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7BA40CB23688F6E005EEF62 /* libRNSkyWay.a in Frameworks */,
-				A7BA40CC23688F6E005EEF62 /* libPods-act_arena.a in Frameworks */,
-				A7BA40CD23688F6E005EEF62 /* libz.tbd in Frameworks */,
-				A7BA40CE23688F6E005EEF62 /* libPods-act_arena.a in Frameworks */,
-				A7BA40CF23688F6E005EEF62 /* libPods-act_arena.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +204,6 @@
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
-				A7BA40E82368946C005EEF62 /* EXShell.plist.stg */,
 				A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */,
 				A7CF9FAE232FECA200493FBF /* yoake.mp3 */,
 				A7CF9FAB232FE85000493FBF /* amanojack.mp3 */,
@@ -219,6 +218,7 @@
 				A720A3722365D54D00296225 /* act_arena copy-Info.plist */,
 				A7828B792365FAB40068E5FE /* act_arena copy2-Info.plist */,
 				A7BA40E723688F6F005EEF62 /* act_arena copy3-Info.plist */,
+				A7159B22236B115E00C7293B /* act_arena copy4-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,7 +227,7 @@
 			children = (
 				B56386411DB9693800A0598C /* act_arena.app */,
 				A7828B782365FAB40068E5FE /* act_arena_dev.app */,
-				A7BA40E523688F6E005EEF62 /* act_arena_stg.app */,
+				A7159B21236B115D00C7293B /* act_arena_stg.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -263,6 +263,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		A7159B02236B115D00C7293B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7828B592365FAB40068E5FE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,16 +284,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7BA40C623688F6E005EEF62 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		A7159AFF236B115D00C7293B /* act_arena_stg */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A7159B1E236B115D00C7293B /* Build configuration list for PBXNativeTarget "act_arena_stg" */;
+			buildPhases = (
+				A7159B00236B115D00C7293B /* [CP] Check Pods Manifest.lock */,
+				A7159B01236B115D00C7293B /* Prepare Expo */,
+				A7159B02236B115D00C7293B /* Headers */,
+				A7159B03236B115D00C7293B /* Sources */,
+				A7159B06236B115D00C7293B /* Frameworks */,
+				A7159B0C236B115D00C7293B /* Resources */,
+				A7159B1A236B115D00C7293B /* [CP] Embed Pods Frameworks */,
+				A7159B1B236B115D00C7293B /* [CP] Copy Pods Resources */,
+				A7159B1C236B115D00C7293B /* Bundle Expo Assets */,
+				A7159B1D236B115D00C7293B /* Upload Debug Symbols to Sentry */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = act_arena_stg;
+			productName = act_arena;
+			productReference = A7159B21236B115D00C7293B /* act_arena_stg.app */;
+			productType = "com.apple.product-type.application";
+		};
 		A7828B562365FAB40068E5FE /* act_arena_dev */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A7828B752365FAB40068E5FE /* Build configuration list for PBXNativeTarget "act_arena_dev" */;
@@ -309,30 +333,6 @@
 			name = act_arena_dev;
 			productName = act_arena;
 			productReference = A7828B782365FAB40068E5FE /* act_arena_dev.app */;
-			productType = "com.apple.product-type.application";
-		};
-		A7BA40C323688F6E005EEF62 /* act_arena_stg */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A7BA40E223688F6E005EEF62 /* Build configuration list for PBXNativeTarget "act_arena_stg" */;
-			buildPhases = (
-				A7BA40C423688F6E005EEF62 /* [CP] Check Pods Manifest.lock */,
-				A7BA40C523688F6E005EEF62 /* Prepare Expo */,
-				A7BA40C623688F6E005EEF62 /* Headers */,
-				A7BA40C723688F6E005EEF62 /* Sources */,
-				A7BA40CA23688F6E005EEF62 /* Frameworks */,
-				A7BA40D023688F6E005EEF62 /* Resources */,
-				A7BA40DE23688F6E005EEF62 /* [CP] Embed Pods Frameworks */,
-				A7BA40DF23688F6E005EEF62 /* [CP] Copy Pods Resources */,
-				A7BA40E023688F6E005EEF62 /* Bundle Expo Assets */,
-				A7BA40E123688F6E005EEF62 /* Upload Debug Symbols to Sentry */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = act_arena_stg;
-			productName = act_arena;
-			productReference = A7BA40E523688F6E005EEF62 /* act_arena_stg.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B56386401DB9693800A0598C /* act_arena */ = {
@@ -368,10 +368,10 @@
 				LastUpgradeCheck = 900;
 				ORGANIZATIONNAME = "650 Industries, Inc.";
 				TargetAttributes = {
-					A7828B562365FAB40068E5FE = {
+					A7159AFF236B115D00C7293B = {
 						DevelopmentTeam = GCMQSQK766;
 					};
-					A7BA40C323688F6E005EEF62 = {
+					A7828B562365FAB40068E5FE = {
 						DevelopmentTeam = GCMQSQK766;
 					};
 					B56386401DB9693800A0598C = {
@@ -402,7 +402,7 @@
 			targets = (
 				B56386401DB9693800A0598C /* act_arena */,
 				A7828B562365FAB40068E5FE /* act_arena_dev */,
-				A7BA40C323688F6E005EEF62 /* act_arena_stg */,
+				A7159AFF236B115D00C7293B /* act_arena_stg */,
 			);
 		};
 /* End PBXProject section */
@@ -418,6 +418,26 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A7159B0C236B115D00C7293B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7159B0D236B115D00C7293B /* yoake.mp3 in Resources */,
+				A7159B0E236B115D00C7293B /* launch_background_image.png in Resources */,
+				A7159B0F236B115D00C7293B /* neverend.mp3 in Resources */,
+				A7159B10236B115D00C7293B /* amanojack.mp3 in Resources */,
+				A7159B11236B115D00C7293B /* EXShell.plist in Resources */,
+				A7159B12236B115D00C7293B /* EXBuildConstants.plist in Resources */,
+				A7159B13236B115D00C7293B /* EXSDKVersions.plist in Resources */,
+				A7159B14236B115D00C7293B /* sayonara3.mp3 in Resources */,
+				A7159B15236B115D00C7293B /* launch_icon.png in Resources */,
+				A7159B16236B115D00C7293B /* LaunchScreen.xib in Resources */,
+				A7159B17236B115D00C7293B /* shell-app-manifest.json in Resources */,
+				A7159B18236B115D00C7293B /* shell-app.bundle in Resources */,
+				A7159B19236B115D00C7293B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7828B632365FAB40068E5FE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -435,26 +455,6 @@
 				A7828B6E2365FAB40068E5FE /* shell-app-manifest.json in Resources */,
 				A7828B6F2365FAB40068E5FE /* shell-app.bundle in Resources */,
 				A7828B702365FAB40068E5FE /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7BA40D023688F6E005EEF62 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7BA40E92368946C005EEF62 /* EXShell.plist.stg in Resources */,
-				A7BA40D123688F6E005EEF62 /* yoake.mp3 in Resources */,
-				A7BA40D223688F6E005EEF62 /* launch_background_image.png in Resources */,
-				A7BA40D323688F6E005EEF62 /* neverend.mp3 in Resources */,
-				A7BA40D423688F6E005EEF62 /* amanojack.mp3 in Resources */,
-				A7BA40D623688F6E005EEF62 /* EXBuildConstants.plist in Resources */,
-				A7BA40D723688F6E005EEF62 /* EXSDKVersions.plist in Resources */,
-				A7BA40D823688F6E005EEF62 /* sayonara3.mp3 in Resources */,
-				A7BA40D923688F6E005EEF62 /* launch_icon.png in Resources */,
-				A7BA40DA23688F6E005EEF62 /* LaunchScreen.xib in Resources */,
-				A7BA40DB23688F6E005EEF62 /* shell-app-manifest.json in Resources */,
-				A7BA40DC23688F6E005EEF62 /* shell-app.bundle in Resources */,
-				A7BA40DD23688F6E005EEF62 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +544,114 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A7159B00236B115D00C7293B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-act_arena-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7159B01236B115D00C7293B /* Prepare Expo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Expo";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -eo pipefail\n\nexport PATH=\"$(if [ -f ~/.expo/PATH ]; then echo $PATH:$(cat ~/.expo/PATH); else echo $PATH; fi)\"\nexpo prepare-detached-build --platform ios \"${SRCROOT}/..\"\n";
+		};
+		A7159B1A236B115D00C7293B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-frameworks.sh",
+				"${PODS_ROOT}/SkyWay/SkyWay.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyWay.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7159B1B236B115D00C7293B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-resources.sh",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/api.amplitude.com.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaCA.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/api.amplitude.com.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaCA.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaDomainValidationCA.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7159B1C236B115D00C7293B /* Bundle Expo Assets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle Expo Assets";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eo pipefail\n\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\n  echo \"Skipping asset bundling in debug mode.\"\n  exit 0\nfi\n\npushd \"${SRCROOT}/..\"\nexport PATH=\"$(if [ -f ~/.expo/PATH ]; then echo $PATH:$(cat ~/.expo/PATH); else echo $PATH; fi)\"\ndest=\"$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nexpo bundle-assets --platform ios --dest \"$dest\"\npopd\n";
+		};
+		A7159B1D236B115D00C7293B /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=$HOME/.nodebrew/current/bin:$PATH\nexport SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
 		};
 		A7828B572365FAB40068E5FE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -653,114 +761,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export PATH=$HOME/.nodebrew/current/bin:$PATH\nexport SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
 		};
-		A7BA40C423688F6E005EEF62 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-act_arena-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7BA40C523688F6E005EEF62 /* Prepare Expo */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Prepare Expo";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "set -eo pipefail\n\nexport PATH=\"$(if [ -f ~/.expo/PATH ]; then echo $PATH:$(cat ~/.expo/PATH); else echo $PATH; fi)\"\nexpo prepare-detached-build --platform ios \"${SRCROOT}/..\"\n";
-		};
-		A7BA40DE23688F6E005EEF62 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-frameworks.sh",
-				"${PODS_ROOT}/SkyWay/SkyWay.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkyWay.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7BA40DF23688F6E005EEF62 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-resources.sh",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/api.amplitude.com.der",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaCA.der",
-				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der",
-				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/api.amplitude.com.der",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoCaLimitedRsaCertificationAuthority.der",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaCA.der",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaDomainValidationCA.der",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A7BA40E023688F6E005EEF62 /* Bundle Expo Assets */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle Expo Assets";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -eo pipefail\n\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\n  echo \"Skipping asset bundling in debug mode.\"\n  exit 0\nfi\n\npushd \"${SRCROOT}/..\"\nexport PATH=\"$(if [ -f ~/.expo/PATH ]; then echo $PATH:$(cat ~/.expo/PATH); else echo $PATH; fi)\"\ndest=\"$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nexpo bundle-assets --platform ios --dest \"$dest\"\npopd\n";
-		};
-		A7BA40E123688F6E005EEF62 /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Debug Symbols to Sentry";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export PATH=$HOME/.nodebrew/current/bin:$PATH\nexport SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
-		};
 		AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -808,21 +808,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A7159B03236B115D00C7293B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7159B04236B115D00C7293B /* main.m in Sources */,
+				A7159B05236B115D00C7293B /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A7828B5A2365FAB40068E5FE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A7828B5B2365FAB40068E5FE /* main.m in Sources */,
 				A7828B5C2365FAB40068E5FE /* AppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A7BA40C723688F6E005EEF62 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A7BA40C823688F6E005EEF62 /* main.m in Sources */,
-				A7BA40C923688F6E005EEF62 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +838,66 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A7159B1F236B115D00C7293B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFE38AFC5574B4C51E77FE25 /* Pods-act_arena.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = GCMQSQK766;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0",
+				);
+				INFOPLIST_FILE = "act_arena copy4-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0/SkyWay.framework",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = act.arena.stg;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks/SkyWay_iOS_1.2.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 arm64";
+			};
+			name = Debug;
+		};
+		A7159B20236B115D00C7293B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 46DA6CD2E7372F13C831D9CE /* Pods-act_arena.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = GCMQSQK766;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0",
+				);
+				INFOPLIST_FILE = "act_arena copy4-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0/SkyWay.framework",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = act.arena.stg;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks/SkyWay_iOS_1.2.0";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 arm64";
+			};
+			name = Release;
+		};
 		A7828B762365FAB40068E5FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EFE38AFC5574B4C51E77FE25 /* Pods-act_arena.debug.xcconfig */;
@@ -891,66 +951,6 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = act.arena.dev;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks/SkyWay_iOS_1.2.0";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 arm64";
-			};
-			name = Release;
-		};
-		A7BA40E323688F6E005EEF62 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFE38AFC5574B4C51E77FE25 /* Pods-act_arena.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = GCMQSQK766;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0",
-				);
-				INFOPLIST_FILE = "act_arena copy3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0/SkyWay.framework",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = act.arena.stg;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks/SkyWay_iOS_1.2.0";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "armv7 arm64";
-			};
-			name = Debug;
-		};
-		A7BA40E423688F6E005EEF62 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46DA6CD2E7372F13C831D9CE /* Pods-act_arena.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = GCMQSQK766;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0",
-				);
-				INFOPLIST_FILE = "act_arena copy3-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/SkyWay_iOS_1.2.0/SkyWay.framework",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-				);
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = act.arena.stg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_FRAMEWORK_SEARCH_PATHS = "$(inherited) $(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks/SkyWay_iOS_1.2.0";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1123,20 +1123,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A7159B1E236B115D00C7293B /* Build configuration list for PBXNativeTarget "act_arena_stg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7159B1F236B115D00C7293B /* Debug */,
+				A7159B20236B115D00C7293B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A7828B752365FAB40068E5FE /* Build configuration list for PBXNativeTarget "act_arena_dev" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7828B762365FAB40068E5FE /* Debug */,
 				A7828B772365FAB40068E5FE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A7BA40E223688F6E005EEF62 /* Build configuration list for PBXNativeTarget "act_arena_stg" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A7BA40E323688F6E005EEF62 /* Debug */,
-				A7BA40E423688F6E005EEF62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
