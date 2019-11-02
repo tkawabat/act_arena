@@ -15,15 +15,7 @@
           "certificate_hash": ""
         }
       },
-      "client_info": {
-        "mobilesdk_app_id": "1:367315174693:android:f968efbb41d1fa7a",
-        "client_id": "android:host.exp.exponent",
-        "client_type": 1,
-        "android_client_info": {
-          "package_name": "act.arena.debug",
-          "certificate_hash": ""
-        }
-      },
+
       "oauth_client": [],
       "api_key": [
         {

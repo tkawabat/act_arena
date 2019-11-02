@@ -73,13 +73,15 @@ android {
   }
   buildTypes {
     debug {
-      debuggable true
       applicationIdSuffix ".debug"
+      debuggable true
       ext.enableCrashlytics = false
     }
     release {
       minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      shrinkResources true
+      zipAlignEnabled true
       signingConfig signingConfigs.release
     }
   }
