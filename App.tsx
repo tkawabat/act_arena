@@ -19,8 +19,6 @@ import SkywayStore from './src/store/SkywayStore';
 
 @observer
 export default class App extends Component {
-    private _checking_update = false;
-    private _updateSubscription;
 
     constructor(props) {
         super(props);
@@ -54,32 +52,23 @@ export default class App extends Component {
         });
     }
 
-    _checkUpdates = async () => {
-        if (!this._checking_update) return;
-
-        this._checking_update = true;
-
-        const update = await Updates.checkForUpdateAsync()
-            .catch(() => { })
-            ;
-
-        if (!update || !update.isAvailable) return;
-        await Updates.fetchUpdateAsync();
-
-        this._checking_update = false;
-    }
-
-    _handleAppStateChange = (nextAppState) => {
+    private handleAppStateChange = (nextAppState) => {
         if (nextAppState === 'active') {
-            this._checkUpdates();
+            ConfigStore.checkExpoUpdates();
         }
     }
 
     componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
-        this._updateSubscription = Updates.addListener(event => {
-            if (event.type !== Updates.EventType.DOWNLOAD_FINISHED) return;
-            
+        AppState.addEventListener('change', this.handleAppStateChange);
+        ConfigStore.checkExpoUpdates();
+    }
+
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this.handleAppStateChange);
+    }   
+
+    render() {
+        if (ConfigStore.expoReload) {
             Alert.alert(
                 '', '新しいアプリがあります。アプリを再起動してください。',
                 [
@@ -91,17 +80,8 @@ export default class App extends Component {
                     },
                 ], { cancelable: false }
             );
-        });
-        // fresh start check
-        this._checkUpdates();
-    }
+        }
 
-    componentWillUnmount() {
-        AppState.removeEventListener('change', this._handleAppStateChange);
-        this._updateSubscription && this._updateSubscription.remove();
-    }
-
-    render() {
         if (!ConfigStore.isInitLoaded) {
             return (
                 <Spinner visible />

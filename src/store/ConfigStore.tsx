@@ -1,6 +1,7 @@
 import Moment from 'moment';
 //import VersionNumber from 'react-native-version-number';
 import { observable, computed, action } from 'mobx';
+import { Updates } from 'expo';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -10,11 +11,13 @@ class ConfigStore {
     private ref:Firebase.firestore.DocumentReference;
 
     private version:string = '0.0.0';
+    private checkingExpoUpdate = false;
     @observable init = {
         'init': false,
     };
 
     @observable isLoad:boolean = false;
+    @observable expoReload:boolean = false;
     @observable message:string = '';
 
     @computed get isInitLoaded() :boolean {
@@ -62,6 +65,22 @@ class ConfigStore {
     @action
     public load = (load:boolean) => {
         this.isLoad = load;
+    }
+
+    public checkExpoUpdates = async () => {
+        if (this.checkingExpoUpdate) return;
+
+        this.checkingExpoUpdate = true;
+
+        const update = await Updates.checkForUpdateAsync()
+            .catch(() => { })
+            ;
+
+        if (update.isAvailable) {
+            await Updates.fetchUpdateAsync();
+            this.expoReload = true;
+        }
+        this.checkingExpoUpdate = false;
     }
 }
 
