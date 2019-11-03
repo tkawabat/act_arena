@@ -390,7 +390,7 @@ class ArenaStore {
 
     @action
     public join = async (id:number) => {
-        if (this.userNum > C.RoomUserLimit) {
+        if (this.userNum >= C.RoomUserLimit) {
             alert('申し訳ありません、満員のため入室できません。');
             return;
         }
