@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, YellowBox, AppState, Dimensions, Alert, View, Text } from 'react-native';
+import { StyleSheet, YellowBox, AppState, Dimensions, Alert, View, Text, Linking, Platform } from 'react-native';
 import { Sentry } from 'react-native-sentry';
 import { Updates } from 'expo';
 import * as Font from 'expo-font';
@@ -9,9 +9,11 @@ import Moment from 'moment';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import AppContainer from './src/screen/AppContainer';
+import * as C from './src/lib/Const';
 import Amplitude from './src/lib/Amplitude';
 import Firebase from './src/lib/Firebase';
 import Navigator from './src/lib/Navigator';
+
 import ConfigStore from './src/store/ConfigStore';
 import UserStore from './src/store/UserStore';
 import SkywayStore from './src/store/SkywayStore';
@@ -58,6 +60,18 @@ export default class App extends Component {
         }
     }
 
+    private requireAlert = (message: string, text: string, onPress: () => void) => {
+        setTimeout(() => {
+            Alert.alert(
+                '', message,
+                [{
+                    text: text,
+                    onPress: onPress
+                }], { cancelable: false }
+            )
+        }, 700);
+    }
+
     componentDidMount() {
         AppState.addEventListener('change', this.handleAppStateChange);
         ConfigStore.checkExpoUpdates();
@@ -65,23 +79,24 @@ export default class App extends Component {
 
     componentWillUnmount() {
         AppState.removeEventListener('change', this.handleAppStateChange);
-    }   
+    }
 
-    render() {
+    componentDidUpdate() {
         if (ConfigStore.expoReload) {
-            Alert.alert(
-                '', '新しいアプリがあります。アプリを再起動してください。',
-                [
-                    {
-                        text: '再起動',
-                        onPress: () => {
-                            Updates.reloadFromCache();
-                        }
-                    },
-                ], { cancelable: false }
-            );
+            this.requireAlert('アップデートがあります。アプリを再起動してください。', '再起動', () => {
+                Updates.reloadFromCache();
+            });
         }
 
+        if (ConfigStore.mustUpdate) {
+            this.requireAlert('新しいバージョンアプリがあります。アプリをダウンロードしてください。', 'ストアへ行く', () => {
+                Linking.openURL(C.AppStoreUrl[Platform.OS])
+                    .catch((error) => Amplitude.error('App open app store', error))
+            });
+        }
+    }
+
+    render() {
         if (!ConfigStore.isInitLoaded) {
             return (
                 <Spinner visible />

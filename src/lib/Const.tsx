@@ -1,4 +1,8 @@
 export const ConfigId = 'config';
+export const AppStoreUrl = {
+    'ios': 'https://t.co/q28fs9e7cq?amp=1',
+    'android': 'https://t.co/1GNQkeYCfG?amp=1',
+}
 
 export enum UserIconSize {
     S = 24,

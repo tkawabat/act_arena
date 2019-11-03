@@ -1,5 +1,6 @@
 import Moment from 'moment';
-//import VersionNumber from 'react-native-version-number';
+import { Platform, Linking } from 'react-native';
+import VersionNumber from 'react-native-version-number';
 import { observable, computed, action } from 'mobx';
 import { Updates } from 'expo';
 
@@ -10,13 +11,15 @@ import Firebase from '../lib/Firebase';
 class ConfigStore {
     private ref:Firebase.firestore.DocumentReference;
 
-    private version:string = '0.0.0';
     private checkingExpoUpdate = false;
+
+    @observable requireVersion:string = '0.0.0';
     @observable init = {
         'init': false,
     };
 
     @observable isLoad:boolean = false;
+    //@observable mustUpdate:boolean = false;
     @observable expoReload:boolean = false;
     @observable message:string = '';
 
@@ -27,6 +30,11 @@ class ConfigStore {
         return true;
     }
 
+    @computed get mustUpdate() :boolean {
+        if (!this.isInitLoaded) return false; // for ios
+        return VersionNumber.appVersion < this.requireVersion;
+    }
+
     constructor() {
         this.setInitLoad('config');
         this.ref = Firebase.firestore().collection('Config').doc(C.ConfigId);
@@ -35,11 +43,6 @@ class ConfigStore {
             this.setSnapshot2field(snapshot);
             this.setInitLoadComplete('config');
         });
-    }
-
-    private mustUpdate = () :boolean => {
-        return false;
-        //return VersionNumber.appVersion < this.version;
     }
 
     @action setInitLoad = (name:string) :void => {
@@ -56,10 +59,7 @@ class ConfigStore {
         if (!data) return;
 
         this.message = data.maintenance as string;
-        this.version = data.version;
-        if (this.mustUpdate()) {
-            this.message = '新しいバージョンのアプリがあります。アプリのアップデート・再起動をしてください。';
-        }
+        this.requireVersion = Platform.OS === 'ios' ? data.iosVersion : data.androidVersion;
     }
 
     @action
