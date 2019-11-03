@@ -7,12 +7,29 @@ import Amplitude from '../lib/Amplitude';
 
 class SoundStore {
     private player:Sound;
+    private seList:Array<Sound>;
     @observable state:C.MusicState = C.MusicState.STOP;
     @observable name:string;
     @observable site:string;
 
     constructor() {
         Sound.setCategory('Playback');
+        this.loadSe();
+    }
+
+    private loadSe = () => {
+        this.seList = new Array<Sound>();
+        for (const key in C.SeList) {
+            console.log('load '+key);
+            console.log('load '+C.SeList[key].file);
+            this.seList[key] = new Sound(C.SeList[key].file, Sound.MAIN_BUNDLE, (error) => {
+                if (error) {
+                    Amplitude.error('SoundStore loadSe', error)
+                    return;
+                }
+                this.setVolume(0.5);
+            });
+        }
     }
 
     @action playRondom = async (volume:number, restart:boolean) => {
@@ -90,6 +107,11 @@ class SoundStore {
         if (!this.player) return;
         const newVolume = Math.max(0, this.player.getVolume() - n);
         this.player.setVolume(newVolume);
+    }
+
+    public se = (key:string) => {
+        if (!this.seList[key]) return;
+        this.seList[key].play();
     }
 }
 

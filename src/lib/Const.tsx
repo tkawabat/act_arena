@@ -102,6 +102,11 @@ export const MusicList = [
     //{ file: 'yoake.mp3', name: 'この夜が明けるまで', site: '騒音のない世界'},
     { file: 'sayonara3.mp3', name: 'さよなら', site: '騒音のない世界'},
 ]
+export const SeList = {
+    'actStart': { file: 'buzzer_opening1.mp3', site: '効果音ラボ'},
+    'matching': { file: 'tin2.mp3', site: '効果音ラボ'},
+    'enterRoom': { file: 'cursor1.mp3', site: '効果音ラボ'},
+}
 
 export const SoundFadeDuration = 8000;
 export const OverlayDuration = 1000;

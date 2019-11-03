@@ -105,14 +105,14 @@ export default class LobbyScreen extends ScreenBase {
                     />
                 </View>
 
-                {/* <Button onPress={() => { SoundStore.playRondom(0.5, true); }}>
-                    <Text>play</Text>
+                {/* <Button onPress={() => { SoundStore.se('actStart'); }}>
+                    <Text>actStart</Text>
                 </Button>
-                <Button onPress={() => { SoundStore.stop(); }}>
-                    <Text>stop</Text>
+                <Button onPress={() => { SoundStore.se('matching'); }}>
+                    <Text>matching</Text>
                 </Button>
-                <Button onPress={() => { SoundStore.setVolume(0.75); }}>
-                    <Text>volume high</Text>
+                <Button onPress={() => { SoundStore.se('enterRoom'); }}>
+                    <Text>enterRoom</Text>
                 </Button>
                 <Button onPress={() => { SoundStore.setVolume(0.25); }}>
                     <Text>volume low</Text>

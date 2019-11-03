@@ -211,6 +211,11 @@ class ArenaStore {
             return;
         }
 
+        // se
+        if (Object.keys(this.users).length < Object.keys(users).length) {
+            SoundStore.se('enterRoom');
+        }
+
         this.users = users;
     }
 
@@ -297,6 +302,7 @@ class ArenaStore {
                 SoundStore.playRondom(0.4, true);
                 break;
             case C.ArenaState.CONFIRM:
+                SoundStore.se('matching');
                 SoundStore.playRondom(0.1, false);
                 break;
             case C.ArenaState.CHECK:
@@ -305,6 +311,7 @@ class ArenaStore {
                 break;
             case C.ArenaState.ACT:
                 SoundStore.stop();
+                SoundStore.se('actStart');
                 break;
         }
     }
