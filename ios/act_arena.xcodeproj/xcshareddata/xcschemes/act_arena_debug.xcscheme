@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A7828B562365FAB40068E5FE"
-               BuildableName = "act_arena_dev.app"
-               BlueprintName = "act_arena_dev"
+               BlueprintIdentifier = "A739A477236ECAE20048E65D"
+               BuildableName = "act_arena_debug.app"
+               BlueprintName = "act_arena_debug"
                ReferencedContainer = "container:act_arena.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7828B562365FAB40068E5FE"
-            BuildableName = "act_arena_dev.app"
-            BlueprintName = "act_arena_dev"
+            BlueprintIdentifier = "A739A477236ECAE20048E65D"
+            BuildableName = "act_arena_debug.app"
+            BlueprintName = "act_arena_debug"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -55,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7828B562365FAB40068E5FE"
-            BuildableName = "act_arena_dev.app"
-            BlueprintName = "act_arena_dev"
+            BlueprintIdentifier = "A739A477236ECAE20048E65D"
+            BuildableName = "act_arena_debug.app"
+            BlueprintName = "act_arena_debug"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -74,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A7828B562365FAB40068E5FE"
-            BuildableName = "act_arena_dev.app"
-            BlueprintName = "act_arena_dev"
+            BlueprintIdentifier = "A739A477236ECAE20048E65D"
+            BuildableName = "act_arena_debug.app"
+            BlueprintName = "act_arena_debug"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -34,6 +34,7 @@ class UserStore implements User {
     // private providerTwitter;
     private db:Firebase.firestore.CollectionReference;
     private userStatusDatabaseRef:Firebase.database.Reference;
+    private onDisconnect:Firebase.database.OnDisconnect;
     private onSnapshot;
 
     constructor() {
@@ -88,6 +89,23 @@ class UserStore implements User {
         ;
     }
 
+    public reload = () => {
+        if (this.onDisconnect) {
+            this.onDisconnect.cancel();
+        }
+
+        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
+        this.onDisconnect = this.userStatusDatabaseRef.onDisconnect();
+
+        const offline = {
+            state: 0,
+            updated: Firebase.database.ServerValue.TIMESTAMP,
+        }
+        this.onDisconnect.set(offline).then(() => {
+            this.asyncSetConnect(true);
+        });
+    }
+
     public observeConnectionChange = () => {
         Firebase.database().ref('.info/connected').on('value', (snapshot) => {
             if (snapshot.val() == false) {
@@ -95,19 +113,12 @@ class UserStore implements User {
                 return;
             };
 
-            const offline = {
-                state: 0
-                , updated: Firebase.database.ServerValue.TIMESTAMP
-            }
-
-            this.userStatusDatabaseRef.onDisconnect().set(offline).then(() => {
-                this.asyncSetConnect(true);
-            });
+            this.reload();
         });
     }
 
     public stopObserveConnectionChange = () => {
-        Firebase.database().ref('.info/connected').off('value');
+        this.onDisconnect.cancel();
     }
 
     public set = async (name:string, gender:number) :Promise<void> => {

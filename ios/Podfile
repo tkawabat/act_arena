@@ -69,6 +69,9 @@ target 'act_arena' do
 
   pod 'react-native-version-number', :path => '../node_modules/react-native-version-number'
 
+
+  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
+
   post_install do |installer|
     installer.pods_project.main_group.tab_width = '2';
     installer.pods_project.main_group.indent_width = '2';

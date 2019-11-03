@@ -119,6 +119,7 @@ apply from: 'expo.gradle'
 apply from: "../../node_modules/react-native-unimodules/gradle.groovy"
 
 dependencies {
+    implementation project(':react-native-background-timer')
     implementation project(':react-native-version-number')
     implementation project(':react-native-skyway')
     implementation project(':react-native-permissions')

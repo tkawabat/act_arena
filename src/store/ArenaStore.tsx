@@ -1,7 +1,8 @@
 import Moment from 'moment';
-import { Alert, } from 'react-native';
+import { Alert, Platform, } from 'react-native';
 import { observable, computed, action } from 'mobx';
 import { IMessage } from 'react-native-gifted-chat';
+import BackgroundTimer from 'react-native-background-timer';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -36,6 +37,7 @@ class ArenaStore {
     private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
     private tickTimeout:NodeJS.Timeout;
+    private backgroundTimer;
 
     // Arena
     private id :number = null; // entered arena
@@ -325,12 +327,26 @@ class ArenaStore {
 
         //this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
         this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.chatUpdated);
+
+        UserStore.observeConnectionChange();
+
+        if (Platform.OS === 'android') {
+            this.backgroundTimer =  BackgroundTimer.runBackgroundTimer(() => {
+                UserStore.reload();
+            }, 2 * 60 * 1000);
+        }
     }
 
     private stopObserve = () => {
         this.unsubscribe();
         //this.userUnsubscribe();
         this.chatUnsubscribe();
+        
+        UserStore.stopObserveConnectionChange();
+
+        if (Platform.OS === 'android') {
+            BackgroundTimer.clearInterval(this.backgroundTimer);
+        }
     }
 
     public get = async (id:number) :Promise<void> => {
@@ -389,7 +405,6 @@ class ArenaStore {
 
         this.observe();
 
-        UserStore.observeConnectionChange();
         Navigator.navigate('Arena', null);
         this.playSound();
     }
@@ -400,8 +415,8 @@ class ArenaStore {
 
         this.id = null;
         SkywayStore.leave();
+
         this.stopObserve();
-        UserStore.stopObserveConnectionChange();
         
         UserStore.asyncSetConnect(false);
         clearInterval(this.tickTimeout);
