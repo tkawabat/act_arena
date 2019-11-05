@@ -2,15 +2,15 @@ import Moment from 'moment';
 import { Alert, Platform, } from 'react-native';
 import { observable, computed, action } from 'mobx';
 import { IMessage } from 'react-native-gifted-chat';
-import BackgroundTimer from 'react-native-background-timer';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
+import Scheduler from '../lib/Scheduler';
 
 import ConfigStore from './ConfigStore';
-import UserStore, { User } from './UserStore';
+import UserStore from './UserStore';
 import SkywayStore from './SkywayStore';
 import SoundStore from './SoundStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
@@ -33,11 +33,9 @@ class ArenaStore {
     private ref:Firebase.firestore.DocumentReference;
     private unsubscribe:Function;
     private userRef:Firebase.firestore.CollectionReference;
-    private userUnsubscribe:Function;
+    //private userUnsubscribe:Function;
     private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
-    private tickTimeout:NodeJS.Timeout;
-    private backgroundTimer;
 
     // Arena
     private id :number = null; // entered arena
@@ -160,7 +158,7 @@ class ArenaStore {
         this.arenaState = state;
         this.time = diff;
         
-        if (diff <= 0) clearInterval(this.tickTimeout);
+        if (diff <= 0) Scheduler.clearInterval(C.SchedulerArenaTick);
     }
 
     @action
@@ -194,8 +192,8 @@ class ArenaStore {
             }
         }
 
-        clearInterval(this.tickTimeout);
-        this.tickTimeout = setInterval(this.tick, 1000);
+        Scheduler.clearInterval(C.SchedulerArenaTick);
+        Scheduler.setInterval(C.SchedulerArenaTick, this.tick, 1000);
     }
 
     private usersUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
@@ -207,7 +205,7 @@ class ArenaStore {
         // 退室チェック
         if (this.id !== null && !users[UserStore.id]) {
             OverlayMessageStore.start('接続切れのため退室します');
-            setTimeout(() => this.leave(), 2000);
+            Scheduler.setTimeout('', this.leave, 2000);
             return;
         }
 
@@ -265,7 +263,7 @@ class ArenaStore {
                 OverlayMessageStore.start('上演開始');
                 break;
         }
-        setTimeout(this.playSound, 100);
+        Scheduler.setTimeout('', this.playSound, 100);
     }
 
     private dealArenaMessageTransition = (before:string, after:string) :void => {
@@ -279,7 +277,7 @@ class ArenaStore {
     private preAct = () => {
         const t1 = this.time * 1000 - C.SoundFadeDuration - 7000;
         if (t1 > 0) {
-            setTimeout(() => {
+            Scheduler.setTimeout('', () => {
                 SoundStore.setVolume(0.5);
             }, t1);
         }
@@ -288,7 +286,7 @@ class ArenaStore {
         if (t2 < 0) {
             SoundStore.stop();
         } else {
-            setTimeout(() => {
+            Scheduler.setTimeout('', () => {
                 SoundStore.fadeOut();
             }, t2);
         }
@@ -338,9 +336,7 @@ class ArenaStore {
         UserStore.observeConnectionChange();
 
         if (Platform.OS === 'android') {
-            this.backgroundTimer =  BackgroundTimer.runBackgroundTimer(() => {
-                UserStore.reload();
-            }, 2 * 60 * 1000);
+            Scheduler.setInterval(C.SchedulerAndroidReload, UserStore.reload, 2 * 60 * 1000);
         }
     }
 
@@ -352,7 +348,7 @@ class ArenaStore {
         UserStore.stopObserveConnectionChange();
 
         if (Platform.OS === 'android') {
-            BackgroundTimer.clearInterval(this.backgroundTimer);
+            Scheduler.clearInterval(C.SchedulerAndroidReload);
         }
     }
 
@@ -426,7 +422,7 @@ class ArenaStore {
         this.stopObserve();
         
         UserStore.asyncSetConnect(false);
-        clearInterval(this.tickTimeout);
+        Scheduler.clearInterval(C.SchedulerArenaTick);
         this.userRef.doc(UserStore.id).delete()
             .catch((error) => Amplitude.error('ArenaStore leave', error))
         ;
@@ -439,7 +435,7 @@ class ArenaStore {
         if (!this.users[UserStore.id]) return;
 
         ConfigStore.load(true);
-        setTimeout(() => {
+        Scheduler.setTimeout('', () => {
             this.userRef.doc(UserStore.id).update({
                 state: state
             })

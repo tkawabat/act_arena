@@ -2,6 +2,7 @@ import { observable, computed, action } from 'mobx';
 import { Dimensions } from 'react-native';
 
 import * as C from '../lib/Const';
+import Scheduler from '../lib/Scheduler';
 
 
 class OverlayMessageStore {
@@ -22,7 +23,7 @@ class OverlayMessageStore {
 
     @action animationEnd = () => {
         if (this.state === C.OverlayMessageState.FIRST) {
-            setTimeout(() => {
+            Scheduler.setTimeout('', () => {
                 this.state = C.OverlayMessageState.SECOND;
                 this.from = width;
                 this.to = 0;

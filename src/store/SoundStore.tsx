@@ -3,6 +3,7 @@ import Sound from 'react-native-sound';
 
 import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
+import Scheduler from '../lib/Scheduler';
 
 
 class SoundStore {
@@ -70,7 +71,7 @@ class SoundStore {
                 return;
             }
             this.incrementVolume(step);
-            setTimeout(fadeFunction, C.SoundFadeDuration / 100);
+            Scheduler.setTimeout('', fadeFunction, C.SoundFadeDuration / 100);
         }
         fadeFunction();  
     }
@@ -85,7 +86,7 @@ class SoundStore {
                 return;
             }
             this.decrementVolume(step);
-            setTimeout(fadeFunction, C.SoundFadeDuration / 100);
+            Scheduler.setTimeout('', fadeFunction, C.SoundFadeDuration / 100);
         }
         fadeFunction();
     }

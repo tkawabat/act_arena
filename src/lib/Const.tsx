@@ -110,3 +110,6 @@ export const SeList = {
 
 export const SoundFadeDuration = 8000;
 export const OverlayDuration = 1000;
+
+export const SchedulerArenaTick = 'ArenaTick';
+export const SchedulerAndroidReload = 'AndroidReload';
