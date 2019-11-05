@@ -20,8 +20,6 @@ class SoundStore {
     private loadSe = () => {
         this.seList = new Array<Sound>();
         for (const key in C.SeList) {
-            console.log('load '+key);
-            console.log('load '+C.SeList[key].file);
             this.seList[key] = new Sound(C.SeList[key].file, Sound.MAIN_BUNDLE, (error) => {
                 if (error) {
                     Amplitude.error('SoundStore loadSe', error)
