@@ -32,7 +32,15 @@ class ConfigStore {
 
     @computed get mustUpdate() :boolean {
         if (!this.isInitLoaded) return false; // for ios
-        return VersionNumber.appVersion < this.requireVersion;
+        
+        const v1 = VersionNumber.appVersion.split('.');
+        const v2 = this.requireVersion.split('.');
+        for (let i = 0; i < Math.max(v1.length, v2.length); i++) {
+            const v1i = parseInt(v1.shift() || '0');
+            const v2i = parseInt(v2.shift() || '0');
+            if (v1i !== v2i) return v1i < v2i;
+        }
+        return false;
     }
 
     constructor() {
