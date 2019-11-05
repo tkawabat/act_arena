@@ -9,7 +9,6 @@ class Amplitude {
 
     constructor() {
         amplitude.initialize(Secret.amplitude.apiKey);
-        amplitude.logEvent("init");
     }
 
     public setUserId = (userId:string) => {
