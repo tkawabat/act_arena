@@ -8,9 +8,9 @@ import ArenaStore from '../store/ArenaStore';
 
 
 interface props {
-    title: string
-    , explain: string
-    , onPress: () => void
+    title: string,
+    explain: string,
+    onPress: () => void
 }
 
 @observer

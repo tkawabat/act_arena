@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Container, Header, Content, Icon, Button } from 'native-base';
