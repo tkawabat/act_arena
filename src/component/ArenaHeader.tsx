@@ -8,12 +8,15 @@ import Amplitude from '../lib/Amplitude';
 
 import ArenaStore from '../store/ArenaStore';
 
-
 import Timer from '../component/Timer';
 
 
+interface props {
+    userNum: number,
+}
+
 @observer
-export default class ArenaHeader extends Component {
+export default class ArenaHeader extends Component<props> {
 
     private leave = () => {
         Alert.alert('', 'アリーナから退出します。', [
@@ -35,7 +38,7 @@ export default class ArenaHeader extends Component {
                 </View>
                 <View style={styles.right}>
                     <Icon name='user' type='FontAwesome5' style={styles.userNumIcon} />
-                    <Text style={styles.userNumText}>{ArenaStore.userNum}</Text>
+                    <Text style={styles.userNumText}>{this.props.userNum}</Text>
                     <Button transparent onPress={this.leave} disabled={!ArenaStore.canLeave}>
                         <Icon name='sign-out-alt' type='FontAwesome5' fontSize={20} />
                     </Button>

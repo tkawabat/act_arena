@@ -18,7 +18,6 @@ import UserStore from '../store/UserStore';
 import ScenarioMaster from '../component/ScenarioMaster';
 import ActInfo from '../component/ActInfo';
 import ArenaHeader from '../component/ArenaHeader';
-import ArenaActionMaster from '../component/ArenaActionMaster';
 import ArenaFooter from '../component/ArenaFooter';
 import ChatTabHeader from '../component/ChatTabHeader';
 import ScenarioTabHeader from '../component/ScenarioTabHeader';
@@ -43,7 +42,7 @@ export default class Arena extends ScreenBase {
         return (
             <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
-                <ArenaHeader />
+                <ArenaHeader userNum={ArenaStore.userNum} />
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
                         <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} locked={true}>
