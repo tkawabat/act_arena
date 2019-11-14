@@ -9,8 +9,9 @@ import { action } from '@storybook/addon-actions';
 import * as C from '../lib/Const';
 
 import ActInfo from './ActInfo';
-import ArenaHeader from './ArenaHeader';
+import ArenaExplain from './ArenaExplain';
 import ArenaFooter from './ArenaFooter';
+import ArenaHeader from './ArenaHeader';
 import Microphone from './Microphone';
 import Timer from './Timer';
 import LobbyCard from './LobbyCard';
@@ -23,11 +24,14 @@ components
     //     .add('ActInfo', () => (
     //       <CenteredView><ActInfo /></CenteredView>
     //     ))
-    .add('ArenaHeader', () => (
-        CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
+    .add('ArenaExplain', () => (
+        CenteredView(<ArenaExplain />)
     ))
     .add('ArenaFooter', () => (
         CenteredView(<ArenaFooter />)
+    ))
+    .add('ArenaHeader', () => (
+        CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
     ))
     .add('Microphone', () => {
         const option = {

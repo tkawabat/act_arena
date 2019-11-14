@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-import { Container, Header, Content, Icon, Button } from 'native-base';
+import { Icon, Button } from 'native-base';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
+import { css } from 'styled-components';
 
 import * as C from '../lib/Const';
+import * as BasicStyle from '../lib/BasicStyle';
+
 import SkywayStore from '../store/SkywayStore';
 
 
@@ -19,19 +22,16 @@ export default class Microphone extends Component<props> {
         const disabled:boolean = this.props.speak === C.SpeakState.DISABLED;
         
         return (
-            <Button style={styles.button} onPress={SkywayStore.toggleMicrophone} disabled={disabled}>
+            <MicrophneButton onPress={SkywayStore.toggleMicrophone} disabled={disabled}>
                 <Icon name={name} type='FontAwesome5' />
-            </Button>
+            </MicrophneButton>
         );
 
     }
 }
 
-const styles = StyleSheet.create({
-    button: {
-        width: 100,
-        height: 40,
-        textAlign: 'center',
-        justifyContent: 'center',
-    }
-});
+const MicrophneButton = styled(Button)`
+    width: 100;
+    height: 40;
+    ${BasicStyle.Center};
+`

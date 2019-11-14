@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { StyleSheet, TouchableOpacity, TextInput,  WebView } from 'react-native';
-import { Text, View, Button, Icon, Title } from 'native-base';
+import { Text, View, Icon, } from 'native-base';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
+import { css } from 'styled-components';
 
 import * as C from '../lib/Const';
 
@@ -11,44 +12,46 @@ export default class ArenaExplain extends Component {
 
     render() {
         return (
-            <View style={styles.root}>
-                <Text style={styles.title}>アリーナの流れ</Text>
-                <Text style={styles.subtitle}>1 {C.ArenaStateString[C.ArenaState.WAIT]}</Text>
-                <Text style={styles.explain}>・画面の下の『エントリー』をぽちっ</Text>
-                <Text style={styles.subtitle}>2 {C.ArenaStateString[C.ArenaState.CONFIRM]} ({C.ArenaStateTime[C.ArenaState.CONFIRM]}秒)</Text>
-                <Text style={styles.explain}>・画面の下が<Icon name='microphone' type='FontAwesome5' style={styles.microphone}/>に変化</Text>
-                <Text style={styles.explain}>・ミュートを解除、お互いの声が聞こえるか確認しよう</Text>
-                <Text style={styles.subtitle}>3 {C.ArenaStateString[C.ArenaState.CHECK]} ({C.ArenaStateTime[C.ArenaState.CHECK]}秒)</Text>
-                <Text style={styles.explain}>・規約をしっかり読んで、『同意』をぽちっ</Text>
-                <Text style={styles.explain}>　※演じる箇所までは自動でスクロール</Text>
-                <Text style={styles.explain}>・ストーリー、キャラ、セリフをチェック</Text>
-                <Text style={styles.subtitle}>4 {C.ArenaStateString[C.ArenaState.ACT]} ({C.ArenaStateTime[C.ArenaState.ACT]}秒)</Text>
-                <Text style={styles.explain}>・劇を開始！　思いっきり演じよう</Text>
-            </View>
-               );
+            <Root>
+                <ExplainTitle>アリーナの流れ</ExplainTitle>
+                <SubTitle>1 {C.ArenaStateString[C.ArenaState.WAIT]}</SubTitle>
+                <Explain>・画面の下の『エントリー』をぽちっ</Explain>
+                <SubTitle>2 {C.ArenaStateString[C.ArenaState.CONFIRM]} ({C.ArenaStateTime[C.ArenaState.CONFIRM]}秒)</SubTitle>
+                <Explain>・画面の下が<Microphone name='microphone' type='FontAwesome5'/>に変化</Explain>
+                <Explain>・ミュートを解除、お互いの声が聞こえるか確認しよう</Explain>
+                <SubTitle>3 {C.ArenaStateString[C.ArenaState.CHECK]} ({C.ArenaStateTime[C.ArenaState.CHECK]}秒)</SubTitle>
+                <Explain>・規約をしっかり読んで、『同意』をぽちっ</Explain>
+                <Explain>　※演じる箇所までは自動でスクロール</Explain>
+                <Explain>・ストーリー、キャラ、セリフをチェック</Explain>
+                <SubTitle>4 {C.ArenaStateString[C.ArenaState.ACT]} ({C.ArenaStateTime[C.ArenaState.ACT]}秒)</SubTitle>
+                <Explain>・劇を開始！　思いっきり演じよう</Explain>
+            </Root>
+        );
     }
 }
 
-const styles = StyleSheet.create({
-    root: {
-        flex: 1,
-        padding: 20,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: '400',
-    },
-    subtitle: {
-        fontSize: 20,
-        fontStyle: 'italic',
-        marginTop: 20,
-    },
-    explain: {
-        fontSize: 16,
-        marginTop: 5,
-        marginLeft: 5,
-    },
-    microphone: {
-        fontSize: 12,
-    },
-});
+const Root = styled(View)`
+    flex: 1;
+    padding: 20px;
+`
+
+const ExplainTitle = styled(Text)`
+    fontSize: 24;
+    fontWeight: 400;
+`
+
+const SubTitle = styled(Text)`
+    fontSize: 20;
+    fontStyle: italic;
+    marginTop: 20;
+`
+
+const Explain = styled(Text)`
+    fontSize: 16;
+    marginTop: 5;
+    marginLeft: 5;
+`
+
+const Microphone = styled(Icon)`
+    fontSize: 12
+`
