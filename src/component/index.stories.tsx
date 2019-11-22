@@ -7,6 +7,7 @@ import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs
 import { action } from '@storybook/addon-actions';
 
 import * as C from '../lib/Const';
+import * as StoryUtil from '../lib/StoryUtil';
 
 import ActInfo from './ActInfo';
 import ArenaExplain from './ArenaExplain';
@@ -16,22 +17,21 @@ import Microphone from './Microphone';
 import Timer from './Timer';
 import LobbyCard from './LobbyCard';
 
-const CenteredView = (children) => <View style={styles.center}>{children}</View>;
 
-const components = storiesOf('Components', module);
+const components = storiesOf('Component', module);
 components
     .addDecorator(withKnobs)
     //     .add('ActInfo', () => (
     //       <CenteredView><ActInfo /></CenteredView>
     //     ))
     .add('ArenaExplain', () => (
-        CenteredView(<ArenaExplain />)
+        StoryUtil.CenteredView(<ArenaExplain />)
     ))
     .add('ArenaFooter', () => (
-        CenteredView(<ArenaFooter />)
+        StoryUtil.CenteredView(<ArenaFooter />)
     ))
     .add('ArenaHeader', () => (
-        CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
+        StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
     ))
     .add('Microphone', () => {
         const option = {
@@ -40,28 +40,17 @@ components
             SPEAK: C.SpeakState.SPEAK,
         }
         return (
-            CenteredView(<Microphone speak={select('speak', option, C.SpeakState.DISABLED)}/>)
+            StoryUtil.CenteredView(<Microphone speak={select('speak', option, C.SpeakState.DISABLED)}/>)
         )
     })
     .add('Timer', () => (
-        CenteredView(<Timer />)
+        StoryUtil.CenteredView(<Timer />)
     ))
     .add('LobbyCard', () => (
-        CenteredView(<LobbyCard
+        StoryUtil.CenteredView(<LobbyCard
             title={text('title', 'hoge')}
             explain={text('explain', 'fuga')}
             onPress={action('join')}
         />)
     ))
     ;
-
-let {height, width} = Dimensions.get('window');
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    width: width,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  }
-});

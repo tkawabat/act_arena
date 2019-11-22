@@ -33,5 +33,5 @@ export default class Microphone extends Component<props> {
 const MicrophneButton = styled(Button)`
     width: 100;
     height: 40;
-    ${BasicStyle.Center};
+    ${BasicStyle.center};
 `
