@@ -16,7 +16,7 @@ interface props {
 
 @observer
 export default class TextButton extends Component<props> {
-    
+
     constructor(props) {
         super(props);
         ArenaStore.arenaState = C.ArenaState.CHECK;

@@ -3,19 +3,13 @@
 //
 // https://github.com/elderfo/react-native-storybook-loader.git
 
-import SkywayStore from '../src/store/SkywayStore';
+import * as C from '../src/lib/Const';
+//import ArenaStore from "../src/store/ArenaStore";
 
-function loadStories() {
+
+export const loadStories = () => {
   require('./admin/index.stories');
   require('../src/component/atom/index.stories');
+  require('../src/component/template/index.stories');
   require('../src/component/index.stories');
 }
-
-const stories = [
-	'../src/component/index.stories'
-];
-
-module.exports = {
-  loadStories,
-  stories,
-};
