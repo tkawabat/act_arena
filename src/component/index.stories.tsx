@@ -18,7 +18,6 @@ import Microphone from './Microphone';
 import Timer from './Timer';
 import LobbyCard from './LobbyCard';
 import Scenario from './Scenario';
-import ScenarioMaster from './ScenarioMaster';
 
 
 const components = storiesOf('Component', module);
@@ -28,7 +27,7 @@ components
     //       <CenteredView><ActInfo /></CenteredView>
     //     ))
     .add('Agreement', () => (
-        StoryUtil.CenteredView(<Agreement />)
+        StoryUtil.FullView(<Agreement />)
     ))
     .add('ArenaExplain', () => (
         StoryUtil.CenteredView(<ArenaExplain />)
@@ -60,10 +59,7 @@ components
         />)
     ))
     .add('Senario', () => (
-        //StoryUtil.CenteredView(<Scenario />)
+        // StoryUtil.FullView(<Scenario />)
         <Scenario />
-    ))
-    .add('SenarioMaster', () => (
-        StoryUtil.CenteredView(<ScenarioMaster />)
     ))
     ;

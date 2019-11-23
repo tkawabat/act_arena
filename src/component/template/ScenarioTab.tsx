@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
-import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
-import { Platform, StyleSheet, Text, View, WebView } from 'react-native';
+import { Button, Icon } from 'native-base';
+import { StyleSheet, Text, View } from 'react-native';
 import { observer } from 'mobx-react';
 
-import * as C from '../lib/Const';
-import ConfigStore from '../store/ConfigStore';
-import ArenaStore from '../store/ArenaStore';
+import * as C from '../../lib/Const';
+import ConfigStore from '../../store/ConfigStore';
+import ArenaStore from '../../store/ArenaStore';
 
-import ArenaExplain from './ArenaExplain';
-import Agreement from './Agreement';
-import Scenario from './Scenario';
+import ArenaExplain from '../ArenaExplain';
+import Agreement from '../Agreement';
+import Scenario from '../Scenario';
 
 
 
 @observer
-export default class ScenarioMaster extends Component {
+export default class ScenarioTab extends Component {
 
     private addActTime = () => {
         ConfigStore.load(true);

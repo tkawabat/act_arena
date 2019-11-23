@@ -15,7 +15,7 @@ import ConfigStore from '../store/ConfigStore';
 import ArenaStore from '../store/ArenaStore';
 import UserStore from '../store/UserStore';
 
-import ScenarioMaster from '../component/ScenarioMaster';
+import ScenarioTab from '../component/template/ScenarioTab';
 import ActInfo from '../component/ActInfo';
 import ArenaHeader from '../component/ArenaHeader';
 import ArenaFooter from '../component/ArenaFooter';
@@ -52,7 +52,7 @@ export default class Arena extends ScreenBase {
                                     <ScenarioTabHeader />
                                     </TabHeading>
                             }>
-                                <ScenarioMaster />
+                                <ScenarioTab />
                                 <View style={styles.action}>
                                     {/* <ArenaActionMaster /> */}
                                     <ArenaFooter />
