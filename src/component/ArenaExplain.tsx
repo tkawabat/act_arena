@@ -36,22 +36,22 @@ const Root = styled(View)`
 `
 
 const ExplainTitle = styled(Text)`
-    fontSize: 24;
-    fontWeight: 400;
+    font-size: 24;
+    font-weight: 400;
 `
 
 const SubTitle = styled(Text)`
-    fontSize: 20;
-    fontStyle: italic;
-    marginTop: 20;
+    font-size: 20;
+    font-style: italic;
+    margin-top: 20;
 `
 
 const Explain = styled(Text)`
-    fontSize: 16;
-    marginTop: 5;
-    marginLeft: 5;
+    font-size: 16;
+    margin-top: 5;
+    margin-left: 5;
 `
 
 const Microphone = styled(Icon)`
-    fontSize: 12
+    font-size: 12
 `
