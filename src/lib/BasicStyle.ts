@@ -1,4 +1,10 @@
 import { css } from 'styled-components';
+import { Dimensions } from 'react-native';
+
+let { height, width } = Dimensions.get('window');
+export const screenWidth = css`
+    width: ${width};
+`
 
 export const center = css`
     justify-content: center;

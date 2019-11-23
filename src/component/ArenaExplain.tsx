@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { Text, View, Icon, } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
-import { css } from 'styled-components';
 
 import * as C from '../lib/Const';
+import BasicStyle from '../lib/BasicStyle';
 
 
 @observer
