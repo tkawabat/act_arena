@@ -7,17 +7,20 @@ import { action } from '@storybook/addon-actions';
 import * as C from '../../lib/Const';
 import * as StoryUtil from '../../lib/StoryUtil';
 
+import TextButton from './TextButton';
 import TextIconButton from './TextIconButton';
 
 const components = storiesOf('Atom', module);
 components
     .addDecorator(withKnobs)
-    //     .add('ActInfo', () => (
-    //       <CenteredView><ActInfo /></CenteredView>
-    //     ))
+    .add('TextButton', () => {
+        return (
+            StoryUtil.CenteredView(<TextButton text={text('text', '+30秒')} />)
+        )
+    })
     .add('TextIconButton', () => {
         return (
-            StoryUtil.CenteredView(<TextIconButton icon={text('icon', 'redo')} text={text('text', '+30秒')} />)
+            StoryUtil.CenteredView(<TextIconButton icon={text('icon', 'redo')} text={text('text', '規約')} />)
         )
     })
     ;
