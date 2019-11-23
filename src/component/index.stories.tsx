@@ -10,12 +10,15 @@ import * as C from '../lib/Const';
 import * as StoryUtil from '../lib/StoryUtil';
 
 import ActInfo from './ActInfo';
+import Agreement from './Agreement';
 import ArenaExplain from './ArenaExplain';
 import ArenaFooter from './ArenaFooter';
 import ArenaHeader from './ArenaHeader';
 import Microphone from './Microphone';
 import Timer from './Timer';
 import LobbyCard from './LobbyCard';
+import Scenario from './Scenario';
+import ScenarioMaster from './ScenarioMaster';
 
 
 const components = storiesOf('Component', module);
@@ -24,6 +27,9 @@ components
     //     .add('ActInfo', () => (
     //       <CenteredView><ActInfo /></CenteredView>
     //     ))
+    .add('Agreement', () => (
+        StoryUtil.CenteredView(<Agreement />)
+    ))
     .add('ArenaExplain', () => (
         StoryUtil.CenteredView(<ArenaExplain />)
     ))
@@ -52,5 +58,12 @@ components
             explain={text('explain', 'fuga')}
             onPress={action('join')}
         />)
+    ))
+    .add('Senario', () => (
+        //StoryUtil.CenteredView(<Scenario />)
+        <Scenario />
+    ))
+    .add('SenarioMaster', () => (
+        StoryUtil.CenteredView(<ScenarioMaster />)
     ))
     ;

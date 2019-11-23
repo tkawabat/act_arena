@@ -143,8 +143,8 @@ class SkywayStore {
     }
 
     public setDisabled = () :void => {
-        this.peer.setLocalStreamStatus(false);
         this.speakState = C.SpeakState.DISABLED;
+        if (this.peer) this.peer.setLocalStreamStatus(false);
     }
 }
 

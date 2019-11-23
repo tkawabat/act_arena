@@ -3,8 +3,10 @@
 //
 // https://github.com/elderfo/react-native-storybook-loader.git
 
+import SkywayStore from '../src/store/SkywayStore';
+
 function loadStories() {
-  require('../src/component/admin/index.stories');
+  require('./admin/index.stories');
   require('../src/component/atom/index.stories');
   require('../src/component/index.stories');
 }
