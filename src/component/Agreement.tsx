@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
-import { StyleSheet, TouchableOpacity, TextInput, Text, View, WebView } from 'react-native';
+import { Button } from 'native-base';
+import { View, WebView } from 'react-native';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
 
 import * as C from '../lib/Const';
+import * as BasicStyle from '../lib/BasicStyle';
 
 import ArenaStore from '../store/ArenaStore';
 
@@ -44,43 +46,38 @@ export default class Agreement extends Component {
 
     render() {
         return (
-            <View style={styles.root}>
-                <WebView style={styles.webview}
+            <Root>
+                <WebView
                     javaScriptEnabled={true}
                     injectedJavaScript={js(ArenaStore.agreementScroll)}
                     source={{uri: ArenaStore.agreementUrl}}
                     onMessage={this.onMessage}
                 />
-                <Button
-                    style={styles.button}
+                <AgreeButton
                     onPress={() => ArenaStore.setAgreement(C.AgreementState.AGREE)}
                     disabled={!ArenaStore.isReadAgreement}
                 >
-                    <Text style={styles.buttonText}>規約に同意</Text>
-                </Button>
-            </View>
+                    <AgreeButtonText>規約に同意</AgreeButtonText>
+                </AgreeButton>
+            </Root>
                );
     }
 }
 
-const styles = StyleSheet.create({
-    root: {
-        flex: 1,
-        //padding: 20,
-    },
-    button: {
-        height: 40,
-        width: 100,
-        alignSelf: 'flex-end',
-        justifyContent: 'center',
-        marginTop: 5,
-        marginRight: 10,
-        padding: 10,
-    },
-    buttonText: {
-        color: '#FFF',
-        fontWeight: '500',
-    },
-    webview: {
-    },
-});
+const Root = styled(View)`
+    flex: 1;
+`
+
+const AgreeButton = styled(Button)`
+    height: 40;
+    width: 100;
+    ${BasicStyle.center};
+    margin-top: 5;
+    margin-right: 10;
+    padding: 10px;
+`
+
+const AgreeButtonText = styled.Text`
+    color: #FFF;
+    font-weight: 500;
+`
