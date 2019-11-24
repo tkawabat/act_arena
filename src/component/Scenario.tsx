@@ -47,27 +47,27 @@ var color = function() {
     }
 };
 
+var scroll2Top = function() {
+    $('body').stop().animate({scrollTop:0}, 500);
+}
+
+var scroll2Start = function() {
+    var start = '${start}';
+    var elm;
+    for (elm of $('.act_arena_highlight')) {
+        if (!elm.textContent) continue;
+        if (elm.textContent.indexOf(start) === -1) continue;
+
+        var pos = elm.offsetTop - 100;
+        $('body').stop().animate({scrollTop:pos}, 500);
+        break;
+    }
+}
+
 loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", function() {
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/jQuery.highlightRegex/0.1.2/highlightRegex.min.js", function() {
         color();
-
-        // scroll
-        var start = '${start}';
-        var elm;
-        for (elm of $('.act_arena_highlight')) {
-            if (!elm.textContent) continue;
-            if (elm.textContent.indexOf(start) === -1) continue;
-
-            var pos = elm.offsetTop - 100;
-            $('body').stop().animate({scrollTop:pos}, 500);
-            break;
-        }
-
-        // var elm = $(".act_arena_highlight").first();
-        // if (elm.length) {
-        //     var pos = elm.get(0).offsetTop - 100;
-        //     $('body').stop().animate({scrollTop:pos}, 500);   
-        // }
+        scroll2Start();       
     });
 });
 `;
@@ -75,10 +75,24 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", 
 
 @observer
 export default class Scenario extends Component {
+    private webview:WebView;
+
+    constructor(props) {
+        super(props);
+
+        ArenaStore.scroll2Top = () => {
+            this.webview.injectJavaScript('scroll2Top();');
+        }
+        ArenaStore.scroll2Start = () => {
+            this.webview.injectJavaScript('scroll2Start();');
+        }
+    }
+
     render() {
         return (
             <WebView
                 javaScriptEnabled={true}
+                ref={ref => this.webview = ref}
                 injectedJavaScript={js(ArenaStore.startText, ArenaStore.endText)}
                 source={{ uri: ArenaStore.scenarioUrl }}
             />

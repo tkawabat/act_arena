@@ -77,6 +77,7 @@ const AgreeButton = styled(Button)`
     width: 100;
     ${BasicStyle.center};
     margin-top: 5;
+    margin-left: auto;
     margin-right: 10;
     padding: 10px;
 `

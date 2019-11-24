@@ -18,7 +18,7 @@ import UserStore from '../store/UserStore';
 import ScenarioTab from '../component/template/ScenarioTab';
 import ActInfo from '../component/ActInfo';
 import ArenaHeader from '../component/ArenaHeader';
-import ArenaFooter from '../component/ArenaFooter';
+import ScenarioFooter from '../component/organism/ScenarioFooter';
 import ChatTabHeader from '../component/ChatTabHeader';
 import ScenarioTabHeader from '../component/ScenarioTabHeader';
 import OverlayMessage from '../component/OverlayMessage';
@@ -53,10 +53,6 @@ export default class Arena extends ScreenBase {
                                     </TabHeading>
                             }>
                                 <ScenarioTab />
-                                <View style={styles.action}>
-                                    {/* <ArenaActionMaster /> */}
-                                    <ArenaFooter />
-                                </View>
                                 <ActInfo />
                             </Tab>
                             <Tab

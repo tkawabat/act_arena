@@ -37,6 +37,9 @@ class ArenaStore {
     private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
 
+    public scroll2Top = () => {};
+    public scroll2Start = () => {};
+
     // Arena
     private id :number = null; // entered arena
     @observable scenario:string;
@@ -78,6 +81,11 @@ class ArenaStore {
     @computed get userState() {
         if (!this.users[UserStore.id]) return C.ArenaUserState.LISTNER;
         return this.users[UserStore.id].state;
+    }
+
+    set userState(state:C.ArenaUserState) {
+        if (!this.users[UserStore.id]) return;
+        this.users[UserStore.id].state = state;
     }
 
     @computed get canLeave() {
