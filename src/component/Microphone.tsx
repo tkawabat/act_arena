@@ -10,16 +10,12 @@ import * as BasicStyle from '../lib/BasicStyle';
 import SkywayStore from '../store/SkywayStore';
 
 
-interface props {
-    speak: C.SpeakState
-}
-
 @observer
-export default class Microphone extends Component<props> {
+export default class Microphone extends Component {
 
     render() {
-        const name:string = this.props.speak === C.SpeakState.SPEAK ? 'microphone': 'microphone-slash';
-        const disabled:boolean = this.props.speak === C.SpeakState.DISABLED;
+        const name:string = SkywayStore.speakState === C.SpeakState.SPEAK ? 'microphone': 'microphone-slash';
+        const disabled:boolean = SkywayStore.speakState === C.SpeakState.DISABLED;
         
         return (
             <MicrophneButton onPress={SkywayStore.toggleMicrophone} disabled={disabled}>

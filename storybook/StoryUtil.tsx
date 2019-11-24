@@ -46,6 +46,10 @@ export const FullView = (children) => {
     return (<Full>{children}</Full>);
 }
 
+export const BottomView = (children) => {
+    return (<Bottom>{children}</Bottom>);
+}
+
 
 const Centered = styled(View)`
     flex: 1;
@@ -57,6 +61,13 @@ const Centered = styled(View)`
 const Full = styled(View)`
     flex: 1;
     margin-top: 20px;
+    margin-bottom: 40px;
+    border-width: 1px;
+`
+
+const Bottom = styled(View)`
+    position: absolute;
+    bottom: 0;
     margin-bottom: 40px;
     border-width: 1px;
 `

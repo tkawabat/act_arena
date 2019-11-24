@@ -8,6 +8,7 @@ import { action } from '@storybook/addon-actions';
 
 import * as C from '../lib/Const';
 import * as StoryUtil from '../../storybook/StoryUtil';
+import SkywayStoreAdmin from '../../storybook/admin/SkywayStoreAdmin';
 
 import ActInfo from './ActInfo';
 import Agreement from './Agreement';
@@ -39,14 +40,10 @@ components
         StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
     ))
     .add(Microphone.name, () => {
-        const option = {
-            DISABLED: C.SpeakState.DISABLED,
-            MUTE: C.SpeakState.MUTE,
-            SPEAK: C.SpeakState.SPEAK,
-        }
-        return (
-            StoryUtil.CenteredView(<Microphone speak={select('speak', option, C.SpeakState.DISABLED)}/>)
-        )
+        return ([
+            StoryUtil.CenteredView(<Microphone />),
+            StoryUtil.CenteredView(<SkywayStoreAdmin />),
+        ])
     })
     .add(Timer.name, () => (
         StoryUtil.CenteredView(<Timer />)

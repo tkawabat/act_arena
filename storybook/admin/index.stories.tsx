@@ -7,6 +7,7 @@ import * as C from '../../src/lib/Const';
 import * as StoryUtil from '../StoryUtil';
 
 import ArenaStoreAdmin from './ArenaStoreAdmin';
+import SkywayStoreAdmin from './SkywayStoreAdmin';
 
 const components = storiesOf('Admin', module);
 components
@@ -14,6 +15,11 @@ components
     .add(ArenaStoreAdmin.name, () => {
         return (
             StoryUtil.CenteredView(<ArenaStoreAdmin />)
+        )
+    })
+    .add(SkywayStoreAdmin.name, () => {
+        return (
+            StoryUtil.CenteredView(<SkywayStoreAdmin />)
         )
     })
     ;
