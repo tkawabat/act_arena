@@ -22,7 +22,8 @@ components
         return (
             StoryUtil.CenteredView(<SquareIconButton
                 icon={text('icon', 'arrow-up')}
-                onPress={() => {}}
+                disabled={boolean('disabled', false)}
+                onPress={action('onPress')}
             />)
         )
     })
@@ -30,7 +31,8 @@ components
         return (
             StoryUtil.CenteredView(<SquareTextButton
                 text={text('text', '+30秒')}
-                onPress={() => {}}
+                disabled={boolean('disabled', false)}
+                onPress={action('onPress')}
             />)
         )
     })
@@ -39,7 +41,8 @@ components
             StoryUtil.CenteredView(<SquareTextIconButton
                 icon={text('icon', 'redo')}
                 text={text('text', '規約')}
-                onPress={() => {}}
+                disabled={boolean('disabled', false)}
+                onPress={action('onPress')}
             />)
         )
     })
