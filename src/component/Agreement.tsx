@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
+import { WebView } from 'react-native';
 import { Button } from 'native-base';
-import { View, WebView } from 'react-native';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
@@ -47,7 +47,7 @@ export default class Agreement extends Component {
     render() {
         return (
             <Root>
-                <WebView
+                <Screen
                     javaScriptEnabled={true}
                     injectedJavaScript={js(ArenaStore.agreementScroll)}
                     source={{uri: ArenaStore.agreementUrl}}
@@ -64,8 +64,12 @@ export default class Agreement extends Component {
     }
 }
 
-const Root = styled(View)`
+const Root = styled.View`
     flex: 1;
+`
+
+const Screen = styled(WebView)`
+    flex: 1
 `
 
 const AgreeButton = styled(Button)`
