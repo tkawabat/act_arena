@@ -6,7 +6,7 @@ import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs
 import { action } from '@storybook/addon-actions';
 
 import * as C from '../../lib/Const';
-import * as StoryUtil from '../../lib/StoryUtil';
+import * as StoryUtil from '../../../storybook/StoryUtil';
 
 import ScenarioTab from './ScenarioTab';
 

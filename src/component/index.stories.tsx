@@ -7,7 +7,7 @@ import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs
 import { action } from '@storybook/addon-actions';
 
 import * as C from '../lib/Const';
-import * as StoryUtil from '../lib/StoryUtil';
+import * as StoryUtil from '../../storybook/StoryUtil';
 
 import ActInfo from './ActInfo';
 import Agreement from './Agreement';
@@ -58,8 +58,8 @@ components
             onPress={action('join')}
         />)
     ))
-    .add('Senario', () => (
-        // StoryUtil.FullView(<Scenario />)
-        <Scenario />
+    .add('Scenario', () => (
+        StoryUtil.FullView(<Scenario />)
+        // <Scenario />
     ))
     ;

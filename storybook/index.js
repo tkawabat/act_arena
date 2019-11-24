@@ -3,8 +3,10 @@ import { getStorybookUI, configure } from '@storybook/react-native';
 
 import './rn-addons';
 
+import * as StoryUtil from './StoryUtil';
 import * as loader from './storyLoader';
-//loader.init();
+
+StoryUtil.init();
 configure(loader.loadStories, module);
 
 // Refer to https://github.com/storybookjs/storybook/tree/master/app/react-native#start-command-parameters

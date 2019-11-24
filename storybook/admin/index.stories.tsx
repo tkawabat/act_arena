@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react-native';
 import { withKnobs, text, boolean, number, select } from '@storybook/addon-knobs';
 
 import * as C from '../../src/lib/Const';
-import * as StoryUtil from '../../src/lib/StoryUtil';
+import * as StoryUtil from '../StoryUtil';
 
 import ArenaStoreAdmin from './ArenaStoreAdmin';
 
