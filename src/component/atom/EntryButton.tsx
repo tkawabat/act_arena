@@ -12,7 +12,7 @@ import ArenaStore from '../../store/ArenaStore';
 export default class EntryButton extends Component {
 
     render() {
-        const text = ArenaStore.userState === C.ArenaUserState.LISTNER ? 'エントリー' : 'エントリー済み';
+        const text = ArenaStore.userState === C.ArenaUserState.LISTNER ? 'エントリー' : 'エントリー中';
         const success = ArenaStore.userState === C.ArenaUserState.LISTNER;
         const onPress = ArenaStore.userState === C.ArenaUserState.LISTNER ?
             () => ArenaStore.entry(C.ArenaUserState.ENTRY)

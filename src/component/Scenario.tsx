@@ -23,6 +23,9 @@ function loadScript(src, callback) {
     };
 }
 
+var startPos = 0;
+var body = $('body');
+
 var color = function() {
     var b = document.querySelector("body");
     var start = '${start}';
@@ -45,23 +48,23 @@ var color = function() {
                 attrs: {'style': 'background: #FFCCCC'},
         });
     }
-};
 
-var scroll2Top = function() {
-    $('body').stop().animate({scrollTop:0}, 500);
-}
-
-var scroll2Start = function() {
-    var start = '${start}';
-    var elm;
     for (elm of $('.act_arena_highlight')) {
         if (!elm.textContent) continue;
         if (elm.textContent.indexOf(start) === -1) continue;
 
-        var pos = elm.offsetTop - 100;
-        $('body').stop().animate({scrollTop:pos}, 500);
+        startPos = elm.offsetTop - 100;
         break;
     }
+    
+};
+
+var scroll2Top = function() {
+    body.stop().animate({scrollTop:0}, 500);
+}
+
+var scroll2Start = function() {
+    body.stop().animate({scrollTop:startPos}, 500);
 }
 
 loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", function() {
