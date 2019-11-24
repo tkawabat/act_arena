@@ -51,7 +51,7 @@ export default class ScenarioFooter extends Component {
 }
 
 const Root = styled.View`
-    height: 60;
+    height: 50;
     ${BasicStyle.screenWidth};
     flex-direction: row;
     justify-content: space-between;
