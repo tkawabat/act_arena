@@ -25,23 +25,23 @@ export const RoomUserLimit = 10;
 
 export enum ArenaState {
     WAIT = 0,
-    CONFIRM = 1,
+    READ = 1,
     CHECK = 2,
     ACT = 3,
 }
 
 export const ArenaStateString = {
     [ArenaState.WAIT]: '演者募集',
-    [ArenaState.CONFIRM]: 'マイクチェック',
-    [ArenaState.CHECK]: '台本チェック',
+    [ArenaState.READ]: '台本チェック',
+    [ArenaState.CHECK]: 'マイクチェック',
     [ArenaState.ACT]: '上演',
 }
 
 export const ArenaStateTime = {
     [ArenaState.WAIT]: 0,
-    [ArenaState.CONFIRM]: 30,
-    [ArenaState.CHECK]: 60,
-    [ArenaState.ACT]: 240,
+    [ArenaState.READ]: 60,
+    [ArenaState.CHECK]: 30,
+    [ArenaState.ACT]: 180,
 }
 
 export enum ArenaUserState {

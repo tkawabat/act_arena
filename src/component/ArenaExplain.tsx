@@ -16,13 +16,13 @@ export default class ArenaExplain extends Component {
                 <ExplainTitle>アリーナの流れ</ExplainTitle>
                 <SubTitle>1 {C.ArenaStateString[C.ArenaState.WAIT]}</SubTitle>
                 <Explain>・画面の下の『エントリー』をぽちっ</Explain>
-                <SubTitle>2 {C.ArenaStateString[C.ArenaState.CONFIRM]} ({C.ArenaStateTime[C.ArenaState.CONFIRM]}秒)</SubTitle>
-                <Explain>・画面の下が<Microphone name='microphone' type='FontAwesome5'/>に変化</Explain>
-                <Explain>・ミュートを解除、お互いの声が聞こえるか確認しよう</Explain>
-                <SubTitle>3 {C.ArenaStateString[C.ArenaState.CHECK]} ({C.ArenaStateTime[C.ArenaState.CHECK]}秒)</SubTitle>
+                <SubTitle>2 {C.ArenaStateString[C.ArenaState.READ]} ({C.ArenaStateTime[C.ArenaState.READ]}秒)</SubTitle>
                 <Explain>・規約をしっかり読んで、『同意』をぽちっ</Explain>
                 <Explain>　※演じる箇所までは自動でスクロール</Explain>
                 <Explain>・ストーリー、キャラ、セリフをチェック</Explain>
+                <SubTitle>3 {C.ArenaStateString[C.ArenaState.CHECK]} ({C.ArenaStateTime[C.ArenaState.CHECK]}秒)</SubTitle>
+                <Explain>・画面の下が<Microphone name='microphone' type='FontAwesome5'/>に変化</Explain>
+                <Explain>・ミュートを解除、お互いの声が聞こえるか確認しよう</Explain>
                 <SubTitle>4 {C.ArenaStateString[C.ArenaState.ACT]} ({C.ArenaStateTime[C.ArenaState.ACT]}秒)</SubTitle>
                 <Explain>・劇を開始！　思いっきり演じよう</Explain>
             </Root>

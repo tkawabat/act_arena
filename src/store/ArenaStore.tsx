@@ -17,7 +17,7 @@ import OverlayMessageStore from '../store/OverlayMessageStore';
 
 interface Characters {
     name: string
-    gender: number
+    gender: C.Gender
     user: string
     userName: string
 }
@@ -33,7 +33,7 @@ class ArenaStore {
     private ref:Firebase.firestore.DocumentReference;
     private unsubscribe:Function;
     private userRef:Firebase.firestore.CollectionReference;
-    //private userUnsubscribe:Function;
+    private userUnsubscribe:Function;
     private chatRef:Firebase.firestore.CollectionReference;
     private chatUnsubscribe:Function;
 
@@ -42,10 +42,11 @@ class ArenaStore {
 
     // Arena
     private id :number = null; // entered arena
+    private endAt: Array<Moment.Moment>;
+
     @observable scenario:string;
-    @observable arenaState:C.ArenaState = null;
+    @observable arenaState:C.ArenaState = C.ArenaState.WAIT;
     @observable time:number;
-    @observable endAt:Moment.Moment;
     @observable users:{ [id:string]:ArenaUser} = {};
     @observable overlayMessage:string = null;
 
@@ -68,7 +69,7 @@ class ArenaStore {
     get tab() { return this._tab }
     set tab(tab:C.ArenaTab) { this._tab = tab }
 
-    @observable modal:boolean;
+    @observable modal:boolean = false;
 
     @computed get isReadAgreement() {
         return this.agreementState !== C.AgreementState.NONE;
@@ -123,6 +124,11 @@ class ArenaStore {
     constructor() {
         this.db = Firebase.firestore().collection('Arena');
 
+        this.endAt = new Array<Moment.Moment>();
+        this.endAt[C.ArenaState.READ] = Moment().add(-1, 'seconds');
+        this.endAt[C.ArenaState.CHECK] = Moment().add(-1, 'seconds');
+        this.endAt[C.ArenaState.ACT] = Moment().add(-1, 'seconds');
+
         this.get(0)
             .then(() => {
                 this.userRef.get().then(this.usersUpdated);
@@ -147,26 +153,24 @@ class ArenaStore {
     @action
     private tick = () => {
         // stateと残り時間の計算
-        let diff = this.endAt.diff(Moment(), 'seconds');
-        let state:C.ArenaState;
-        const stateList = [
-            C.ArenaState.WAIT,
-            C.ArenaState.ACT,
-            C.ArenaState.CHECK,
-            C.ArenaState.CONFIRM,
-        ];
-        for (state of stateList) {
-            // 遅延対策のため全stateの合計時間以上になることがあるので、マイクチェックなら終了させる
-            if (state === C.ArenaState.CONFIRM) break;
-            if (diff <= C.ArenaStateTime[state]) break;
-            diff -= C.ArenaStateTime[state];
+        let state:C.ArenaState = C.ArenaState.WAIT;
+        let diff:number = -1;
+
+        const now = Moment();
+        for (let [key, value] of this.endAt.entries()) {
+            if (!value) continue;
+            if (now > value) continue;
+            
+            state = key as C.ArenaState;
+            diff = value.diff(now, 'second');
+            break;
         }
 
         this.dealArenaStateTransition(this.arenaState, state);
         this.arenaState = state;
         this.time = diff;
         
-        if (diff <= 0) Scheduler.clearInterval(C.SchedulerArenaTick);
+        if (state === C.ArenaState.WAIT) Scheduler.clearInterval(C.SchedulerArenaTick);
     }
 
     @action
@@ -176,8 +180,9 @@ class ArenaStore {
         //this.dealArenaStateTransition(this.arenaState, data.state);
         this.dealArenaMessageTransition(this.overlayMessage, data.message);
 
-        //this.arenaState = data.state;
-        this.endAt = Moment.unix(data.endAt.seconds);
+        this.endAt[C.ArenaState.READ] = Moment.unix(data.readEndAt.seconds);
+        this.endAt[C.ArenaState.CHECK] = Moment.unix(data.checkEndAt.seconds);
+        this.endAt[C.ArenaState.ACT] = Moment.unix(data.actEndAt.seconds);
         this.title = data.title;
         this.agreementUrl = data.agreementUrl;
         this.agreementScroll = data.agreementScroll;
@@ -249,7 +254,7 @@ class ArenaStore {
                 if (this.userState === C.ArenaUserState.ACTOR) this.asyncSetRoomUser();
                 this.setModal(false);
                 break;
-            case C.ArenaState.CONFIRM:
+            case C.ArenaState.READ:
                 // マイクオン
                 for (const character of this.characters) {
                     if (character.user !== UserStore.id) continue;
@@ -261,11 +266,11 @@ class ArenaStore {
                     }
                     break;
                 }
-                OverlayMessageStore.start('マイクチェック');
+                OverlayMessageStore.start('台本チェック');
                 this.setModal(true);
                 break;
             case C.ArenaState.CHECK:
-                OverlayMessageStore.start('台本チェック');
+                OverlayMessageStore.start('マイクチェック');
                 break;
             case C.ArenaState.ACT:
                 OverlayMessageStore.start('上演開始');
@@ -312,7 +317,7 @@ class ArenaStore {
             case C.ArenaState.WAIT:
                 SoundStore.playRondom(0.4, true);
                 break;
-            case C.ArenaState.CONFIRM:
+            case C.ArenaState.READ:
                 this.se('matching');
                 SoundStore.playRondom(0.1, false);
                 break;
@@ -343,7 +348,7 @@ class ArenaStore {
             this.readMessage();
         });
 
-        //this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
+        this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
         this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.chatUpdated);
 
         UserStore.observeConnectionChange();
