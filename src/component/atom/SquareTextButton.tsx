@@ -11,7 +11,7 @@ interface props {
     text: string,
 }
 
-export default class TextButton extends Component<props> {
+export default class SquareTextButton extends Component<props> {
 
     render() {
         return (
@@ -30,6 +30,6 @@ const Root = styled.TouchableOpacity`
 `
 
 const Text = styled.Text`
-    font-size: 18;
+    font-size: 16;
     font-weight: bold;
 `

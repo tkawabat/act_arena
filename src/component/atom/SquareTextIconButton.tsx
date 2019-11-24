@@ -12,7 +12,7 @@ interface props {
     text: string,
 }
 
-export default class TextIconButton extends Component<props> {
+export default class SquareTextIconButton extends Component<props> {
 
     render() {
         return (
@@ -38,6 +38,7 @@ const _Icon = styled(Icon)`
     position: absolute;
     top: 3;
     left: 3;
+    font-size: 24;
 `
 
 const Text = styled.Text`

@@ -7,20 +7,20 @@ import { action } from '@storybook/addon-actions';
 import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
 
-import TextButton from './TextButton';
-import TextIconButton from './TextIconButton';
+import SquareTextButton from './SquareTextButton';
+import SquareTextIconButton from './SquareTextIconButton';
 
 const components = storiesOf('Atom', module);
 components
     .addDecorator(withKnobs)
-    .add('TextButton', () => {
+    .add(SquareTextButton.name, () => {
         return (
-            StoryUtil.CenteredView(<TextButton text={text('text', '+30秒')} />)
+            StoryUtil.CenteredView(<SquareTextButton text={text('text', '+30秒')} />)
         )
     })
-    .add('TextIconButton', () => {
+    .add(SquareTextIconButton.name, () => {
         return (
-            StoryUtil.CenteredView(<TextIconButton icon={text('icon', 'redo')} text={text('text', '規約')} />)
+            StoryUtil.CenteredView(<SquareTextIconButton icon={text('icon', 'redo')} text={text('text', '規約')} />)
         )
     })
     ;
