@@ -56,6 +56,7 @@ const Centered = styled(View)`
 
 const Full = styled(View)`
     flex: 1;
-    margin: 40px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     border-width: 1px;
 `
