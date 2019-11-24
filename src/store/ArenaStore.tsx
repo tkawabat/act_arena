@@ -161,7 +161,7 @@ class ArenaStore {
 
         const now = Moment();
         for (let [key, value] of this.endAt.entries()) {
-            if (!value) continue;
+            if (key === C.ArenaState.WAIT) continue;
             if (now > value) continue;
             
             state = key as C.ArenaState;
@@ -183,9 +183,9 @@ class ArenaStore {
         //this.dealArenaStateTransition(this.arenaState, data.state);
         this.dealArenaMessageTransition(this.overlayMessage, data.message);
 
-        this.endAt[C.ArenaState.READ] = Moment.unix(data.readEndAt.seconds);
-        this.endAt[C.ArenaState.CHECK] = Moment.unix(data.checkEndAt.seconds);
-        this.endAt[C.ArenaState.ACT] = Moment.unix(data.actEndAt.seconds);
+        this.endAt[C.ArenaState.READ] = Moment.unix(data.endAt[C.ArenaState.READ].seconds);
+        this.endAt[C.ArenaState.CHECK] = Moment.unix(data.endAt[C.ArenaState.CHECK].seconds);
+        this.endAt[C.ArenaState.ACT] = Moment.unix(data.endAt[C.ArenaState.ACT].seconds);
         this.title = data.title;
         this.agreementUrl = data.agreementUrl;
         this.agreementScroll = data.agreementScroll;

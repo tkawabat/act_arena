@@ -24,10 +24,10 @@ export const UserNgLimit = 50;
 export const RoomUserLimit = 10;
 
 export enum ArenaState {
-    WAIT = 0,
-    READ = 1,
-    CHECK = 2,
-    ACT = 3,
+    WAIT = -1,
+    READ = 0,
+    CHECK = 1,
+    ACT = 2,
 }
 
 export const ArenaStateString = {
