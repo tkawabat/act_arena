@@ -33,22 +33,18 @@ export default class ArenaStoreAdmin extends Component<props> {
     render() {
         return (
             <Root>
-                <Item>
-                    <EnumSelector 
-                        name={'ArenaState'}
-                        myEnum={C.ArenaState}
-                        onValueChange={(value: C.ArenaState) => { ArenaStore.arenaState = value; }}
-                        selectedValue={ArenaStore.arenaState}
-                    />
-                </Item>
-                <Item>
-                    <EnumSelector
-                        name={'ArenaUserState'}
-                        myEnum={C.ArenaUserState}
-                        onValueChange={(value: C.ArenaUserState) => { ArenaStore.userState = value; }}
-                        selectedValue={ArenaStore.userState}
-                    />
-                </Item>
+                <EnumSelector
+                    name={'ArenaState'}
+                    myEnum={C.ArenaState}
+                    onValueChange={(value: C.ArenaState) => { ArenaStore.arenaState = value; }}
+                    selectedValue={ArenaStore.arenaState}
+                />
+                <EnumSelector
+                    name={'ArenaUserState'}
+                    myEnum={C.ArenaUserState}
+                    onValueChange={(value: C.ArenaUserState) => { ArenaStore.userState = value; }}
+                    selectedValue={ArenaStore.userState}
+                />
                 <Item>
                     <Text>timer:</Text>
                     <Input
