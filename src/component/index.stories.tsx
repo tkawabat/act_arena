@@ -13,7 +13,6 @@ import SkywayStoreAdmin from '../../storybook/admin/SkywayStoreAdmin';
 import ActInfo from './ActInfo';
 import Agreement from './Agreement';
 import ArenaExplain from './ArenaExplain';
-import ArenaFooter from './ArenaFooter';
 import ArenaHeader from './ArenaHeader';
 import Timer from './Timer';
 import LobbyCard from './LobbyCard';
@@ -31,9 +30,6 @@ components
     ))
     .add(ArenaExplain.name, () => (
         StoryUtil.CenteredView(<ArenaExplain />)
-    ))
-    .add(ArenaFooter.name, () => (
-        StoryUtil.CenteredView(<ArenaFooter />)
     ))
     .add(ArenaHeader.name, () => (
         StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)

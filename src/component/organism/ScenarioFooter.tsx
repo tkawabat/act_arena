@@ -2,17 +2,19 @@ import React, {Component} from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { Text, View, Button, Icon, Badge } from 'native-base';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
 
-import * as C from '../lib/Const';
+import * as C from '../../lib/Const';
+import * as BasicStyle from '../../lib/BasicStyle';
 
-import ArenaStore from '../store/ArenaStore';
+import ArenaStore from '../../store/ArenaStore';
 
-import EntryButton from './atom/EntryButton';
-import Microphone from './atom/Microphone';
+import EntryButton from '../atom/EntryButton';
+import Microphone from '../atom/Microphone';
 
 
 @observer
-export default class ArenaFooter extends Component {
+export default class ScenarioFooter extends Component {
     informationButton() {
         if (ArenaStore.arenaState === C.ArenaState.WAIT) return null;
         if (!ArenaStore.title || ArenaStore.title === '') return null;
@@ -31,7 +33,7 @@ export default class ArenaFooter extends Component {
             ;
 
         return (
-            <View style={styles.root}>
+            <Root>
                 <View style={styles.left}>
                     {this.informationButton()}
                 </View>
@@ -43,21 +45,21 @@ export default class ArenaFooter extends Component {
                         <Text style={styles.badgeText}>{C.ArenaUserStateString[ArenaStore.userState]}</Text>
                     </Badge>
                 </View>
-            </View>
+            </Root>
         )
     }
 }
 
-const {height, width} = Dimensions.get('window');
+const Root = styled.View`
+    height: 60;
+    ${BasicStyle.screenWidth};
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000044;
+`
+
 const styles = StyleSheet.create({
-    root: {
-        flex: 1,
-        width: width,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#000044',
-    },
     left: {
         flex: 1,
     },

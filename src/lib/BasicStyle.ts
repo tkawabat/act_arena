@@ -11,9 +11,11 @@ export const center = css`
     align-items: center;
 `
 
-export const buttonBase = css`
+export const squareButtonBase = css`
     width: 50;
     height: 50;
+    border-width: 1;
     box-shadow: 1px 1px 5px #c3e1ff;
     border-radius: 5;
+    background-color: #FFF;
 `
