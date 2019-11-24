@@ -9,6 +9,7 @@ import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 import SkywayStoreAdmin from '../../../storybook/admin/SkywayStoreAdmin';
 
+import SquareIconButton from './SquareIconButton';
 import SquareTextButton from './SquareTextButton';
 import SquareTextIconButton from './SquareTextIconButton';
 import EntryButton from './EntryButton';
@@ -17,14 +18,29 @@ import Microphone from './Microphone';
 const components = storiesOf('Atom', module);
 components
     .addDecorator(withKnobs)
+    .add(SquareIconButton.name, () => {
+        return (
+            StoryUtil.CenteredView(<SquareIconButton
+                icon={text('icon', 'arrow-up')}
+                onPress={() => {}}
+            />)
+        )
+    })
     .add(SquareTextButton.name, () => {
         return (
-            StoryUtil.CenteredView(<SquareTextButton text={text('text', '+30秒')} />)
+            StoryUtil.CenteredView(<SquareTextButton
+                text={text('text', '+30秒')}
+                onPress={() => {}}
+            />)
         )
     })
     .add(SquareTextIconButton.name, () => {
         return (
-            StoryUtil.CenteredView(<SquareTextIconButton icon={text('icon', 'redo')} text={text('text', '規約')} />)
+            StoryUtil.CenteredView(<SquareTextIconButton
+                icon={text('icon', 'redo')}
+                text={text('text', '規約')}
+                onPress={() => {}}
+            />)
         )
     })
     .add(EntryButton.name, () => ([

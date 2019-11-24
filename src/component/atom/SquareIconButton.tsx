@@ -8,16 +8,16 @@ import * as BasicStyle from '../../lib/BasicStyle';
 
 
 interface props {
-    text: string,
+    icon: string,
     onPress: () => void,
 }
 
-export default class SquareTextButton extends Component<props> {
+export default class SquareIconButton extends Component<props> {
 
     render() {
         return (
             <Root onPress={this.props.onPress}>
-                <Text>{this.props.text}</Text>
+                <_Icon name={this.props.icon} type='FontAwesome5' />
             </Root>
         );
 
@@ -29,7 +29,6 @@ const Root = styled.TouchableOpacity`
     ${BasicStyle.center};
 `
 
-const Text = styled.Text`
-    font-size: 16;
-    font-weight: bold;
+const _Icon = styled(Icon)`
+    
 `
