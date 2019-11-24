@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-import { Text, View, Button, Icon, Badge } from 'native-base';
+import { Badge } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
@@ -15,17 +14,6 @@ import Microphone from '../atom/Microphone';
 
 @observer
 export default class ScenarioFooter extends Component {
-    informationButton() {
-        if (ArenaStore.arenaState === C.ArenaState.WAIT) return null;
-        if (!ArenaStore.title || ArenaStore.title === '') return null;
-
-        return (
-            <Button transparent onPress={() => ArenaStore.setModal(true)}>
-                <Icon style={styles.information} name='info-circle' type='FontAwesome5' />
-            </Button>
-        );
-    }
-
 
     render() {
         const entryButton = ArenaStore.userState == C.ArenaUserState.ACTOR ?
@@ -34,17 +22,15 @@ export default class ScenarioFooter extends Component {
 
         return (
             <Root>
-                <View style={styles.left}>
-                    {this.informationButton()}
-                </View>
-                <View style={styles.center}>
+                <Left />
+                <Center>
                     {entryButton}
-                </View>
-                <View style={styles.right}>
-                    <Badge {...(C.ArenaUserStateStyle[ArenaStore.userState])} style={styles.badge}>
-                        <Text style={styles.badgeText}>{C.ArenaUserStateString[ArenaStore.userState]}</Text>
-                    </Badge>
-                </View>
+                </Center>
+                <Right>
+                    <UserStaetBadge {...(C.ArenaUserStateStyle[ArenaStore.userState])}>
+                        <BadgeText>{C.ArenaUserStateString[ArenaStore.userState]}</BadgeText>
+                    </UserStaetBadge>
+                </Right>
             </Root>
         )
     }
@@ -59,26 +45,27 @@ const Root = styled.View`
     background-color: #000044;
 `
 
-const styles = StyleSheet.create({
-    left: {
-        flex: 1,
-    },
-    center: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    right: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-    },
-    information: {
-        color: '#CC9900',
-    },
-    badge: {
-        margin: 5,
-    },
-    badgeText: {
-        fontSize: 12,
-    }
-});
+const Left = styled.View`
+    flex: 1;
+`
+const Center = styled.View`
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`
+const Right = styled.View`
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+`
+
+const UserStaetBadge = styled(Badge)`
+    margin: 10px;
+`
+
+const BadgeText = styled.Text`
+    color: #fff;
+    font-size: 12;
+    font-weight: 500;
+`
