@@ -49,6 +49,7 @@ class ArenaStore {
     @observable time:number;
     @observable users:{ [id:string]:ArenaUser} = {};
     @observable overlayMessage:string = null;
+    @observable addActTimeRemaind:number = 0;
 
     // Scenario
     @observable title:string;
@@ -256,27 +257,33 @@ class ArenaStore {
                 this.agreementState = C.AgreementState.NONE;
                 if (this.userState === C.ArenaUserState.ACTOR) this.asyncSetRoomUser();
                 this.setModal(false);
+                this.addActTimeRemaind = 0;
                 break;
             case C.ArenaState.READ:
-                // マイクオン
-                for (const character of this.characters) {
-                    if (character.user !== UserStore.id) continue;
+                OverlayMessageStore.start('台本チェック');
+                this.setModal(true);
 
+                if (this.userState === C.ArenaUserState.ACTOR) {
                     Amplitude.info('ArenaBeActor', null);
+                    this.addActTimeRemaind = 1;
+                }
+                break;
+            case C.ArenaState.CHECK:
+                OverlayMessageStore.start('マイクチェック');
+                if (this.userState === C.ArenaUserState.ACTOR) {
+                    // マイクオン
                     if (SkywayStore.speakState === C.SpeakState.DISABLED) {
                         SkywayStore.setSpeakState(C.SpeakState.MUTE);
                         SkywayStore.toggleMicrophone();
                     }
-                    break;
+                    this.addActTimeRemaind = 1;
                 }
-                OverlayMessageStore.start('台本チェック');
-                this.setModal(true);
-                break;
-            case C.ArenaState.CHECK:
-                OverlayMessageStore.start('マイクチェック');
                 break;
             case C.ArenaState.ACT:
                 OverlayMessageStore.start('上演開始');
+                if (this.userState === C.ArenaUserState.ACTOR) {
+                    this.addActTimeRemaind = 1;
+                }
                 break;
         }
         Scheduler.setTimeout('', this.playSound, 100);
@@ -391,10 +398,26 @@ class ArenaStore {
             ;
     }
 
-    public getChat = () => {
-        return this.chatRef.get()
-            .catch((error) => Amplitude.error('ArenaStore getChat', error))
-            ;
+    public asyncAddActTime = async () :Promise<void> => {
+        if (this.time < 2) return;
+        if (this.addActTimeRemaind <= 0) return;
+        
+        this.addActTimeRemaind--;
+        const endAt = [];
+
+        for (let [key, value] of this.endAt.entries()) {
+            if (key < this.arenaState) {
+                endAt[key] = value; // すでに終わったstateは更新しない。
+            } else {
+                endAt[key] = value.add(30, 'seconds').toDate();
+            }
+        }
+        
+        return this.ref.update({
+            endAt: endAt
+        })
+        .catch((error) => Amplitude.error('ArenaStore add act time', error))
+        ;
     }
 
     @action
