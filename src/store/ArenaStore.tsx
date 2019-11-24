@@ -138,15 +138,18 @@ class ArenaStore {
         ;
     }
 
-    @action readMessage = () => {
+    @action
+    public readMessage = () => {
         this.latestReadMessage = this.messages[0];
     }
 
-    @action setModal = (modal:boolean) => {
+    @action
+    public setModal = (modal:boolean) => {
         this.modal = modal;
     }
 
-    @action public setAgreement = (agreement:C.AgreementState) => {
+    @action
+    public setAgreement = (agreement:C.AgreementState) => {
         this.agreementState = agreement;
     }
 
@@ -392,14 +395,6 @@ class ArenaStore {
         return this.chatRef.get()
             .catch((error) => Amplitude.error('ArenaStore getChat', error))
             ;
-    }
-
-    public update = () => {
-        const updatedAt = Moment().toDate();
-        this.ref.update({
-            updatedAt
-        })
-        .catch((err) => {console.log(err)})
     }
 
     @action
