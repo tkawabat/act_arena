@@ -10,6 +10,8 @@ import * as C from '../src/lib/Const';
 export const loadStories = () => {
   require('./admin/index.stories');
   require('../src/component/atom/index.stories');
+  require('../src/component/molecule/index.stories');
+  require('../src/component/organism/index.stories');
   require('../src/component/template/index.stories');
   require('../src/component/index.stories');
 }
