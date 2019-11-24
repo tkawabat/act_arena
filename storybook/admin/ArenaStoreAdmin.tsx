@@ -28,6 +28,24 @@ export default class ArenaStoreAdmin extends Component<props> {
         ArenaStore.startText = '七原：……どうしたんですか？　海道さんらしくもない。';
         ArenaStore.endText = '七原：記憶泥棒は貴方なんですよ。海道さん。';
         ArenaStore.time = 10;
+        ArenaStore.title = '記憶泥棒';
+
+        const character1 = {
+            name: 'chara1',
+            gender: C.Gender.Male,
+            user: '1',
+            userName: 'hoge'
+        };
+        const character2 = {
+            name: 'chara2',
+            gender: C.Gender.Female,
+            user: '2',
+            userName: 'fuga'
+        };
+        ArenaStore.characters = [
+            character1,
+            character2,
+        ];
     }
 
     render() {
