@@ -5,21 +5,23 @@ import { css } from 'styled-components';
 import { observer } from 'mobx-react';
 
 import * as C from '../../src/lib/Const';
+import * as EnumUtil from '../../src/lib/EnumUtil';
 import * as BasicStyle from '../../src/lib/BasicStyle';
 
 import ArenaStore from '../../src/store/ArenaStore';
 
+import EnumSelector from './EnumSelector';
 
 interface props {
 }
 
 
 @observer
-export default class TextButton extends Component<props> {
+export default class ArenaStoreAdmin extends Component<props> {
 
     constructor(props) {
         super(props);
-        ArenaStore.arenaState = C.ArenaState.CHECK;
+        // ArenaStore.arenaState = C.ArenaState.CHECK;
         ArenaStore.scenarioUrl = 'http://doodletxt.web.fc2.com/kiokudoro.htm';
         ArenaStore.agreementUrl = 'http://doodletxt.web.fc2.com/';
         ArenaStore.agreementScroll = 2500;
@@ -32,35 +34,25 @@ export default class TextButton extends Component<props> {
         return (
             <Root>
                 <Item>
-                    <Text>ArenaState:</Text>
-                    <Picker
-                        mode='dropdown'
+                    <EnumSelector 
+                        name={'ArenaState'}
+                        myEnum={C.ArenaState}
                         onValueChange={(value: C.ArenaState) => { ArenaStore.arenaState = value; }}
                         selectedValue={ArenaStore.arenaState}
-                    >
-                        <Picker.Item label="WAIT" value={C.ArenaState.WAIT} />
-                        <Picker.Item label="CHECK" value={C.ArenaState.CHECK} />
-                        <Picker.Item label="CONFIRM" value={C.ArenaState.CONFIRM} />
-                        <Picker.Item label="ACT" value={C.ArenaState.ACT} />
-                    </Picker>
+                    />
                 </Item>
                 <Item>
-                    <Text>ArenaUserState:</Text>
-                    <Picker
-                        mode='dropdown'
+                    <EnumSelector
+                        name={'ArenaUserState'}
+                        myEnum={C.ArenaUserState}
                         onValueChange={(value: C.ArenaUserState) => { ArenaStore.userState = value; }}
                         selectedValue={ArenaStore.userState}
-                    >
-                        <Picker.Item label="LISTNER" value={C.ArenaUserState.LISTNER} />
-                        <Picker.Item label="ENTRY" value={C.ArenaUserState.ENTRY} />
-                        <Picker.Item label="ACTOR" value={C.ArenaUserState.ACTOR} />
-                    </Picker>
+                    />
                 </Item>
                 <Item>
                     <Text>timer:</Text>
                     <Input
                         onChangeText={(value: string) => { ArenaStore.time = parseInt(value); }}
-                        maxLength={20}
                     />
                 </Item>
             </Root>
