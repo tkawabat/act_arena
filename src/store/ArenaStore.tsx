@@ -351,7 +351,7 @@ class ArenaStore {
             this.readMessage();
         });
 
-        this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
+        // this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
         this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.chatUpdated);
 
         UserStore.observeConnectionChange();
