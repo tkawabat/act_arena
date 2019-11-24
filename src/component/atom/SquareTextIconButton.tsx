@@ -10,6 +10,7 @@ import * as BasicStyle from '../../lib/BasicStyle';
 interface props {
     icon: string,
     text: string,
+    disabled?: boolean,
     onPress: () => void,
 }
 
@@ -17,7 +18,7 @@ export default class SquareTextIconButton extends Component<props> {
 
     render() {
         return (
-            <Root onPress={this.props.onPress}>
+            <Root onPress={this.props.onPress} disabled={this.props.disabled}>
                 <_Icon name={this.props.icon} type='FontAwesome5' />
                 <Text>{this.props.text}</Text>
             </Root>
@@ -27,18 +28,19 @@ export default class SquareTextIconButton extends Component<props> {
 }
 
 const Root = styled.TouchableOpacity`
-    ${BasicStyle.squareButtonBase};
+    ${BasicStyle.squareButton};
+    ${p => p.disabled && BasicStyle.disabledButton};
 `
 
 const _Icon = styled(Icon)`
     position: absolute;
     top: 3;
     left: 5;
-    font-size: 24;
+    font-size: 20;
 `
 
 const Text = styled.Text`
-    font-size: 10;
+    font-size: 8;
     font-weight: bold;
     color: #555;
     position: absolute;
