@@ -4,10 +4,10 @@ import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 import { css } from 'styled-components';
 
-import * as C from '../lib/Const';
-import * as BasicStyle from '../lib/BasicStyle';
+import * as C from '../../lib/Const';
+import * as BasicStyle from '../../lib/BasicStyle';
 
-import SkywayStore from '../store/SkywayStore';
+import SkywayStore from '../../store/SkywayStore';
 
 
 @observer

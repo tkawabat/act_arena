@@ -15,7 +15,6 @@ import Agreement from './Agreement';
 import ArenaExplain from './ArenaExplain';
 import ArenaFooter from './ArenaFooter';
 import ArenaHeader from './ArenaHeader';
-import Microphone from './Microphone';
 import Timer from './Timer';
 import LobbyCard from './LobbyCard';
 import Scenario from './Scenario';
@@ -39,12 +38,6 @@ components
     .add(ArenaHeader.name, () => (
         StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
     ))
-    .add(Microphone.name, () => {
-        return ([
-            StoryUtil.CenteredView(<Microphone />),
-            StoryUtil.CenteredView(<SkywayStoreAdmin />),
-        ])
-    })
     .add(Timer.name, () => (
         StoryUtil.CenteredView(<Timer />)
     ))

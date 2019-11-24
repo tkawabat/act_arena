@@ -7,14 +7,12 @@ import { action } from '@storybook/addon-actions';
 
 import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
+import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 
-// import ScenarioSideTools from './ScenarioSideTools';
+import EntryButton from '../atom/EntryButton';
 
 
 const components = storiesOf('Molecule', module);
 components
     .addDecorator(withKnobs)
-    // .add('SenarioTab', () => (
-    //     StoryUtil.FullView(<ScenarioSideTools />)
-    // ))
     ;

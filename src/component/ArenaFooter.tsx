@@ -4,12 +4,11 @@ import { Text, View, Button, Icon, Badge } from 'native-base';
 import { observer } from 'mobx-react';
 
 import * as C from '../lib/Const';
-import Amplitude from '../lib/Amplitude';
 
 import ArenaStore from '../store/ArenaStore';
-import UserStore from '../store/UserStore';
 
-import Microphone from './Microphone';
+import EntryButton from './atom/EntryButton';
+import Microphone from './atom/Microphone';
 
 
 @observer
@@ -25,44 +24,19 @@ export default class ArenaFooter extends Component {
         );
     }
 
-    entryButton() {
-        if (!ArenaStore.users[UserStore.id]) {
-            return null;
-        } else if (ArenaStore.users[UserStore.id].state == C.ArenaUserState.LISTNER) {
-            return (
-                <Button
-                    success={true}
-                    style={styles.buttonListner}
-                    onPress={() => ArenaStore.entry(C.ArenaUserState.ENTRY)}
-                >
-                    <Text style={styles.buttonText}>エントリー</Text>
-                </Button>
-                   );
-        } else if (ArenaStore.users[UserStore.id].state == C.ArenaUserState.ENTRY) {
-            return (
-                <Button
-                    success={true}
-                    style={styles.buttonEntry}
-                    onPress={() => ArenaStore.entry(C.ArenaUserState.LISTNER)}
-                >
-                    <Text style={styles.buttonText}>エントリー済</Text>
-                </Button>
-                   );
-        } else if (ArenaStore.users[UserStore.id].state == C.ArenaUserState.ACTOR) {
-            return (
-                <Microphone />
-            );   
-        }
-    }
 
     render() {
+        const entryButton = ArenaStore.userState == C.ArenaUserState.ACTOR ?
+            (<Microphone />) : (<EntryButton />)
+            ;
+
         return (
             <View style={styles.root}>
                 <View style={styles.left}>
                     {this.informationButton()}
                 </View>
                 <View style={styles.center}>
-                {this.entryButton()}
+                    {entryButton}
                 </View>
                 <View style={styles.right}>
                     <Badge {...(C.ArenaUserStateStyle[ArenaStore.userState])} style={styles.badge}>
@@ -95,22 +69,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-    },
-    buttonListner: {
-        width: 120,
-        height: 40,
-        justifyContent: 'center',
-    },
-    buttonEntry: {
-        width: 120,
-        height: 40,
-        justifyContent: 'center',
-        backgroundColor: '#CCC',
-    },
-    buttonText: {
-        color: '#FFF',
-        fontSize: 14,
-        fontWeight: '500',
     },
     information: {
         color: '#CC9900',
