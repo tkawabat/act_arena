@@ -14,7 +14,7 @@ import ScenarioSideTools from './ScenarioSideTools';
 const components = storiesOf('Organism', module);
 components
     .addDecorator(withKnobs)
-    .add('ScenarioSideTools', () => (
+    .add(ScenarioSideTools.name, () => (
         StoryUtil.FullView(<ScenarioSideTools />)
     ))
     ;

@@ -11,7 +11,7 @@ import ArenaStoreAdmin from './ArenaStoreAdmin';
 const components = storiesOf('Admin', module);
 components
     .addDecorator(withKnobs)
-    .add('ArenaStoreAdmin', () => {
+    .add(ArenaStoreAdmin.name, () => {
         return (
             StoryUtil.CenteredView(<ArenaStoreAdmin />)
         )

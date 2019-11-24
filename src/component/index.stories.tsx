@@ -26,19 +26,19 @@ components
     //     .add('ActInfo', () => (
     //       <CenteredView><ActInfo /></CenteredView>
     //     ))
-    .add('Agreement', () => (
+    .add(Agreement.name, () => (
         StoryUtil.FullView(<Agreement />)
     ))
-    .add('ArenaExplain', () => (
+    .add(ArenaExplain.name, () => (
         StoryUtil.CenteredView(<ArenaExplain />)
     ))
-    .add('ArenaFooter', () => (
+    .add(ArenaFooter.name, () => (
         StoryUtil.CenteredView(<ArenaFooter />)
     ))
-    .add('ArenaHeader', () => (
+    .add(ArenaHeader.name, () => (
         StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
     ))
-    .add('Microphone', () => {
+    .add(Microphone.name, () => {
         const option = {
             DISABLED: C.SpeakState.DISABLED,
             MUTE: C.SpeakState.MUTE,
@@ -48,17 +48,17 @@ components
             StoryUtil.CenteredView(<Microphone speak={select('speak', option, C.SpeakState.DISABLED)}/>)
         )
     })
-    .add('Timer', () => (
+    .add(Timer.name, () => (
         StoryUtil.CenteredView(<Timer />)
     ))
-    .add('LobbyCard', () => (
+    .add(LobbyCard.name, () => (
         StoryUtil.CenteredView(<LobbyCard
             title={text('title', 'hoge')}
             explain={text('explain', 'fuga')}
             onPress={action('join')}
         />)
     ))
-    .add('Scenario', () => (
+    .add(Scenario.name, () => (
         StoryUtil.FullView(<Scenario />)
         // <Scenario />
     ))

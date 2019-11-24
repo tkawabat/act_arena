@@ -14,7 +14,7 @@ import ScenarioTab from './ScenarioTab';
 const components = storiesOf('Template', module);
 components
     .addDecorator(withKnobs)
-    .add('SenarioTab', () => (
+    .add(ScenarioTab.name, () => (
         StoryUtil.FullView(<ScenarioTab />)
     ))
     ;
