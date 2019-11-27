@@ -6,11 +6,11 @@ import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper
 import Spinner from 'react-native-loading-spinner-overlay';
 
 
-import licenseJson from '../../license.json';
+import licenseJson from '../../../license.json';
 import ScreenBase from './ScreenBase';
-import Navigator from '../lib/Navigator';
+import Navigator from '../../lib/Navigator';
 
-import ConfigStore from '../store/ConfigStore';
+import ConfigStore from '../../store/ConfigStore';
 
 
 @observer

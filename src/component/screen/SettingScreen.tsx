@@ -7,9 +7,9 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 
 import ScreenBase from './ScreenBase';
-import Navigator from '../lib/Navigator';
+import Navigator from '../../lib/Navigator';
 
-import ConfigStore from '../store/ConfigStore';
+import ConfigStore from '../../store/ConfigStore';
 
 
 @observer

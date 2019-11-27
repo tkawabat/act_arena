@@ -7,13 +7,13 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import * as Permissions from 'react-native-permissions';
 
 import ScreenBase from './ScreenBase';
-import Navigator from '../lib/Navigator';
+import Navigator from '../../lib/Navigator';
 
-import ArenaStore from '../store/ArenaStore';
-import ConfigStore from '../store/ConfigStore';
-import SoundStore from '../store/SoundStore';
+import ArenaStore from '../../store/ArenaStore';
+import ConfigStore from '../../store/ConfigStore';
+import SoundStore from '../../store/SoundStore';
 
-import LobbyCard from '../component/LobbyCard';
+import LobbyCard from '../LobbyCard';
 
 
 @observer

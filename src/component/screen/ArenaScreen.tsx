@@ -9,19 +9,19 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 
 import ScreenBase from './ScreenBase';
-import * as C from '../lib/Const';
+import * as C from '../../lib/Const';
 
-import ConfigStore from '../store/ConfigStore';
-import ArenaStore from '../store/ArenaStore';
-import UserStore from '../store/UserStore';
+import ConfigStore from '../../store/ConfigStore';
+import ArenaStore from '../../store/ArenaStore';
+import UserStore from '../../store/UserStore';
 
-import ScenarioTab from '../component/template/ScenarioTab';
-import ActInfo from '../component/ActInfo';
-import ArenaHeader from '../component/ArenaHeader';
-import ScenarioFooter from '../component/organism/ScenarioFooter';
-import ChatTabHeader from '../component/ChatTabHeader';
-import ScenarioTabHeader from '../component/ScenarioTabHeader';
-import OverlayMessage from '../component/OverlayMessage';
+import ScenarioTab from '../template/ScenarioTab';
+import ActInfo from '../ActInfo';
+import ArenaHeader from '../ArenaHeader';
+import ScenarioFooter from '../organism/ScenarioFooter';
+import ChatTabHeader from '../ChatTabHeader';
+import ScenarioTabHeader from '../ScenarioTabHeader';
+import OverlayMessage from '../OverlayMessage';
 
 
 @observer

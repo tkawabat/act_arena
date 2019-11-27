@@ -7,12 +7,12 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import ScreenBase from './ScreenBase';
 
-import * as C from '../lib/Const';
-import Navigator from '../lib/Navigator';
-import ConfigStore from '../store/ConfigStore';
-import UserStore from '../store/UserStore';
+import * as C from '../../lib/Const';
+import Navigator from '../../lib/Navigator';
+import ConfigStore from '../../store/ConfigStore';
+import UserStore from '../../store/UserStore';
 
-import Intro from '../component/Intro';
+import Intro from '../Intro';
 
 
 @observer
