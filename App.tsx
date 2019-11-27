@@ -11,7 +11,7 @@ import { observer } from 'mobx-react';
 import Moment from 'moment';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import AppContainer from './src/component/screen/AppContainer';
+import AppContainer from './src/component/page/AppContainer';
 import * as C from './src/lib/Const';
 import Amplitude from './src/lib/Amplitude';
 import Firebase from './src/lib/Firebase';
