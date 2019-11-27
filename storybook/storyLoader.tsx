@@ -13,5 +13,4 @@ export const loadStories = () => {
   require('../src/component/molecule/index.stories');
   require('../src/component/organism/index.stories');
   require('../src/component/template/index.stories');
-  require('../src/component/index.stories');
 }
