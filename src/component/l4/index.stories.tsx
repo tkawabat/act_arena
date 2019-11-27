@@ -11,7 +11,7 @@ import * as StoryUtil from '../../../storybook/StoryUtil';
 import ScenarioTab from './ScenarioTab';
 
 
-const components = storiesOf('Template', module);
+const components = storiesOf('L4', module);
 components
     .addDecorator(withKnobs)
     .add(ScenarioTab.name, () => (

@@ -8,8 +8,8 @@ import * as BasicStyle from '../../lib/BasicStyle';
 import ConfigStore from '../../store/ConfigStore';
 import ArenaStore from '../../store/ArenaStore';
 
-import SquareTextIconButton from '../atom/SquareTextIconButton';
-import ArenaAddTimeButton from '../atom/ArenaAddTimeButton';
+import SquareTextIconButton from '../l1/SquareTextIconButton';
+import ArenaAddTimeButton from '../l1/ArenaAddTimeButton';
 
 
 @observer

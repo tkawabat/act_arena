@@ -8,7 +8,7 @@ import * as C from '../../lib/Const';
 import UserStore, {User} from '../../store/UserStore';
 import ArenaStore from '../../store/ArenaStore';
 
-import UserIcon from '../atom/UserIcon';
+import UserIcon from '../l1/UserIcon';
 
 
 @observer

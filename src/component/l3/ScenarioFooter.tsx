@@ -8,8 +8,8 @@ import * as BasicStyle from '../../lib/BasicStyle';
 
 import ArenaStore from '../../store/ArenaStore';
 
-import EntryButton from '../atom/EntryButton';
-import Microphone from '../atom/Microphone';
+import EntryButton from '../l1/EntryButton';
+import Microphone from '../l1/Microphone';
 
 
 @observer

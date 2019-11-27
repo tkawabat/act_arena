@@ -13,7 +13,7 @@ import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
 import SoundStore from '../../store/SoundStore';
 
-import LobbyCard from '../molecule/LobbyCard';
+import LobbyCard from '../l2/LobbyCard';
 
 
 @observer

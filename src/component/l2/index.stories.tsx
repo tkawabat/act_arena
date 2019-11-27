@@ -15,7 +15,7 @@ import ArenaExplain from './ArenaExplain';
 import LobbyCard from './LobbyCard';
 
 
-const components = storiesOf('Molecule', module);
+const components = storiesOf('L2', module);
 components
     .addDecorator(withKnobs)
     //     .add('ActInfo', () => (

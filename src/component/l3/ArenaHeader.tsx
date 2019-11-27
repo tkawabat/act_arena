@@ -8,7 +8,7 @@ import Amplitude from '../../lib/Amplitude';
 
 import ArenaStore from '../../store/ArenaStore';
 
-import Timer from '../atom/Timer';
+import Timer from '../l1/Timer';
 
 
 interface props {

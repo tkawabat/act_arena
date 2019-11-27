@@ -20,7 +20,7 @@ import SquareTextIconButton from './SquareTextIconButton';
 import Timer from './Timer';
 
 
-const components = storiesOf('Atom', module);
+const components = storiesOf('L1', module);
 components
     .addDecorator(withKnobs)
     .add(Agreement.name, () => (

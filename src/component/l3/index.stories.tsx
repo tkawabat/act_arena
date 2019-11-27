@@ -15,7 +15,7 @@ import ScenarioTools from './ScenarioTools';
 
 
 
-const components = storiesOf('Organism', module);
+const components = storiesOf('L3', module);
 components
     .addDecorator(withKnobs)
     .add(ArenaHeader.name, () => (

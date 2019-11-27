@@ -6,11 +6,11 @@ import * as C from '../../lib/Const';
 import ConfigStore from '../../store/ConfigStore';
 import ArenaStore from '../../store/ArenaStore';
 
-import ArenaExplain from '../molecule/ArenaExplain';
-import Agreement from '../atom/Agreement';
-import Scenario from '../atom/Scenario';
-import ScenarioTools from '../organism/ScenarioTools';
-import ScenarioFooter from '../organism/ScenarioFooter';
+import ArenaExplain from '../l2/ArenaExplain';
+import Agreement from '../l1/Agreement';
+import Scenario from '../l1/Scenario';
+import ScenarioTools from '../l3/ScenarioTools';
+import ScenarioFooter from '../l3/ScenarioFooter';
 
 
 @observer
