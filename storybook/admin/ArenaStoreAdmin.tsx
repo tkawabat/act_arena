@@ -10,7 +10,9 @@ import * as BasicStyle from '../../src/lib/BasicStyle';
 
 import ArenaStore from '../../src/store/ArenaStore';
 
-import EnumSelector from './EnumSelector';
+import IntSelector from '../component/IntSelector';
+import EnumSelector from '../component/EnumSelector';
+
 
 interface props {
 }
@@ -54,21 +56,23 @@ export default class ArenaStoreAdmin extends Component<props> {
                 <EnumSelector
                     name={'ArenaState'}
                     myEnum={C.ArenaState}
-                    onValueChange={(value: C.ArenaState) => { ArenaStore.arenaState = value; }}
+                    onChange={(value: C.ArenaState) => { ArenaStore.arenaState = value; }}
                     selectedValue={ArenaStore.arenaState}
                 />
                 <EnumSelector
                     name={'ArenaUserState'}
                     myEnum={C.ArenaUserState}
-                    onValueChange={(value: C.ArenaUserState) => { ArenaStore.userState = value; }}
+                    onChange={(value: C.ArenaUserState) => { ArenaStore.userState = value; }}
                     selectedValue={ArenaStore.userState}
                 />
-                <Item>
-                    <Text>timer:</Text>
-                    <Input
-                        onChangeText={(value: string) => { ArenaStore.time = parseInt(value); }}
-                    />
-                </Item>
+                <IntSelector
+                    name={'Timer'}
+                    onChange={(value: string) => { ArenaStore.time = parseInt(value); }}
+                />
+                <IntSelector
+                    name={'addTimeCount'}
+                    onChange={(value: string) => { ArenaStore.addTimeCount = parseInt(value); }}
+                />
             </Root>
         )
     }

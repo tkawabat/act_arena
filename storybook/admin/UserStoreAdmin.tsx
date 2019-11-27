@@ -8,7 +8,7 @@ import * as C from '../../src/lib/Const';
 import * as BasicStyle from '../../src/lib/BasicStyle';
 
 import UserStore from '../../src/store/UserStore';
-import EnumSelector from './EnumSelector';
+import EnumSelector from '../component/EnumSelector';
 
 
 @observer
