@@ -17,6 +17,7 @@ import ArenaHeader from './ArenaHeader';
 import Timer from './Timer';
 import LobbyCard from './LobbyCard';
 import Scenario from './Scenario';
+import ArenaStoreAdmin from '../../storybook/admin/ArenaStoreAdmin';
 
 
 const components = storiesOf('Component', module);
@@ -35,7 +36,10 @@ components
         StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
     ))
     .add(Timer.name, () => (
-        StoryUtil.CenteredView(<Timer />)
+        StoryUtil.CenteredView([
+            <Timer />,
+            <ArenaStoreAdmin />,
+        ])
     ))
     .add(LobbyCard.name, () => (
         StoryUtil.CenteredView(<LobbyCard

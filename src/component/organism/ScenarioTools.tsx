@@ -8,23 +8,15 @@ import * as BasicStyle from '../../lib/BasicStyle';
 import ConfigStore from '../../store/ConfigStore';
 import ArenaStore from '../../store/ArenaStore';
 
-import SquareTextButton from '../atom/SquareTextButton';
 import SquareTextIconButton from '../atom/SquareTextIconButton';
+import ArenaAddTimeButton from '../atom/ArenaAddTimeButton';
 
 
 @observer
 export default class ScenarioTools extends Component {
 
-    private addActTime = () => {
-        ConfigStore.load(true);
-        ArenaStore.asyncAddActTime().then(() => {
-            ConfigStore.load(false);
-        })
-    }
-
     render() {
         const scenarioFlag = ArenaStore.arenaState !== C.ArenaState.WAIT && ArenaStore.isAgree;
-        const actorFlag = ArenaStore.userState === C.ArenaUserState.ACTOR;
 
         return (
             <Root>
@@ -32,7 +24,7 @@ export default class ScenarioTools extends Component {
                 <Left><SquareTextIconButton icon={'home'} text={'規約'} onPress={() => ArenaStore.setAgreement(C.AgreementState.NONE)}/></Left>
                 <Left><SquareTextIconButton icon={'arrow-up'} text={'トップ'} disabled={!scenarioFlag} onPress={() => ArenaStore.scroll2Top()}/></Left>
                 <Left><SquareTextIconButton icon={'redo'} text={'開始位置'} disabled={!scenarioFlag} onPress={() => ArenaStore.scroll2Start()}/></Left>
-                <Right><SquareTextButton text={'+30秒'} disabled={!actorFlag} onPress={this.addActTime}/></Right>
+                <Right><ArenaAddTimeButton /></Right>
             </Root>
         );
 

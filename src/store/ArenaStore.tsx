@@ -49,7 +49,7 @@ class ArenaStore {
     @observable time:number;
     @observable users:{ [id:string]:ArenaUser} = {};
     @observable overlayMessage:string = null;
-    @observable addActTimeRemaind:number = 0;
+    @observable addTimeCount:number = 0;
 
     // Scenario
     @observable title:string;
@@ -244,7 +244,7 @@ class ArenaStore {
                 this.agreementState = C.AgreementState.NONE;
                 if (this.userState === C.ArenaUserState.ACTOR) this.asyncSetRoomUser();
                 this.setModal(false);
-                this.addActTimeRemaind = 0;
+                this.addTimeCount = 0;
                 break;
             case C.ArenaState.READ:
                 OverlayMessageStore.start('台本チェック');
@@ -252,7 +252,7 @@ class ArenaStore {
 
                 if (this.userState === C.ArenaUserState.ACTOR) {
                     Amplitude.info('ArenaBeActor', null);
-                    this.addActTimeRemaind = 1;
+                    this.addTimeCount = 1;
                 }
                 break;
             case C.ArenaState.CHECK:
@@ -263,13 +263,13 @@ class ArenaStore {
                         SkywayStore.setSpeakState(C.SpeakState.MUTE);
                         SkywayStore.toggleMicrophone();
                     }
-                    this.addActTimeRemaind = 1;
+                    this.addTimeCount = 1;
                 }
                 break;
             case C.ArenaState.ACT:
                 OverlayMessageStore.start('上演開始');
                 if (this.userState === C.ArenaUserState.ACTOR) {
-                    this.addActTimeRemaind = 1;
+                    this.addTimeCount = 2;
                 }
                 break;
         }
@@ -387,14 +387,14 @@ class ArenaStore {
 
     public asyncAddActTime = async () :Promise<void> => {
         if (this.time < 2) return;
-        if (this.addActTimeRemaind <= 0) return;
+        if (this.addTimeCount <= 0) return;
         
-        this.addActTimeRemaind--;
+        this.addTimeCount--;
         const endAt = [];
-
+        const now = Moment();
         for (let [key, value] of this.endAt.entries()) {
-            if (key < this.arenaState) {
-                endAt[key] = value; // すでに終わったstateは更新しない。
+            if (value < now) {
+                endAt[key] = value.toDate(); // すでに終わったstateは更新しない。
             } else {
                 endAt[key] = value.add(30, 'seconds').toDate();
             }
