@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Text, View, Button, Icon, Badge } from 'native-base';
 import { observer } from 'mobx-react';
 
-import ArenaStore from '../store/ArenaStore';
+import ArenaStore from '../../store/ArenaStore';
 
 
 @observer

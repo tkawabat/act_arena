@@ -4,7 +4,7 @@ import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon
 import { observer } from 'mobx-react';
 import * as Animatable from 'react-native-animatable';
 
-import OverlayMessageStore from '../store/OverlayMessageStore';
+import OverlayMessageStore from '../../store/OverlayMessageStore';
 
 @observer
 export default class OverlayMessage extends Component {

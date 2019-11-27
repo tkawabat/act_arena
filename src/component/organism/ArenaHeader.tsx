@@ -3,12 +3,12 @@ import { StyleSheet, Dimensions, Alert } from 'react-native';
 import { Text, Header, Title, View, Button, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 
-import * as C from '../lib/Const';
-import Amplitude from '../lib/Amplitude';
+import * as C from '../../lib/Const';
+import Amplitude from '../../lib/Amplitude';
 
-import ArenaStore from '../store/ArenaStore';
+import ArenaStore from '../../store/ArenaStore';
 
-import Timer from '../component/Timer';
+import Timer from '../atom/Timer';
 
 
 interface props {

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { View, Text, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 
-import ArenaStore from '../store/ArenaStore';
+import ArenaStore from '../../store/ArenaStore';
 
 
 @observer

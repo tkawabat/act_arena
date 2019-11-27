@@ -3,8 +3,8 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, View, Button, Icon, Card } from "native-base";
 import { observer } from 'mobx-react';
 
-import * as C from '../lib/Const';
-import ArenaStore from '../store/ArenaStore';
+import * as C from '../../lib/Const';
+import ArenaStore from '../../store/ArenaStore';
 
 
 interface props {

@@ -4,11 +4,11 @@ import { Text, View, Button } from 'native-base';
 import Modal from 'react-native-modal';
 import { observer } from 'mobx-react';
 
-import * as C from '../lib/Const';
-import UserStore, {User} from '../store/UserStore';
-import ArenaStore from '../store/ArenaStore';
+import * as C from '../../lib/Const';
+import UserStore, {User} from '../../store/UserStore';
+import ArenaStore from '../../store/ArenaStore';
 
-import UserIcon from './UserIcon';
+import UserIcon from '../atom/UserIcon';
 
 
 @observer

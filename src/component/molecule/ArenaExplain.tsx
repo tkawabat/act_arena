@@ -3,8 +3,8 @@ import { Text, View, Icon, } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
-import * as C from '../lib/Const';
-import BasicStyle from '../lib/BasicStyle';
+import * as C from '../../lib/Const';
+import BasicStyle from '../../lib/BasicStyle';
 
 
 @observer

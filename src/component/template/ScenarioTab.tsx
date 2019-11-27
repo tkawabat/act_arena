@@ -6,9 +6,9 @@ import * as C from '../../lib/Const';
 import ConfigStore from '../../store/ConfigStore';
 import ArenaStore from '../../store/ArenaStore';
 
-import ArenaExplain from '../ArenaExplain';
-import Agreement from '../Agreement';
-import Scenario from '../Scenario';
+import ArenaExplain from '../molecule/ArenaExplain';
+import Agreement from '../atom/Agreement';
+import Scenario from '../atom/Scenario';
 import ScenarioTools from '../organism/ScenarioTools';
 import ScenarioFooter from '../organism/ScenarioFooter';
 

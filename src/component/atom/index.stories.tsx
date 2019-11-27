@@ -9,16 +9,40 @@ import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 import SkywayStoreAdmin from '../../../storybook/admin/SkywayStoreAdmin';
 
-import SquareIconButton from './SquareIconButton';
-import SquareTextButton from './SquareTextButton';
-import SquareTextIconButton from './SquareTextIconButton';
+import Agreement from './Agreement';
 import ArenaAddTimeButton from './ArenaAddTimeButton';
 import EntryButton from './EntryButton';
 import Microphone from './Microphone';
+import Scenario from './Scenario';
+import SquareIconButton from './SquareIconButton';
+import SquareTextButton from './SquareTextButton';
+import SquareTextIconButton from './SquareTextIconButton';
+import Timer from './Timer';
+
 
 const components = storiesOf('Atom', module);
 components
     .addDecorator(withKnobs)
+    .add(Agreement.name, () => (
+        StoryUtil.FullView(<Agreement />)
+    ))
+    .add(ArenaAddTimeButton.name, () => ([
+        StoryUtil.CenteredView(<ArenaAddTimeButton />),
+        StoryUtil.CenteredView(<ArenaStoreAdmin />),
+    ]))
+    .add(EntryButton.name, () => ([
+        StoryUtil.CenteredView(<EntryButton />),
+        StoryUtil.CenteredView(<ArenaStoreAdmin />),
+    ]))
+    .add(Microphone.name, () => {
+        return ([
+            StoryUtil.CenteredView(<Microphone />),
+            StoryUtil.CenteredView(<SkywayStoreAdmin />),
+        ])
+    })
+    .add(Scenario.name, () => (
+        StoryUtil.FullView(<Scenario />)
+    ))
     .add(SquareIconButton.name, () => {
         return (
             StoryUtil.CenteredView(<SquareIconButton
@@ -47,18 +71,10 @@ components
             />)
         )
     })
-    .add(ArenaAddTimeButton.name, () => ([
-        StoryUtil.CenteredView(<ArenaAddTimeButton />),
-        StoryUtil.CenteredView(<ArenaStoreAdmin />),
-    ]))
-    .add(EntryButton.name, () => ([
-        StoryUtil.CenteredView(<EntryButton />),
-        StoryUtil.CenteredView(<ArenaStoreAdmin />),
-    ]))
-    .add(Microphone.name, () => {
-        return ([
-            StoryUtil.CenteredView(<Microphone />),
-            StoryUtil.CenteredView(<SkywayStoreAdmin />),
+    .add(Timer.name, () => (
+        StoryUtil.CenteredView([
+            <Timer />,
+            <ArenaStoreAdmin />,
         ])
-    })
+    ))
     ;

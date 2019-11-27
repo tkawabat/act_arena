@@ -9,10 +9,26 @@ import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 
-import EntryButton from '../atom/EntryButton';
+import ActInfo from './ActInfo';
+import ArenaExplain from './ArenaExplain';
+
+import LobbyCard from './LobbyCard';
 
 
 const components = storiesOf('Molecule', module);
 components
     .addDecorator(withKnobs)
+    //     .add('ActInfo', () => (
+    //       <CenteredView><ActInfo /></CenteredView>
+    //     ))
+    .add(ArenaExplain.name, () => (
+        StoryUtil.CenteredView(<ArenaExplain />)
+    ))
+    .add(LobbyCard.name, () => (
+        StoryUtil.CenteredView(<LobbyCard
+            title={text('title', 'hoge')}
+            explain={text('explain', 'fuga')}
+            onPress={action('join')}
+        />)
+    ))
     ;

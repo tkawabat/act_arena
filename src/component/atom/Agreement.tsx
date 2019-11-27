@@ -4,10 +4,10 @@ import { Button } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
-import * as C from '../lib/Const';
-import * as BasicStyle from '../lib/BasicStyle';
+import * as C from '../../lib/Const';
+import * as BasicStyle from '../../lib/BasicStyle';
 
-import ArenaStore from '../store/ArenaStore';
+import ArenaStore from '../../store/ArenaStore';
 
 
 const js = (agreementScroll: number) => {

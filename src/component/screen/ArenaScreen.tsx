@@ -16,12 +16,12 @@ import ArenaStore from '../../store/ArenaStore';
 import UserStore from '../../store/UserStore';
 
 import ScenarioTab from '../template/ScenarioTab';
-import ActInfo from '../ActInfo';
-import ArenaHeader from '../ArenaHeader';
+import ActInfo from '../molecule/ActInfo';
+import ArenaHeader from '../organism/ArenaHeader';
 import ScenarioFooter from '../organism/ScenarioFooter';
-import ChatTabHeader from '../ChatTabHeader';
-import ScenarioTabHeader from '../ScenarioTabHeader';
-import OverlayMessage from '../OverlayMessage';
+import ChatTabHeader from '../molecule/ChatTabHeader';
+import ScenarioTabHeader from '../molecule/ScenarioTabHeader';
+import OverlayMessage from '../molecule/OverlayMessage';
 
 
 @observer

@@ -9,13 +9,18 @@ import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 
+import ArenaHeader from './ArenaHeader';
 import ScenarioFooter from './ScenarioFooter';
 import ScenarioTools from './ScenarioTools';
+
 
 
 const components = storiesOf('Organism', module);
 components
     .addDecorator(withKnobs)
+    .add(ArenaHeader.name, () => (
+        StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
+    ))
     .add(ScenarioFooter.name, () => ([
         StoryUtil.FullView(<ScenarioFooter />),
         StoryUtil.FullView(<ArenaStoreAdmin />),

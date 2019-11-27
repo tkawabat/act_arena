@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { WebView } from 'react-native';
 import { observer } from 'mobx-react';
 
-import ArenaStore from '../store/ArenaStore';
+import ArenaStore from '../../store/ArenaStore';
 
 
 const js = (start, end) => {

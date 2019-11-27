@@ -12,7 +12,7 @@ import Navigator from '../../lib/Navigator';
 import ConfigStore from '../../store/ConfigStore';
 import UserStore from '../../store/UserStore';
 
-import Intro from '../Intro';
+import Intro from '../template/Intro';
 
 
 @observer
