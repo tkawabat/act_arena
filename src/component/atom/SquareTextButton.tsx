@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { View, Icon, Button } from 'native-base';
 import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
