@@ -12,6 +12,7 @@ import SkywayStoreAdmin from '../../../storybook/admin/SkywayStoreAdmin';
 import SquareIconButton from './SquareIconButton';
 import SquareTextButton from './SquareTextButton';
 import SquareTextIconButton from './SquareTextIconButton';
+import ArenaAddTimeButton from './ArenaAddTimeButton';
 import EntryButton from './EntryButton';
 import Microphone from './Microphone';
 
@@ -46,6 +47,10 @@ components
             />)
         )
     })
+    .add(ArenaAddTimeButton.name, () => ([
+        StoryUtil.CenteredView(<ArenaAddTimeButton />),
+        StoryUtil.CenteredView(<ArenaStoreAdmin />),
+    ]))
     .add(EntryButton.name, () => ([
         StoryUtil.CenteredView(<EntryButton />),
         StoryUtil.CenteredView(<ArenaStoreAdmin />),
