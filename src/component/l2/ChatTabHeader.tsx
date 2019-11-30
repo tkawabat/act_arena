@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, View, Button, Icon, Badge } from 'native-base';
+import { Text, View, Badge } from 'native-base';
 import { observer } from 'mobx-react';
 
-import ArenaStore from '../../store/ArenaStore';
+import ChatStore from '../../store/ChatStore';
 
 
 @observer
 export default class ChatTabHeader extends Component {
     private badge = () => {
-        if (!ArenaStore.unreadNumber) return null;
+        if (!ChatStore.unreadNumber) return null;
         return (
             <Badge>
-                <Text style={styles.badge}>{ArenaStore.unreadNumber.toString()}</Text>
+                <Text style={styles.badge}>{ChatStore.unreadNumber.toString()}</Text>
             </Badge>
         );
     }

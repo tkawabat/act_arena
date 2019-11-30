@@ -9,6 +9,7 @@ import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
 
+import ChatStore from './ChatStore';
 import ConfigStore from './ConfigStore';
 import UserStore from './UserStore';
 import SkywayStore from './SkywayStore';
@@ -34,8 +35,6 @@ class ArenaStore {
     private unsubscribe:Function;
     private userRef:Firebase.firestore.CollectionReference;
     private userUnsubscribe:Function;
-    private chatRef:Firebase.firestore.CollectionReference;
-    private chatUnsubscribe:Function;
 
     public scroll2Top = () => {};
     public scroll2Start = () => {};
@@ -60,15 +59,16 @@ class ArenaStore {
     @observable endText:string;
     @observable characters:Array<Characters>;
 
-    // Chat
-    @observable _messages:Array<IMessage> = new Array<IMessage>();
-    @observable latestReadMessage:IMessage;
-
     // private state
     @observable agreementState:C.AgreementState;
     private _tab:C.ArenaTab;
     get tab() { return this._tab }
-    set tab(tab:C.ArenaTab) { this._tab = tab }
+    set tab(tab:C.ArenaTab) {
+        ChatStore.isViewable = tab === C.ArenaTab.CHAT;
+        if (tab === C.ArenaTab.CHAT) ChatStore.readMessage();
+
+        this._tab = tab
+    }
 
     @observable modal:boolean = false;
 
@@ -95,28 +95,6 @@ class ArenaStore {
         return this.users[UserStore.id].state !== C.ArenaUserState.ACTOR;
     }
 
-    @computed get messages() {
-        return this._messages.filter((v:any, i) => {
-            if (v.reporter && v.reporter.indexOf(UserStore.id) !== -1) return false;
-            if (UserStore.ngList && UserStore.ngList.indexOf(v.user._id) !== -1) return false;
-            return true;
-        });
-    }
-
-    set messages(messages:Array<IMessage>) {
-        this._messages = messages;
-    }
-
-    @computed get unreadNumber() {
-        if (!this.latestReadMessage) return 0;
-
-        let i = 0;
-        for (i = 0; i < this.messages.length; i++) {
-            if (this.latestReadMessage._id === this.messages[i]._id) break;
-        }
-        return i;
-    }
-
     @computed get userNum() {
         if (!this.users) return 0;
         return Object.keys(this.users).length;
@@ -137,11 +115,6 @@ class ArenaStore {
                 ConfigStore.setInitLoadComplete('arena');
             })
         ;
-    }
-
-    @action
-    public readMessage = () => {
-        this.latestReadMessage = this.messages[0];
     }
 
     @action
@@ -219,19 +192,6 @@ class ArenaStore {
         }
 
         this.users = users;
-    }
-
-    private chatUpdated = (snapshot: Firebase.firestore.QuerySnapshot) => {
-        const messages:Array<IMessage> = [];
-        for (let doc of snapshot.docs) {
-            const data = doc.data();
-
-            const ts = data.createdAt as Firebase.firestore.Timestamp;
-            data.createdAt = ts.toDate();
-            messages.push(data as IMessage);
-        };
-        this.messages = messages;
-        if (this.tab === C.ArenaTab.CHAT) this.readMessage();
     }
 
     private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
@@ -342,11 +302,10 @@ class ArenaStore {
     private observe = () => {
         this.unsubscribe = this.ref.onSnapshot((snapshot) => {
             this.arenaUpdated(snapshot);
-            this.readMessage();
         });
 
         // this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
-        this.chatUnsubscribe = this.chatRef.orderBy('createdAt', 'desc').onSnapshot(this.chatUpdated);
+        ChatStore.observe();
 
         UserStore.observeConnectionChange();
 
@@ -358,7 +317,7 @@ class ArenaStore {
     private stopObserve = () => {
         this.unsubscribe();
         //this.userUnsubscribe();
-        this.chatUnsubscribe();
+        ChatStore.stopObserve();
         
         UserStore.stopObserveConnectionChange();
 
@@ -378,7 +337,7 @@ class ArenaStore {
                 }
                 this.ref = snapshot.docs[0].ref;
                 this.userRef = this.ref.collection('RoomUser');
-                this.chatRef = this.ref.collection('Chat');
+                ChatStore.ref = this.ref.collection('Chat');
                 this.arenaUpdated(snapshot.docs[0]);
             })
             .catch((error) => Amplitude.error('ArenaStore get', error))
@@ -477,59 +436,6 @@ class ArenaStore {
             this.agreementState = C.AgreementState.READ;
         }
     }
-
-    public addChat = (messages:Array<IMessage>) => {
-        Amplitude.info('ArenaAddChat', null);
-        messages.forEach((message) => {
-            this.chatRef.doc(message._id).set(message)
-                .catch((error) => Amplitude.error('ArenaStore addChat', error))
-            ;
-        });
-    }
-
-    public reportChat = (message:any) => {
-        Amplitude.info('ArenaReportChat', {user: message.user});
-        const reporter = message.reporter ? message.reporter : [];
-        reporter.push(UserStore.id);
-        this.chatRef.doc(message._id).update({
-            reporter: reporter
-        })
-            .catch((error) => Amplitude.error('ArenaStore reportChat', error))
-        ;
-    }
-
-    public reportChatAlert = (context, message:IMessage) => {
-        if (message.user._id === UserStore.id) return;
-
-        Alert.alert('', '発言"'+message.text+'"を通報しますか？', [
-            { text: '通報する', onPress: () => {this.reportChat(message)} },
-            { text: 'Cancel' }
-        ]);
-    }
-
-    public addNgListAlert = (user:any) => {
-        if (UserStore.ngList && UserStore.ngList.indexOf(user._id) !== -1) return;
-        if (UserStore.ngList && UserStore.ngList.length >= C.UserNgLimit) {
-            alert('NGリストは'+C.UserNgLimit+'件までです。');
-            return;
-        }
-
-        const text = 'ユーザー"'+user.name+'"をNGリストに追加しますか？\n'
-            +'NGリストに追加するとチャットが表示されなくなります。'
-            +'NGリストからの削除機能は今後実装予定です。'
-        ;
-
-        Alert.alert('', text, [
-            {
-                text: '追加する', onPress: () => {
-                    UserStore.asyncAddNgList(user)
-                    .then(() => this.messages = this._messages) // update
-                }
-            },
-            { text: 'Cancel' }
-        ]);
-    }
-
 }
 
 

@@ -6,7 +6,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 import * as C from '../../lib/Const';
-import ArenaStore from '../../store/ArenaStore';
+import ChatStore from '../../store/ChatStore';
 import UserStore from '../../store/UserStore';
 
 
@@ -17,10 +17,10 @@ export default class ChatTab extends Component {
         return (
             <Root>
                 <GiftedChat
-                    messages={ArenaStore.messages}
-                    onSend={ArenaStore.addChat}
-                    onPressAvatar={ArenaStore.addNgListAlert}
-                    onLongPress={ArenaStore.reportChatAlert}
+                    messages={ChatStore.messages}
+                    onSend={ChatStore.addChat}
+                    onPressAvatar={ChatStore.addNgListAlert}
+                    onLongPress={ChatStore.reportChatAlert}
                     dateFormat={'MM/DD'}
                     timeFormat={'HH:mm'}
                     maxInputLength={40}
