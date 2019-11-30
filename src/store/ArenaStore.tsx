@@ -109,7 +109,6 @@ class ArenaStore {
 
         this.get(0)
             .then(() => {
-                this.userRef.get().then(this.usersUpdated);
                 this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
                 ConfigStore.setInitLoadComplete('arena');
             })
