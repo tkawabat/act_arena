@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, YellowBox, AppState, Dimensions, Alert, View, Text, Linking, Platform } from 'react-native';
 import { Sentry } from 'react-native-sentry';
-import { Updates } from 'expo';
+import { Updates, SplashScreen } from 'expo';
 import * as Font from 'expo-font';
 Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
 import { observer } from 'mobx-react';
@@ -27,6 +27,7 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
+        SplashScreen.preventAutoHide();
 
         const ignoreWarnings = ['Setting a timer for a long period of time,'];
         YellowBox.ignoreWarnings(ignoreWarnings);
@@ -101,10 +102,9 @@ export default class App extends Component {
 
     render() {
         if (!ConfigStore.isInitLoaded) {
-            return (
-                <Spinner visible />
-            )
+            return null;
         }
+        SplashScreen.hide();
 
         if (ConfigStore.message !== '') {
             return (
