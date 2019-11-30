@@ -8,12 +8,17 @@ import { action } from '@storybook/addon-actions';
 import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
 
+import ChatTab from './ChatTab';
 import ScenarioTab from './ScenarioTab';
+
 
 
 const components = storiesOf('L4', module);
 components
     .addDecorator(withKnobs)
+    .add(ChatTab.name, () => (
+        StoryUtil.FullView(<ChatTab />)
+    ))
     .add(ScenarioTab.name, () => (
         StoryUtil.FullView(<ScenarioTab />)
     ))

@@ -11,7 +11,7 @@ import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 
 import ActInfo from './ActInfo';
 import ArenaExplain from './ArenaExplain';
-
+import ChatTabHeader from './ChatTabHeader';
 import LobbyCard from './LobbyCard';
 
 
@@ -23,6 +23,9 @@ components
     //     ))
     .add(ArenaExplain.name, () => (
         StoryUtil.CenteredView(<ArenaExplain />)
+    ))
+    .add(ChatTabHeader.name, () => (
+        StoryUtil.CenteredView(<ChatTabHeader />)
     ))
     .add(LobbyCard.name, () => (
         StoryUtil.CenteredView(<LobbyCard
