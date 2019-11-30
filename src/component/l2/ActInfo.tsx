@@ -7,6 +7,7 @@ import { observer } from 'mobx-react';
 import * as C from '../../lib/Const';
 import UserStore, {User} from '../../store/UserStore';
 import ArenaStore from '../../store/ArenaStore';
+import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 import UserIcon from '../l1/UserIcon';
 
@@ -16,7 +17,7 @@ export default class ActInfo extends Component {
 
     private getCharactersText = () => {
         let result = [];
-        for (const character of ArenaStore.characters) {
+        for (const character of ArenaScenarioStore.characters) {
             result.push(<Text>{character.name+': '+character.userName}</Text>)
         }
         return result;
@@ -40,7 +41,7 @@ export default class ActInfo extends Component {
                 animationOut='slideOutLeft'
             >
                 <View style={styles.modal}>
-                    <Text style={styles.title}>{ArenaStore.title}</Text>
+                    <Text style={styles.title}>{ArenaScenarioStore.title}</Text>
                     {/* <UserIcon size={C.UserIconSize.S} user={user} /> */}
                     {this.getCharactersText()}
                 </View>

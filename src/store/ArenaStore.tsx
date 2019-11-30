@@ -1,5 +1,4 @@
 import Moment from 'moment';
-import { Platform, } from 'react-native';
 import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
@@ -8,6 +7,7 @@ import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
 
+import ArenaScenarioStore from './ArenaScenarioStore';
 import ArenaUserStore from './ArenaUserStore';
 import ChatStore from './ChatStore';
 import ConfigStore from './ConfigStore';
@@ -16,12 +16,7 @@ import SkywayStore from './SkywayStore';
 import SoundStore from './SoundStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
 
-interface Characters {
-    name: string
-    gender: C.Gender
-    user: string
-    userName: string
-}
+
 interface ArenaUser {
     name: string
     gender: C.Gender
@@ -34,27 +29,13 @@ class ArenaStore {
     private ref:Firebase.firestore.DocumentReference;
     private unsubscribe:Function;
 
-    public scroll2Top = () => {};
-    public scroll2Start = () => {};
-
-    // Arena
     private id :number = null; // entered arena
     private endAt: Array<Moment.Moment>;
 
-    @observable scenario:string;
     @observable arenaState:C.ArenaState = C.ArenaState.WAIT;
     @observable time:number;
     @observable overlayMessage:string = null;
     @observable addTimeCount:number = 0;
-
-    // Scenario
-    @observable title:string;
-    @observable agreementUrl:string;
-    @observable agreementScroll:number;
-    @observable scenarioUrl:string;
-    @observable startText:string;
-    @observable endText:string;
-    @observable characters:Array<Characters>;
 
     // private state
     @observable agreementState:C.AgreementState;
@@ -68,14 +49,6 @@ class ArenaStore {
     }
 
     @observable modal:boolean = false;
-
-    @computed get isReadAgreement() {
-        return this.agreementState !== C.AgreementState.NONE;
-    }
-
-    @computed get isAgree() {
-        return this.agreementState === C.AgreementState.AGREE;
-    }
 
     constructor() {
         this.db = Firebase.firestore().collection('Arena');
@@ -96,11 +69,6 @@ class ArenaStore {
     @action
     public setModal = (modal:boolean) => {
         this.modal = modal;
-    }
-
-    @action
-    public setAgreement = (agreement:C.AgreementState) => {
-        this.agreementState = agreement;
     }
 
     @action
@@ -132,18 +100,12 @@ class ArenaStore {
 
         //this.dealArenaStateTransition(this.arenaState, data.state);
         this.dealArenaMessageTransition(this.overlayMessage, data.message);
+        this.overlayMessage = data.message;
 
         this.endAt[C.ArenaState.READ] = Moment.unix(data.endAt[C.ArenaState.READ].seconds);
         this.endAt[C.ArenaState.CHECK] = Moment.unix(data.endAt[C.ArenaState.CHECK].seconds);
         this.endAt[C.ArenaState.ACT] = Moment.unix(data.endAt[C.ArenaState.ACT].seconds);
-        this.title = data.title;
-        this.agreementUrl = data.agreementUrl;
-        this.agreementScroll = data.agreementScroll;
-        this.scenarioUrl = data.scenarioUrl;
-        this.startText = data.startText;
-        this.endText = data.endText;
-        this.overlayMessage = data.message;
-        this.characters = data.characters;
+        ArenaScenarioStore.updated(snapshot);
 
         Scheduler.clearInterval(C.SchedulerArenaTick);
         Scheduler.setInterval(C.SchedulerArenaTick, this.tick, 1000);
@@ -382,13 +344,7 @@ class ArenaStore {
             ;
         }, 1000);
     }
-
-    @action
-    public readAgreement = () => {
-        if (this.agreementState === C.AgreementState.NONE) {
-            this.agreementState = C.AgreementState.READ;
-        }
-    }
+    
 }
 
 

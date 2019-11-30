@@ -3,6 +3,7 @@ import { WebView } from 'react-native';
 import { observer } from 'mobx-react';
 
 import ArenaStore from '../../store/ArenaStore';
+import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 
 const js = (start, end) => {
@@ -83,10 +84,10 @@ export default class Scenario extends Component {
     constructor(props) {
         super(props);
 
-        ArenaStore.scroll2Top = () => {
+        ArenaScenarioStore.scroll2Top = () => {
             this.webview.injectJavaScript('scroll2Top();');
         }
-        ArenaStore.scroll2Start = () => {
+        ArenaScenarioStore.scroll2Start = () => {
             this.webview.injectJavaScript('scroll2Start();');
         }
     }
@@ -96,8 +97,8 @@ export default class Scenario extends Component {
             <WebView
                 javaScriptEnabled={true}
                 ref={ref => this.webview = ref}
-                injectedJavaScript={js(ArenaStore.startText, ArenaStore.endText)}
-                source={{ uri: ArenaStore.scenarioUrl }}
+                injectedJavaScript={js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)}
+                source={{ uri: ArenaScenarioStore.scenarioUrl }}
             />
         );
     }

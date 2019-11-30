@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
-import ArenaStore from '../../store/ArenaStore';
+import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 
 const js = (agreementScroll: number) => {
@@ -40,7 +40,7 @@ export default class Agreement extends Component {
     private onMessage = (event) => {
         const { data } = event.nativeEvent;
         if (data === 'read') {
-            ArenaStore.readAgreement();
+            ArenaScenarioStore.readAgreement();
         }
     };
 
@@ -49,13 +49,13 @@ export default class Agreement extends Component {
             <Root>
                 <Screen
                     javaScriptEnabled={true}
-                    injectedJavaScript={js(ArenaStore.agreementScroll)}
-                    source={{uri: ArenaStore.agreementUrl}}
+                    injectedJavaScript={js(ArenaScenarioStore.agreementScroll)}
+                    source={{uri: ArenaScenarioStore.agreementUrl}}
                     onMessage={this.onMessage}
                 />
                 <AgreeButton
-                    onPress={() => ArenaStore.setAgreement(C.AgreementState.AGREE)}
-                    disabled={!ArenaStore.isReadAgreement}
+                    onPress={() => ArenaScenarioStore.setAgreement(C.AgreementState.AGREE)}
+                    disabled={!ArenaScenarioStore.isReadAgreement}
                 >
                     <AgreeButtonText>規約に同意</AgreeButtonText>
                 </AgreeButton>

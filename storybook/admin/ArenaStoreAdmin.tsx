@@ -9,6 +9,7 @@ import * as EnumUtil from '../../src/lib/EnumUtil';
 import * as BasicStyle from '../../src/lib/BasicStyle';
 
 import ArenaStore from '../../src/store/ArenaStore';
+import ArenaUserStore from '../../src/store/ArenaUserStore';
 
 import IntSelector from '../component/IntSelector';
 import EnumSelector from '../component/EnumSelector';
@@ -24,30 +25,7 @@ export default class ArenaStoreAdmin extends Component<props> {
     constructor(props) {
         super(props);
         // ArenaStore.arenaState = C.ArenaState.CHECK;
-        ArenaStore.scenarioUrl = 'http://doodletxt.web.fc2.com/kiokudoro.htm';
-        ArenaStore.agreementUrl = 'http://doodletxt.web.fc2.com/';
-        ArenaStore.agreementScroll = 2500;
-        ArenaStore.startText = '七原：……どうしたんですか？　海道さんらしくもない。';
-        ArenaStore.endText = '七原：記憶泥棒は貴方なんですよ。海道さん。';
         ArenaStore.time = 10;
-        ArenaStore.title = '記憶泥棒';
-
-        const character1 = {
-            name: 'chara1',
-            gender: C.Gender.Male,
-            user: '1',
-            userName: 'hoge'
-        };
-        const character2 = {
-            name: 'chara2',
-            gender: C.Gender.Female,
-            user: '2',
-            userName: 'fuga'
-        };
-        ArenaStore.characters = [
-            character1,
-            character2,
-        ];
     }
 
     render() {
@@ -62,8 +40,8 @@ export default class ArenaStoreAdmin extends Component<props> {
                 <EnumSelector
                     name={'ArenaUserState'}
                     myEnum={C.ArenaUserState}
-                    onChange={(value: C.ArenaUserState) => { ArenaStore.userState = value; }}
-                    selectedValue={ArenaStore.userState}
+                    onChange={(value: C.ArenaUserState) => { ArenaUserStore.userState = value; }}
+                    selectedValue={ArenaUserStore.userState}
                 />
                 <IntSelector
                     name={'Timer'}
