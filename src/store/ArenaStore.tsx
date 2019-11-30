@@ -1,7 +1,6 @@
 import Moment from 'moment';
-import { Alert, Platform, } from 'react-native';
+import { Platform, } from 'react-native';
 import { observable, computed, action } from 'mobx';
-import { IMessage } from 'react-native-gifted-chat';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
