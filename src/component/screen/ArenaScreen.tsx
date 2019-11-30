@@ -11,6 +11,7 @@ import * as C from '../../lib/Const';
 
 import ConfigStore from '../../store/ConfigStore';
 import ArenaStore from '../../store/ArenaStore';
+import ArenaUserStore from '../../store/ArenaUserStore';
 
 import ActInfo from '../l2/ActInfo';
 import ArenaHeader from '../l3/ArenaHeader';
@@ -38,7 +39,7 @@ export default class Arena extends ScreenBase {
         return (
             <Container style={styles.container}>
                 <Spinner visible={ConfigStore.isLoad} />
-                <ArenaHeader userNum={ArenaStore.userNum} />
+                <ArenaHeader userNum={ArenaUserStore.userNum} />
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>
                         <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} locked={true}>

@@ -4,9 +4,9 @@ import { Text, Header, Title, View, Button, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 
 import * as C from '../../lib/Const';
-import Amplitude from '../../lib/Amplitude';
 
 import ArenaStore from '../../store/ArenaStore';
+import ArenaUserStore from '../../store/ArenaUserStore';
 
 import Timer from '../l1/Timer';
 
@@ -39,7 +39,7 @@ export default class ArenaHeader extends Component<props> {
                 <View style={styles.right}>
                     <Icon name='user' type='FontAwesome5' style={styles.userNumIcon} />
                     <Text style={styles.userNumText}>{this.props.userNum}</Text>
-                    <Button transparent onPress={this.leave} disabled={!ArenaStore.canLeave}>
+                    <Button transparent onPress={this.leave} disabled={!ArenaUserStore.canLeave}>
                         <Icon name='sign-out-alt' type='FontAwesome5' fontSize={20} />
                     </Button>
                 </View>

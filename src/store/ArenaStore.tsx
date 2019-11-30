@@ -8,6 +8,7 @@ import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
 
+import ArenaUserStore from './ArenaUserStore';
 import ChatStore from './ChatStore';
 import ConfigStore from './ConfigStore';
 import UserStore from './UserStore';
@@ -32,8 +33,6 @@ class ArenaStore {
     private db:Firebase.firestore.CollectionReference;
     private ref:Firebase.firestore.DocumentReference;
     private unsubscribe:Function;
-    private userRef:Firebase.firestore.CollectionReference;
-    private userUnsubscribe:Function;
 
     public scroll2Top = () => {};
     public scroll2Start = () => {};
@@ -45,7 +44,6 @@ class ArenaStore {
     @observable scenario:string;
     @observable arenaState:C.ArenaState = C.ArenaState.WAIT;
     @observable time:number;
-    @observable users:{ [id:string]:ArenaUser} = {};
     @observable overlayMessage:string = null;
     @observable addTimeCount:number = 0;
 
@@ -79,26 +77,6 @@ class ArenaStore {
         return this.agreementState === C.AgreementState.AGREE;
     }
 
-    @computed get userState() {
-        if (!this.users[UserStore.id]) return C.ArenaUserState.LISTNER;
-        return this.users[UserStore.id].state;
-    }
-
-    set userState(state:C.ArenaUserState) {
-        if (!this.users[UserStore.id]) return;
-        this.users[UserStore.id].state = state;
-    }
-
-    @computed get canLeave() {
-        if (!this.users[UserStore.id]) return true;
-        return this.users[UserStore.id].state !== C.ArenaUserState.ACTOR;
-    }
-
-    @computed get userNum() {
-        if (!this.users) return 0;
-        return Object.keys(this.users).length;
-    }
-
     constructor() {
         this.db = Firebase.firestore().collection('Arena');
 
@@ -109,7 +87,7 @@ class ArenaStore {
 
         this.get(0)
             .then(() => {
-                this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
+                ArenaUserStore.observe4lobby(this.usersUpdated);
                 ConfigStore.setInitLoadComplete('arena');
             })
         ;
@@ -171,6 +149,8 @@ class ArenaStore {
         Scheduler.setInterval(C.SchedulerArenaTick, this.tick, 1000);
     }
 
+    // ArenaUserStoreにあるべきだが、退室・SE処理があるのでArenaStoreにおいてある
+    // TODO Serviceを作って移動
     private usersUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const users = {};
         snapshot.docs.map((doc) => {
@@ -185,11 +165,11 @@ class ArenaStore {
         }
 
         // se
-        if (Object.keys(this.users).length < Object.keys(users).length) {
+        if (Object.keys(ArenaUserStore.users).length < Object.keys(users).length) {
             this.se('enterRoom');
         }
 
-        this.users = users;
+        ArenaUserStore.users = users;
     }
 
     private dealArenaStateTransition = (before:C.ArenaState, after:C.ArenaState) :void => {
@@ -200,7 +180,9 @@ class ArenaStore {
                 OverlayMessageStore.start('上演終了');
                 SkywayStore.setDisabled();
                 this.agreementState = C.AgreementState.NONE;
-                if (this.userState === C.ArenaUserState.ACTOR) this.asyncSetRoomUser();
+                if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
+                    ArenaUserStore.asyncSetRoomUser();
+                }
                 this.setModal(false);
                 this.addTimeCount = 0;
                 break;
@@ -208,14 +190,14 @@ class ArenaStore {
                 OverlayMessageStore.start('台本チェック');
                 this.setModal(true);
 
-                if (this.userState === C.ArenaUserState.ACTOR) {
+                if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     Amplitude.info('ArenaBeActor', null);
                     this.addTimeCount = 1;
                 }
                 break;
             case C.ArenaState.CHECK:
                 OverlayMessageStore.start('マイクチェック');
-                if (this.userState === C.ArenaUserState.ACTOR) {
+                if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     // マイクオン
                     if (SkywayStore.speakState === C.SpeakState.DISABLED) {
                         SkywayStore.setSpeakState(C.SpeakState.MUTE);
@@ -226,7 +208,7 @@ class ArenaStore {
                 break;
             case C.ArenaState.ACT:
                 OverlayMessageStore.start('上演開始');
-                if (this.userState === C.ArenaUserState.ACTOR) {
+                if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     this.addTimeCount = 2;
                 }
                 break;
@@ -287,41 +269,19 @@ class ArenaStore {
         }
     }
 
-    private asyncSetRoomUser = async () :Promise<void> => {
-        return this.userRef.doc(UserStore.id).set({
-            name: UserStore.name,
-            gender: UserStore.gender,
-            state: C.ArenaUserState.LISTNER,
-        })
-        .catch((error) => Amplitude.error('ArenaStore join add user', error))
-        ;
-    }
-
     private observe = () => {
         this.unsubscribe = this.ref.onSnapshot((snapshot) => {
             this.arenaUpdated(snapshot);
         });
 
-        // this.userUnsubscribe = this.userRef.onSnapshot(this.usersUpdated);
+        ArenaUserStore.observe(this.usersUpdated);
         ChatStore.observe();
-
-        UserStore.observeConnectionChange();
-
-        if (Platform.OS === 'android') {
-            Scheduler.setInterval(C.SchedulerAndroidReload, UserStore.reload, 2 * 60 * 1000);
-        }
     }
 
     private stopObserve = () => {
         this.unsubscribe();
-        //this.userUnsubscribe();
+        ArenaUserStore.stopObserve();
         ChatStore.stopObserve();
-        
-        UserStore.stopObserveConnectionChange();
-
-        if (Platform.OS === 'android') {
-            Scheduler.clearInterval(C.SchedulerAndroidReload);
-        }
     }
 
     public get = async (id:number) :Promise<void> => {
@@ -334,7 +294,7 @@ class ArenaStore {
                     return;
                 }
                 this.ref = snapshot.docs[0].ref;
-                this.userRef = this.ref.collection('RoomUser');
+                ArenaUserStore.ref = this.ref.collection('RoomUser');
                 ChatStore.ref = this.ref.collection('Chat');
                 this.arenaUpdated(snapshot.docs[0]);
             })
@@ -366,7 +326,7 @@ class ArenaStore {
 
     @action
     public join = async (id:number) => {
-        if (this.userNum >= C.RoomUserLimit) {
+        if (ArenaUserStore.userNum >= C.RoomUserLimit) {
             alert('申し訳ありません、満員のため入室できません。');
             return;
         }
@@ -381,7 +341,7 @@ class ArenaStore {
         // await this.get(this.id);
 
         const p = [];
-        p.push(this.asyncSetRoomUser());
+        p.push(ArenaUserStore.asyncSetRoomUser());
         p.push(UserStore.asyncSetRoom(this.ref.id));
         //p.push(UserStore.asyncSetConnect(true));
         await Promise.all(p);
@@ -403,27 +363,22 @@ class ArenaStore {
         
         UserStore.asyncSetConnect(false);
         Scheduler.clearInterval(C.SchedulerArenaTick);
-        this.userRef.doc(UserStore.id).delete()
-            .catch((error) => Amplitude.error('ArenaStore leave', error))
-        ;
+        ArenaUserStore.asyncDelete();
 
         SoundStore.stop();
         Navigator.back();
     }
 
     public entry = async (state:C.ArenaUserState) => {
-        if (!this.users[UserStore.id]) return;
+        if (!ArenaUserStore.users[UserStore.id]) return;
 
         ConfigStore.load(true);
         Scheduler.setTimeout('', () => {
-            this.userRef.doc(UserStore.id).update({
-                state: state
-            })
+            ArenaUserStore.asyncUpdateState(state)
             .then(() => {
                 Amplitude.info('ArenaEntry', null);
                 ConfigStore.load(false);
             })
-            .catch((error) => Amplitude.error('ArenaStore entry', error))
             ;
         }, 1000);
     }

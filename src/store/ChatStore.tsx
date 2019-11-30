@@ -1,5 +1,4 @@
-import Moment from 'moment';
-import { Alert, Platform, } from 'react-native';
+import { Alert, } from 'react-native';
 import { observable, computed, action } from 'mobx';
 import { IMessage } from 'react-native-gifted-chat';
 
@@ -16,17 +15,14 @@ class ChatStore {
     private _ref:Firebase.firestore.CollectionReference;
     get ref() { return this._ref;}
     set ref(ref:Firebase.firestore.CollectionReference) { this._ref = ref}
-    private chatUnsubscribe:Function;
+    private unsubscribe:Function;
 
     private _isViewable:boolean = false;
     get isViewable() { return this._isViewable };
     set isViewable(f:boolean) { this._isViewable = f};
 
-
     // Chat
     @observable _messages:Array<IMessage> = new Array<IMessage>();
-    @observable latestReadMessage:IMessage;
-
     @computed get messages() {
         return this._messages.filter((v:any, i) => {
             if (v.reporter && v.reporter.indexOf(UserStore.id) !== -1) return false;
@@ -34,11 +30,12 @@ class ChatStore {
             return true;
         });
     }
-
     set messages(messages:Array<IMessage>) {
         this._messages = messages;
         if (!this.latestReadMessage) this.readMessage();
     }
+
+    @observable latestReadMessage:IMessage;
 
     @computed get unreadNumber() {
         if (!this.latestReadMessage) return 0;
@@ -54,11 +51,11 @@ class ChatStore {
     }
 
     public observe = () => {
-        this.chatUnsubscribe = this._ref.orderBy('createdAt', 'desc').onSnapshot(this.chatUpdated);
+        this.unsubscribe = this._ref.orderBy('createdAt', 'desc').onSnapshot(this.updated);
     }
 
     public stopObserve = () => {
-        this.chatUnsubscribe();
+        this.unsubscribe();
     }
 
     @action
@@ -66,7 +63,7 @@ class ChatStore {
         this.latestReadMessage = this.messages[0];
     }
 
-    private chatUpdated = (snapshot: Firebase.firestore.QuerySnapshot) => {
+    private updated = (snapshot: Firebase.firestore.QuerySnapshot) => {
         const messages:Array<IMessage> = [];
         for (let doc of snapshot.docs) {
             const data = doc.data();

@@ -6,7 +6,7 @@ import styled from 'styled-components/native';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
-import ArenaStore from '../../store/ArenaStore';
+import ArenaUserStore from '../../store/ArenaUserStore';
 
 import EntryButton from '../l1/EntryButton';
 import Microphone from '../l1/Microphone';
@@ -16,7 +16,7 @@ import Microphone from '../l1/Microphone';
 export default class ScenarioFooter extends Component {
 
     render() {
-        const entryButton = ArenaStore.userState == C.ArenaUserState.ACTOR ?
+        const entryButton = ArenaUserStore.userState == C.ArenaUserState.ACTOR ?
             (<Microphone />) : (<EntryButton />)
             ;
 
@@ -27,8 +27,8 @@ export default class ScenarioFooter extends Component {
                     {entryButton}
                 </Center>
                 <Right>
-                    <UserStaetBadge {...(C.ArenaUserStateStyle[ArenaStore.userState])}>
-                        <BadgeText>{C.ArenaUserStateString[ArenaStore.userState]}</BadgeText>
+                    <UserStaetBadge {...(C.ArenaUserStateStyle[ArenaUserStore.userState])}>
+                        <BadgeText>{C.ArenaUserStateString[ArenaUserStore.userState]}</BadgeText>
                     </UserStaetBadge>
                 </Right>
             </Root>

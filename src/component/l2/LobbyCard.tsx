@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 
 import * as C from '../../lib/Const';
 import ArenaStore from '../../store/ArenaStore';
+import ArenaUserStore from '../../store/ArenaUserStore';
 
 
 interface props {
@@ -23,7 +24,7 @@ export default class LobbyCard extends Component<props> {
                         <Text style={styles.titleText}>{this.props.title}</Text>
                         <View style={styles.userNum}>
                             <Icon name='user' type='FontAwesome5' style={styles.userNumIcon} />
-                            <Text style={styles.userNumText}>{ArenaStore.userNum}/{C.RoomUserLimit}</Text>
+                            <Text style={styles.userNumText}>{ArenaUserStore.userNum}/{C.RoomUserLimit}</Text>
                         </View>
                     </View>
                     <View style={styles.explain}>

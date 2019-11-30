@@ -6,6 +6,7 @@ import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
 import ArenaStore from '../../store/ArenaStore';
+import ArenaUserStore from '../../store/ArenaUserStore';
 import ConfigStore from '../../store/ConfigStore';
 
 
@@ -20,7 +21,7 @@ export default class ArenaAddTimeButton extends Component {
     }
 
     render() {
-        const disabled = ArenaStore.userState !== C.ArenaUserState.ACTOR
+        const disabled = ArenaUserStore.userState !== C.ArenaUserState.ACTOR
             || !ArenaStore.addTimeCount || ArenaStore.addTimeCount <= 0;
         const count = disabled ? 0 : ArenaStore.addTimeCount;
 
