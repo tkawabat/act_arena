@@ -1,5 +1,7 @@
 import { css } from 'styled-components';
 import { Dimensions } from 'react-native';
+import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
+
 
 let { height, width } = Dimensions.get('window');
 export const screenWidth = css`
@@ -9,6 +11,12 @@ export const screenWidth = css`
 export const center = css`
     justify-content: center;
     align-items: center;
+`
+
+export const screenRoot = css`
+    flex: 1;
+    margin-top: ${getStatusBarHeight()};
+    margin-bottom: ${getBottomSpace()};
 `
 
 export const squareButton = css`
