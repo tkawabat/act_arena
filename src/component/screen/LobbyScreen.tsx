@@ -1,19 +1,21 @@
 import React from 'react';
-import { StyleSheet, Alert, Platform, Dimensions, } from 'react-native';
-import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
+import { Alert, Platform, } from 'react-native';
+import { Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
 import { observer } from 'mobx-react';
-import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import Spinner from 'react-native-loading-spinner-overlay';
 import * as Permissions from 'react-native-permissions';
+import styled from 'styled-components/native';
 
 import ScreenBase from './ScreenBase';
 import Navigator from '../../lib/Navigator';
+import * as BasicStyle from '../../lib/BasicStyle';
 
 import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
 import SoundStore from '../../store/SoundStore';
 
 import LobbyCard from '../l2/LobbyCard';
+import TestTellButton from '../l1/TestTellButton';
 
 
 @observer
@@ -84,26 +86,30 @@ export default class LobbyScreen extends ScreenBase {
 
     render() {
         return (
-            <Container style={styles.container}>
+            <Root>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Header style={styles.header}>
+                <LobbyHeader>
                     <Left />
                     <Body>
                         <Title>ロビー</Title>
                     </Body>
                     <Right>
                         <Button transparent onPress={() => Navigator.navigate('Setting', null)} >
-                            <Icon name='cog' type='FontAwesome5' style={styles.config} />
+                            <ConfigIcon name='cog' type='FontAwesome5' />
                         </Button>
                     </Right>
-                </Header>
-                <View>
+                </LobbyHeader>
+                <ScreenBody>
                     <LobbyCard
                         title='アリーナ'
                         explain='４分で演じる名場面！'
                         onPress={() => this.joinArena(0)}
                     />
-                </View>
+                </ScreenBody>
+
+                <Footer>
+                    <TestTellButton></TestTellButton>
+                </Footer>
 
                 {/* <Button onPress={() => { SoundStore.se('actStart'); }}>
                     <Text>actStart</Text>
@@ -127,24 +133,32 @@ export default class LobbyScreen extends ScreenBase {
                     <Text>fadeout</Text>
                 </Button> */}
 
-            </Container>
+            </Root>
         );
     }
 }
 
+const Root = styled.View`
+    ${BasicStyle.screenRoot}
+`
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: getStatusBarHeight(),
-        marginBottom: getBottomSpace(),
-    },
-    header: {
-        paddingTop: 0,
-        height: 50,
-    },
-    config: {
-        fontSize: 20,
-        color: 'gray',
-    },
-});
+const ScreenBody = styled.View`
+    flex: 1;
+`
+
+const LobbyHeader = styled(Header)`
+    padding-top: 0;
+    height: 50;
+`
+
+const Footer = styled.View`
+    height: 50;
+    margin: 10px;
+    flex-direction: row;
+    justify-content: flex-end;
+`
+
+const ConfigIcon = styled(Icon)`
+    font-size: 20;
+    color: gray;
+`
