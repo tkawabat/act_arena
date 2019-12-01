@@ -6,6 +6,7 @@ import { observable, action } from 'mobx';
 import * as C from '../lib/Const';
 import Secret from '../lib/Secret';
 import Amplitude from '../lib/Amplitude';
+import Scheduler from '../lib/Scheduler';
 
 import ConfigStore from './ConfigStore';
 
@@ -150,25 +151,39 @@ class SkywayStore {
     }
 
     public testTell = (userId) :void => {
+        ConfigStore.load(true);
         if (!this.testPeer) {
             const id = 'test_' + userId + Moment().unix().toString();
             this.testPeer = new Peer(id, Secret.skyway);
+            this.testPeer.addEventListener('peer-open', this.onTestTellPeerOpen);
+            this.testPeer.connect();
+        } else {
+            // call function
+            this.onTestTellPeerOpen();
         }
-
-        this.testPeer.addEventListener('peer-open', this.onTestTellPeerOpen);
-        this.testPeer.connect();
+        Scheduler.setTimeout('', () => {            
+            ConfigStore.load(false);
+            Scheduler.setTimeout('', this.alertTestTell, 500);
+        }, 2000);
     }
 
-    public onTestTellPeerOpen = () :void => {
+    private onTestTellPeerOpen = () :void => {
         const roomId = 'test_'+this.testPeer.peerId;
         this.testPeer.setLocalStreamStatus(true);
         
         this.peer.joinRoom(roomId);
         this.testPeer.joinRoom(roomId);
+    }
 
+    private closeTestTell = () :void => {
+        this.peer.leaveRoom();
+        this.testPeer.leaveRoom();
+    }
+
+    private alertTestTell = () : void => {
         const message = '自分の声が聞こえることを確認してください。'
             + 'わかりにくい場合は、イヤホンをすることをオススメします。'
-        ;
+            ;
         Alert.alert(
             'テスト通話中', message,
             [{
@@ -176,11 +191,6 @@ class SkywayStore {
                 onPress: this.closeTestTell
             }], { cancelable: false }
         )
-    }
-
-    public closeTestTell = () :void => {
-        this.peer.leaveRoom();
-        this.testPeer.leaveRoom();
     }
 }
 
