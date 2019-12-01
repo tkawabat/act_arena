@@ -18,6 +18,7 @@ import SquareIconButton from './SquareIconButton';
 import SquareTextButton from './SquareTextButton';
 import SquareTextIconButton from './SquareTextIconButton';
 import Timer from './Timer';
+import TestTellButton from './TestTellButton';
 
 
 const components = storiesOf('L1', module);
@@ -75,6 +76,11 @@ components
         StoryUtil.CenteredView([
             <Timer />,
             <ArenaStoreAdmin />,
+        ])
+    ))
+    .add(TestTellButton.name, () => (
+        StoryUtil.CenteredView([
+            <TestTellButton />,
         ])
     ))
     ;

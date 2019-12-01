@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { Alert } from 'react-native';
 import { Peer } from 'react-native-skyway';
 import { observable, action } from 'mobx';
 
@@ -14,6 +15,7 @@ class SkywayStore {
     @observable speakState = C.SpeakState.DISABLED;
 
     private peer : Peer;
+    private testPeer: Peer;
 
     @action setSpeakState = (state:C.SpeakState) => {
         this.speakState = state;
@@ -145,6 +147,39 @@ class SkywayStore {
     public setDisabled = () :void => {
         this.speakState = C.SpeakState.DISABLED;
         if (this.peer) this.peer.setLocalStreamStatus(false);
+    }
+
+    public testTell = (userId) :void => {
+        const id = 'test_' + userId + Moment().unix().toString();
+        this.testPeer = new Peer(id, Secret.skyway);
+
+        this.testPeer.addEventListener('peer-open', this.onTestTellPeerOpen);
+        this.testPeer.connect();
+    }
+
+    public onTestTellPeerOpen = () :void => {
+        const roomId = 'test_'+this.testPeer.peerId;
+        this.testPeer.setLocalStreamStatus(true);
+        
+        this.peer.joinRoom(roomId);
+        this.testPeer.joinRoom(roomId);
+
+        const message = '自分の声が聞こえることを確認してください。'
+            + 'わかりにくい場合は、イヤホンをすることをオススメします。'
+        ;
+        Alert.alert(
+            'テスト通話中', message,
+            [{
+                text: 'テスト終了',
+                onPress: this.closeTestTell
+            }], { cancelable: false }
+                        )
+    }
+
+    public closeTestTell = () :void => {
+        this.peer.leaveRoom();
+        this.testPeer.leaveRoom();
+        this.testPeer.dispose();
     }
 }
 
