@@ -150,8 +150,10 @@ class SkywayStore {
     }
 
     public testTell = (userId) :void => {
-        const id = 'test_' + userId + Moment().unix().toString();
-        this.testPeer = new Peer(id, Secret.skyway);
+        if (!this.testPeer) {
+            const id = 'test_' + userId + Moment().unix().toString();
+            this.testPeer = new Peer(id, Secret.skyway);
+        }
 
         this.testPeer.addEventListener('peer-open', this.onTestTellPeerOpen);
         this.testPeer.connect();
@@ -173,13 +175,12 @@ class SkywayStore {
                 text: 'テスト終了',
                 onPress: this.closeTestTell
             }], { cancelable: false }
-                        )
+        )
     }
 
     public closeTestTell = () :void => {
         this.peer.leaveRoom();
         this.testPeer.leaveRoom();
-        this.testPeer.dispose();
     }
 }
 
