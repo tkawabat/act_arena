@@ -9,7 +9,6 @@ import * as Font from 'expo-font';
 Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
 import { observer } from 'mobx-react';
 import Moment from 'moment';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import AppContainer from './src/component/screen/AppContainer';
 import * as C from './src/lib/Const';
@@ -27,13 +26,14 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
-        SplashScreen.preventAutoHide();
 
         const ignoreWarnings = ['Setting a timer for a long period of time,'];
         YellowBox.ignoreWarnings(ignoreWarnings);
         console.ignoredYellowBox = ignoreWarnings;
 
         Amplitude.info('init', null);
+
+        SplashScreen.preventAutoHide();
         
         ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoad('skyway');
