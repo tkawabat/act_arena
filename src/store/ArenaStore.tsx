@@ -175,7 +175,7 @@ class ArenaStore {
                 }
                 break;
         }
-        Scheduler.setTimeout('', this.playSound, 100);
+        this.playSound(before, after);
     }
 
     private dealArenaMessageTransition = (before:string, after:string) :void => {
@@ -204,21 +204,17 @@ class ArenaStore {
         }
     }
 
-    private se = (key:string) => {
-        if (this.id === null) return;
-        SoundStore.se(key);
-    }
-
-    private playSound = () => {
+    private playSound = (before:C.ArenaState, after:C.ArenaState) => {
         if (this.id === null) return;
 
-        switch (this.arenaState) {
+        switch (after) {
             case C.ArenaState.WAIT:
+                if (before !== null) this.se('actEnd');    
                 SoundStore.playRondom(0.4, true);
                 break;
             case C.ArenaState.READ:
                 this.se('matching');
-                SoundStore.playRondom(0.1, false);
+                SoundStore.playRondom(0.4, false);
                 break;
             case C.ArenaState.CHECK:
                 SoundStore.playRondom(0.1, false);
@@ -229,6 +225,11 @@ class ArenaStore {
                 this.se('actStart');
                 break;
         }
+    }
+
+    private se = (key:string) => {
+        if (this.id === null) return;
+        SoundStore.se(key);
     }
 
     private observe = () => {
@@ -311,7 +312,7 @@ class ArenaStore {
         this.observe();
 
         Navigator.navigate('Arena', null);
-        this.playSound();
+        this.playSound(null, this.arenaState);
     }
 
     public leave = () => {
@@ -319,6 +320,8 @@ class ArenaStore {
         Amplitude.info('ArenaLeave', null);
 
         this.id = null;
+        this.arenaState = C.ArenaState.WAIT;
+        ArenaUserStore.userState = C.ArenaUserState.LISTNER;
         SkywayStore.leave();
 
         this.stopObserve();

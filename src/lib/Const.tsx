@@ -106,6 +106,7 @@ export const SeList = {
     'actStart': { file: 'buzzer_opening1.mp3', site: '効果音ラボ'},
     'matching': { file: 'tin2.mp3', site: '効果音ラボ'},
     'enterRoom': { file: 'cursor1.mp3', site: '効果音ラボ'},
+    'actEnd': { file: 'people_people_stadium_cheer1.mp3', site: '効果音ラボ'},
 }
 
 export const SoundFadeDuration = 8000;

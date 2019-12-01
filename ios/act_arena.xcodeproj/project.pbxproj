@@ -10,6 +10,8 @@
 		9D7261E01D47073B533A2791 /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
 		9E3CDA230073E91818A174E5 /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
 		A0B815BCA85956B696E40C9A /* libPods-act_arena.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A88D15726AD99E8A257BC7 /* libPods-act_arena.a */; };
+		A70B06EB239411F800865D2C /* people_people_stadium_cheer1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A70B06EA239411F800865D2C /* people_people_stadium_cheer1.mp3 */; };
+		A70B06EC239411F800865D2C /* people_people_stadium_cheer1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A70B06EA239411F800865D2C /* people_people_stadium_cheer1.mp3 */; };
 		A714AF1F2352342D0099A059 /* libRNSkyWay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A74580F2235228FB008985B4 /* libRNSkyWay.a */; };
 		A739A47C236ECAE20048E65D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
 		A739A47D236ECAE20048E65D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
@@ -64,6 +66,7 @@
 		2896527B24C9E4BC5E9B1B74 /* Pods-act_arena.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-act_arena.debug.xcconfig"; path = "Pods/Target Support Files/Pods-act_arena/Pods-act_arena.debug.xcconfig"; sourceTree = "<group>"; };
 		803E889CBD89B6CB6A4DE99D /* Pods-act_arena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-act_arena.release.xcconfig"; path = "Pods/Target Support Files/Pods-act_arena/Pods-act_arena.release.xcconfig"; sourceTree = "<group>"; };
 		8C6DD662A02948BEB74BC3A2 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A70B06EA239411F800865D2C /* people_people_stadium_cheer1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = people_people_stadium_cheer1.mp3; path = ../resource/se/people_people_stadium_cheer1.mp3; sourceTree = "<group>"; };
 		A7145A1E22EB30DA009F97BA /* SkyWay */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = SkyWay; path = SkyWay_iOS_1.2.0/SkyWay.framework/SkyWay; sourceTree = "<group>"; };
 		A7145A2522EB323A009F97BA /* SkyWay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SkyWay.framework; path = SkyWay_iOS_1.2.0/SkyWay.framework; sourceTree = "<group>"; };
 		A739A49A236ECAE20048E65D /* act_arena_debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = act_arena_debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +172,7 @@
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
+				A70B06EA239411F800865D2C /* people_people_stadium_cheer1.mp3 */,
 				A7CF9FAF232FECA200493FBF /* sayonara3.mp3 */,
 				A739A4A8236EFAF40048E65D /* cursor1.mp3 */,
 				A739A4B2236F10590048E65D /* buzzer_opening1.mp3 */,
@@ -370,6 +374,7 @@
 				A739A48F236ECAE20048E65D /* LaunchScreen.xib in Resources */,
 				A739A4B1236F05ED0048E65D /* tin2.mp3 in Resources */,
 				A739A490236ECAE20048E65D /* shell-app-manifest.json in Resources */,
+				A70B06EC239411F800865D2C /* people_people_stadium_cheer1.mp3 in Resources */,
 				A739A4B4236F10590048E65D /* buzzer_opening1.mp3 in Resources */,
 				A739A491236ECAE20048E65D /* shell-app.bundle in Resources */,
 				A739A492236ECAE20048E65D /* Assets.xcassets in Resources */,
@@ -391,6 +396,7 @@
 				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
 				A739A4B0236F05ED0048E65D /* tin2.mp3 in Resources */,
 				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
+				A70B06EB239411F800865D2C /* people_people_stadium_cheer1.mp3 in Resources */,
 				A739A4B3236F10590048E65D /* buzzer_opening1.mp3 in Resources */,
 				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
 				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
