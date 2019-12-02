@@ -19,7 +19,7 @@ export default class TestTellButton extends Component {
     render() {
 
         return (
-            <ButtonEntried success onPress={this.testTell}>
+            <ButtonEntried warning onPress={this.testTell}>
                 <ButtonText>{'通話テスト'}</ButtonText>
             </ButtonEntried>
         );
@@ -30,7 +30,6 @@ const ButtonEntried = styled(Button)`
     width: 100;
     height: 40;
     ${BasicStyle.center};
-    ${p => p.success ? '' : 'background-color: #ccc'};
 `
 
 const ButtonText = styled.Text`
