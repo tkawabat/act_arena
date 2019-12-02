@@ -58,7 +58,7 @@ class ArenaStore {
         this.endAt[C.ArenaState.CHECK] = Moment().add(-1, 'seconds');
         this.endAt[C.ArenaState.ACT] = Moment().add(-1, 'seconds');
 
-        this.get(0)
+        this.getAsync(0)
             .then(() => {
                 ArenaUserStore.observe4lobby(this.usersUpdated);
                 ConfigStore.setInitLoadComplete('arena');
@@ -98,7 +98,6 @@ class ArenaStore {
     private arenaUpdated = (snapshot :Firebase.firestore.DocumentSnapshot) => {
         const data = snapshot.data();
 
-        //this.dealArenaStateTransition(this.arenaState, data.state);
         this.dealArenaMessageTransition(this.overlayMessage, data.message);
         this.overlayMessage = data.message;
 
@@ -247,7 +246,7 @@ class ArenaStore {
         ChatStore.stopObserve();
     }
 
-    public get = async (id:number) :Promise<void> => {
+    private getAsync = async (id:number) :Promise<void> => {
         return this.db
             .where('id', '==', id)
             .get()
