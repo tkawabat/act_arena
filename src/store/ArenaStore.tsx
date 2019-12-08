@@ -16,18 +16,13 @@ import SkywayStore from './SkywayStore';
 import SoundStore from './SoundStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
 
+import ArenaUserModel, { ArenaUser } from '../model/ArenaUserModel';
+import ArenaModel from '../model/ArenaModel';
 
-interface ArenaUser {
-    name: string
-    gender: C.Gender
-    iconUrl: string
-    state: C.ArenaUserState
-}
 
 class ArenaStore {
-    private db:Firebase.firestore.CollectionReference;
-    private ref:Firebase.firestore.DocumentReference;
-    private unsubscribe:Function;
+    private arenaModel:ArenaModel;
+    private arenaUserModel:ArenaUserModel;
 
     private id :number = null; // entered arena
     private endAt: Array<Moment.Moment>;
@@ -51,19 +46,12 @@ class ArenaStore {
     @observable modal:boolean = false;
 
     constructor() {
-        this.db = Firebase.firestore().collection('Arena');
+        this.arenaModel = new ArenaModel();
 
         this.endAt = new Array<Moment.Moment>();
         this.endAt[C.ArenaState.READ] = Moment().add(-1, 'seconds');
         this.endAt[C.ArenaState.CHECK] = Moment().add(-1, 'seconds');
         this.endAt[C.ArenaState.ACT] = Moment().add(-1, 'seconds');
-
-        this.getAsync(0)
-            .then(() => {
-                ArenaUserStore.observe4lobby(this.usersUpdated);
-                ConfigStore.setInitLoadComplete('arena');
-            })
-        ;
     }
 
     @action
@@ -111,7 +99,6 @@ class ArenaStore {
     }
 
     // ArenaUserStoreにあるべきだが、退室・SE処理があるのでArenaStoreにおいてある
-    // TODO Serviceを作って移動
     private usersUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
         const users = {};
         snapshot.docs.map((doc) => {
@@ -142,7 +129,7 @@ class ArenaStore {
                 SkywayStore.setDisabled();
                 this.agreementState = C.AgreementState.NONE;
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
-                    ArenaUserStore.asyncSetRoomUser();
+                    this.arenaUserModel.asyncUpdateState(UserStore, C.ArenaUserState.LISTNER);
                 }
                 this.setModal(false);
                 this.addTimeCount = 0;
@@ -232,36 +219,16 @@ class ArenaStore {
     }
 
     private observe = () => {
-        this.unsubscribe = this.ref.onSnapshot((snapshot) => {
-            this.arenaUpdated(snapshot);
-        });
-
-        ArenaUserStore.observe(this.usersUpdated);
+        this.arenaModel.observe(this.arenaUpdated);
+        this.arenaUserModel.observe(this.usersUpdated);
         ChatStore.observe();
     }
 
     private stopObserve = () => {
-        this.unsubscribe();
-        ArenaUserStore.stopObserve();
+        this.arenaModel.stopObserve();
+        this.arenaUserModel.stopObserve();
+        this.arenaUserModel = null;
         ChatStore.stopObserve();
-    }
-
-    private getAsync = async (id:number) :Promise<void> => {
-        return this.db
-            .where('id', '==', id)
-            .get()
-            .then((snapshot :Firebase.firestore.QuerySnapshot) => {
-                if (snapshot.size < 1) {
-                    Amplitude.error('ArenaStore get', {'id':id});
-                    return;
-                }
-                this.ref = snapshot.docs[0].ref;
-                ArenaUserStore.ref = this.ref.collection('RoomUser');
-                ChatStore.ref = this.ref.collection('Chat');
-                this.arenaUpdated(snapshot.docs[0]);
-            })
-            .catch((error) => Amplitude.error('ArenaStore get', error))
-            ;
     }
 
     public asyncAddActTime = async () :Promise<void> => {
@@ -269,21 +236,8 @@ class ArenaStore {
         if (this.addTimeCount <= 0) return;
         
         this.addTimeCount--;
-        const endAt = [];
-        const now = Moment();
-        for (let [key, value] of this.endAt.entries()) {
-            if (value < now) {
-                endAt[key] = value.toDate(); // すでに終わったstateは更新しない。
-            } else {
-                endAt[key] = value.add(30, 'seconds').toDate();
-            }
-        }
         
-        return this.ref.update({
-            endAt: endAt
-        })
-        .catch((error) => Amplitude.error('ArenaStore add act time', error))
-        ;
+        return this.arenaModel.asyncAddActTime(this.endAt);
     }
 
     @action
@@ -297,16 +251,22 @@ class ArenaStore {
         this.agreementState = C.AgreementState.NONE;
         this.tab = C.ArenaTab.SCENARIO;
         this.setModal(false);
+
         SkywayStore.join('arena'+this.id);
 
-        // ID一個で先にgetしておくのでコメントアウト
-        // await this.get(this.id);
+        const arenaRef = await this.arenaModel.asyncGet(this.id);
+        if (!arenaRef) {
+            alert('エラーが発生しました。');
+            return;
+        }
+        this.arenaUserModel = new ArenaUserModel(arenaRef.ref);
+        ChatStore.ref = arenaRef.ref.collection('Chat');
 
         const p = [];
-        p.push(ArenaUserStore.asyncSetRoomUser());
-        p.push(UserStore.asyncSetRoom(this.ref.id));
+        p.push(this.arenaUserModel.asyncSetRoomUser(UserStore));
+        p.push(UserStore.asyncSetRoom(this.arenaModel.id));
         //p.push(UserStore.asyncSetConnect(true));
-        await Promise.all(p);
+        await Promise.all(p).catch(e => console.log(e));
 
         this.observe();
 
@@ -322,12 +282,12 @@ class ArenaStore {
         this.arenaState = C.ArenaState.WAIT;
         ArenaUserStore.userState = C.ArenaUserState.LISTNER;
         SkywayStore.leave();
-
-        this.stopObserve();
         
         UserStore.asyncSetConnect(false);
         Scheduler.clearInterval(C.SchedulerArenaTick);
-        ArenaUserStore.asyncDelete();
+        this.arenaUserModel.asyncDelete(UserStore);
+
+        this.stopObserve();
 
         SoundStore.stop();
         Navigator.back();
@@ -338,7 +298,7 @@ class ArenaStore {
 
         ConfigStore.load(true);
         Scheduler.setTimeout('', () => {
-            ArenaUserStore.asyncUpdateState(state)
+            this.arenaUserModel.asyncUpdateState(UserStore, state)
             .then(() => {
                 Amplitude.info('ArenaEntry', null);
                 ConfigStore.load(false);
