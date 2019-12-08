@@ -6,13 +6,14 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import * as Permissions from 'react-native-permissions';
 import styled from 'styled-components/native';
 
+import * as C from '../../lib/Const';
 import ScreenBase from './ScreenBase';
 import Navigator from '../../lib/Navigator';
 import * as BasicStyle from '../../lib/BasicStyle';
 
 import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
-import SoundStore from '../../store/SoundStore';
+import LobbyStore from '../../store/LobbyStore';
 
 import LobbyCard from '../l2/LobbyCard';
 import TestTellButton from '../l1/TestTellButton';
@@ -22,8 +23,7 @@ import TestTellButton from '../l1/TestTellButton';
 export default class LobbyScreen extends ScreenBase {
     
     constructor(props) {
-        super(props);
-        
+        super(props);        
     }
 
     private asyncCheckIosPermissions = async () => {
@@ -102,7 +102,8 @@ export default class LobbyScreen extends ScreenBase {
                 <ScreenBody>
                     <LobbyCard
                         title='アリーナ'
-                        explain='４分で演じる名場面！'
+                        explain='3分で演じる名場面！'
+                        userNumText={ (LobbyStore.userNum/C.RoomUserLimit).toString() }
                         onPress={() => this.joinArena(0)}
                     />
                 </ScreenBody>
@@ -110,28 +111,6 @@ export default class LobbyScreen extends ScreenBase {
                 <Footer>
                     <TestTellButton></TestTellButton>
                 </Footer>
-
-                {/* <Button onPress={() => { SoundStore.se('actStart'); }}>
-                    <Text>actStart</Text>
-                </Button>
-                <Button onPress={() => { SoundStore.se('matching'); }}>
-                    <Text>matching</Text>
-                </Button>
-                <Button onPress={() => { SoundStore.se('enterRoom'); }}>
-                    <Text>enterRoom</Text>
-                </Button>
-                <Button onPress={() => { SoundStore.setVolume(0.25); }}>
-                    <Text>volume low</Text>
-                </Button>
-                <Button onPress={() => { SoundStore.incrementVolume(0.1); }}>
-                    <Text>volume up</Text>
-                </Button>
-                <Button onPress={() => { SoundStore.decrementVolume(0.1); }}>
-                    <Text>volume down</Text>
-                </Button>
-                <Button onPress={() => { SoundStore.fadeOut(); }}>
-                    <Text>fadeout</Text>
-                </Button> */}
 
             </Root>
         );

@@ -1,75 +1,95 @@
 import React, {Component} from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { Text, View, Button, Icon, Card } from "native-base";
+import { Icon, Card } from "native-base";
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
-import LobbyStore from '../../store/LobbyStore';
+import * as BasicStyle from '../../lib/BasicStyle';
 
 
 interface props {
     title: string,
     explain: string,
+    userNumText?: string,
     onPress: () => void
 }
 
 @observer
 export default class LobbyCard extends Component<props> {
     render() {
+        const userNum = !this.props.userNumText ? null : (
+            <UserNumRoot>
+                <UserNumIcon name='user' type='FontAwesome5' />
+                <UserNumText>{this.props.userNumText}</UserNumText>
+            </UserNumRoot>
+        );
+
         return (
-            <TouchableOpacity onPress={this.props.onPress}>
-                <Card style={styles.root}>
-                    <View style={styles.title}>
-                        <Text style={styles.titleText}>{this.props.title}</Text>
-                        <View style={styles.userNum}>
-                            <Icon name='user' type='FontAwesome5' style={styles.userNumIcon} />
-                            <Text style={styles.userNumText}>{LobbyStore.userNum}/{C.RoomUserLimit}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.explain}>
-                        <Text style={styles.explainText}>{this.props.explain}</Text>
-                        <Icon name='sign-out-alt' type='FontAwesome5' />
-                    </View>
-                </Card>
-            </TouchableOpacity>
+            <Root>
+                <Touch onPress={this.props.onPress}>
+                    <CardTitle>
+                        <TitleText>{this.props.title}</TitleText>
+                        {userNum}
+                    </CardTitle>
+                    <ExplainRoot>
+                        <ExplainText>{this.props.explain}</ExplainText>
+                        <EnterIcon name='sign-out-alt' type='FontAwesome5' />
+                    </ExplainRoot>
+                </Touch>
+            </Root>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    root: {
-        height: 100,
-        margin: 20,
-        padding: 15,
-        color: '#000',
-    },
-    title: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    titleText: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: '#000044',
-    },
-    userNum: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        color: '#333',
-    },
-    userNumIcon: {
-        fontSize: 16,
-    },
-    userNumText: {
-        fontSize: 16,
-        marginLeft: 2,
-    },
-    explain: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 15,
-    },
-    explainText: {
-        marginLeft: 20
-    },
-});
+
+const Root = styled(Card)`
+    height: 90;
+    margin: 15px;
+    padding: 15px;
+    color: #000;
+`;
+
+const Touch = styled.TouchableOpacity`
+`;
+
+const CardTitle = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+const TitleText = styled.Text`
+    font-size: 24;
+    font-weight: 600;
+    color: #000044;
+`;
+
+const UserNumRoot = styled.View`
+    flex-direction: row;
+    justify-content: flex-end;
+    color: #333;
+`;
+
+const UserNumIcon = styled(Icon)`
+    font-size: 16;
+`;
+
+const UserNumText = styled.Text`
+    font-size: 16;
+    margin-left: 2px;
+`;
+
+const ExplainRoot = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+const ExplainText = styled.Text`
+    margin-top: 15px;
+    margin-left: 15px;
+    font-size: 16;
+`;
+
+const EnterIcon = styled(Icon)`
+    margin-top: 10px;
+    font-size: 24;
+`

@@ -28,10 +28,18 @@ components
         StoryUtil.CenteredView(<ChatTabHeader />)
     ))
     .add(LobbyCard.name, () => (
-        StoryUtil.CenteredView(<LobbyCard
-            title={text('title', 'hoge')}
-            explain={text('explain', 'fuga')}
-            onPress={action('join')}
-        />)
+        StoryUtil.FullView([
+            <LobbyCard
+                title={text('title', 'アリーナ')}
+                explain={text('explain', '3分で演じる名場面！')}
+                userNumText={'5/10'}
+                onPress={action('join')}
+            />,
+            <LobbyCard
+                title={text('title2', 'プライベートアリーナ')}
+                explain={text('explain2', '友達だけで気軽に遊べる部屋')}
+                onPress={action('join2')}
+            />,
+        ])
     ))
     ;
