@@ -67,5 +67,6 @@ const Root = styled(View)`
 
 const Title = styled.Text`
     margin-bottom: 10px;
-    font-weight: 400;
+    font-size: 18;
+    font-weight: 500;
 `
