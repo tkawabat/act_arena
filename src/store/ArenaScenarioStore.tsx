@@ -15,13 +15,13 @@ class ArenaScenarioStore {
     public scroll2Top = () => {};
     public scroll2Start = () => {};
 
-    @observable title:string;
-    @observable agreementUrl:string;
-    @observable agreementScroll:number;
-    @observable scenarioUrl:string;
-    @observable startText:string;
-    @observable endText:string;
-    @observable characters:Array<Characters>;
+    @observable title:string = '';
+    @observable agreementUrl:string = '';
+    @observable agreementScroll:number = 0;
+    @observable scenarioUrl:string = '';
+    @observable startText:string = '';
+    @observable endText:string = '';
+    @observable characters:Array<Characters> = [];
 
     // private state
     @observable agreementState:C.AgreementState;
