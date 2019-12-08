@@ -13,8 +13,8 @@ import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStore
 import ActInfoModal from './ActInfoModal';
 import ArenaExplain from './ArenaExplain';
 import ChatTabHeader from './ChatTabHeader';
-import LobbyCard from './LobbyCard';
-
+import LobbyCard from './LobbyCardArena';
+import LobbyCardPrivateArena from './LobbyCardPrivateArena';
 
 const components = storiesOf('L2', module);
 components
@@ -35,14 +35,9 @@ components
     .add(LobbyCard.name, () => (
         StoryUtil.FullView([
             <LobbyCard
-                title={text('title', 'アリーナ')}
-                explain={text('explain', '3分で演じる名場面！')}
-                userNumText={'5/10'}
                 onPress={action('join')}
             />,
-            <LobbyCard
-                title={text('title2', 'プライベートアリーナ')}
-                explain={text('explain2', '友達だけで気軽に遊べる部屋')}
+            <LobbyCardPrivateArena
                 onPress={action('join2')}
             />,
         ])

@@ -15,7 +15,7 @@ import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
 import LobbyStore from '../../store/LobbyStore';
 
-import LobbyCard from '../l2/LobbyCard';
+import LobbyCardArena from '../l2/LobbyCardArena';
 import TestTellButton from '../l1/TestTellButton';
 
 
@@ -100,10 +100,7 @@ export default class LobbyScreen extends ScreenBase {
                     </Right>
                 </LobbyHeader>
                 <ScreenBody>
-                    <LobbyCard
-                        title='アリーナ'
-                        explain='3分で演じる名場面！'
-                        userNumText={ (LobbyStore.userNum/C.RoomUserLimit).toString() }
+                    <LobbyCardArena
                         onPress={() => this.joinArena(0)}
                     />
                 </ScreenBody>

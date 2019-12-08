@@ -6,50 +6,56 @@ import styled from 'styled-components/native';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
+import LobbyStore from '../../store/LobbyStore';
+
 
 interface props {
-    title: string,
-    explain: string,
-    userNumText?: string,
     onPress: () => void
 }
 
 @observer
-export default class LobbyCard extends Component<props> {
+export default class LobbyCardArena extends Component<props> {
+    
     render() {
-        const userNum = !this.props.userNumText ? null : (
-            <UserNumRoot>
-                <UserNumIcon name='user' type='FontAwesome5' />
-                <UserNumText>{this.props.userNumText}</UserNumText>
-            </UserNumRoot>
-        );
-
         return (
-            <Root>
-                <Touch onPress={this.props.onPress}>
-                    <CardTitle>
-                        <TitleText>{this.props.title}</TitleText>
-                        {userNum}
-                    </CardTitle>
-                    <ExplainRoot>
-                        <ExplainText>{this.props.explain}</ExplainText>
+            <Touch onPress={this.props.onPress}>
+                <Root>
+                    <Main>
+                        <CardTitle>
+                            <TitleText>オープン・アリーナ</TitleText>
+                            <UserNumRoot>
+                                <UserNumIcon name='user' type='FontAwesome5' />
+                                <UserNumText>{LobbyStore.userNum + '/' + C.RoomUserLimit}</UserNumText>
+                            </UserNumRoot>
+                        </CardTitle>
+                        <ExplainRoot>
+                            <ExplainText>みんなでワイワイ！　3分で演じる名場面！</ExplainText>
+                        </ExplainRoot>
+                    </Main>
+                    <Right>
                         <EnterIcon name='sign-out-alt' type='FontAwesome5' />
-                    </ExplainRoot>
-                </Touch>
-            </Root>
+                    </Right>
+                </Root>
+            </Touch>
         );
     }
 }
 
 
 const Root = styled(Card)`
-    height: 90;
     margin: 15px;
     padding: 15px;
     color: #000;
 `;
 
 const Touch = styled.TouchableOpacity`
+`;
+
+const Main = styled.View`
+`;
+
+const Right = styled.View`
+    align-self: flex-end;
 `;
 
 const CardTitle = styled.View`
@@ -84,7 +90,7 @@ const ExplainRoot = styled.View`
 `;
 
 const ExplainText = styled.Text`
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 15px;
     font-size: 16;
 `;
