@@ -17,6 +17,7 @@ import Firebase from './src/lib/Firebase';
 import Navigator from './src/lib/Navigator';
 
 import ConfigStore from './src/store/ConfigStore';
+import LobbyStore from './src/store/LobbyStore';
 import UserStore from './src/store/UserStore';
 import SkywayStore from './src/store/SkywayStore';
 
@@ -38,7 +39,7 @@ export default class App extends Component {
         ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoad('skyway');
         ConfigStore.setInitLoad('user');
-        ConfigStore.setInitLoad('arena');
+        ConfigStore.setInitLoad('lobby');
         ConfigStore.setInitLoadComplete('init');
 
         Font.loadAsync({
@@ -55,6 +56,7 @@ export default class App extends Component {
             const userId = (user as Firebase.auth.UserCredential).user.uid;
             //SkywayStore.connect(userId);
             SkywayStore.connect(userId + Moment().unix().toString());
+            LobbyStore.asyncInit(0);
         });
     }
 
