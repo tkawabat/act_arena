@@ -8,8 +8,9 @@ import { action } from '@storybook/addon-actions';
 import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
+import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStoreAdmin';
 
-import ActInfo from './ActInfo';
+import ActInfoModal from './ActInfoModal';
 import ArenaExplain from './ArenaExplain';
 import ChatTabHeader from './ChatTabHeader';
 import LobbyCard from './LobbyCard';
@@ -18,9 +19,13 @@ import LobbyCard from './LobbyCard';
 const components = storiesOf('L2', module);
 components
     .addDecorator(withKnobs)
-    //     .add('ActInfo', () => (
-    //       <CenteredView><ActInfo /></CenteredView>
-    //     ))
+    .add(ActInfoModal.name, () => (
+        StoryUtil.CenteredView([
+            <ActInfoModal />,
+            <ArenaScenarioStoreAdmin />,
+            <ArenaStoreAdmin />,
+        ])
+    ))
     .add(ArenaExplain.name, () => (
         StoryUtil.CenteredView(<ArenaExplain />)
     ))

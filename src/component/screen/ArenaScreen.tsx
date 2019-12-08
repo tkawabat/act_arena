@@ -13,7 +13,7 @@ import ConfigStore from '../../store/ConfigStore';
 import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
 
-import ActInfo from '../l2/ActInfo';
+import ActInfoModal from '../l2/ActInfoModal';
 import ArenaHeader from '../l3/ArenaHeader';
 import ChatTabHeader from '../l2/ChatTabHeader';
 import ScenarioTabHeader from '../l2/ScenarioTabHeader';
@@ -50,7 +50,7 @@ export default class Arena extends ScreenBase {
                                     </TabHeading>
                             }>
                                 <ScenarioTab />
-                                <ActInfo />
+                                <ActInfoModal />
                             </Tab>
                             <Tab
                                 key={'chat'}

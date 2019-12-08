@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Item, Picker, Input } from 'native-base';
+import { View, Text, Item, Picker, Input, Button } from 'native-base';
 import styled from 'styled-components/native';
 import { css } from 'styled-components';
 import { observer } from 'mobx-react';
@@ -51,6 +51,9 @@ export default class ArenaStoreAdmin extends Component<props> {
                     name={'addTimeCount'}
                     onChange={(value: string) => { ArenaStore.addTimeCount = parseInt(value); }}
                 />
+                <Button onPress={() => { ArenaStore.setModal(true); }}>
+                    <Text>modal</Text>
+                </Button>
             </Root>
         )
     }

@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, View, Button } from 'native-base';
+import { Text, View, } from 'native-base';
 import Modal from 'react-native-modal';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
-import UserStore, {User} from '../../store/UserStore';
 import ArenaStore from '../../store/ArenaStore';
 import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 import UserIcon from '../l1/UserIcon';
 
 
+interface props {
+
+}
+
 @observer
-export default class ActInfo extends Component {
+export default class ActInfoModal extends Component<props> {
 
     private getCharactersText = () => {
         let result = [];
@@ -21,6 +24,10 @@ export default class ActInfo extends Component {
             result.push(<Text>{character.name+': '+character.userName}</Text>)
         }
         return result;
+    }
+
+    private hide = () => {
+        ArenaStore.setModal(false);
     }
 
     render() {
@@ -33,40 +40,32 @@ export default class ActInfo extends Component {
 
         return (
             <Modal
-                style={styles.body}
                 isVisible={ArenaStore.modal}
-                onBackdropPress={() => ArenaStore.setModal(false)}
+                onBackdropPress={this.hide}
                 backdropOpacity={0.4}
                 animationIn='slideInRight'
                 animationOut='slideOutLeft'
             >
-                <View style={styles.modal}>
-                    <Text style={styles.title}>{ArenaScenarioStore.title}</Text>
+                <Root>
+                    <Title>{ArenaScenarioStore.title}</Title>
                     {/* <UserIcon size={C.UserIconSize.S} user={user} /> */}
                     {this.getCharactersText()}
-                </View>
+                </Root>
             </Modal>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    body: {
-        textAlign: 'center',
-        marginHorizontal: 10,
-    },
-    modal: {
-        backgroundColor: '#FFF',
-        padding: 20,
-        borderColor: '#444',
-        borderWidth: 2,
-        borderRadius: 5,
-    },
-    title: {
-        marginBottom: 10,
-        fontWeight: '400',
-    },
-    characters: {
+const Root = styled(View)`
+    text-align: center;
+    background-color: #FFF;
+    padding: 15px;
+    border-color: #444;
+    border-width: 2;
+    border-radius: 5;
+`
 
-    },
-});
+const Title = styled.Text`
+    margin-bottom: 10px;
+    font-weight: 400;
+`
