@@ -194,12 +194,10 @@ class ArenaStore {
         if (this.id === null) return;
 
         switch (after) {
-            case C.ArenaState.WAIT:
-                if (before !== null) this.se('actEnd');    
+            case C.ArenaState.WAIT:  
                 SoundStore.playRondom(0.4, true);
                 break;
             case C.ArenaState.READ:
-                this.se('matching');
                 SoundStore.playRondom(0.4, false);
                 break;
             case C.ArenaState.CHECK:
@@ -208,6 +206,26 @@ class ArenaStore {
                 break;
             case C.ArenaState.ACT:
                 SoundStore.stop();
+                break;
+        }
+
+        this.playStateSe(before, after);
+    }
+
+    private playStateSe = (before:C.ArenaState, after:C.ArenaState) => {
+        if (before === null) return;
+        if (before === after) return;
+
+        switch (after) {
+            case C.ArenaState.WAIT:
+                this.se('actEnd');    
+                break;
+            case C.ArenaState.READ:
+                this.se('matching');
+                break;
+            case C.ArenaState.CHECK:
+                break;
+            case C.ArenaState.ACT:
                 this.se('actStart');
                 break;
         }
