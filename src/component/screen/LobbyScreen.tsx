@@ -16,6 +16,7 @@ import ConfigStore from '../../store/ConfigStore';
 import LobbyStore from '../../store/LobbyStore';
 
 import LobbyCardArena from '../l2/LobbyCardArena';
+import LobbyCardPrivateArena from '../l2/LobbyCardPrivateArena';
 import TestTellButton from '../l1/TestTellButton';
 
 
@@ -100,9 +101,8 @@ export default class LobbyScreen extends ScreenBase {
                     </Right>
                 </LobbyHeader>
                 <ScreenBody>
-                    <LobbyCardArena
-                        onPress={() => this.joinArena(0)}
-                    />
+                    <LobbyCardArena joinArena={this.joinArena} />
+                    <LobbyCardPrivateArena joinArena={this.joinArena} />
                 </ScreenBody>
 
                 <Footer>

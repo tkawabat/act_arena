@@ -35,10 +35,10 @@ components
     .add(LobbyCard.name, () => (
         StoryUtil.FullView([
             <LobbyCard
-                onPress={action('join')}
+                joinArena={action('join')}
             />,
             <LobbyCardPrivateArena
-                onPress={action('join2')}
+                joinArena={action('join2')}
             />,
         ])
     ))

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { TextInput } from 'react-native';
+import { TextInput, Alert } from 'react-native';
 import { Icon, Card, Item, Input, Button, Label } from "native-base";
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
@@ -11,13 +11,13 @@ import SquareTextButton from '../l1/SquareTextButton';
 
 
 interface props {
-    onPress: () => void
+    joinArena: (id:number) => void
 }
 
 @observer
 export default class LobbyCardPrivateArena extends Component<props> {
     state = {
-        value: ''
+        value: -1
     }
 
     private createRandom = () => {
@@ -27,9 +27,17 @@ export default class LobbyCardPrivateArena extends Component<props> {
         });
     }
 
+    private onPress = () => {
+        if (this.state.value < 100000 || this.state.value >= 1000000) {
+            Alert.alert('Room IDは6桁の数字にしてください。');
+            return;
+        }
+        this.props.joinArena(this.state.value);
+    }
+
     render() {
         return (
-            <Touch onPress={this.props.onPress}>
+            <Touch onPress={this.onPress}>
                 <Root>
                     <Main>
                         <CardTitle>
@@ -48,7 +56,7 @@ export default class LobbyCardPrivateArena extends Component<props> {
                                     returnKeyType={'done'}
                                     maxLength={6}
                                     onChangeText={(value) => this.setState({ value })}
-                                    value={this.state.value.toString()}
+                                    value={this.state.value > 0 ? this.state.value.toString() : ''}
                                 />
                             </Item>
                             <RandomButton onPress={this.createRandom}>
@@ -68,8 +76,8 @@ export default class LobbyCardPrivateArena extends Component<props> {
 
 
 const Root = styled(Card)`
-    margin: 15px;
-    padding: 15px;
+    margin: 10px;
+    padding: 10px;
     flex-direction: row;
     justify-content: space-between;
     color: #000;

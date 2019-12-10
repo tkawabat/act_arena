@@ -10,15 +10,19 @@ import LobbyStore from '../../store/LobbyStore';
 
 
 interface props {
-    onPress: () => void
+    joinArena: (id:number) => void
 }
 
 @observer
 export default class LobbyCardArena extends Component<props> {
+
+    private onPress = () => {
+        this.props.joinArena(0);
+    }
     
     render() {
         return (
-            <Touch onPress={this.props.onPress}>
+            <Touch onPress={this.onPress}>
                 <Root>
                     <Main>
                         <CardTitle>
@@ -43,8 +47,8 @@ export default class LobbyCardArena extends Component<props> {
 
 
 const Root = styled(Card)`
-    margin: 15px;
-    padding: 15px;
+    margin: 10px;
+    padding: 10px;
     color: #000;
 `;
 
