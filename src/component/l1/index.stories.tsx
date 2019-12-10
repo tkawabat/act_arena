@@ -7,6 +7,7 @@ import { action } from '@storybook/addon-actions';
 import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
+import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStoreAdmin';
 import SkywayStoreAdmin from '../../../storybook/admin/SkywayStoreAdmin';
 
 import Agreement from './Agreement';
@@ -42,7 +43,10 @@ components
         ])
     })
     .add(Scenario.name, () => (
-        StoryUtil.FullView(<Scenario />)
+        StoryUtil.FullView([
+            <Scenario />,
+            <ArenaScenarioStoreAdmin />,
+        ])
     ))
     .add(SquareIconButton.name, () => {
         return (

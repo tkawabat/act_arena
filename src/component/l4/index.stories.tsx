@@ -7,6 +7,8 @@ import { action } from '@storybook/addon-actions';
 
 import * as C from '../../lib/Const';
 import * as StoryUtil from '../../../storybook/StoryUtil';
+import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStoreAdmin';
+import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 
 import ChatTab from './ChatTab';
 import ScenarioTab from './ScenarioTab';
@@ -20,6 +22,10 @@ components
         StoryUtil.FullView(<ChatTab />)
     ))
     .add(ScenarioTab.name, () => (
-        StoryUtil.FullView(<ScenarioTab />)
+        StoryUtil.FullView([
+            <ScenarioTab />,
+            <ArenaStoreAdmin />,
+            <ArenaScenarioStoreAdmin />,
+        ])
     ))
     ;
