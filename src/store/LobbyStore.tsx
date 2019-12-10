@@ -44,7 +44,7 @@ class LobbyStore {
             this.arenaUserModel.stopObserve();
         }
 
-        return this.arenaModel.asyncGet(this.arenaId)
+        return this.arenaModel.asyncGet(this.arenaId, false)
             .then((arenaRef) => {
                 if (!arenaRef) {
                     alert('エラーが発生しました。');

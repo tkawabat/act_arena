@@ -272,7 +272,7 @@ class ArenaStore {
 
         SkywayStore.join('arena'+this.id);
 
-        const arenaRef = await this.arenaModel.asyncGet(this.id);
+        const arenaRef = await this.arenaModel.asyncGet(this.id, true);
         if (!arenaRef) {
             alert('エラーが発生しました。');
             return;

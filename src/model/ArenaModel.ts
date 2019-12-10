@@ -18,20 +18,52 @@ class ArenaModel {
         this.db = Firebase.firestore().collection('Arena');
     }
 
-    public asyncGet = async (id:number) :Promise<void | Firebase.firestore.QueryDocumentSnapshot> => {
+    public asyncCreate = async (id:number) :Promise<void> => {
+        const endAt = [];
+        const t = Firebase.firestore.Timestamp.fromDate(Moment().add(-1, 'seconds').toDate());
+        endAt[C.ArenaState.READ] = t;
+        endAt[C.ArenaState.CHECK] = t;
+        endAt[C.ArenaState.ACT] = t;
+
+        const arena = {
+            id: id,
+            state: C.ArenaState.WAIT,
+            title: '',
+            scenarioUrl: '',
+            agreementUrl: '',
+            agreementScroll: -1,
+            characters: [],
+            startText: '',
+            endText: '',
+            message: '',
+            endAt: endAt,
+            createdAt: Firebase.firestore.Timestamp.now(),
+            updatedAt: Firebase.firestore.Timestamp.now(),
+        };
+
+        return this.db.doc().set(arena)
+        .catch((error) => Amplitude.error('ArenaStore create', error))
+        ;
+    }
+
+    public asyncGet = async (id:number, createIfNull:boolean) :Promise<void | Firebase.firestore.QueryDocumentSnapshot> => {
         return this.db
             .where('id', '==', id)
             .get()
-            .then((snapshot :Firebase.firestore.QuerySnapshot) => {
-                if (snapshot.size < 1) {
-                    Amplitude.error('ArenaStore get', {'id':id});
+            .then(async (snapshot :Firebase.firestore.QuerySnapshot) => {
+                if (snapshot.size < 1 && createIfNull) {
+                    await this.asyncCreate(id);
+                    return await this.asyncGet(id, false);
+                }
+                if (snapshot.size < 1 && !createIfNull) {
+                    Amplitude.error('ArenaStore getAsync', {id:id});
                     return;
                 }
 
                 this.ref = snapshot.docs[0].ref;
                 return snapshot.docs[0];
             })
-            .catch((error) => Amplitude.error('ArenaStore get', error))
+            .catch((error) => Amplitude.error('ArenaStore getAsync', error))
             ;
     }
 
