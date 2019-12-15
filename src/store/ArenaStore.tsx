@@ -126,7 +126,10 @@ class ArenaStore {
         switch (after) {
             case C.ArenaState.WAIT:
                 OverlayMessageStore.start('上演終了');
+
                 SkywayStore.setDisabled();
+                SkywayStore.leave();
+
                 this.agreementState = C.AgreementState.NONE;
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     this.arenaUserModel.asyncUpdateState(UserStore, C.ArenaUserState.LISTNER);
@@ -137,6 +140,8 @@ class ArenaStore {
             case C.ArenaState.READ:
                 OverlayMessageStore.start('台本チェック');
                 this.setModal(true);
+
+                SkywayStore.join('arena'+this.id);
 
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     Amplitude.info('ArenaBeActor', null);
@@ -219,7 +224,7 @@ class ArenaStore {
         switch (after) {
             case C.ArenaState.WAIT:
                 if (this.overlayMessage === '') { // 正常終了
-                this.se('actEnd');    
+                    this.se('actEnd');
                 }
                 break;
             case C.ArenaState.READ:
@@ -275,8 +280,6 @@ class ArenaStore {
         this.agreementState = C.AgreementState.NONE;
         this.tab = C.ArenaTab.SCENARIO;
         this.setModal(false);
-
-        SkywayStore.join('arena'+this.id);
 
         const arenaRef = await this.arenaModel.asyncGet(this.id, true);
         if (!arenaRef) {
