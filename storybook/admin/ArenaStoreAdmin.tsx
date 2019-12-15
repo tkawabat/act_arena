@@ -25,12 +25,17 @@ export default class ArenaStoreAdmin extends Component<props> {
     constructor(props) {
         super(props);
         // ArenaStore.arenaState = C.ArenaState.CHECK;
+        ArenaStore.id = 555555;
         ArenaStore.time = 10;
     }
 
     render() {
         return (
             <Root>
+                <IntSelector
+                    name={'id'}
+                    onChange={(value: string) => { ArenaStore.id = parseInt(value); }}
+                />
                 <EnumSelector
                     name={'ArenaState'}
                     myEnum={C.ArenaState}

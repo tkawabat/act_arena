@@ -37,6 +37,13 @@ export const ArenaStateString = {
     [ArenaState.ACT]: '上演',
 }
 
+export const ArenaStateStyle = {
+    [ArenaState.WAIT]: {'success':true},
+    [ArenaState.READ]: {'warning':true},
+    [ArenaState.CHECK]: {'warning':true},
+    [ArenaState.ACT]: {'danger':true},
+}
+
 export const ArenaStateTime = {
     [ArenaState.WAIT]: 0,
     [ArenaState.READ]: 60,

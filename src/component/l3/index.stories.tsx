@@ -19,7 +19,10 @@ const components = storiesOf('L3', module);
 components
     .addDecorator(withKnobs)
     .add(ArenaHeader.name, () => (
-        StoryUtil.CenteredView(<ArenaHeader userNum={number('userNum', 1)} />)
+        StoryUtil.CenteredView([
+            <ArenaHeader userNum={number('userNum', 1)} />,
+            <ArenaStoreAdmin />
+        ])
     ))
     .add(ScenarioFooter.name, () => ([
         StoryUtil.FullView(<ScenarioFooter />),

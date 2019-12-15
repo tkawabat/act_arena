@@ -24,9 +24,9 @@ class ArenaStore {
     private arenaModel:ArenaModel;
     private arenaUserModel:ArenaUserModel;
 
-    private id :number = null; // entered arena
     private endAt: Array<Moment.Moment>;
 
+    @observable id :number = null; // entered arena
     @observable arenaState:C.ArenaState = C.ArenaState.WAIT;
     @observable time:number;
     @observable overlayMessage:string = null;

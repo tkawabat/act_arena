@@ -13,6 +13,14 @@ export const center = css`
     align-items: center;
 `
 
+export const header = css`
+    ${screenWidth};
+    height: 50;
+    padding-top: 0;
+    flex-direction: row;
+    align-items: center;
+`;
+
 export const screenRoot = css`
     flex: 1;
     margin-top: ${getStatusBarHeight()};
