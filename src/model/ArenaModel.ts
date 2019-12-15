@@ -26,7 +26,7 @@ class ArenaModel {
         endAt[C.ArenaState.ACT] = t;
 
         const arena = {
-            id: id,
+            id: Number(id),
             state: C.ArenaState.WAIT,
             title: '',
             scenarioUrl: '',
@@ -41,27 +41,26 @@ class ArenaModel {
             updatedAt: Firebase.firestore.Timestamp.now(),
         };
 
-        return this.db.doc().set(arena)
+        return this.db.doc(id.toString()).set(arena)
         .catch((error) => Amplitude.error('ArenaStore create', error))
         ;
     }
 
     public asyncGet = async (id:number, createIfNull:boolean) :Promise<void | Firebase.firestore.QueryDocumentSnapshot> => {
         return this.db
-            .where('id', '==', id)
-            .get()
-            .then(async (snapshot :Firebase.firestore.QuerySnapshot) => {
-                if (snapshot.size < 1 && createIfNull) {
+            .doc(id.toString()).get()
+            .then(async (snapshot :Firebase.firestore.DocumentSnapshot) => {
+                if (!snapshot.exists && createIfNull) {
                     await this.asyncCreate(id);
                     return await this.asyncGet(id, false);
                 }
-                if (snapshot.size < 1 && !createIfNull) {
-                    Amplitude.error('ArenaStore getAsync', {id:id});
+                if (!snapshot.exists && !createIfNull) {
+                    Amplitude.error('ArenaStore getAsync', {'id':id});
                     return;
                 }
 
-                this.ref = snapshot.docs[0].ref;
-                return snapshot.docs[0];
+                this.ref = snapshot.ref;
+                return snapshot;
             })
             .catch((error) => Amplitude.error('ArenaStore getAsync', error))
             ;
