@@ -241,6 +241,8 @@ class ArenaStore {
     private observe = () => {
         this.arenaModel.observe(this.arenaUpdated);
         this.arenaUserModel.observe(this.usersUpdated);
+
+        UserStore.observeConnectionChange();
         ChatStore.observe();
     }
 
@@ -248,6 +250,8 @@ class ArenaStore {
         this.arenaModel.stopObserve();
         this.arenaUserModel.stopObserve();
         this.arenaUserModel = null;
+
+        UserStore.stopObserveConnectionChange();
         ChatStore.stopObserve();
     }
 
