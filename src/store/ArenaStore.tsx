@@ -218,7 +218,9 @@ class ArenaStore {
 
         switch (after) {
             case C.ArenaState.WAIT:
+                if (this.overlayMessage === '') { // 正常終了
                 this.se('actEnd');    
+                }
                 break;
             case C.ArenaState.READ:
                 this.se('matching');
