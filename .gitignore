@@ -1,0 +1,35 @@
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+web-report/
+
+# macOS
+.DS_Store
+
+# add
+android/.idea
+android/.gradle
+android/**/build
+ios/Pods
+ios/SkyWay*
+.expo-shared/*
+
+android/gradle.properties
+sentry.properties
+secret.json
+secret-dev.json
+google-services.json
+shell-app-manifest.json
+shell-app.bundle
+*.keystore
+
+.vscode
+*bak
+*bk
