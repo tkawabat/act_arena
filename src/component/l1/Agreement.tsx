@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { WebView } from 'react-native';
+import { WebView } from 'react-native-webview';
 import { Button } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';

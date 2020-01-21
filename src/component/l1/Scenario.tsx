@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebView } from 'react-native';
+import { WebView } from 'react-native-webview';
 import { observer } from 'mobx-react';
 
 import ArenaStore from '../../store/ArenaStore';

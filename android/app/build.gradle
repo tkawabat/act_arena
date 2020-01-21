@@ -110,6 +110,8 @@ apply from: 'expo.gradle'
 apply from: "../../node_modules/react-native-unimodules/gradle.groovy"
 
 dependencies {
+    implementation project(':react-native-permissions')
+    implementation project(':react-native-sound')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
   implementation 'androidx.multidex:multidex:2.0.0'

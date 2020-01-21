@@ -54,10 +54,12 @@ class ConfigStore {
     }
 
     @action setInitLoad = (name:string) :void => {
+        console.log('init '+name);
         this.init[name] = false;
     }
 
     @action setInitLoadComplete = (name:string) :void => {
+        console.log('complete '+name);
         this.init[name] = true;
     }
 

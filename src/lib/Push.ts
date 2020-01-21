@@ -1,6 +1,6 @@
-import { Permissions, Notifications } from 'expo';
+import { Notifications } from 'expo';
 //import Firebase from './Firebase';
-// import * as Permissions from 'react-native-permissions';
+import * as Permissions from 'react-native-permissions';
 
 //const PUSH_ENDPOINT = 'https://your-server.com/users/push-token';
 

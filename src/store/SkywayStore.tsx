@@ -91,8 +91,11 @@ class SkywayStore {
         this.speakState = C.SpeakState.DISABLED;
     }
 
-    public connect = (id: string): void => {
+    public connect = 
+    (id: string): void => {
+        console.log('connect');
         this.peer = new Peer(id, Secret.skyway);
+        console.log('connected');
 
         this.peer.addEventListener('peer-open', this.onPeerOpen);
         this.peer.addEventListener('peer-close', this.onPeerClose);
@@ -110,6 +113,7 @@ class SkywayStore {
         this.peer.addEventListener('room-close', this.onRoomClose);
         this.peer.addEventListener('room-error', this.onRoomError);
 
+        console.log('connect')
         this.peer.connect();
     }
 

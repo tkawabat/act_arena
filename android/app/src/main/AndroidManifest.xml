@@ -71,7 +71,9 @@
       android:launchMode="singleTask"
       android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
       android:theme="@style/Theme.Exponent.Splash"
-      android:windowSoftInputMode="adjustResize">
+      android:windowSoftInputMode="adjustResize"
+      android:exported="true"
+    >
       <intent-filter>
         <data android:scheme="exp30ebfdb703d64aa89d572e3b49377404"/>
 
