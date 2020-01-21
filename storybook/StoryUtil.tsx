@@ -34,7 +34,7 @@ export const init = () => {
         }
         const userId = (user as Firebase.auth.UserCredential).user.uid;
         //SkywayStore.connect(userId);
-        //SkywayStore.connect(userId + Moment().unix().toString());
+        SkywayStore.connect(userId + Moment().unix().toString());
     });
 }
 

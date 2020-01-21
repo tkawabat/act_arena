@@ -1,6 +1,5 @@
 import moment from 'moment';
-//import * as amplitude from 'expo-analytics-amplitude';
-import { Amplitude as amplitude } from 'expo'
+import * as amplitude from 'expo-analytics-amplitude';
 
 import Secret from './Secret';
 
