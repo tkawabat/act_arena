@@ -19,6 +19,7 @@ android/.gradle
 android/**/build
 ios/Pods
 ios/SkyWay*
+ios/build/*
 .expo-shared/*
 
 android/gradle.properties
@@ -33,3 +34,4 @@ shell-app.bundle
 .vscode
 *bak
 *bk
+node_modules
