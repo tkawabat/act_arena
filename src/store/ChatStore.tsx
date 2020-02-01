@@ -1,3 +1,4 @@
+import Moment from 'moment';
 import { Alert, } from 'react-native';
 import { observable, computed, action } from 'mobx';
 import { IMessage } from 'react-native-gifted-chat';
@@ -5,10 +6,7 @@ import { IMessage } from 'react-native-gifted-chat';
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
-import Navigator from '../lib/Navigator';
-import Scheduler from '../lib/Scheduler';
 
-import ConfigStore from './ConfigStore';
 import UserStore from './UserStore';
 
 class ChatStore {
@@ -27,6 +25,10 @@ class ChatStore {
         return this._messages.filter((v:any, i) => {
             if (v.reporter && v.reporter.indexOf(UserStore.id) !== -1) return false;
             if (UserStore.ngList && UserStore.ngList.indexOf(v.user._id) !== -1) return false;
+
+            // 2時間以上前のメッセージは見せない
+            let limitTime = Moment().add(-2, 'hours');
+            if (Moment(v.createdAt) < limitTime) return false;
             return true;
         });
     }
