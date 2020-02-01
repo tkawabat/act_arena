@@ -32,8 +32,6 @@ class ArenaStore {
     @observable overlayMessage:string = null;
     @observable addTimeCount:number = 0;
 
-    // private state
-    @observable agreementState:C.AgreementState;
     private _tab:C.ArenaTab;
     get tab() { return this._tab }
     set tab(tab:C.ArenaTab) {
@@ -130,7 +128,7 @@ class ArenaStore {
                 SkywayStore.setDisabled();
                 SkywayStore.leave();
 
-                this.agreementState = C.AgreementState.NONE;
+                ArenaScenarioStore.setAgreement(C.AgreementState.NONE);
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     this.arenaUserModel.asyncUpdateState(UserStore, C.ArenaUserState.LISTNER);
                 }
@@ -277,7 +275,7 @@ class ArenaStore {
         }
 
         this.id = id;
-        this.agreementState = C.AgreementState.NONE;
+        ArenaScenarioStore.setAgreement(C.AgreementState.NONE);
         this.tab = C.ArenaTab.SCENARIO;
         this.setModal(false);
 
