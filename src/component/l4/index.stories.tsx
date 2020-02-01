@@ -24,8 +24,6 @@ components
     .add(ScenarioTab.name, () => (
         StoryUtil.FullView([
             <ScenarioTab />,
-            <ArenaStoreAdmin />,
-            <ArenaScenarioStoreAdmin />,
         ])
     ))
     ;

@@ -25,9 +25,10 @@ import TestTellButton from './TestTellButton';
 const components = storiesOf('L1', module);
 components
     .addDecorator(withKnobs)
-    .add(Agreement.name, () => (
-        StoryUtil.FullView(<Agreement />)
-    ))
+    .add(Agreement.name, () => ([
+        StoryUtil.FullView(<Agreement />),
+        StoryUtil.CenteredView(<ArenaScenarioStoreAdmin />),
+    ]))
     .add(ArenaAddTimeButton.name, () => ([
         StoryUtil.CenteredView(<ArenaAddTimeButton />),
         StoryUtil.CenteredView(<ArenaStoreAdmin />),
