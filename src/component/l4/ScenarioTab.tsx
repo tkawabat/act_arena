@@ -24,7 +24,7 @@ export default class ScenarioTab extends Component {
                 {ArenaStore.arenaState !== C.ArenaState.WAIT && !ArenaScenarioStore.isAgree && <Agreement />}
                 {ArenaStore.arenaState !== C.ArenaState.WAIT && ArenaScenarioStore.isAgree && <Scenario />}
  
-                {ArenaStore.arenaState !== C.ArenaState.WAIT && <ScenarioTools />}
+                <ScenarioTools />
                 
                 <ScenarioFooter />
             </Root>
