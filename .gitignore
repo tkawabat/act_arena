@@ -27,6 +27,7 @@ sentry.properties
 secret.json
 secret-dev.json
 google-services.json
+GoogleService-Info*.plist
 shell-app-manifest.json
 shell-app.bundle
 *.keystore
