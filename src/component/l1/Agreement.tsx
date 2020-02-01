@@ -25,7 +25,7 @@ window.postMessage = patchedPostMessage;
 function checkScroll() {
     var h = window.scrollY + window.parent.screen.height;
     if (h >= ${agreementScroll}) {
-        window.postMessage('read');
+        window.ReactNativeWebView.postMessage('read');
     }    
 }
 
