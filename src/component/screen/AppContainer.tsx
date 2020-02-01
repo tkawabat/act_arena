@@ -1,5 +1,5 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
-//import { createStackNavigator, } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import RegisterScreen from './RegisterScreen';
 import LobbyScreen from './LobbyScreen';
@@ -11,8 +11,7 @@ import CopyrightScreen from './CopyrightScreen';
 import ArenaScreen from './ArenaScreen';
 
 
-
-const MainNavigation = createSwitchNavigator(
+const Navigation = createStackNavigator(
     {
         Lobby: { screen: LobbyScreen},
         Register: { screen: RegisterScreen},
@@ -24,20 +23,13 @@ const MainNavigation = createSwitchNavigator(
     },
     {
         initialRouteName: 'Lobby',
-        //mode: 'card',
-        //headerMode: 'none',
+        mode: 'card',
+        headerMode: 'none',
         defaultNavigationOptions: {
-            gestureEnabled: true,
+            gestureEnabled: false,
         }
     }
 )
 
-// const Navigation = createStackNavigator(
-//     {
-//         MainNavigation: { screen: MainNavigation },
-//         //Modal: { screen: Modal },
-//     },
-//     { initialRouteName: 'MainNavigation', mode: 'modal', headerMode: 'none' },
-// )
 
-export default createAppContainer(MainNavigation);
+export default createAppContainer(Navigation);

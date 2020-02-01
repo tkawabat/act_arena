@@ -21,6 +21,14 @@
 		66F65A90F9CA40C0848F9009 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E5DF1CD9BDA4105A007AF19 /* Fontisto.ttf */; };
 		9C7B2E2300354CDAA89FBCE8 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78FF8A36560540B5816D675E /* Octicons.ttf */; };
 		A5F7BBC63A584B54AD88CCB6 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0C165B8FF4D4406F84E010C1 /* FontAwesome5_Regular.ttf */; };
+		A719C8FD23E5B34F00513AAB /* tin2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C8F923E5B34F00513AAB /* tin2.mp3 */; };
+		A719C8FE23E5B34F00513AAB /* buzzer_opening1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C8FA23E5B34F00513AAB /* buzzer_opening1.mp3 */; };
+		A719C8FF23E5B34F00513AAB /* cursor1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C8FB23E5B34F00513AAB /* cursor1.mp3 */; };
+		A719C90023E5B34F00513AAB /* people_people_stadium_cheer1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C8FC23E5B34F00513AAB /* people_people_stadium_cheer1.mp3 */; };
+		A719C90523E5B35A00513AAB /* amanojack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C90123E5B35900513AAB /* amanojack.mp3 */; };
+		A719C90623E5B35A00513AAB /* yoake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C90223E5B35900513AAB /* yoake.mp3 */; };
+		A719C90723E5B35A00513AAB /* sayonara3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C90323E5B35900513AAB /* sayonara3.mp3 */; };
+		A719C90823E5B35A00513AAB /* neverend.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A719C90423E5B35A00513AAB /* neverend.mp3 */; };
 		AD999E92B77D49C0A011330A /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C31FD15C8D154ABEAD091C84 /* SimpleLineIcons.ttf */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
 		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
@@ -56,6 +64,14 @@
 		8D47E5EFBB4C46DCAF8390B3 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		A47FE4D7F70906B7DC8CE39B /* Pods-act_arena.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-act_arena.release.xcconfig"; path = "Pods/Target Support Files/Pods-act_arena/Pods-act_arena.release.xcconfig"; sourceTree = "<group>"; };
 		A70D22EA23D3600D00455095 /* act_arena.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = act_arena.entitlements; sourceTree = "<group>"; };
+		A719C8F923E5B34F00513AAB /* tin2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tin2.mp3; path = ../resource/se/tin2.mp3; sourceTree = "<group>"; };
+		A719C8FA23E5B34F00513AAB /* buzzer_opening1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = buzzer_opening1.mp3; path = ../resource/se/buzzer_opening1.mp3; sourceTree = "<group>"; };
+		A719C8FB23E5B34F00513AAB /* cursor1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = cursor1.mp3; path = ../resource/se/cursor1.mp3; sourceTree = "<group>"; };
+		A719C8FC23E5B34F00513AAB /* people_people_stadium_cheer1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = people_people_stadium_cheer1.mp3; path = ../resource/se/people_people_stadium_cheer1.mp3; sourceTree = "<group>"; };
+		A719C90123E5B35900513AAB /* amanojack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = amanojack.mp3; path = ../resource/music/amanojack.mp3; sourceTree = "<group>"; };
+		A719C90223E5B35900513AAB /* yoake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = yoake.mp3; path = ../resource/music/yoake.mp3; sourceTree = "<group>"; };
+		A719C90323E5B35900513AAB /* sayonara3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = sayonara3.mp3; path = ../resource/music/sayonara3.mp3; sourceTree = "<group>"; };
+		A719C90423E5B35A00513AAB /* neverend.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = neverend.mp3; path = ../resource/music/neverend.mp3; sourceTree = "<group>"; };
 		A7AEF8C823D358FF0069C163 /* act_arena copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "act_arena copy-Info.plist"; path = "/Users/tune/git/act_arena/ios/act_arena copy-Info.plist"; sourceTree = "<absolute>"; };
 		AEC0B1F1C51B4F889F4B587D /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
@@ -139,6 +155,14 @@
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
+				A719C90123E5B35900513AAB /* amanojack.mp3 */,
+				A719C90423E5B35A00513AAB /* neverend.mp3 */,
+				A719C90323E5B35900513AAB /* sayonara3.mp3 */,
+				A719C90223E5B35900513AAB /* yoake.mp3 */,
+				A719C8FA23E5B34F00513AAB /* buzzer_opening1.mp3 */,
+				A719C8FB23E5B34F00513AAB /* cursor1.mp3 */,
+				A719C8FC23E5B34F00513AAB /* people_people_stadium_cheer1.mp3 */,
+				A719C8F923E5B34F00513AAB /* tin2.mp3 */,
 				B56386431DB9693800A0598C /* act_arena */,
 				B56386421DB9693800A0598C /* Products */,
 				5B29BC350A332C58878A9F13 /* Pods */,
@@ -262,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
+				A719C90823E5B35A00513AAB /* neverend.mp3 in Resources */,
 				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
 				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
 				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
@@ -269,24 +294,31 @@
 				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
 				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
 				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
+				A719C90023E5B34F00513AAB /* people_people_stadium_cheer1.mp3 in Resources */,
 				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
 				1185DEC424E64A63A3D52363 /* AntDesign.ttf in Resources */,
 				47D2E551E6EB4BDFB80759BB /* Entypo.ttf in Resources */,
+				A719C8FE23E5B34F00513AAB /* buzzer_opening1.mp3 in Resources */,
+				A719C90723E5B35A00513AAB /* sayonara3.mp3 in Resources */,
+				A719C90523E5B35A00513AAB /* amanojack.mp3 in Resources */,
 				34E55EC371A342E6960D60F8 /* EvilIcons.ttf in Resources */,
 				2F460C5E08A14F109F8AFCC3 /* Feather.ttf in Resources */,
 				65445D58D4824E058201324B /* FontAwesome.ttf in Resources */,
 				1105337ABD504591B06906C7 /* FontAwesome5_Brands.ttf in Resources */,
 				A5F7BBC63A584B54AD88CCB6 /* FontAwesome5_Regular.ttf in Resources */,
+				A719C8FD23E5B34F00513AAB /* tin2.mp3 in Resources */,
 				E5545E2C2FAF4590A5441E0C /* FontAwesome5_Solid.ttf in Resources */,
 				66F65A90F9CA40C0848F9009 /* Fontisto.ttf in Resources */,
 				177391470DC84BAD900DF088 /* Foundation.ttf in Resources */,
 				1241AEEBB7D74268A471A4E4 /* Ionicons.ttf in Resources */,
+				A719C90623E5B35A00513AAB /* yoake.mp3 in Resources */,
 				EE91C3EA5A714ADA8192A6B6 /* MaterialCommunityIcons.ttf in Resources */,
 				CAE3FA45AF3C4FE2BC90C84B /* MaterialIcons.ttf in Resources */,
 				9C7B2E2300354CDAA89FBCE8 /* Octicons.ttf in Resources */,
 				3EA2415C8CC04DAE85F17F33 /* Roboto_medium.ttf in Resources */,
 				5B76BE5DCC024AA886DB23D8 /* Roboto.ttf in Resources */,
 				DF2836A248F041A58AFFC74D /* rubicon-icon-font.ttf in Resources */,
+				A719C8FF23E5B34F00513AAB /* cursor1.mp3 in Resources */,
 				AD999E92B77D49C0A011330A /* SimpleLineIcons.ttf in Resources */,
 				3BC83060C19B455C8E56D233 /* Zocial.ttf in Resources */,
 			);
@@ -522,6 +554,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = act.arena.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -539,6 +572,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = act.arena;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
 			name = Release;
 		};

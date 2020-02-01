@@ -51,7 +51,11 @@ target 'act_arena' do
 
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'react-native-version-number', :path => '../node_modules/react-native-version-number'
 
+  pod 'RNSkyWay', :path => '../node_modules/react-native-skyway'
+
+  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
 
   post_install do |installer|
     installer.pods_project.main_group.tab_width = '2';
@@ -72,12 +76,11 @@ target 'act_arena' do
         end
       end
 
-
-
-      target_installation_result.native_target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+      if ['Amplitude-iOS','Analytics','AppAuth','Branch','CocoaLumberjack','FBSDKCoreKit','FBSDKLoginKit','FBSDKShareKit','GPUImage','JKBigInteger2'].include? pod_name
+        target_installation_result.native_target.build_configurations.each do |config|
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+        end
       end
-
 
       # Can't specify this in the React podspec because we need to use those podspecs for detached
       # projects which don't reference ExponentCPP.
