@@ -235,7 +235,7 @@
 				8D34C7FE3D99F20E5EA1B18A /* [CP] Embed Pods Frameworks */,
 				AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */,
 				19D233B7204FDD7D0087ED51 /* Bundle Expo Assets */,
-				A719C90923E5D20A00513AAB /* ShellScript */,
+				A719C90923E5D20A00513AAB /* Copy GoogleService-Info.plist */,
 			);
 			buildRules = (
 			);
@@ -378,7 +378,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-act_arena/Pods-act_arena-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A719C90923E5D20A00513AAB /* ShellScript */ = {
+		A719C90923E5D20A00513AAB /* Copy GoogleService-Info.plist */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -387,13 +387,14 @@
 			);
 			inputPaths = (
 			);
+			name = "Copy GoogleService-Info.plist";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    cp \"${PROJECT_DIR}/${PROJECT_NAME}/GoogleService-Info-Debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    echo \"Debug GoogleService-Info copied.\"\nelif [ \"${CONFIGURATION}\" = \"Release\" ]; then\n    cp \"${PROJECT_DIR}/${PROJECT_NAME}/GoogleService-Info-Release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    echo \"Release GoogleService-Info copied.\"\nelse\n    echo \"No file copied.\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    cp \"${PROJECT_DIR}/GoogleService-Info-Debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    echo \"Debug GoogleService-Info copied.\"\nelif [ \"${CONFIGURATION}\" = \"Release\" ]; then\n    cp \"${PROJECT_DIR}/GoogleService-Info-Release.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n    echo \"Release GoogleService-Info copied.\"\nelse\n    echo \"No file copied.\"\nfi\n";
 		};
 		AA38385B7D8D0854176B72FC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
