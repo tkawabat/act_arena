@@ -24,12 +24,12 @@ target 'act_arena' do
     ],
   )
 
- # Install React Native and its dependencies
- require_relative '../node_modules/react-native/scripts/autolink-ios.rb'
- use_react_native!
+  # Install React Native and its dependencies
+  require_relative '../node_modules/react-native/scripts/autolink-ios.rb'
+  use_react_native!
 
+  pod 'Firebase/Analytics'
   pod 'RNSound', :path => '../node_modules/react-native-sound'
-
 
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral.podspec"
