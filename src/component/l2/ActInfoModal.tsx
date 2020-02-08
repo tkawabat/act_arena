@@ -61,12 +61,12 @@ const Root = styled(View)`
     background-color: #FFF;
     padding: 15px;
     border-color: #444;
-    border-width: 2;
-    border-radius: 5;
+    border-width: 2px;
+    border-radius: 5px;
 `
 
 const Title = styled.Text`
     margin-bottom: 10px;
-    font-size: 18;
+    font-size: 18px;
     font-weight: 500;
 `

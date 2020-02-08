@@ -124,17 +124,17 @@ const ScreenBody = styled.View`
 
 const LobbyHeader = styled(Header)`
     padding-top: 0;
-    height: 50;
+    height: 50px;
 `
 
 const Footer = styled.View`
-    height: 50;
+    height: 50px;
     margin: 10px;
     flex-direction: row;
     justify-content: flex-end;
 `
 
 const ConfigIcon = styled(Icon)`
-    font-size: 20;
+    font-size: 20px;
     color: gray;
 `

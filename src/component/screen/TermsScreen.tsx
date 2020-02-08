@@ -23,7 +23,8 @@ export default class TermsScreen extends ScreenBase {
         const ret = [];
 
         let i = 0;
-        for (const key in TermsJson.chapters) {
+        let key;
+        for (key in TermsJson.chapters) {
             i++;
             ret.push(
                 <H3 style={styles.chapterTitle}>{'第'+i+'章 '+key}</H3>

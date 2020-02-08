@@ -28,14 +28,14 @@ export default class EntryButton extends Component {
 }
 
 const ButtonEntried = styled(Button)`
-    width: 100;
-    height: 40;
+    width: 100px;
+    height: 40px;
     ${BasicStyle.center};
     ${p => p.success ? '' : 'background-color: #ccc'};
 `
 
 const ButtonText = styled.Text`
     color: #fff;
-    font-size: 14;
+    font-size: 14px;
     font-weight: 500;
 `

@@ -99,7 +99,7 @@ const CardTitle = styled.View`
 `;
 
 const TitleText = styled.Text`
-    font-size: 24;
+    font-size: 24px;
     font-weight: 600;
     color: #000044;
 `;
@@ -112,7 +112,7 @@ const ExplainRoot = styled.View`
 const ExplainText = styled.Text`
     margin-top: 10px;
     margin-left: 15px;
-    font-size: 16;
+    font-size: 16px;
 `;
 
 const InputRoot = styled.View`
@@ -124,19 +124,19 @@ const RandomButton = styled.TouchableOpacity`
     ${BasicStyle.center};
     border: 1px solid;
     box-shadow: 1px 1px 5px #c3e1ff;
-    border-radius: 5;
+    border-radius: 5px;
     background-color: #fff;
-    height: 25;
+    height: 25px;
     padding: 3px;
     margin-left: 10px;
 `;
 
 const RandomButtonText = styled.Text`
-    font-size: 12;
+    font-size: 12px;
     font-weight: bold;
 `
 
 const EnterIcon = styled(Icon)`
     margin-top: 10px;
-    font-size: 24;
+    font-size: 24px;
 `

@@ -22,7 +22,7 @@ export default class Timer extends Component {
 
 const Root = styled.View`
     flex-direction: row;
-    height: 20;
+    height: 20px;
     border-color: #555;
     text-align: center;
     justify-content: flex-start;
@@ -31,13 +31,13 @@ const Root = styled.View`
 
 const TimerIcon = styled(Icon)`
     align-self: center;
-    font-size: 16;
+    font-size: 16px;
     color: black;
 `
 
 const TimerText = styled.Text`
     align-self: center;
-    font-size: 16;
+    font-size: 16px;
     font-weight: 800;
-    margin-left: 3;
+    margin-left: 3px;
 `

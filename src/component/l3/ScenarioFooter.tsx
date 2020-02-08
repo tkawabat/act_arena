@@ -37,7 +37,7 @@ export default class ScenarioFooter extends Component {
 }
 
 const Root = styled.View`
-    height: 50;
+    height: 50px;
     ${BasicStyle.screenWidth};
     flex-direction: row;
     justify-content: space-between;
@@ -66,6 +66,6 @@ const UserStaetBadge = styled(Badge)`
 
 const BadgeText = styled.Text`
     color: #fff;
-    font-size: 12;
+    font-size: 12px;
     font-weight: 500;
 `

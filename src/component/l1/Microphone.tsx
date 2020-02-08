@@ -26,7 +26,7 @@ export default class Microphone extends Component {
 }
 
 const MicrophneButton = styled(Button)`
-    width: 100;
-    height: 40;
+    width: 100px;
+    height: 40px;
     ${BasicStyle.center};
 `

@@ -80,32 +80,32 @@ const Right = styled.View`
 `
 
 const ArenaStateBadge = styled(Badge)`
-    height: 20;
+    height: 20px;
 `
 
 const BadgeText = styled.Text`
     color: #fff;
-    font-size: 12;
+    font-size: 12px;
     font-weight: 500;
 `
 
 const RoomIcon = styled(Icon)`
-    font-size: 16;
+    font-size: 16px;
 `
 
 const RoomName = styled.Text`
     color: #333;
     margin-left: 3px;
-    font-size: 18;
+    font-size: 18px;
     font-weight: 600;
 `
 
 const UesrIcon = styled(Icon)`
-    font-size: 16;
+    font-size: 16px;
 `
 
 const UserNumText = styled.Text`
-    font-size: 16;
+    font-size: 16px;
     margin-left: 2px;
     margin-right: 2px;
 `

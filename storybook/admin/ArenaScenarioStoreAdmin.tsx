@@ -89,5 +89,5 @@ export default class ArenaScenarioStoreAdmin extends Component<props> {
 
 const Root = styled.View`
     ${BasicStyle.screenWidth};
-    height: 200;
+    height: 200px;
 `

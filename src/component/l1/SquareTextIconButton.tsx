@@ -34,16 +34,16 @@ const Root = styled.TouchableOpacity`
 
 const _Icon = styled(Icon)`
     position: absolute;
-    top: 3;
-    left: 5;
-    font-size: 20;
+    top: 3px;
+    left: 5px;
+    font-size: 20px;
 `
 
 const Text = styled.Text`
-    font-size: 8;
+    font-size: 8px;
     font-weight: bold;
     color: #555;
     position: absolute;
-    bottom: 3;
-    right: 3;
+    bottom: 3px;
+    right: 3px;
 `

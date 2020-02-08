@@ -68,7 +68,7 @@ const CardTitle = styled.View`
 `;
 
 const TitleText = styled.Text`
-    font-size: 24;
+    font-size: 24px;
     font-weight: 600;
     color: #000044;
 `;
@@ -80,11 +80,11 @@ const UserNumRoot = styled.View`
 `;
 
 const UserNumIcon = styled(Icon)`
-    font-size: 16;
+    font-size: 16px;
 `;
 
 const UserNumText = styled.Text`
-    font-size: 16;
+    font-size: 16px;
     margin-left: 2px;
 `;
 
@@ -96,10 +96,10 @@ const ExplainRoot = styled.View`
 const ExplainText = styled.Text`
     margin-top: 10px;
     margin-left: 15px;
-    font-size: 16;
+    font-size: 16px;
 `;
 
 const EnterIcon = styled(Icon)`
     margin-top: 10px;
-    font-size: 24;
+    font-size: 24px;
 `

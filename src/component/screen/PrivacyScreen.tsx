@@ -23,7 +23,8 @@ export default class PrivacyScreen extends ScreenBase {
         const ret = [];
 
         let i = 0;
-        for (const key in PrivacyJson.chapters) {
+        let key;
+        for (key in PrivacyJson.chapters) {
             i++;
             ret.push(
                 <H3 style={styles.chapterTitle}>{'第'+i+'章 '+key}</H3>

@@ -15,7 +15,7 @@ export const center = css`
 
 export const header = css`
     ${screenWidth};
-    height: 50;
+    height: 50px;
     padding-top: 0;
     flex-direction: row;
     align-items: center;
@@ -28,11 +28,11 @@ export const screenRoot = css`
 `
 
 export const squareButton = css`
-    width: 40;
-    height: 40;
+    width: 40px;
+    height: 40px;
     border: 1px solid;
     box-shadow: 1px 1px 5px #c3e1ff;
-    border-radius: 5;
+    border-radius: 5px;
     background-color: #fff;
 `
 

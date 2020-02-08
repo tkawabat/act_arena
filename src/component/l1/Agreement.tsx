@@ -73,12 +73,12 @@ const Screen = styled(WebView)`
 `
 
 const AgreeButton = styled(Button)`
-    height: 40;
-    width: 100;
+    height: 40px;
+    width: 100px;
     ${BasicStyle.center};
-    margin-top: 5;
+    margin-top: 5px;
     margin-left: auto;
-    margin-right: 10;
+    margin-right: 10px;
     padding: 10px;
 `
 

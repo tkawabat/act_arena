@@ -33,8 +33,8 @@ export default class ScenarioTools extends Component {
 }
 
 const Root = styled.View`
-    height: 50;
-    margin-top: 5;
+    height: 50px;
+    margin-top: 5px;
     ${BasicStyle.screenWidth};
     flex-direction: row;
     align-items: center;
