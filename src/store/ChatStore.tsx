@@ -2,6 +2,7 @@ import Moment from 'moment';
 import { Alert, } from 'react-native';
 import { observable, computed, action } from 'mobx';
 import { IMessage } from 'react-native-gifted-chat';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -10,9 +11,9 @@ import Amplitude from '../lib/Amplitude';
 import UserStore from './UserStore';
 
 class ChatStore {
-    private _ref:Firebase.firestore.CollectionReference;
+    private _ref:FirebaseFirestoreTypes.CollectionReference;
     get ref() { return this._ref;}
-    set ref(ref:Firebase.firestore.CollectionReference) { this._ref = ref}
+    set ref(ref:FirebaseFirestoreTypes.CollectionReference) { this._ref = ref}
     private unsubscribe:Function;
 
     private _isViewable:boolean = false;
@@ -65,12 +66,12 @@ class ChatStore {
         this.latestReadMessage = this.messages[0];
     }
 
-    private updated = (snapshot: Firebase.firestore.QuerySnapshot) => {
+    private updated = (snapshot: FirebaseFirestoreTypes.QuerySnapshot) => {
         const messages:Array<IMessage> = [];
         for (let doc of snapshot.docs) {
             const data = doc.data();
 
-            const ts = data.createdAt as Firebase.firestore.Timestamp;
+            const ts = data.createdAt as FirebaseFirestoreTypes.Timestamp;
             data.createdAt = ts.toDate();
             messages.push(data as IMessage);
         };

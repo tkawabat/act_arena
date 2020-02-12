@@ -13,11 +13,16 @@ import okhttp3.OkHttpClient;
 
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
+import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
+import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
+import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 import com.ocetnik.timer.BackgroundTimerPackage;
-import jp.micin.react.skyway.SkyWayPackage;
-import com.apsl.versionnumber.RNVersionNumberPackage;
-import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 import com.zmxv.RNSound.RNSoundPackage;
+import com.apsl.versionnumber.RNVersionNumberPackage;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import jp.micin.react.skyway.SkyWayPackage;
+import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
 
 public class MainApplication extends ExpoApplication implements AppLoaderPackagesProviderInterface<ReactPackage> {
 
@@ -34,11 +39,16 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
 
         // Needed for `react-native link`
         // new MainReactPackage(),
+            new ReactNativeFirebaseMessagingPackage(),
+            new ReactNativeFirebaseDatabasePackage(),
+            new ReactNativeFirebaseAuthPackage(),
+            new ReactNativeFirebaseFirestorePackage(),
             new BackgroundTimerPackage(),
-            new SkyWayPackage(),
+            new RNSoundPackage(),
             new RNVersionNumberPackage(),
+            new ReactNativeFirebaseAppPackage(),
             new RNPermissionsPackage(),
-            new RNSoundPackage()
+            new SkyWayPackage()
     );
   }
 

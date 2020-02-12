@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'act_arena' do
   pod 'SkyWay'
@@ -28,8 +28,14 @@ target 'act_arena' do
   require_relative '../node_modules/react-native/scripts/autolink-ios.rb'
   use_react_native!
 
+  pod 'Firebase/Auth'
   pod 'Firebase/Analytics'
-  pod 'RNSound', :path => '../node_modules/react-native-sound'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/DynamicLinks'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
+  pod 'Firebase/Storage'
 
   permissions_path = '../node_modules/react-native-permissions/ios'
   pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral.podspec"
@@ -49,13 +55,28 @@ target 'act_arena' do
   pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition.podspec"
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
 
+  pod 'RNSkyWay', :path => '../node_modules/react-native-skyway'
+
+  pod 'RNCPushNotificationIOS', :path => '../node_modules/@react-native-community/push-notification-ios'
+
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
 
   pod 'react-native-version-number', :path => '../node_modules/react-native-version-number'
 
-  pod 'RNSkyWay', :path => '../node_modules/react-native-skyway'
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
 
   pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
+
+
+  pod 'RNFBFirestore', :path => '../node_modules/@react-native-firebase/firestore'
+
+  pod 'RNFBAuth', :path => '../node_modules/@react-native-firebase/auth'
+
+  pod 'RNFBDatabase', :path => '../node_modules/@react-native-firebase/database'
+
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
 
   post_install do |installer|
     installer.pods_project.main_group.tab_width = '2';

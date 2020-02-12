@@ -1,4 +1,5 @@
 import { observable, computed, action } from 'mobx';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -47,7 +48,7 @@ class ArenaScenarioStore {
     }
 
     @action
-    public updated = (snapshot :Firebase.firestore.DocumentSnapshot) => {
+    public updated = (snapshot :FirebaseFirestoreTypes.DocumentSnapshot) => {
         const data = snapshot.data();
 
         this.title = data.title;

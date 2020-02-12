@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -6,8 +7,8 @@ import Amplitude from '../lib/Amplitude';
 
 
 class ArenaModel {
-    private db:Firebase.firestore.CollectionReference;
-    private ref:Firebase.firestore.DocumentReference;
+    private db:FirebaseFirestoreTypes.CollectionReference;
+    private ref:FirebaseFirestoreTypes.DocumentReference;
     private unsubscribe:Function;
 
     get id() :string {
@@ -20,7 +21,7 @@ class ArenaModel {
 
     public asyncCreate = async (id:number) :Promise<void> => {
         const endAt = [];
-        const t = Firebase.firestore.Timestamp.fromDate(Moment().add(-1, 'seconds').toDate());
+        const t = FirebaseFirestoreTypes.Timestamp.fromDate(Moment().add(-1, 'seconds').toDate());
         endAt[C.ArenaState.READ] = t;
         endAt[C.ArenaState.CHECK] = t;
         endAt[C.ArenaState.ACT] = t;
@@ -37,8 +38,8 @@ class ArenaModel {
             endText: '',
             message: '',
             endAt: endAt,
-            createdAt: Firebase.firestore.Timestamp.now(),
-            updatedAt: Firebase.firestore.Timestamp.now(),
+            createdAt: FirebaseFirestoreTypes.Timestamp.now(),
+            updatedAt: FirebaseFirestoreTypes.Timestamp.now(),
         };
 
         return this.db.doc(id.toString()).set(arena)
@@ -46,10 +47,10 @@ class ArenaModel {
         ;
     }
 
-    public asyncGet = async (id:number, createIfNull:boolean) :Promise<void | Firebase.firestore.QueryDocumentSnapshot> => {
+    public asyncGet = async (id:number, createIfNull:boolean) :Promise<void | FirebaseFirestoreTypes.QueryDocumentSnapshot> => {
         return this.db
             .doc(id.toString()).get()
-            .then(async (snapshot :Firebase.firestore.DocumentSnapshot) => {
+            .then(async (snapshot :any) => {
                 if (!snapshot.exists && createIfNull) {
                     await this.asyncCreate(id);
                     return await this.asyncGet(id, false);
@@ -84,7 +85,7 @@ class ArenaModel {
         ;
     }
 
-    public observe = (updated:(snapshot :Firebase.firestore.DocumentSnapshot) => void) => {
+    public observe = (updated:(snapshot :FirebaseFirestoreTypes.DocumentSnapshot) => void) => {
         this.unsubscribe = this.ref.onSnapshot(updated);
     }
 

@@ -110,11 +110,16 @@ apply from: 'expo.gradle'
 apply from: "../../node_modules/react-native-unimodules/gradle.groovy"
 
 dependencies {
+    implementation project(':@react-native-firebase_messaging')
+    implementation project(':@react-native-firebase_database')
+    implementation project(':@react-native-firebase_auth')
+    implementation project(':@react-native-firebase_firestore')
     implementation project(':react-native-background-timer')
-    implementation project(':react-native-skyway')
-    implementation project(':react-native-version-number')
-    implementation project(':react-native-permissions')
     implementation project(':react-native-sound')
+    implementation project(':react-native-version-number')
+    implementation project(':@react-native-firebase_app')
+    implementation project(':react-native-permissions')
+    implementation project(':react-native-skyway')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
   implementation 'androidx.multidex:multidex:2.0.0'

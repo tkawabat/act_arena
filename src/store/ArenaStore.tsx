@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
@@ -81,7 +82,7 @@ class ArenaStore {
     }
 
     @action
-    private arenaUpdated = (snapshot :Firebase.firestore.DocumentSnapshot) => {
+    private arenaUpdated = (snapshot :FirebaseFirestoreTypes.DocumentSnapshot) => {
         const data = snapshot.data();
 
         this.dealArenaMessageTransition(this.overlayMessage, data.message);
@@ -97,7 +98,7 @@ class ArenaStore {
     }
 
     // ArenaUserStoreにあるべきだが、退室・SE処理があるのでArenaStoreにおいてある
-    private usersUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
+    private usersUpdated = (snapshot :FirebaseFirestoreTypes.QuerySnapshot) => {
         const users = {};
         snapshot.docs.map((doc) => {
             users[doc.id] = doc.data() as ArenaUser;

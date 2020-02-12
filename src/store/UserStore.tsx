@@ -1,3 +1,6 @@
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { FirebaseDatabaseTypes } from '@react-native-firebase/database';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
@@ -5,7 +8,6 @@ import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import ConfigStore from './ConfigStore';
-import { Alert } from 'react-native';
 
 
 export interface User {
@@ -14,8 +16,8 @@ export interface User {
     gender: C.Gender
     iconUrl: string
     ngList: Array<String>
-    // createdAt: Firebase.firestore.FieldValue
-    // updatedAt: Firebase.firestore.FieldValue
+    // createdAt: FirebaseFirestoreTypes.FieldValue
+    // updatedAt: FirebaseFirestoreTypes.FieldValue
 }
 
 class UserStore implements User {
@@ -24,17 +26,17 @@ class UserStore implements User {
     @observable gender: C.Gender;
     @observable iconUrl: string;
     @observable ngList: Array<string>;
-    createdAt: Firebase.firestore.FieldValue;
-    updatedAt: Firebase.firestore.FieldValue;
+    createdAt: FirebaseFirestoreTypes.FieldValue;
+    updatedAt: FirebaseFirestoreTypes.FieldValue;
 
     @computed get isRegisted() :boolean {
         return this.name ? true : false;
     }
 
     // private providerTwitter;
-    private db:Firebase.firestore.CollectionReference;
-    private userStatusDatabaseRef:Firebase.database.Reference;
-    private onDisconnect:Firebase.database.OnDisconnect;
+    private db:FirebaseFirestoreTypes.CollectionReference;
+    private userStatusDatabaseRef:FirebaseDatabaseTypes.Reference;
+    private onDisconnect;
     private onSnapshot;
 
     constructor() {
@@ -70,7 +72,7 @@ class UserStore implements User {
     }
 
     @action
-    private setSnapshot2field = (doc:Firebase.firestore.DocumentSnapshot) => {
+    private setSnapshot2field = (doc:FirebaseFirestoreTypes.DocumentSnapshot) => {
         const data = doc.data();
         if (!data) return;
         
@@ -126,8 +128,8 @@ class UserStore implements User {
         return this.db.doc(this.id).set({
             name: name
             , gender: gender
-            , createdAt: Firebase.firestore.FieldValue.serverTimestamp()
-            , updatedAt: Firebase.firestore.FieldValue.serverTimestamp()
+            , createdAt: FirebaseFirestoreTypes.FieldValue.serverTimestamp()
+            , updatedAt: FirebaseFirestoreTypes.FieldValue.serverTimestamp()
         }, {merge: true})
         .then(() => { Navigator.navigate('Lobby', null)})
         .catch((error) => Amplitude.error('UserStore set', error))
@@ -146,13 +148,13 @@ class UserStore implements User {
         Amplitude.info('asyncBlockUser', null);
 
         return this.db.doc(this.id).update({
-            ngList: Firebase.firestore.FieldValue.arrayUnion(user._id)
+            ngList: FirebaseFirestoreTypes.FieldValue.arrayUnion(user._id)
         })
         .catch((error) => Amplitude.error('UserStore asyncBlockUser', error))
         ;
     }
 
-    public anonymousLogin = async () :Promise<void | Firebase.auth.UserCredential> => {
+    public anonymousLogin = async () :Promise<void | FirebaseAuthTypes.UserCredential> => {
         return Firebase.auth().signInAnonymously()
             .catch((error) => Amplitude.error('UserStore anonymousLogin', error))
             ;

@@ -3,13 +3,14 @@ import { Platform, Linking } from 'react-native';
 import VersionNumber from 'react-native-version-number';
 import { observable, computed, action } from 'mobx';
 import { Updates } from 'expo';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
 
 
 class ConfigStore {
-    private ref:Firebase.firestore.DocumentReference;
+    private ref:FirebaseFirestoreTypes.DocumentReference;
 
     private checkingExpoUpdate = false;
 
@@ -54,17 +55,15 @@ class ConfigStore {
     }
 
     @action setInitLoad = (name:string) :void => {
-        console.log('init '+name);
         this.init[name] = false;
     }
 
     @action setInitLoadComplete = (name:string) :void => {
-        console.log('complete '+name);
         this.init[name] = true;
     }
 
     @action
-    private setSnapshot2field = (doc:Firebase.firestore.DocumentSnapshot) => {
+    private setSnapshot2field = (doc:FirebaseFirestoreTypes.DocumentSnapshot) => {
         const data = doc.data();
         if (!data) return;
 

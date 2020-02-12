@@ -1,3 +1,5 @@
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
@@ -13,10 +15,10 @@ export interface ArenaUser {
 }
 
 class ArenaUserModel {
-    private ref:Firebase.firestore.CollectionReference;
+    private ref:FirebaseFirestoreTypes.CollectionReference;
     private unsubscribe:Function;
 
-    public constructor (arenaRef:Firebase.firestore.DocumentReference) {
+    public constructor (arenaRef:FirebaseFirestoreTypes.DocumentReference) {
         this.ref = arenaRef.collection('RoomUser');
     }
 
@@ -44,7 +46,7 @@ class ArenaUserModel {
         ;
     }
 
-    public observe = (updated:(snapshot :Firebase.firestore.QuerySnapshot) => void) => {
+    public observe = (updated:(snapshot :FirebaseFirestoreTypes.QuerySnapshot) => void) => {
         this.unsubscribe = this.ref.onSnapshot(updated);
     }
 

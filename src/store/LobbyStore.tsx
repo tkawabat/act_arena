@@ -1,4 +1,5 @@
 import { observable, computed, action } from 'mobx';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
@@ -8,7 +9,7 @@ import ArenaModel from '../model/ArenaModel';
 import ArenaUserModel, { ArenaUser} from '../model/ArenaUserModel';
 
 import ConfigStore from './ConfigStore';
-import UserStore from './UserStore';
+
 
 
 class LobbyStore {
@@ -28,7 +29,7 @@ class LobbyStore {
         this.arenaModel = new ArenaModel();
     }
 
-    private arenaUserUpdated = (snapshot :Firebase.firestore.QuerySnapshot) => {
+    private arenaUserUpdated = (snapshot :FirebaseFirestoreTypes.QuerySnapshot) => {
         const users = {};
         snapshot.docs.map((doc) => {
             users[doc.id] = doc.data() as ArenaUser;
