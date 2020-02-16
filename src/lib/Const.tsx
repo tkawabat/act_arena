@@ -103,6 +103,26 @@ export enum MusicState {
     PLAY,
 }
 
+export enum PushBasicSettingKey {
+    MORNING  = 1,
+    DAYTIME  = 2,
+    TWILIGHT = 3,
+    EVENING  = 4,
+    NIGHT    = 5,
+    MIDNIGHT = 6,
+    DAWN     = 7,
+}
+
+export const PushBasicSettingString  = {
+    [PushBasicSettingKey.MORNING]:  '午前（０９：００〜１２：００）',
+    [PushBasicSettingKey.DAYTIME]:  '昼間（１２：００〜１５：００）',
+    [PushBasicSettingKey.TWILIGHT]: '夕方（１５：００〜１８：００）',
+    [PushBasicSettingKey.EVENING]:  '宵入（１８：００〜２１：００）',
+    [PushBasicSettingKey.NIGHT]:    '　夜（２１：００〜２４：００）',
+    [PushBasicSettingKey.MIDNIGHT]: '深夜（００：００〜０２：００）',
+    [PushBasicSettingKey.DAWN]:     '未明（０２：００〜０９：００）',
+}
+
 export const MusicList = [
     //{ file: 'amanojack.mp3', name: '天邪鬼の子', site: '騒音のない世界'},
     { file: 'neverend.mp3', name: '終わりのない物語', site: '騒音のない世界'},

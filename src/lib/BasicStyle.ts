@@ -27,13 +27,23 @@ export const screenRoot = css`
     margin-bottom: ${getBottomSpace()};
 `
 
-export const squareButton = css`
-    width: 40px;
-    height: 40px;
+export const button = css`
     border: 1px solid;
-    box-shadow: 1px 1px 5px #c3e1ff;
+    box-shadow: 1px 1px 3px #c3e1ff;
     border-radius: 5px;
     background-color: #fff;
+`
+
+export const rectangleButton = css`
+    ${button}
+    width: 80px;
+    height: 40px;
+`
+
+export const squareButton = css`
+    ${button}
+    width: 40px;
+    height: 40px;
 `
 
 export const disabledButton = css`

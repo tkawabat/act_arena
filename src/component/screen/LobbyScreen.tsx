@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, Platform, } from 'react-native';
-import { Header, Left, Body, Right, Button, Title, Text, Icon } from 'native-base';
+import { Header, Button, Title, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import * as Permissions from 'react-native-permissions';
@@ -14,7 +14,10 @@ import * as BasicStyle from '../../lib/BasicStyle';
 import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
 import LobbyStore from '../../store/LobbyStore';
+import PushStore from '../../store/PushStore';
 
+import Bell from '../l1/Bell';
+import PushSettingModal from '../l3/PushSettingModal';
 import LobbyCardArena from '../l2/LobbyCardArena';
 import LobbyCardPrivateArena from '../l2/LobbyCardPrivateArena';
 import TestTellButton from '../l1/TestTellButton';
@@ -90,10 +93,12 @@ export default class LobbyScreen extends ScreenBase {
             <Root>
                 <Spinner visible={ConfigStore.isLoad} />
                 <LobbyHeader>
-                    <Left />
-                    <Body>
+                    <Left>
+                        <Bell onPress={PushStore.viewSettingModal} />
+                    </Left>
+                    <Center>
                         <Title>ロビー</Title>
-                    </Body>
+                    </Center>
                     <Right>
                         <Button transparent onPress={() => Navigator.navigate('Setting', null)} >
                             <ConfigIcon name='cog' type='FontAwesome5' />
@@ -109,6 +114,7 @@ export default class LobbyScreen extends ScreenBase {
                     <TestTellButton></TestTellButton>
                 </Footer>
 
+                <PushSettingModal />
             </Root>
         );
     }
@@ -116,6 +122,26 @@ export default class LobbyScreen extends ScreenBase {
 
 const Root = styled.View`
     ${BasicStyle.screenRoot}
+`
+
+const Left = styled.View`
+    flex: 1;
+    align-items: flex-start;
+    justify-content: center;
+`
+
+const Center = styled.View`
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+`
+
+const Right = styled.View`
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 `
 
 const ScreenBody = styled.View`
@@ -135,6 +161,7 @@ const Footer = styled.View`
 `
 
 const ConfigIcon = styled(Icon)`
-    font-size: 20px;
+    font-size: 24px;
     color: gray;
+    margin-right: 5px;
 `
