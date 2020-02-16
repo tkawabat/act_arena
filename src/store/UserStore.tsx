@@ -128,8 +128,8 @@ class UserStore implements User {
         return this.db.doc(this.id).set({
             name: name
             , gender: gender
-            , createdAt: FirebaseFirestoreTypes.FieldValue.serverTimestamp()
-            , updatedAt: FirebaseFirestoreTypes.FieldValue.serverTimestamp()
+            , createdAt: Firebase.firestore.FieldValue.serverTimestamp()
+            , updatedAt: Firebase.firestore.FieldValue.serverTimestamp()
         }, {merge: true})
         .then(() => { Navigator.navigate('Lobby', null)})
         .catch((error) => Amplitude.error('UserStore set', error))
@@ -148,7 +148,7 @@ class UserStore implements User {
         Amplitude.info('asyncBlockUser', null);
 
         return this.db.doc(this.id).update({
-            ngList: FirebaseFirestoreTypes.FieldValue.arrayUnion(user._id)
+            ngList: Firebase.firestore.FieldValue.arrayUnion(user._id)
         })
         .catch((error) => Amplitude.error('UserStore asyncBlockUser', error))
         ;

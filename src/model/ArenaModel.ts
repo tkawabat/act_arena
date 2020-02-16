@@ -21,7 +21,7 @@ class ArenaModel {
 
     public asyncCreate = async (id:number) :Promise<void> => {
         const endAt = [];
-        const t = FirebaseFirestoreTypes.Timestamp.fromDate(Moment().add(-1, 'seconds').toDate());
+        const t = Firebase.firestore.Timestamp.fromDate(Moment().add(-1, 'seconds').toDate());
         endAt[C.ArenaState.READ] = t;
         endAt[C.ArenaState.CHECK] = t;
         endAt[C.ArenaState.ACT] = t;
@@ -38,8 +38,8 @@ class ArenaModel {
             endText: '',
             message: '',
             endAt: endAt,
-            createdAt: FirebaseFirestoreTypes.Timestamp.now(),
-            updatedAt: FirebaseFirestoreTypes.Timestamp.now(),
+            createdAt: Firebase.firestore.Timestamp.now(),
+            updatedAt: Firebase.firestore.Timestamp.now(),
         };
 
         return this.db.doc(id.toString()).set(arena)
