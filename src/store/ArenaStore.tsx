@@ -3,7 +3,6 @@ import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
-import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';

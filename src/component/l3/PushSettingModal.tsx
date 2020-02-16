@@ -23,12 +23,12 @@ export default class PushSettingModal extends Component<props> {
         const ret = [];
 
         Object.entries(C.PushBasicSettingString).forEach(([key, value]) => {
-            key as unknown as C.PushBasicSettingKey;
+            const settingKey = parseInt(key) as C.PushBasicSettingKey;
             ret.push(<CheckBox
                 key={key}
-                text={C.PushBasicSettingString[key]}
-                checked={PushStore.basicSettings.includes(key)}
-                onPress={() => PushStore.toggleBasicSetting(key)}
+                text={C.PushBasicSettingString[settingKey]}
+                checked={PushStore.basicSettings.includes(settingKey)}
+                onPress={() => PushStore.toggleBasicSetting(settingKey)}
             />);
         });
 
@@ -44,6 +44,17 @@ export default class PushSettingModal extends Component<props> {
         }
 
         return ret;
+    }
+
+    private createTemporarySettingButtion = (onoff:boolean, time:number) => {
+        const text = time+'時間 '+(onoff ? 'ON' : 'OFF');
+        return (
+            <TemporaryButton
+                text={text}
+                disabled={false}
+                onPress={PushStore.updateTemporarySetting.bind(this, onoff, time)}
+            />
+        )
     }
 
     render() {
@@ -69,15 +80,15 @@ export default class PushSettingModal extends Component<props> {
                     </Section>
                     <Section>
                         <Line>
-                            <TemporaryButton text={'1時間 ON'} disabled={false} onPress={null} />
-                            <TemporaryButton text={'3時間 ON'} disabled={false} onPress={null} />
+                            {this.createTemporarySettingButtion(true, 1)}
+                            {this.createTemporarySettingButtion(true, 3)}
                         </Line>
                         <Line>
-                            <TemporaryButton text={'1時間 OFF'} disabled={false} onPress={null} />
-                            <TemporaryButton text={'3時間 OFF'} disabled={false} onPress={null} />
+                            {this.createTemporarySettingButtion(false, 1)}
+                            {this.createTemporarySettingButtion(false, 3)}
                         </Line>
                         <Line>
-                            <TemporaryButton text={'解除'} disabled={false} onPress={null} />
+                            <TemporaryButton text={'解除'} disabled={false} onPress={PushStore.updateTemporarySetting.bind(this, true, -1)} />
                         </Line>
                     </Section>
                     <Footer>

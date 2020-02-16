@@ -1,25 +1,33 @@
 import Moment from 'moment';
-import { Platform, } from 'react-native';
+import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { observable, computed, action } from 'mobx';
+import { Platform, Alert, } from 'react-native';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import * as Permissions from 'react-native-permissions';
 import messaging from '@react-native-firebase/messaging';
-import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
-import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
+
+import ConfigStore from './ConfigStore';
+
+import PushModel from '../model/PushModel';
 
 
 class PushStore {
+    private model: PushModel;
 
-    // @observable onoff:boolean = false;
+    private permission: boolean;
+    @observable temporarySettingOnOff:boolean;
+    @observable temporarySettingTime:Moment.Moment;
+
     @observable settingModal:boolean = false;
     @observable basicSettings:Array<C.PushBasicSettingKey>;
-    private temporarySettingOnOff:boolean;
-    private temporarySettingTime:Moment.Moment;
+    
 
     @computed
     get onoff() :boolean {
+        if (!this.permission) return false;
         if (this.temporarySettingTime > Moment()) {
             return this.temporarySettingOnOff;
         }
@@ -38,14 +46,68 @@ class PushStore {
     }
 
     constructor() {
-        // TODO
+        if (Platform.OS === 'ios') {
+            PushNotificationIOS.checkPermissions(async (permissions) => {
+                await PushNotificationIOS.requestPermissions(permissions);
+            });
+        }
+        messaging().requestPermission();
+
         this.basicSettings = [];
         this.temporarySettingOnOff = false;
         this.temporarySettingTime = Moment().add(1, 'hours');
     }
 
-    public viewSettingModal = () => {
-        this.settingModal = true;
+    @action
+    public updated = (snapshot:FirebaseFirestoreTypes.DocumentSnapshot) :void => {
+        const data = snapshot.data();
+        this.basicSettings = data.basicSettings as Array<C.PushBasicSettingKey>;
+        this.temporarySettingOnOff = data.temporarySettingOnOff;
+        this.temporarySettingTime = Moment.unix(data.temporarySettingTime.seconds);
+    }
+
+    public asyncInit = async (userId:string) => {
+        this.model = new PushModel(userId);
+
+        this.model.asyncGet().then(async (snapshot) => {
+            if (!snapshot || !(snapshot as FirebaseFirestoreTypes.DocumentSnapshot).exists) {
+                await this.asyncCreate();
+                snapshot = await this.model.asyncGet();
+            }
+            this.updated(snapshot as FirebaseFirestoreTypes.DocumentSnapshot);
+            this.model.observe(this.updated);
+
+            this.permission = await this.asyncCheckPermission();
+
+            ConfigStore.setInitLoadComplete('push');
+        })
+    }
+
+    public asyncCreate = async () => {
+        const token = await messaging().getToken();
+        this.model.asyncCreate(token);
+    }
+
+    public asyncCheckPermission = async () :Promise<boolean> => {
+        return messaging().hasPermission();
+    }
+
+    public asyncRequestPermission = async () :Promise<void> => {
+        Permissions.requestNotifications(['alert', 'badge', 'sound']);
+        Alert.alert('', '通知設定を許可してください。', [
+            { text: '設定へ', onPress: Permissions.openSettings }
+            , { text: 'Cancel' }
+            ]);
+    }
+
+    public viewSettingModal = async () => {
+        this.permission = await this.asyncCheckPermission();
+        if (this.permission) {
+            this.settingModal = true;
+            Amplitude.info('PushModalOpen', null);
+        } else {
+            this.asyncRequestPermission();
+        }
     }
 
     public hideSettingModal = () => {
@@ -53,62 +115,19 @@ class PushStore {
     }
 
     public toggleBasicSetting = (key:C.PushBasicSettingKey) => {
+        let settings;
         if (this.basicSettings.includes(key)) {
-            this.basicSettings = this.basicSettings.filter(n => n !== key);
+            settings = this.basicSettings.filter(n => n !== key);
         } else {
-            this.basicSettings.push(key);
+            settings = this.basicSettings.concat([key]);
         }
+        
+        this.model.asyncUpdateBasicSettings(settings);
     }
 
-    public update = () => {
-
+    public updateTemporarySetting = (onoff:boolean, time:number) => {
+        this.model.asyncUpdateTemporarySetting(onoff, time);
     }
-    
-    public registerForPushNotificationsAsync = async () => {        
-        if (Platform.OS === 'ios') {
-            await PushNotificationIOS.checkPermissions(async (permissions) => {
-                await PushNotificationIOS.requestPermissions(permissions);
-            });
-            await Permissions.requestNotifications(['alert', 'badge', 'sound']);
-        }
-
-
-        console.log('permission:', await messaging().hasPermission());
-        await messaging().registerForRemoteNotifications();
-        await messaging().requestPermission();
-        const token = await messaging().getToken();
-        console.log('token:', token);
-
-        const onMessageReceived = async (message) => {
-            alert(`Hello`); // Hello world!
-        }
-        messaging().onMessage(onMessageReceived);
-        messaging().setBackgroundMessageHandler(onMessageReceived);
-            // await Permissions.checkNotifications();
-            // await Permissions.requestNotifications(['alert', 'sound']).then((v) => {
-            //     console.log('v:', v);
-            // });
-
-
-            //const token = await Notifications.getExpoPushTokenAsync();
-            // const token = await Notifications.getDevicePushTokenAsync({
-            //     gcmSenderId: '798603488350'
-            // });
-
-            // Notifications.addListener((notification) => {
-            //     if(notification.origin === 'selected'){
-            //       //バックグラウンドで通知
-            //     }else if(notification.origin === 'received'){
-            //       //フォアグラウンドで通知
-            //       alert('通知が来ました:' + notification.data.name);
-            //       console.log(notification.data.name);
-            //     }
-            //   });
-
-            // //alert("token=" + token);
-            // console.log(token);
-    }
-
 }
 
 export default new PushStore();
