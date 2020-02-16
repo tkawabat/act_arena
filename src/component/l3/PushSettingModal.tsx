@@ -6,7 +6,6 @@ import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
 import PushStore from '../../store/PushStore';
-import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 import RectangleTextButton from '../l1/RectangleTextButton';
 import CheckBox from '../l1/CheckBox';
