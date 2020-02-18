@@ -36,9 +36,13 @@ class ConfigStore {
         
         const v1 = VersionNumber.appVersion.split('.');
         const v2 = this.requireVersion.split('.');
-        for (let i = 0; i < Math.max(v1.length, v2.length); i++) {
+        const n = Math.max(v1.length, v2.length);
+
+        for (let i = 0; i < n; i++) {
             const v1i = parseInt(v1.shift() || '0');
             const v2i = parseInt(v2.shift() || '0');
+            console.log(v1i);
+        console.log(v2i);
             if (v1i !== v2i) return v1i < v2i;
         }
         return false;
