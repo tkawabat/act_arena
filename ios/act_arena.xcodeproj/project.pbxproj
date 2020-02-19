@@ -75,7 +75,7 @@
 		A7AEF8C823D358FF0069C163 /* act_arena copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "act_arena copy-Info.plist"; path = "/Users/tune/git/act_arena/ios/act_arena copy-Info.plist"; sourceTree = "<absolute>"; };
 		AEC0B1F1C51B4F889F4B587D /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
-		B56386411DB9693800A0598C /* act_arena.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = act_arena.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B56386411DB9693800A0598C /* アクトアリーナ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "アクトアリーナ.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B56386481DB9693800A0598C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B56386501DB9693800A0598C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		B56386421DB9693800A0598C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B56386411DB9693800A0598C /* act_arena.app */,
+				B56386411DB9693800A0598C /* アクトアリーナ.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -243,7 +243,7 @@
 			);
 			name = act_arena;
 			productName = act_arena;
-			productReference = B56386411DB9693800A0598C /* act_arena.app */;
+			productReference = B56386411DB9693800A0598C /* アクトアリーナ.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -570,13 +570,16 @@
 				CODE_SIGN_ENTITLEMENTS = act_arena/act_arena.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = GCMQSQK766;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/act_arena/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = act.arena.debug;
 				PRODUCT_MODULE_NAME = "アリーナdev";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "アクトアリーナ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
@@ -591,13 +594,16 @@
 				CODE_SIGN_ENTITLEMENTS = act_arena/act_arena.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = GCMQSQK766;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/act_arena/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = act.arena;
 				PRODUCT_MODULE_NAME = "アクトアリーナ";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "アクトアリーナ";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64e armv7 armv7s arm64";
 			};
