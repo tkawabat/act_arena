@@ -30,10 +30,10 @@ android {
 
   defaultConfig {
     applicationId 'act.arena'
-    minSdkVersion safeExtGet("minSdkVersion", 21)
+    minSdkVersion safeExtGet("minSdkVersion", 28)
     targetSdkVersion safeExtGet("targetSdkVersion", 28)
-    versionCode 11
-    versionName '1.0.10'
+    versionCode 12
+    versionName '1.1.0'
 
     multiDexEnabled true
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -57,10 +57,12 @@ android {
         }
     }
     release {
-      storeFile file(System.getenv("ANDROID_KEYSTORE_PATH") ?: "release-key.jks")
-      storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
-      keyAlias System.getenv("ANDROID_KEY_ALIAS")
-      keyPassword System.getenv("ANDROID_KEY_PASSWORD")
+        if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
     }
   }
   buildTypes {
