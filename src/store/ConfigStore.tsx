@@ -41,8 +41,6 @@ class ConfigStore {
         for (let i = 0; i < n; i++) {
             const v1i = parseInt(v1.shift() || '0');
             const v2i = parseInt(v2.shift() || '0');
-            console.log(v1i);
-        console.log(v2i);
             if (v1i !== v2i) return v1i < v2i;
         }
         return false;
@@ -89,7 +87,7 @@ class ConfigStore {
             .catch(() => { })
             ;
 
-        if (update.isAvailable) {
+        if (update && update.isAvailable) {
             await Updates.fetchUpdateAsync();
             this.expoReload = true;
         }
