@@ -190,6 +190,8 @@ const TermsButton = styled(Button)`
 
 const TermsText = styled.Text`
     text-align: center;
+    font-weight: 500;
+    color: white;
 `
 
 const TermsCaution = styled.Text`
@@ -207,7 +209,8 @@ const RegistButton = styled(Button)`
 `
 
 const RegistText = styled.Text`
-
+    font-weight: 500;
+    color: white;
 `
 
 const RegistCaution = styled.Text`

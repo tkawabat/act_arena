@@ -1,13 +1,14 @@
 import React from 'react';
-import {StyleSheet, ScrollView, } from 'react-native';
+import { ScrollView, } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon, H3 } from 'native-base';
 import { observer } from 'mobx-react';
-import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
+import styled from 'styled-components/native';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import PrivacyJson from '../../../privacy.json';
 import ScreenBase from './ScreenBase';
 import Navigator from '../../lib/Navigator';
+import * as BasicStyle from '../../lib/BasicStyle';
 
 import ConfigStore from '../../store/ConfigStore';
 
@@ -27,12 +28,14 @@ export default class PrivacyScreen extends ScreenBase {
         for (key in PrivacyJson.chapters) {
             i++;
             ret.push(
-                <H3 style={styles.chapterTitle}>{'第'+i+'章 '+key}</H3>
+                <ChapterTitle key={i}>{'第'+i+'章 '+key}</ChapterTitle>
             );
+            let j = 0;
             for (const t of PrivacyJson.chapters[key] as string[]) {
                 ret.push(
-                    <Text style={styles.sentence}>{t}</Text>
+                    <Sentence key={i*1000+j}>{t}</Sentence>
                 );
+                j++;
             }
         }
 
@@ -41,9 +44,9 @@ export default class PrivacyScreen extends ScreenBase {
 
     render() {
         return (
-            <Container style={styles.container}>
+            <Root>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Header style={styles.header}>
+                <Header_>
                     <Left>
                         <Button transparent>
                             <Icon name='arrow-back' onPress={Navigator.back} />
@@ -53,41 +56,41 @@ export default class PrivacyScreen extends ScreenBase {
                         <Title>プライバシーポリシー</Title>
                     </Body>
                     <Right />
-                </Header>
-                <ScrollView style={styles.scrollView}>
+                </Header_>
+                <ScrollView_>
                     <Text>{PrivacyJson.preface}</Text>
                     {this.createChapters()}
-                    <View style={styles.space}></View>
-                </ScrollView>
-            </Container>
+                    <Space />
+                </ScrollView_>
+            </Root>
         );
     }
 }
 
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: getStatusBarHeight(),
-        marginBottom: getBottomSpace(),
-    },
-    header: {
-        paddingTop: 0,
-        height: 50,
-    },
-    scrollView: {
-        marginHorizontal: 10,
-        paddingVertical: 10,
-        backgroundColor: 'white',
-    },
-    chapterTitle: {
-        marginTop: 20,
-        marginLeft: 5,
-    },
-    space: {
-        height: 30,
-    },
-    sentence: {
-        lineHeight: 24,
-    }
-});
+const Root = styled.View`
+    ${BasicStyle.screenRoot}
+`
+
+const Header_ = styled(Header)`
+    ${BasicStyle.header}
+`
+
+const ScrollView_ = styled(ScrollView)`
+    margin-horizontal: 10px;
+    padding-vertical: 10px;
+    backgroundColor: white;
+`
+
+const ChapterTitle = styled(H3)`
+    margin-top: 20px;
+    margin-left: 5px;
+`
+
+const Space = styled.View`
+    height: 30px;
+`
+
+const Sentence = styled.Text`
+    line-height: 24px;
+`
