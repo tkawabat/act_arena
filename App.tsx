@@ -138,11 +138,11 @@ const {height, width} = Dimensions.get('window');
 const Root = styled.View`
     height: ${height};
     flex: 1;
-    justify-content: 'center';
+    justify-content: center;
 `
 
 const Text = styled.Text`
-    align-self: 'center';
+    align-self: center;
     font-size: 24px;
-    font-weight: '400';
+    font-weight: 400;
 `
