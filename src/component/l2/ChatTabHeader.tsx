@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, View, Badge } from 'native-base';
+import { Badge } from 'native-base';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
+
+import * as BasicStyle from '../../lib/BasicStyle';
 
 import ChatStore from '../../store/ChatStore';
 
@@ -12,31 +14,31 @@ export default class ChatTabHeader extends Component {
         if (!ChatStore.unreadNumber) return null;
         return (
             <Badge>
-                <Text style={styles.badge}>{ChatStore.unreadNumber.toString()}</Text>
+                <BadgeText>{ChatStore.unreadNumber.toString()}</BadgeText>
             </Badge>
         );
     }
 
     render() {
         return (
-            <View style={styles.root}>
-                <Text style={styles.title}>チャット</Text>
+            <Root>
+                <Title>チャット</Title>
                 {this.badge()}
-            </View>
+            </Root>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    root: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    title: {
-        color: '#FFF',
-        fontWeight: '500',
-    },
-    badge: {
-        fontSize: 12,
-    },
-});
+const Root = styled.View`
+    flex-direction: row;
+    align-items: center;
+`
+
+const Title = styled.Text`
+    color: #FFF;
+    font-weight: 500;
+`
+
+const BadgeText = styled.Text`
+    font-size: 12px;
+`

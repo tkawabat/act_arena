@@ -1,11 +1,12 @@
 import { css } from 'styled-components';
 import { Dimensions } from 'react-native';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
+import styled from 'styled-components/native';
 
 
 let { height, width } = Dimensions.get('window');
 export const screenWidth = css`
-    width: ${width};
+    width: ${width}px;
 `
 
 export const center = css`
@@ -16,15 +17,15 @@ export const center = css`
 export const header = css`
     ${screenWidth};
     height: 50px;
-    padding-top: 0;
+    padding-top: 0px;
     flex-direction: row;
     align-items: center;
 `;
 
 export const screenRoot = css`
     flex: 1;
-    margin-top: ${getStatusBarHeight()};
-    margin-bottom: ${getBottomSpace()};
+    margin-top: ${getStatusBarHeight()}px;
+    margin-bottom: ${getBottomSpace()}px;
 `
 
 export const button = css`

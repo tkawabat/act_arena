@@ -42,17 +42,17 @@ const Root = styled.TouchableOpacity`
 `
 
 const Text = styled.Text`
-    font-size: 12;
+    font-size: 12px;
     font-weight: bold;
     color: #555;
     margin-top: 5px;
 `
 
 const Remind = styled.Text`
-    font-size: 8;
+    font-size: 8px;
     font-weight: bold;
     color: #555;
     position: absolute;
-    bottom: 3;
-    right: 3;
+    bottom: 3px;
+    right: 3px;
 `

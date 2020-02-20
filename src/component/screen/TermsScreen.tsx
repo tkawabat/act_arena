@@ -27,12 +27,14 @@ export default class TermsScreen extends ScreenBase {
         for (key in TermsJson.chapters) {
             i++;
             ret.push(
-                <H3 style={styles.chapterTitle}>{'第'+i+'章 '+key}</H3>
+                <H3 style={styles.chapterTitle} key={i}>{'第'+i+'章 '+key}</H3>
             );
+            let j = 0;
             for (const t of TermsJson.chapters[key] as string[]) {
                 ret.push(
-                    <Text style={styles.sentence}>{t}</Text>
+                    <Text style={styles.sentence} key={i*1000+j}>{t}</Text>
                 );
+                j++;
             }
         }
 

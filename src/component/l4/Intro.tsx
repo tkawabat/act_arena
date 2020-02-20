@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, View } from 'native-base';
+import { View } from 'native-base';
 import { LinearGradient } from 'expo-linear-gradient';
 import AppIntroSlider from 'react-native-app-intro-slider';
+
+import * as BasicStyle from '../../lib/BasicStyle';
+import styled from 'styled-components/native';
 
 
 interface props {
@@ -34,20 +36,17 @@ const slides = [
 
 export default class Intro extends Component<props> {
     _renderItem = ({ item, dimensions }) => (
-        <LinearGradient
-            style={[
-                styles.mainContent,
-                dimensions,
-            ]}
+        <Root
+            style={dimensions}
             colors={item.colors}
             start={{ x: 0, y: 0.1 }}
             end={{ x: 0.1, y: 1 }}
         >
             <View>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.text}>{item.text}</Text>
+                <Title>{item.title}</Title>
+                <Explain>{item.text}</Explain>
             </View>
-        </LinearGradient>
+        </Root>
     );
 
     render() {
@@ -55,29 +54,25 @@ export default class Intro extends Component<props> {
     }
 }
 
+const Root = styled(LinearGradient)`
+    flex: 1;
+    align-items: center;
+    justify-content: space-around;
+`
 
-const styles = StyleSheet.create({
-    mainContent: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-    },
-    image: {
-        width: 320,
-        height: 320,
-    },
-    text: {
-        fontSize: 20,
-        color: 'rgba(255, 255, 255, 0.8)',
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        paddingHorizontal: 30,
-    },
-    title: {
-        fontSize: 24,
-        color: 'white',
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        marginBottom: 20,
-    },
-});
+const Title = styled.Text`
+    font-size: 24px;
+    color: white;
+    background-color: transparent;
+    text-align: center;
+    margin-bottom: 20px;
+
+`
+
+const Explain = styled.Text`
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+    text-align: center;
+    padding-horizontal: 30px;
+`

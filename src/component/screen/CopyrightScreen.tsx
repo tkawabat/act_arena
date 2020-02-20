@@ -1,16 +1,16 @@
 import React from 'react';
-import { StyleSheet, Linking } from 'react-native';
-import { Container, Content, Header, Left, Body, Right, Button, Title, Text, Icon, ListItem, Separator } from 'native-base';
+import { Linking } from 'react-native';
+import { Container, Content, Header, Left, Body, Right, Button, Text, Title, Icon, ListItem, Separator } from 'native-base';
 import { observer } from 'mobx-react';
-import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import Spinner from 'react-native-loading-spinner-overlay';
-
 
 import licenseJson from '../../../license.json';
 import ScreenBase from './ScreenBase';
+import * as BasicStyle from '../../lib/BasicStyle';
 import Navigator from '../../lib/Navigator';
 
 import ConfigStore from '../../store/ConfigStore';
+import styled from 'styled-components/native';
 
 
 @observer
@@ -26,9 +26,9 @@ export default class CopyrightScreen extends ScreenBase {
 
     render() {
         return (
-            <Container style={styles.container}>
+            <Root>
                 <Spinner visible={ConfigStore.isLoad} />
-                <Header style={styles.header}>
+                <Header_>
                     <Left>
                         <Button transparent>
                             <Icon name='arrow-back' onPress={Navigator.back} />
@@ -38,58 +38,58 @@ export default class CopyrightScreen extends ScreenBase {
                         <Title>著作権表示</Title>
                     </Body>
                     <Right />
-                </Header>
+                </Header_>
                 <Content>
-
                     <Separator bordered>
-                        <Text>台本</Text>
+                        <SubTitle>台本</SubTitle>
                     </Separator>
                     <ListItem>
                         <Text>doodle.txt © 2008 ススキドミノ</Text>
-                        <Icon name='external-link-alt' type='FontAwesome5' style={styles.linkIcon}
-                            onPress={() =>  Linking.openURL('http://doodletxt.web.fc2.com/')} />
+                        <LinkIcon name='external-link-alt' type='FontAwesome5' onPress={() =>  Linking.openURL('http://doodletxt.web.fc2.com/')} />
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>BGM</Text>
+                        <SubTitle>BGM</SubTitle>
                     </Separator>
                     <ListItem>
                         <Text>騒音のない世界 © 2019 beco</Text>
-                        <Icon name='external-link-alt' type='FontAwesome5' style={styles.linkIcon}
-                            onPress={() =>  Linking.openURL('https://noiselessworld.net')} />
+                        <LinkIcon name='external-link-alt' type='FontAwesome5' onPress={() =>  Linking.openURL('https://noiselessworld.net')} />
                     </ListItem>
 
                     <Separator bordered>
-                        <Text>ソフトウェア</Text>
+                        <SubTitle>ソフトウェア</SubTitle>
                     </Separator>
-                    <Text style={styles.software}>
-                    {this.softwares}
-                    </Text>
+                    <SoftwareText>
+                        {this.softwares}
+                    </SoftwareText>
                 </Content>
-            </Container>
+            </Root>
         );
     }
 }
 
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: getStatusBarHeight(),
-        marginBottom: getBottomSpace(),
-    },
-    header: {
-        paddingTop: 0,
-        height: 50,
-    },
-    linkIcon: {
-        marginLeft: 'auto',
-        fontSize: 20,
-        color: 'gray',
-    },
-    software: {
-        marginHorizontal: 10,
-        fontSize: 16,
-        lineHeight: 24,
-    }
-});
+const Root = styled(Container)`
+    ${BasicStyle.screenRoot}
+`
+
+const Header_ = styled(Header)`
+    padding-top: 0;
+    height: 50px;
+`
+
+const SubTitle = styled.Text`
+    font-weight: 700;
+`
+
+const LinkIcon = styled(Icon)`
+    margin-left: auto;
+    font-size: 20px;
+    color: gray;
+`
+
+const SoftwareText = styled.Text`
+    margin-horizontal: 10px;
+    font-size: 16px;
+    line-height: 24px;
+`

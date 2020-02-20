@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
-import { Container, Header, Content, Body, Left, Right, Text, View, Button, Icon, Title, Tabs, Tab } from 'native-base';
+import { Dimensions } from 'react-native';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
 import * as Animatable from 'react-native-animatable';
+
+import * as BasicStyle from '../../lib/BasicStyle';
 
 import OverlayMessageStore from '../../store/OverlayMessageStore';
 
@@ -10,8 +12,7 @@ import OverlayMessageStore from '../../store/OverlayMessageStore';
 export default class OverlayMessage extends Component {
     render() {
         return (
-            <Animatable.Text
-                style={styles.body}
+            <Root
                 animation={{
                     from: {translateX: OverlayMessageStore.from}
                     , to: {translateX: OverlayMessageStore.to}
@@ -20,22 +21,21 @@ export default class OverlayMessage extends Component {
                 onAnimationEnd={OverlayMessageStore.animationEnd}
             >
                 {OverlayMessageStore.message}
-            </Animatable.Text>
+            </Root>
         );
     }
 }
 
 const {height, width} = Dimensions.get('window');
-const styles = StyleSheet.create({
-    body: {
-        top: height / 2 - 150,
-        right: width,
-        width: width,
-        backgroundColor: 'rgba(255,255,255,0.8)',
-        position: 'absolute',
-        fontSize: 32,
-        fontWeight: '600',
-        textAlign: 'center',
-        color: '#FF9900',
-    }
-});
+
+const Root = styled(Animatable.Text)`
+    top: ${height / 2 - 150}px;
+    right: ${width}px;
+    width: ${width}px;
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    color: #FF9900;
+`

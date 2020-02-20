@@ -3,11 +3,12 @@ import { StyleSheet} from 'react-native';
 import { Container, Content, Header, Left, Body, Right, Button, Title, Text, Icon, List, ListItem, Separator } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
+import styled from 'styled-components/native';
 import Spinner from 'react-native-loading-spinner-overlay';
-
 
 import ScreenBase from './ScreenBase';
 import Navigator from '../../lib/Navigator';
+import * as BasicStyle from '../../lib/BasicStyle';
 
 import ConfigStore from '../../store/ConfigStore';
 
@@ -58,6 +59,10 @@ export default class SettingScreen extends ScreenBase {
         );
     }
 }
+
+const Root = styled.View`
+    ${BasicStyle.screenRoot}
+`
 
 const styles = StyleSheet.create({
     container: {
