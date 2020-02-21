@@ -21,9 +21,11 @@ class SoundStore {
     private loadSe = () => {
         this.seList = new Array<Sound>();
         for (const key in C.SeList) {
-            this.seList[key] = new Sound(C.SeList[key].file, Sound.MAIN_BUNDLE, (error) => {
+            //this.seList[key] = new Sound(C.SeList[key].file, Sound.MAIN_BUNDLE, (error) => {
+            this.seList[key] = new Sound('./'+C.SeList[key].file, Sound.MAIN_BUNDLE, (error) => {
                 if (error) {
-                    Amplitude.error('SoundStore loadSe', error)
+                    console.log(C.SeList[key].file)
+                    Amplitude.error('SoundStore loadSe', {'file': C.SeList[key].file, 'error': error.toString()})
                     return;
                 }
                 this.setVolume(0.5);

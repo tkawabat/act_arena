@@ -17,6 +17,7 @@ class Amplitude {
     }
 
     public info = (event: string, prop: Object) => {
+        if (!prop) prop = {}
         if (__DEV__) {
             const time = moment().format('YYYY/MM/DD HH:mm:ss');
             const param = prop ? ' ' + prop.toString() : '';
@@ -26,6 +27,7 @@ class Amplitude {
     }
 
     public error = (event: string, error: Object) => {
+        if (!error) error = {}
         if (__DEV__) {
             const time = moment().format('YYYY/MM/DD HH:mm:ss');
             const errorString = error ? ' ' + error.toString() : '';

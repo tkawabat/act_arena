@@ -13,6 +13,7 @@ interface props {
 
 const slides = [
     {
+        key: '0',
         title: 'アクト・アリーナとは？',
         text:
             '声劇をするまでの手間と時間をギュッと短縮するアプリ',
@@ -20,6 +21,7 @@ const slides = [
         colors: ['#63E2FF', '#B066FE'],
     },
     {
+        key: '1',
         title: '必要なことはエントリーボタンを押すだけ',
         text:
             '',
@@ -27,6 +29,7 @@ const slides = [
         colors: ['#A3A1FF', '#3A3897'],
     },
     {
+        key: '2',
         title: 'ユーザー登録をしてはじめよう！',
         text: 'まずはリスナーとしてアリーナを覗いてみよう',
         icon: 'ios-beer-outline',
@@ -41,10 +44,11 @@ export default class Intro extends Component<props> {
             colors={item.colors}
             start={{ x: 0, y: 0.1 }}
             end={{ x: 0.1, y: 1 }}
+            key={item.key}
         >
-            <View>
-                <Title>{item.title}</Title>
-                <Explain>{item.text}</Explain>
+            <View key={'Root'+(item.key)}>
+                <Title key={'Title'+item.key}>{item.title}</Title>
+                <Explain key={'Explain'+item.key}>{item.text}</Explain>
             </View>
         </Root>
     );
