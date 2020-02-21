@@ -26,6 +26,7 @@ class PushModel {
             ],
             temporarySettingOnOff: false,
             temporarySettingTime: Firebase.firestore.Timestamp.now(),
+            lastSendTime: Firebase.firestore.Timestamp.fromDate(Moment().add(-1, 'day').toDate()),
             createdAt: Firebase.firestore.Timestamp.now(),
             updatedAt: Firebase.firestore.Timestamp.now(),
         }
