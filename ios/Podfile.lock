@@ -680,6 +680,9 @@ PODS:
     - RNFBApp
   - RNPermissions (2.0.9):
     - React
+  - RNSentry (1.3.1):
+    - React
+    - Sentry (~> 4.4.0)
   - RNSkyWay (0.1.1):
     - React
   - RNSound (0.11.0):
@@ -687,6 +690,9 @@ PODS:
     - RNSound/Core (= 0.11.0)
   - RNSound/Core (0.11.0):
     - React
+  - Sentry (4.4.3):
+    - Sentry/Core (= 4.4.3)
+  - Sentry/Core (4.4.3)
   - SkyWay (1.2.3)
   - UMBarCodeScannerInterface (5.0.0)
   - UMCameraInterface (5.0.0)
@@ -779,6 +785,7 @@ DEPENDENCIES:
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNPermissions (from `../node_modules/react-native-permissions`)
+  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSkyWay (from `../node_modules/react-native-skyway`)
   - RNSound (from `../node_modules/react-native-sound`)
   - SkyWay
@@ -835,6 +842,7 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - Protobuf
+    - Sentry
     - SkyWay
 
 EXTERNAL SOURCES:
@@ -975,6 +983,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
+  RNSentry:
+    :path: "../node_modules/@sentry/react-native"
   RNSkyWay:
     :path: "../node_modules/react-native-skyway"
   RNSound:
@@ -1123,8 +1133,10 @@ SPEC CHECKSUMS:
   RNFBFirestore: 1b5be285c76247a8c78aa85b53202647db7541fa
   RNFBMessaging: 29971efd7fd939ff2053f30f5c337d6ca78fd215
   RNPermissions: 6db7e0a4d94c9c02390d11020b1d3d187aaf77e5
+  RNSentry: 6458ba85aa3f8ae291abed4f72abbd7080839c71
   RNSkyWay: f8e4b47517db4bcc0f482a16c39f15900cd4ea7d
   RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
+  Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
   SkyWay: 801f398e04fdf33d3e4359fda1c748eb13e574a5
   UMBarCodeScannerInterface: 550e7ffd7a789289260bde3d547be29407e75437
   UMCameraInterface: 51e4568d64e77615557afaad9a3acdaad5d32d9f
@@ -1140,6 +1152,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: ee5b1ee1056eb338ff2d521ba79460d8cd0bae7d
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: fa2889ebed607c20d83a70af195d3a74447181c4
+PODFILE CHECKSUM: 6d69b02632b6917d05f205b33334bd9d39af6a40
 
 COCOAPODS: 1.8.4

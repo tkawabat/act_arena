@@ -39,6 +39,18 @@
       "package": "act.arena",
       "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
       "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+    },
+    "hooks": {
+        "postPublish": [
+            {
+                "file": "sentry-expo/upload-sourcemaps",
+                "config": {
+                    "organization": "tkawabat",
+                    "project": "act_arena",
+                    "authToken": "cb7f5e0094904c69ac2c76682984cb952b8f452eb3314e66b7ce81a5ebe36a6c"
+                }
+            }
+        ]
     }
   }
 }

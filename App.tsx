@@ -3,17 +3,30 @@
 
 import React, { Component } from 'react';
 import { YellowBox, AppState, Dimensions, Alert, Linking, Platform } from 'react-native';
-import { Sentry } from 'react-native-sentry';
+
+const ignoreWarnings = [
+    'Setting a timer for a long period of time',
+];
+YellowBox.ignoreWarnings(ignoreWarnings);
+console.disableYellowBox = true;
+console.ignoredYellowBox = ignoreWarnings;
+
+import * as Sentry from '@sentry/react-native';
+// import * as Sentry from 'sentry-expo';
+Sentry.init({
+    dsn: 'https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544',
+});
+
+
 import { Updates, SplashScreen, } from 'expo';
 import * as Font from 'expo-font';
-Sentry.config('https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544').install();
 import { observer } from 'mobx-react';
 import Moment from 'moment';
 import styled from 'styled-components/native';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import AppContainer from './src/component/screen/AppContainer';
 import * as C from './src/lib/Const';
-import Firebase from './src/lib/Firebase';
 import Amplitude from './src/lib/Amplitude';
 import Navigator from './src/lib/Navigator';
 
@@ -29,14 +42,6 @@ export default class App extends Component {
 
     constructor(props) {
         super(props);
-
-        const ignoreWarnings = [
-            'Setting a timer for a long period of time',
-            'Expected style',
-        ];
-        YellowBox.ignoreWarnings(ignoreWarnings);
-        console.disableYellowBox = true;
-        console.ignoredYellowBox = ignoreWarnings;
 
         Amplitude.info('init', null);
 
@@ -60,7 +65,7 @@ export default class App extends Component {
             if (!user) {
                 alert('ユーザー情報の取得に失敗しました。');
             }
-            const userId = (user as Firebase.auth.UserCredential).user.uid;
+            const userId = (user as FirebaseAuthTypes.UserCredential).user.uid;
             //SkywayStore.connect(userId);
             SkywayStore.connect(userId + Moment().unix().toString());
             LobbyStore.asyncInit(0);
@@ -136,7 +141,7 @@ export default class App extends Component {
 
 const {height, width} = Dimensions.get('window');
 const Root = styled.View`
-    height: ${height};
+    height: ${height}px;
     flex: 1;
     justify-content: center;
 `
