@@ -2,7 +2,7 @@ import { observable, computed, action } from 'mobx';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
-import Firebase from '../lib/Firebase';
+import Scheduler from '../lib/Scheduler';
 
 
 interface Characters {
@@ -38,6 +38,11 @@ class ArenaScenarioStore {
     @action
     public setAgreement = (agreement:C.AgreementState) => {
         this.agreementState = agreement;
+
+        // reload
+        const url = this.agreementUrl;
+        this.agreementUrl = '';
+        Scheduler.setTimeout('', () => this.agreementUrl = url, 200);
     }
 
     @action
