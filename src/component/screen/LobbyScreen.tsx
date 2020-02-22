@@ -50,8 +50,8 @@ export default class LobbyScreen extends ScreenBase {
     }
 
     private asyncCheckAndroidPermissions = async () => {
-        const microphone = await Permissions.check(Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO);
-        const camera = await Permissions.check(Permissions.PERMISSIONS.ANDROID.CAMERA);
+        const microphone = await Permissions.request(Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO);
+        const camera = await Permissions.request(Permissions.PERMISSIONS.ANDROID.CAMERA);
         if (microphone === Permissions.RESULTS.UNAVAILABLE || camera === Permissions.RESULTS.UNAVAILABLE) {
             alert('このデバイスではマイク・カメラをご利用できないため、アリーナに参加できません。');
             return false;
