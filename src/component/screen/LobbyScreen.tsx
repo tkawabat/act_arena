@@ -13,7 +13,6 @@ import * as BasicStyle from '../../lib/BasicStyle';
 
 import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
-import LobbyStore from '../../store/LobbyStore';
 import PushStore from '../../store/PushStore';
 
 import Bell from '../l1/Bell';
