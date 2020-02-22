@@ -20,8 +20,10 @@ export default class ActInfoModal extends Component<props> {
 
     private getCharactersText = () => {
         let result = [];
+        let i = 0;
         for (const character of ArenaScenarioStore.characters) {
-            result.push(<Text>{character.name+': '+character.userName}</Text>)
+            result.push(<Text key={'charactor'+i}>{character.name+': '+character.userName}</Text>)
+            i++;
         }
         return result;
     }
