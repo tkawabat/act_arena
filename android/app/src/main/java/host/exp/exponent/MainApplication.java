@@ -19,7 +19,6 @@ import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
 import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 import com.ocetnik.timer.BackgroundTimerPackage;
-import com.zmxv.RNSound.RNSoundPackage;
 import com.apsl.versionnumber.RNVersionNumberPackage;
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 import jp.micin.react.skyway.SkyWayPackage;
@@ -46,7 +45,6 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
             new ReactNativeFirebaseAuthPackage(),
             new ReactNativeFirebaseFirestorePackage(),
             new BackgroundTimerPackage(),
-            new RNSoundPackage(),
             new RNVersionNumberPackage(),
             new ReactNativeFirebaseAppPackage(),
             new RNPermissionsPackage(),

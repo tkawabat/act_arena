@@ -118,7 +118,6 @@ dependencies {
     implementation project(':@react-native-firebase_auth')
     implementation project(':@react-native-firebase_firestore')
     implementation project(':react-native-background-timer')
-    implementation project(':react-native-sound')
     implementation project(':react-native-version-number')
     implementation project(':@react-native-firebase_app')
     implementation project(':react-native-permissions')

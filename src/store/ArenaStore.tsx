@@ -112,7 +112,7 @@ class ArenaStore {
 
         // se
         if (Object.keys(ArenaUserStore.users).length < Object.keys(users).length) {
-            this.se('enterRoom');
+            this.se(C.SeKey.ENTER_ROOM);
         }
 
         ArenaUserStore.users = users;
@@ -150,10 +150,8 @@ class ArenaStore {
                 OverlayMessageStore.start('マイクチェック');
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     // マイクオン
-                    if (SkywayStore.speakState === C.SpeakState.DISABLED) {
-                        SkywayStore.setSpeakState(C.SpeakState.MUTE);
-                        SkywayStore.toggleMicrophone();
-                    }
+                    SkywayStore.setSpeakState(C.SpeakState.MUTE);
+                    SkywayStore.toggleMicrophone();
                     this.addTimeCount = 1;
                 }
                 break;
@@ -222,21 +220,21 @@ class ArenaStore {
         switch (after) {
             case C.ArenaState.WAIT:
                 if (this.overlayMessage === '') { // 正常終了
-                    this.se('actEnd');
+                    this.se(C.SeKey.ACT_END);
                 }
                 break;
             case C.ArenaState.READ:
-                this.se('matching');
+                this.se(C.SeKey.MATCHING);
                 break;
             case C.ArenaState.CHECK:
                 break;
             case C.ArenaState.ACT:
-                this.se('actStart');
+                this.se(C.SeKey.ACT_START);
                 break;
         }
     }
 
-    private se = (key:string) => {
+    private se = (key:C.SeKey) => {
         if (this.id === null) return;
         SoundStore.se(key);
     }

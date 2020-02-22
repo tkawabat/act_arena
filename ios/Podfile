@@ -65,7 +65,6 @@ target 'act_arena' do
 
   pod 'react-native-version-number', :path => '../node_modules/react-native-version-number'
 
-  pod 'RNSound', :path => '../node_modules/react-native-sound'
 
   pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
 

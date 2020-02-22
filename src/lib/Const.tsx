@@ -123,17 +123,27 @@ export const PushBasicSettingString  = {
     [PushBasicSettingKey.DAWN]:     '未明（０２：００〜０９：００）',
 }
 
+const MusicPath = '../../resource/music';
 export const MusicList = [
     //{ file: 'amanojack.mp3', name: '天邪鬼の子', site: '騒音のない世界'},
-    { file: 'neverend.mp3', name: '終わりのない物語', site: '騒音のない世界'},
-    //{ file: 'yoake.mp3', name: 'この夜が明けるまで', site: '騒音のない世界'},
-    { file: 'sayonara3.mp3', name: 'さよなら', site: '騒音のない世界'},
+    { asset: require(MusicPath+'/neverend.mp3'), name: '終わりのない物語', site: '騒音のない世界'},
+    { asset: require(MusicPath+'/yoake.mp3'), name: 'この夜が明けるまで', site: '騒音のない世界'},
+    { asset: require(MusicPath+'/sayonara3.mp3'), name: 'さよなら', site: '騒音のない世界'},
 ]
+
+export enum SeKey {
+    ACT_START,
+    ACT_END,
+    MATCHING,
+    ENTER_ROOM,
+}
+
+export const SePath = '../../resource/se';
 export const SeList = {
-    'actStart': { file: 'buzzer_opening1.mp3', site: '効果音ラボ'},
-    'matching': { file: 'tin2.mp3', site: '効果音ラボ'},
-    'enterRoom': { file: 'cursor1.mp3', site: '効果音ラボ'},
-    'actEnd': { file: 'people_people_stadium_cheer1.mp3', site: '効果音ラボ'},
+    [SeKey.ACT_START]: { asset: require(SePath+'/buzzer_opening1.mp3'), site: '効果音ラボ'},
+    [SeKey.ACT_END]: { asset: require(SePath+'/people_people_stadium_cheer1.mp3'), site: '効果音ラボ'},
+    [SeKey.MATCHING]: { asset: require(SePath+'/tin2.mp3'), site: '効果音ラボ'},
+    [SeKey.ENTER_ROOM]: { asset: require(SePath+'/cursor1.mp3'), site: '効果音ラボ'},
 }
 
 export const SoundFadeDuration = 8000;
