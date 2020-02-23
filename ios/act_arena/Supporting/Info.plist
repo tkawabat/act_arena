@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ja_JP</string>
 	<key>CFBundleDisplayName</key>
@@ -68,14 +70,34 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>このアプリではApple Musicは利用しません。</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>このアプリではBluetoothは利用しません。</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>このアプリではBluetoothは利用しません。</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>このアプリではカレンダーは利用しません。</string>
 	<key>NSCameraUsageDescription</key>
 	<string>劇に参加するためには、カメラの利用許可が必要です。（実際には使用しません。）</string>
+	<key>NSContactsUsageDescription</key>
+	<string>このアプリでは連絡先は利用しません。</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>このアプリでは位置情報は利用しません。</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>このアプリでは位置情報は利用しません。</string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>劇に参加するためには、マイクの利用許可が必要です。</string>
+	<key>NSMotionUsageDescription</key>
+	<string>このアプリではモーションは利用しません。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>ユーザーアイコン設定のため写真の利用許可が必要です。</string>
+	<key>NSSiriUsageDescription</key>
+	<string>このアプリではSiriは利用しません。</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>このアプリでは音声認識は利用しません。</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -101,8 +123,6 @@
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
-		<string>fetch</string>
-		<string>processing</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
