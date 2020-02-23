@@ -42,7 +42,7 @@ class ArenaScenarioStore {
         // reload
         const url = this.agreementUrl;
         this.agreementUrl = '';
-        Scheduler.setTimeout('', () => this.agreementUrl = url, 200);
+        Scheduler.setTimeout('', () => this.agreementUrl = url, 100);
     }
 
     @action

@@ -17,20 +17,23 @@ var originalPostMessage = window.postMessage;
 var patchedPostMessage = function(message, targetOrigin, transfer) { 
     originalPostMessage(message, targetOrigin, transfer);
 };
+var timer;
+
 patchedPostMessage.toString = function() { 
     return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage'); 
 };
 window.postMessage = patchedPostMessage;
 
 function checkScroll() {
-    var h = window.scrollY + window.parent.screen.height;
+    var h;
+    h = window.scrollY + window.parent.screen.height;
     if (h >= ${agreementScroll}) {
         window.ReactNativeWebView.postMessage('read');
+        clearInterval(timer);
     }    
 }
 
-window.addEventListener('scroll', checkScroll);
-checkScroll();
+timer = setInterval(checkScroll, 500);
 `;
 }
 

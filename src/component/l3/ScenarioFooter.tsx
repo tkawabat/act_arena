@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
+import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
 
 import EntryButton from '../l1/EntryButton';
@@ -16,9 +17,12 @@ import Microphone from '../l1/Microphone';
 export default class ScenarioFooter extends Component {
 
     render() {
-        const entryButton = ArenaUserStore.userState == C.ArenaUserState.ACTOR ?
-            (<Microphone />) : (<EntryButton />)
-            ;
+        let entryButton;
+        if (ArenaUserStore.userState !== C.ArenaUserState.ACTOR) {
+            entryButton = (<EntryButton />);
+        } else if (ArenaStore.arenaState !== C.ArenaState.READ) {
+            entryButton = (<Microphone />)
+        }
 
         return (
             <Root>
@@ -61,6 +65,7 @@ const Right = styled.View`
 `
 
 const UserStaetBadge = styled(Badge)`
+    ${BasicStyle.center}
     margin: 10px;
 `
 

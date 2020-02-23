@@ -17,14 +17,15 @@ export default class ArenaExplain extends Component {
                 <SubTitle>1 {C.ArenaStateString[C.ArenaState.WAIT]}</SubTitle>
                 <Explain>・画面の下の『エントリー』をぽちっ</Explain>
                 <SubTitle>2 {C.ArenaStateString[C.ArenaState.READ]} ({C.ArenaStateTime[C.ArenaState.READ]}秒)</SubTitle>
-                <Explain>・規約をしっかり読んで、『同意』をぽちっ</Explain>
-                <Explain>　※演じる箇所までは自動でスクロール</Explain>
-                <Explain>・ストーリー、キャラ、セリフをチェック</Explain>
+                <Explain>・規約を読んで、『同意』をぽちっ</Explain>
+                <Explain>　　　※演じる箇所までは自動でスクロール</Explain>
+                <Explain>・台本をチェック</Explain>
+                <CenterText>〜〜通話開始〜〜</CenterText>
                 <SubTitle>3 {C.ArenaStateString[C.ArenaState.CHECK]} ({C.ArenaStateTime[C.ArenaState.CHECK]}秒)</SubTitle>
                 <Explain>・画面の下が<Microphone name='microphone' type='FontAwesome5'/>に変化</Explain>
-                <Explain>・ミュートを解除、お互いの声が聞こえるか確認しよう</Explain>
+                <Explain>・お互いの声が聞こえるか確認しよう</Explain>
                 <SubTitle>4 {C.ArenaStateString[C.ArenaState.ACT]} ({C.ArenaStateTime[C.ArenaState.ACT]}秒)</SubTitle>
-                <Explain>・劇を開始！　思いっきり演じよう</Explain>
+                <Explain>・思いっきり演じよう！</Explain>
             </Root>
         );
     }
@@ -41,6 +42,13 @@ const ExplainTitle = styled(Text)`
 `
 
 const SubTitle = styled(Text)`
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 20px;
+`
+
+const CenterText = styled(Text)`
+    text-align: center;
     font-size: 20px;
     font-style: italic;
     margin-top: 20px;
