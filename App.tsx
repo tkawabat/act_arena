@@ -1,7 +1,3 @@
-// import StorybookUI from './storybook';
-// export default StorybookUI;
-
-import React, { Component } from 'react';
 import { YellowBox, AppState, Dimensions, Alert, Linking, Platform } from 'react-native';
 
 const ignoreWarnings = [
@@ -11,13 +7,15 @@ YellowBox.ignoreWarnings(ignoreWarnings);
 console.disableYellowBox = true;
 console.ignoredYellowBox = ignoreWarnings;
 
+// import StorybookUI from './storybook';
+// export default StorybookUI;
+
 import * as Sentry from '@sentry/react-native';
-// import * as Sentry from 'sentry-expo';
 Sentry.init({
     dsn: 'https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544',
 });
 
-
+import React, { Component } from 'react';
 import { Updates, SplashScreen, } from 'expo';
 import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
