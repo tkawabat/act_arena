@@ -22,12 +22,12 @@ export default class SkywayStoreAdmin extends Component<props> {
 
     constructor(props) {
         super(props);
-        
     }
 
     render() {
         return (
             <Root>
+                <RectangleTextButton text={'enable'} onPress={() => SkywayStore.setSpeakState(C.SpeakState.MUTE)} />
                 <RectangleTextButton text={'mic'} onPress={() => SkywayStore.toggleMicrophone()} />
                 <RectangleTextButton text={'join'} onPress={() => SkywayStore.join('test_skyway_store_admin')} />
                 <RectangleTextButton text={'leave'} onPress={() => SkywayStore.leave()} />
