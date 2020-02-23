@@ -7,6 +7,8 @@ import { observer } from 'mobx-react';
 import * as C from '../../src/lib/Const';
 import * as BasicStyle from '../../src/lib/BasicStyle';
 
+import RectangleTextButton from '../../src/component/l1/RectangleTextButton';
+
 import SkywayStore from '../../src/store/SkywayStore';
 import EnumSelector from '../component/EnumSelector';
 
@@ -26,6 +28,9 @@ export default class SkywayStoreAdmin extends Component<props> {
     render() {
         return (
             <Root>
+                <RectangleTextButton text={'mic'} onPress={() => SkywayStore.toggleMicrophone()} />
+                <RectangleTextButton text={'join'} onPress={() => SkywayStore.join('test_skyway_store_admin')} />
+                <RectangleTextButton text={'leave'} onPress={() => SkywayStore.leave()} />
                 <EnumSelector
                     name={'SkywayState'}
                     myEnum={C.SkywayState}
