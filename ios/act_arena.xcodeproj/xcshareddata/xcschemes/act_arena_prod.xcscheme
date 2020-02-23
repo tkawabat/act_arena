@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B56386401DB9693800A0598C"
-               BuildableName = "&#x30a2;&#x30af;&#x30c8;&#x30a2;&#x30ea;&#x30fc;&#x30ca;.app"
+               BuildableName = "ActArena.app"
                BlueprintName = "act_arena"
                ReferencedContainer = "container:act_arena.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B56386401DB9693800A0598C"
-            BuildableName = "&#x30a2;&#x30af;&#x30c8;&#x30a2;&#x30ea;&#x30fc;&#x30ca;.app"
+            BuildableName = "ActArena.app"
             BlueprintName = "act_arena"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B56386401DB9693800A0598C"
-            BuildableName = "&#x30a2;&#x30af;&#x30c8;&#x30a2;&#x30ea;&#x30fc;&#x30ca;.app"
+            BuildableName = "ActArena.app"
             BlueprintName = "act_arena"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
@@ -78,7 +78,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B56386401DB9693800A0598C"
-            BuildableName = "&#x30a2;&#x30af;&#x30c8;&#x30a2;&#x30ea;&#x30fc;&#x30ca;.app"
+            BuildableName = "ActArena.app"
             BlueprintName = "act_arena"
             ReferencedContainer = "container:act_arena.xcodeproj">
          </BuildableReference>
