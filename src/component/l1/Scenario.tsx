@@ -25,30 +25,29 @@ function loadScript(src, callback) {
 }
 
 var startPos = 0;
-var body = $('body');
+var body;
 
 var color = function() {
-    var b = document.querySelector("body");
+    var text = body[0].textContent;
     var start = '${start}';
     var end = '${end}';
 
-    var start_pos = b.textContent.indexOf(start);
-    var end_pos = b.textContent.indexOf(end);
+    var start_pos = text.indexOf(start);
+    var end_pos = text.indexOf(end);
     if (start_pos === -1 || end_pos === -1) return;
     end_pos += end.length;
 
-    var t = b.textContent.substring(start_pos, end_pos).split(new RegExp('\\r\\n|\\n|\\r', 'g'));
-    var line;
-    for (line of t) {
-        if (!line) continue;
-        if (line.match(/^[\s　]*$/)) continue;
-
-        var regexp = new RegExp(line, 'g');
-        $('body').highlightRegex(regexp, {
-                className: 'act_arena_highlight',
-                attrs: {'style': 'background: #FFCCCC'},
-        });
+    var t = text.substring(start_pos, end_pos).split(new RegExp('\\r\\n|\\n|\\r', 'g'));
+    var line = [];
+    for (l of t) {
+        if (!l || l.match(/^[\s　]*$/)) continue;
+        line.push(l);
     }
+
+    body.highlightRegex(new RegExp(line.join('|'), 'g'), {
+            className: 'act_arena_highlight',
+            attrs: {'style': 'background: #FFCCCC'},
+    });
 
     for (elm of $('.act_arena_highlight')) {
         if (!elm.textContent) continue;
@@ -70,6 +69,7 @@ var scroll2Start = function() {
 
 loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", function() {
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/jQuery.highlightRegex/0.1.2/highlightRegex.min.js", function() {
+        body = $('body');
         color();
         scroll2Start();       
     });
