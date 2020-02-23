@@ -20,6 +20,7 @@ android/**/build
 ios/Pods
 ios/SkyWay*
 ios/build/*
+UserInterfaceState.xcuserstate
 .expo-shared/*
 
 android/gradle.properties
