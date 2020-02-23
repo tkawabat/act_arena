@@ -27,10 +27,6 @@ class SkywayStore {
         this.state = C.SkywayState.OPEN;
         ConfigStore.setInitLoadComplete('skyway');
         this.speakState = C.SpeakState.DISABLED;
-
-        // 一回目の入室時何故か音が入らないので２秒だけ入室する
-        this.join('test' + Moment().unix().toString());
-        Scheduler.setTimeout('', this.leave, 2000);
     }
 
     private onPeerCall = () => {
