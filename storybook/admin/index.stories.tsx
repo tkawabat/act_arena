@@ -8,6 +8,7 @@ import * as StoryUtil from '../StoryUtil';
 
 import ArenaStoreAdmin from './ArenaStoreAdmin';
 import ArenaScenarioStoreAdmin from './ArenaScenarioStoreAdmin';
+import SoundStoreAdmin from './SoundStoreAdmin';
 import SkywayStoreAdmin from './SkywayStoreAdmin';
 
 const components = storiesOf('Admin', module);
@@ -21,6 +22,11 @@ components
     .add(ArenaScenarioStoreAdmin.name, () => {
         return (
             StoryUtil.CenteredView(<ArenaScenarioStoreAdmin />)
+        )
+    })
+    .add(SoundStoreAdmin.name, () => {
+        return (
+            StoryUtil.CenteredView(<SoundStoreAdmin />)
         )
     })
     .add(SkywayStoreAdmin.name, () => {
