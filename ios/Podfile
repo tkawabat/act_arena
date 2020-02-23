@@ -79,6 +79,8 @@ target 'act_arena' do
 
   pod 'RNSentry', :path => '../node_modules/@sentry/react-native'
 
+  pod 'RNSound', :path => '../node_modules/react-native-sound'
+
   post_install do |installer|
     installer.pods_project.main_group.tab_width = '2';
     installer.pods_project.main_group.indent_width = '2';

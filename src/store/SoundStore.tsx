@@ -1,23 +1,16 @@
-import Moment from 'moment';
 import { observable, computed, action } from 'mobx';
-import { Audio } from 'expo-av';
-import { PlaybackStatus } from 'expo-av/build/AV';
+import Sound from 'react-native-sound';
 
 import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
 import Scheduler from '../lib/Scheduler';
 
 
-interface Player {
-    sound: Audio.Sound,
-    status: PlaybackStatus,
-}
-
 class SoundStore {
-    private player:Player;
+    private player:Sound;
     private musicVolume: number;
-    private musicList:Array<Player>;
-    private seList:Array<Player>;
+    private musicList:Array<Sound>;
+    private seList:Array<Sound>;
     @observable state:C.MusicState = C.MusicState.STOP;
     @observable name:string;
     @observable site:string;
@@ -26,69 +19,40 @@ class SoundStore {
         this.musicList = [];
         this.seList = [];
 
-        Audio.setIsEnabledAsync(true);
-        const mode: Audio.AudioMode = {
-            allowsRecordingIOS: false,
-            interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_MIX_WITH_OTHERS,
-            playsInSilentModeIOS: true,
-            staysActiveInBackground: true,
-            interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
-            shouldDuckAndroid: true,
-            playThroughEarpieceAndroid: true,
-        };
-        Audio.setAudioModeAsync(mode);
+        Sound.setCategory('Playback');
 
         this.loadMusic();
         this.loadSe();
     }
 
-    public loadMusic = async () : Promise<any[]> => {
-        const initialStatus = {
-            volume: 0.5,
-            shouldPlay: false,
-            isLooping: true,
-            isMuted: false,
-        }
-
-        const ret = C.MusicList.map((obj, key) => {
-            return Audio.Sound.createAsync(obj.asset, initialStatus)
-                .then((v) => {
-                    this.musicList.push(v as Player);
-                })
-                .catch(() => {
-                    Amplitude.error('Sound Load Music', { 'key': key })
-                })
-                ;
+    public loadMusic = () => {
+        this.musicList = C.MusicList.map((obj, key) => {
+            return new Sound(obj.file, Sound.MAIN_BUNDLE, (error) => {
+                if (error) {
+                    console.log(error)
+                    Amplitude.error('loadMusic', { 'file': obj.file});
+                    return;
+                }
+            });
         });
+    }
 
-        return Promise.all(ret);
-    }    
-
-    public loadSe = async () : Promise<any[]> => {
-        const initialStatus = {
-            volume: 0.5,
-            shouldPlay: false,
-            isLooping: false,
-            isMuted: false,
-        }
-
-        const ret = Object.entries(C.SeList).map((obj) => {
-            const SeKey = parseInt(obj[0]) as C.SeKey;
-            return Audio.Sound.createAsync(obj[1].asset, initialStatus)
-                .then((v) => {
-                    this.seList[SeKey] = v as Player;
-                })
-                .catch(() => {
-                    Amplitude.error('Sound Load Se', { 'key': SeKey })
-                })
-                ;
+    public loadSe = () => {
+        Object.entries(C.SeList).forEach(([key, value]) => {
+            const file = value.file;
+            const sound = new Sound(file, Sound.MAIN_BUNDLE, (error) => {
+                if (error) {
+                    console.log(error)
+                    Amplitude.error('loadMusic', { 'file': file});
+                    return;
+                }
+            });
+            this.seList[key] = sound;
         });
-
-        return Promise.all(ret);
     }
 
     @action
-    public playRondom = async (volume:number, restart:boolean) => {
+    public playRondom = (volume:number, restart:boolean) => {
         // リスタートなし & プレイ中なら、ボリュームだけ変更
         if (!restart && this.state === C.MusicState.PLAY) {
             this.setVolume(volume);
@@ -102,12 +66,12 @@ class SoundStore {
         const n = this.musicList.length;
         if (n < 1) return;
         this.player = this.musicList[Math.floor(Math.random() * n)];
-        this.setVolume(volume);
 
+        this.setVolume(volume);
+        this.player.setNumberOfLoops(-1);
+
+        this.player.play();
         this.state = C.MusicState.PLAY;
-        return this.player.sound.replayAsync({
-            shouldPlay: true,
-        });
     }
 
     @action
@@ -115,7 +79,7 @@ class SoundStore {
         this.state = C.MusicState.STOP;
         if (!this.player) return;
 
-        const ret = this.player.sound.stopAsync();
+        const ret = this.player.stop();
         this.player = null;
         return ret;
     }
@@ -166,14 +130,12 @@ class SoundStore {
     public setVolume = (volume:number) => {
         if (!this.player) return;
         this.musicVolume = volume;
-        this.player.sound.setVolumeAsync(volume);
+        this.player.setVolume(volume);
     }
 
     public se = (key:C.SeKey) => {
         if (!this.seList[key]) return;
-        this.seList[key].sound.replayAsync({
-            shouldPlay: true,
-        });
+        this.seList[key].play();
     }
 }
 

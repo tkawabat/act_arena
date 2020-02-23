@@ -177,9 +177,6 @@ PODS:
     - UMConstantsInterface
     - UMCore
   - EXAppLoaderProvider (8.0.0)
-  - EXAV (8.0.0):
-    - UMCore
-    - UMPermissionsInterface
   - EXConstants (8.0.0):
     - UMConstantsInterface
     - UMCore
@@ -688,6 +685,11 @@ PODS:
     - Sentry (~> 4.4.0)
   - RNSkyWay (0.1.1):
     - React
+  - RNSound (0.11.0):
+    - React
+    - RNSound/Core (= 0.11.0)
+  - RNSound/Core (0.11.0):
+    - React
   - Sentry (4.4.3):
     - Sentry/Core (= 4.4.3)
   - Sentry/Core (4.4.3)
@@ -713,7 +715,6 @@ DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXAmplitude (from `../node_modules/expo-analytics-amplitude/ios`)
   - EXAppLoaderProvider (from `../node_modules/expo-app-loader-provider/ios`)
-  - EXAV (from `../node_modules/expo-av/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
@@ -786,6 +787,7 @@ DEPENDENCIES:
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSkyWay (from `../node_modules/react-native-skyway`)
+  - RNSound (from `../node_modules/react-native-sound`)
   - SkyWay
   - UMBarCodeScannerInterface (from `../node_modules/unimodules-barcode-scanner-interface/ios`)
   - UMCameraInterface (from `../node_modules/unimodules-camera-interface/ios`)
@@ -852,9 +854,6 @@ EXTERNAL SOURCES:
   EXAppLoaderProvider:
     :path: !ruby/object:Pathname
     path: "../node_modules/expo-app-loader-provider/ios"
-  EXAV:
-    :path: !ruby/object:Pathname
-    path: "../node_modules/expo-av/ios"
   EXConstants:
     :path: !ruby/object:Pathname
     path: "../node_modules/expo-constants/ios"
@@ -988,6 +987,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@sentry/react-native"
   RNSkyWay:
     :path: "../node_modules/react-native-skyway"
+  RNSound:
+    :path: "../node_modules/react-native-sound"
   UMBarCodeScannerInterface:
     :path: !ruby/object:Pathname
     path: "../node_modules/unimodules-barcode-scanner-interface/ios"
@@ -1042,7 +1043,6 @@ SPEC CHECKSUMS:
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   EXAmplitude: 528216d836c9d7d10d70717b8f4aacb9802a972d
   EXAppLoaderProvider: f6aeb45ee81887811b34eee5c5f235a6111d58d0
-  EXAV: bd1c889906adac7f5b9f59a5cb993219564e26f2
   EXConstants: e287774d0d32634ddaef614f2e488c550c6deefc
   EXErrorRecovery: 5e1d671b4ce87e47c6dfd7ffa858d8d730f24777
   EXFileSystem: fa8ecad925ad984681910a2273930f7255a0a9b5
@@ -1135,6 +1135,7 @@ SPEC CHECKSUMS:
   RNPermissions: 6db7e0a4d94c9c02390d11020b1d3d187aaf77e5
   RNSentry: 6458ba85aa3f8ae291abed4f72abbd7080839c71
   RNSkyWay: f8e4b47517db4bcc0f482a16c39f15900cd4ea7d
+  RNSound: c980916b596cc15c8dcd2f6ecd3b13c4881dbe20
   Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
   SkyWay: 801f398e04fdf33d3e4359fda1c748eb13e574a5
   UMBarCodeScannerInterface: 550e7ffd7a789289260bde3d547be29407e75437
@@ -1151,6 +1152,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: ee5b1ee1056eb338ff2d521ba79460d8cd0bae7d
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
-PODFILE CHECKSUM: adec22ec83bdd52a2709b3d89cfae885f2e26fe0
+PODFILE CHECKSUM: 065fca5e861bc75b854d0c0edcea34c453f9d349
 
 COCOAPODS: 1.8.4

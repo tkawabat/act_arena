@@ -13,6 +13,7 @@ import okhttp3.OkHttpClient;
 
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
+import com.zmxv.RNSound.RNSoundPackage;
 import io.sentry.RNSentryPackage;
 import io.invertase.firebase.messaging.ReactNativeFirebaseMessagingPackage;
 import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
@@ -39,6 +40,7 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
 
         // Needed for `react-native link`
         // new MainReactPackage(),
+            new RNSoundPackage(),
             new RNSentryPackage(),
             new ReactNativeFirebaseMessagingPackage(),
             new ReactNativeFirebaseDatabasePackage(),
