@@ -37,6 +37,18 @@ class PushModel {
 
     }
 
+    public asyncUpdateToken = async (token:string) :Promise<void> => {
+        Amplitude.info('PushUpdateToken', null);
+        const push = {
+            token: token,
+            updatedAt: Firebase.firestore.Timestamp.now(),
+        };
+
+        return this.ref.update(push)
+            .catch((error) => Amplitude.error('PushModel asyncUpdateToken', error))
+            ;
+    }
+
     public asyncUpdateBasicSettings = async (basicSettings:Array<C.PushBasicSettingKey>) :Promise<void> => {
         Amplitude.info('PushUpdateBasicSetting', null);
         const push = {
@@ -45,7 +57,7 @@ class PushModel {
         };
 
         return this.ref.update(push)
-            .catch((error) => Amplitude.error('PushStore asyncUpdateBasicSetting', error))
+            .catch((error) => Amplitude.error('PushModel asyncUpdateBasicSetting', error))
             ;
     }
 

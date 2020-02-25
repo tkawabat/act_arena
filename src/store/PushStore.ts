@@ -16,6 +16,7 @@ import PushModel from '../model/PushModel';
 
 class PushStore {
     private model: PushModel;
+    private token: string;
 
     private permission: boolean;
     @observable temporarySettingOnOff:boolean;
@@ -61,6 +62,7 @@ class PushStore {
     @action
     public updated = (snapshot:FirebaseFirestoreTypes.DocumentSnapshot) :void => {
         const data = snapshot.data();
+        this.token = data.token;
         this.basicSettings = data.basicSettings as Array<C.PushBasicSettingKey>;
         this.temporarySettingOnOff = data.temporarySettingOnOff;
         this.temporarySettingTime = Moment.unix(data.temporarySettingTime.seconds);
@@ -77,10 +79,21 @@ class PushStore {
             this.updated(snapshot as FirebaseFirestoreTypes.DocumentSnapshot);
             this.model.observe(this.updated);
 
+            this.asyncUpdateToken();
+
             this.permission = await this.asyncCheckPermission();
 
             ConfigStore.setInitLoadComplete('push');
         })
+    }
+
+    public asyncUpdateToken = async () => {
+        messaging().getToken()
+        .then((token) => {
+            if (this.token === token) return;
+            this.model.asyncUpdateToken(token);
+        })
+        .catch((error) => {Amplitude.error('PushModle messaging().getToken', {})})
     }
 
     public asyncCreate = async () => {
@@ -111,6 +124,7 @@ class PushStore {
     }
 
     public hideSettingModal = () => {
+        messaging().getToken().then(token => console.log('token:', token));
         this.settingModal = false;
     }
 
