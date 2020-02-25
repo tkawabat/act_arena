@@ -2,12 +2,15 @@ import Moment from 'moment';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { observable, computed, action } from 'mobx';
 import { Platform, Alert, } from 'react-native';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
+
 import * as Permissions from 'react-native-permissions';
 import messaging from '@react-native-firebase/messaging';
+import PushNotification from 'react-native-push-notification';
+
 
 import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
+import Secret from './../lib/Secret';
 
 import ConfigStore from './ConfigStore';
 
@@ -48,9 +51,16 @@ class PushStore {
 
     constructor() {
         if (Platform.OS === 'ios') {
-            PushNotificationIOS.checkPermissions(async (permissions) => {
-                await PushNotificationIOS.requestPermissions(permissions);
-            });
+            PushNotification.configure({
+                senderID: Secret.push.fcm,
+                permissions: {
+                  alert: true,
+                  badge: true,
+                  sound: true
+                },
+                popInitialNotification: true,
+                requestPermissions: true
+              });
         }
         messaging().requestPermission();
 
