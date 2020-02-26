@@ -134,7 +134,6 @@ class PushStore {
     }
 
     public hideSettingModal = () => {
-        messaging().getToken().then(token => console.log('token:', token));
         this.settingModal = false;
     }
 
