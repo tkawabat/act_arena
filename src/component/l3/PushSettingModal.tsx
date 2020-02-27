@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import { Text, } from 'native-base';
-import Modal from 'react-native-modal';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
+import Modal from 'react-native-modal';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import * as C from '../../lib/Const';
+import ConfigStore from '../../store/ConfigStore';
 import PushStore from '../../store/PushStore';
 
 import RectangleTextButton from '../l1/RectangleTextButton';
@@ -65,6 +66,7 @@ export default class PushSettingModal extends Component<props> {
                 animationIn='slideInRight'
                 animationOut='slideOutLeft'
             >
+                <Spinner visible={ConfigStore.isLoad} />
                 <Root>
                     <Title>■通知基本設定</Title>
                     <Section>

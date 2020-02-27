@@ -15,6 +15,7 @@ import Secret from './../lib/Secret';
 import ConfigStore from './ConfigStore';
 
 import PushModel from '../model/PushModel';
+import Scheduler from '../lib/Scheduler';
 
 
 class PushStore {
@@ -145,11 +146,19 @@ class PushStore {
             settings = this.basicSettings.concat([key]);
         }
         
-        this.model.asyncUpdateBasicSettings(settings);
+        ConfigStore.load(true);
+        Scheduler.setTimeout('', () => {
+            this.model.asyncUpdateBasicSettings(settings);
+            ConfigStore.load(false);            
+        }, 500);
     }
 
     public updateTemporarySetting = (onoff:boolean, time:number) => {
-        this.model.asyncUpdateTemporarySetting(onoff, time);
+        ConfigStore.load(true);
+        Scheduler.setTimeout('', () => {
+            this.model.asyncUpdateTemporarySetting(onoff, time);
+            ConfigStore.load(false);            
+        }, 500);
     }
 }
 
