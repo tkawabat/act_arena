@@ -5,6 +5,8 @@ import Modal from 'react-native-modal';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 import * as C from '../../lib/Const';
+import * as BasicStyle from '../../lib/BasicStyle';
+
 import ConfigStore from '../../store/ConfigStore';
 import PushStore from '../../store/PushStore';
 
@@ -93,7 +95,12 @@ export default class PushSettingModal extends Component<props> {
                         </Line>
                     </Section>
                     <Footer>
-                        <RectangleTextButton text={'戻る'} disabled={false} onPress={PushStore.hideSettingModal} />
+                        <FooterLeft>
+                            <Caution>※通知は6時間に一度だけ送ります。</Caution>
+                        </FooterLeft>
+                        <FooterRight>
+                            <RectangleTextButton text={'戻る'} disabled={false} onPress={PushStore.hideSettingModal} />
+                        </FooterRight>
                     </Footer>
                 </Root>
             </Modal>
@@ -117,7 +124,6 @@ const Title = styled.Text`
 `
 
 const Section = styled.View`
-    /* flex-direction: row; */
     justify-content: center;
     margin-horizontal: 10px;
     margin-bottom: 15px;
@@ -143,6 +149,19 @@ const TemporaryButton = styled(RectangleTextButton)`
 
 const Footer = styled.View`
     flex-direction: row;
+`
+
+const FooterLeft = styled(BasicStyle.Left)`
+    flex: 2;
     justify-content: flex-end;
-    margin-top: 15px;
+`
+
+const FooterRight = styled(BasicStyle.Right)`
+    flex: 1;
+`
+
+const Caution = styled.Text`
+    align-self: flex-start;
+    font-size: 12px;
+    color: gray;
 `
