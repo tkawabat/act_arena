@@ -29,8 +29,7 @@ class ChatStore {
 
             // 2時間以上前のメッセージは見せない
             let limitTime = Moment().add(-2, 'hours');
-            const createdAt = (v.createdAt as FirebaseFirestoreTypes.Timestamp)
-            if (Moment.unix(createdAt.seconds) < limitTime) return false;
+            if (Moment(v.createdAt) < limitTime) return false;
             return true;
         });
     }
