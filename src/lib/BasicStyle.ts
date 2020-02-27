@@ -52,3 +52,24 @@ export const disabledButton = css`
     border: 1px solid #999;
     box-shadow: none;
 `
+
+// Modules
+export const Left = styled.View`
+    flex: 1;
+    align-items: flex-start;
+    justify-content: center;
+`
+
+export const Center = styled.View`
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+`
+
+export const Right = styled.View`
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+`
