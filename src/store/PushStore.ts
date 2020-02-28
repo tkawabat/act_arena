@@ -36,7 +36,7 @@ class PushStore {
         if (this.temporarySettingTime > Moment()) {
             return this.temporarySettingOnOff;
         }
-        if (this.basicSettings.length > 0) return true;
+        if (this.basicSettings && this.basicSettings.length > 0) return true;
         return false;
     }
 
