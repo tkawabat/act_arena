@@ -118,7 +118,9 @@ class SkywayStore {
     }
 
     public join = (roomName:string) :void => {
-        this.peer.joinRoom(roomName);
+        if (this.state === C.SkywayState.OPEN) {
+            this.peer.joinRoom(roomName);
+        }
     }
 
     public leave = () :void => {

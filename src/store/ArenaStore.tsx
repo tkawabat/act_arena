@@ -148,6 +148,10 @@ class ArenaStore {
                 break;
             case C.ArenaState.CHECK:
                 OverlayMessageStore.start('マイクチェック');
+
+                // 途中入室用
+                SkywayStore.join('arena'+this.id);
+
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     // マイクオン
                     SkywayStore.setSpeakState(C.SpeakState.MUTE);
@@ -157,6 +161,10 @@ class ArenaStore {
                 break;
             case C.ArenaState.ACT:
                 OverlayMessageStore.start('上演開始');
+
+                // 途中入室用
+                SkywayStore.join('arena'+this.id);
+                
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
                     this.addTimeCount = 2;
                 }
@@ -292,10 +300,6 @@ class ArenaStore {
         await Promise.all(p).catch(e => console.log(e));
 
         this.observe();
-
-        if (this.arenaState == C.ArenaState.CHECK || this.arenaState == C.ArenaState.ACT) {
-            SkywayStore.join('arena'+this.id);
-        }
 
         Navigator.navigate('Arena', null);
         this.playSound(null, this.arenaState);
