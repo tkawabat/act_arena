@@ -293,6 +293,10 @@ class ArenaStore {
 
         this.observe();
 
+        if (this.arenaState == C.ArenaState.CHECK || this.arenaState == C.ArenaState.ACT) {
+            SkywayStore.join('arena'+this.id);
+        }
+
         Navigator.navigate('Arena', null);
         this.playSound(null, this.arenaState);
     }
