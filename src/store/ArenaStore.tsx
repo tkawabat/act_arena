@@ -204,7 +204,7 @@ class ArenaStore {
 
         switch (after) {
             case C.ArenaState.WAIT:  
-                SoundStore.playRondom(0.4, true);
+                Scheduler.setTimeout('', () => SoundStore.playRondom(0.4, true), 1000);
                 break;
             case C.ArenaState.READ:
                 SoundStore.playRondom(0.4, false);
