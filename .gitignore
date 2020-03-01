@@ -24,6 +24,7 @@ UserInterfaceState.xcuserstate
 .expo-shared/*
 
 android/gradle.properties
+android/app/src/main/java/host/exp/exponent/generated/AppConstants.java
 sentry.properties
 secret.json
 secret-dev.json
