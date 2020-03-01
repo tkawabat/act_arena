@@ -263,7 +263,6 @@ class ArenaStore {
     private stopObserve = () => {
         this.arenaModel.stopObserve();
         this.arenaUserModel.stopObserve();
-        this.arenaUserModel = null;
 
         UserStore.stopObserveConnectionChange();
         ChatStore.stopObserve();
@@ -317,18 +316,19 @@ class ArenaStore {
     public leave = () => {
         if (this.id === null) return;
 
+        Scheduler.clearInterval(C.SchedulerArenaTick);
+        this.stopObserve();
+        SkywayStore.leave();
+        SoundStore.stop();
+
+        UserStore.asyncSetConnect(false);
+        this.arenaUserModel.asyncDelete(UserStore);
+
         this.id = null;
         this.arenaState = C.ArenaState.WAIT;
         ArenaUserStore.userState = C.ArenaUserState.LISTNER;
-        SkywayStore.leave();
-        
-        UserStore.asyncSetConnect(false);
-        Scheduler.clearInterval(C.SchedulerArenaTick);
-        this.arenaUserModel.asyncDelete(UserStore);
+        this.arenaUserModel = null;
 
-        this.stopObserve();
-
-        SoundStore.stop();
         Navigator.back();
     }
 
