@@ -129,7 +129,7 @@ export default class App extends Component {
 
         return (
             <AppContainer ref={(nav) => {
-                Navigator.setNavigator(nav);
+                Navigator.set(nav);
                 const initailScreen = UserStore.isRegisted ? 'Lobby' : 'Register';
                 Navigator.navigate(initailScreen, null);
             } } />
