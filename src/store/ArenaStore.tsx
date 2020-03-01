@@ -285,7 +285,7 @@ class ArenaStore {
             return;
         }
 
-        const event = this.isPublic ? 'JoinPublicArenaLeave' : 'JoinPrivateArena';
+        const event = this.isPublic ? 'JoinPublicArena' : 'JoinPrivateArena';
         Amplitude.info(event, null);
 
         this.id = id;
