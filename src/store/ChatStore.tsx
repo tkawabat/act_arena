@@ -5,7 +5,6 @@ import { IMessage } from 'react-native-gifted-chat';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
-import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 
 import UserStore from './UserStore';
@@ -13,9 +12,9 @@ import UserStore from './UserStore';
 class ChatStore {
     private _ref:FirebaseFirestoreTypes.CollectionReference;
     get ref() { return this._ref;}
-    set ref(ref:FirebaseFirestoreTypes.CollectionReference) { this._ref = ref}
     private unsubscribe:Function;
 
+    private isPublic:boolean = false; // 2時間削除用
     private _isViewable:boolean = false;
     get isViewable() { return this._isViewable };
     set isViewable(f:boolean) { this._isViewable = f};
@@ -23,13 +22,13 @@ class ChatStore {
     // Chat
     @observable _messages:Array<IMessage> = new Array<IMessage>();
     @computed get messages() {
+        const limitTime = Moment().add(-2, 'hours');
         return this._messages.filter((v:any, i) => {
             if (v.reporter && v.reporter.indexOf(UserStore.id) !== -1) return false;
             if (UserStore.ngList && UserStore.ngList.indexOf(v.user._id) !== -1) return false;
 
             // 2時間以上前のメッセージは見せない
-            let limitTime = Moment().add(-2, 'hours');
-            if (Moment(v.createdAt) < limitTime) return false;
+            if (!this.isPublic && Moment(v.createdAt) < limitTime) return false;
             return true;
         });
     }
@@ -51,6 +50,11 @@ class ChatStore {
     }
 
     constructor() {
+    }
+
+    public set(ref:FirebaseFirestoreTypes.CollectionReference, isPublic: bookean) {
+        this._ref = ref;
+        this.isPublic = isPublic;
     }
 
     public observe = () => {

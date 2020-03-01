@@ -291,7 +291,8 @@ class ArenaStore {
             return;
         }
         this.arenaUserModel = new ArenaUserModel(arenaRef.ref);
-        ChatStore.ref = arenaRef.ref.collection('Chat');
+        // TODO publicアリーナの判定方法
+        ChatStore.set(arenaRef.ref.collection('Chat'), this.id === 0);
 
         const p = [];
         p.push(this.arenaUserModel.asyncSetRoomUser(UserStore));
