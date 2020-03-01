@@ -96,7 +96,7 @@ export default class PushSettingModal extends Component<props> {
                     </Section>
                     <Footer>
                         <FooterLeft>
-                            <Caution>※通知は6時間に一度だけ送ります。</Caution>
+                            <Caution>{'※通知は'+C.PushIntervalHour+'時間に一度だけ送ります。'}</Caution>
                         </FooterLeft>
                         <FooterRight>
                             <RectangleTextButton text={'戻る'} disabled={false} onPress={PushStore.hideSettingModal} />

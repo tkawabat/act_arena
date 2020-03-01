@@ -123,6 +123,8 @@ export const PushBasicSettingString  = {
     [PushBasicSettingKey.DAWN]:     '未明（０２：００〜０９：００）',
 }
 
+export const PushIntervalHour = 3;
+
 export const MusicList = [
     //{ file: 'amanojack.mp3', name: '天邪鬼の子', site: '騒音のない世界'},
     { file: 'neverend.mp3', name: '終わりのない物語', site: '騒音のない世界'},
