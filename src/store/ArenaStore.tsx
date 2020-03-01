@@ -43,6 +43,11 @@ class ArenaStore {
 
     @observable modal:boolean = false;
 
+    get isPublic() {
+        // TODO
+        return this.id === 0;
+    }
+
     constructor() {
         this.arenaModel = new ArenaModel();
 
@@ -280,6 +285,9 @@ class ArenaStore {
             return;
         }
 
+        const event = this.isPublic ? 'JoinPublicArenaLeave' : 'JoinPrivateArena';
+        Amplitude.info(event, null);
+
         this.id = id;
         ArenaScenarioStore.setAgreement(C.AgreementState.NONE);
         this.tab = C.ArenaTab.SCENARIO;
@@ -292,7 +300,7 @@ class ArenaStore {
         }
         this.arenaUserModel = new ArenaUserModel(arenaRef.ref);
         // TODO publicアリーナの判定方法
-        ChatStore.set(arenaRef.ref.collection('Chat'), this.id === 0);
+        ChatStore.set(arenaRef.ref.collection('Chat'), this.isPublic);
 
         const p = [];
         p.push(this.arenaUserModel.asyncSetRoomUser(UserStore));
@@ -308,7 +316,6 @@ class ArenaStore {
 
     public leave = () => {
         if (this.id === null) return;
-        Amplitude.info('ArenaLeave', null);
 
         this.id = null;
         this.arenaState = C.ArenaState.WAIT;

@@ -153,6 +153,8 @@ class SkywayStore {
     }
 
     public testTell = (userId) :void => {
+        Amplitude.info('testTell', null);
+
         ConfigStore.load(true);
         if (!this.testPeer) {
             const id = 'test_' + userId + Moment().unix().toString();
