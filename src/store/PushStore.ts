@@ -73,6 +73,7 @@ class PushStore {
     @action
     public updated = (snapshot:FirebaseFirestoreTypes.DocumentSnapshot) :void => {
         const data = snapshot.data();
+        if (!data) return;
         this.token = data.token;
         this.basicSettings = data.basicSettings as Array<C.PushBasicSettingKey>;
         this.temporarySettingOnOff = data.temporarySettingOnOff;
