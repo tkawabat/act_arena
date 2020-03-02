@@ -6,20 +6,17 @@ import { observer } from 'mobx-react';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
-import SkywayStore from '../../store/SkywayStore';
-import UserStore from '../../store/UserStore';
+
+interface props {
+    onPress: () => void,
+}
 
 @observer
-export default class TestTellButton extends Component {
-
-    private testTell = () => {
-        SkywayStore.testTell(UserStore.id);
-    }
+export default class TestTellButton extends Component<props> {
 
     render() {
-
         return (
-            <ButtonEntried warning onPress={this.testTell}>
+            <ButtonEntried warning {...this.props}>
                 <ButtonText>{'通話テスト'}</ButtonText>
             </ButtonEntried>
         );

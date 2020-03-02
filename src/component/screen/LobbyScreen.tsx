@@ -14,6 +14,8 @@ import * as BasicStyle from '../../lib/BasicStyle';
 import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
 import PushStore from '../../store/PushStore';
+import SkywayStore from '../../store/SkywayStore';
+import UserStore from '../../store/UserStore';
 
 import Bell from '../l1/Bell';
 import PushSettingModal from '../l3/PushSettingModal';
@@ -27,6 +29,16 @@ export default class LobbyScreen extends ScreenBase {
     
     constructor(props) {
         super(props);        
+    }
+
+    private asyncCheckPermissions = async () => {
+        let ret:boolean = false;
+        if (Platform.OS === 'ios') {
+            ret = await this.asyncCheckIosPermissions();
+        } else {
+            ret = await this.asyncCheckAndroidPermissions();
+        }
+        return ret;
     }
 
     private asyncCheckIosPermissions = async () => {
@@ -70,11 +82,8 @@ export default class LobbyScreen extends ScreenBase {
     }
     
     private joinArena = async (id:number) => {
-        if (Platform.OS === 'ios') {
-            if (!await this.asyncCheckIosPermissions()) return;
-        } else {
-            if (!await this.asyncCheckAndroidPermissions()) return;
-        }
+        const p = await this.asyncCheckPermissions();
+        if (!p) return;
 
         ConfigStore.load(true);
         ArenaStore.join(id).then(() => {
@@ -82,10 +91,11 @@ export default class LobbyScreen extends ScreenBase {
         });
     }
 
-    // private modal = () :void => {
-    //     const { navigation } = this.props
-    //     navigation.navigate('Modal')
-    // }
+    private testTell = async () => {
+        const p = await this.asyncCheckPermissions();
+        if (!p) return;
+        SkywayStore.testTell(UserStore.id);
+    }
 
     render() {
         return (
@@ -110,7 +120,7 @@ export default class LobbyScreen extends ScreenBase {
                 </ScreenBody>
 
                 <Footer>
-                    <TestTellButton></TestTellButton>
+                    <TestTellButton onPress={this.testTell}></TestTellButton>
                 </Footer>
 
                 <PushSettingModal />

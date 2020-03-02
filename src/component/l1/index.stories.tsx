@@ -85,7 +85,7 @@ components
     ))
     .add(TestTellButton.name, () => (
         StoryUtil.CenteredView([
-            <TestTellButton />,
+            <TestTellButton onPress={() => alert('test tell')}/>,
         ])
     ))
     ;
