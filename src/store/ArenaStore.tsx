@@ -147,7 +147,7 @@ class ArenaStore {
                 SkywayStore.join('arena'+this.id);
 
                 if (ArenaUserStore.userState === C.ArenaUserState.ACTOR) {
-                    Amplitude.info('ArenaBeActor', null);
+                    Amplitude.info('ArenaBeActor', {isPublic: this.isPublic});
                     this.addTimeCount = 1;
                 }
                 break;
@@ -339,7 +339,7 @@ class ArenaStore {
         Scheduler.setTimeout('', () => {
             this.arenaUserModel.asyncUpdateState(UserStore, state)
             .then(() => {
-                Amplitude.info('ArenaEntry', null);
+                Amplitude.info('ArenaEntry', {isPublic: this.isPublic});
                 ConfigStore.load(false);
             })
             ;
