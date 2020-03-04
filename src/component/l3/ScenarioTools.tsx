@@ -21,10 +21,10 @@ export default class ScenarioTools extends Component {
 
         return (
             <Root>
-                <Left><SquareTextIconButton icon={'info'} text={'劇情報'} disabled={isWait} onPress={() => ArenaStore.setModal(true)}/></Left>
-                <Left><SquareTextIconButton icon={'home'} text={'規約'} disabled={isWait} onPress={() => ArenaScenarioStore.setAgreement(C.AgreementState.NONE)}/></Left>
-                <Left><SquareTextIconButton icon={'arrow-up'} text={'トップ'} disabled={!isViewScenario} onPress={() => ArenaScenarioStore.scroll2Top()}/></Left>
-                <Left><SquareTextIconButton icon={'redo'} text={'開始位置'} disabled={!isViewScenario} onPress={() => ArenaScenarioStore.scroll2Start()}/></Left>
+                <Left><SquareTextIconButton icon={'info'} text={'劇情報'} disabled={isWait} onPress={ArenaStore.setModal.bind(this, true)}/></Left>
+                <Left><SquareTextIconButton icon={'home'} text={'規約'} disabled={isWait} onPress={ArenaScenarioStore.reloadAgreement}/></Left>
+                <Left><SquareTextIconButton icon={'arrow-up'} text={'トップ'} disabled={!isViewScenario} onPress={ArenaScenarioStore.scroll2Top}/></Left>
+                <Left><SquareTextIconButton icon={'redo'} text={'開始位置'} disabled={!isViewScenario} onPress={ArenaScenarioStore.scroll2Start}/></Left>
                 <Right><ArenaAddTimeButton /></Right>
             </Root>
         );

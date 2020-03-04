@@ -38,11 +38,18 @@ class ArenaScenarioStore {
     @action
     public setAgreement = (agreement:C.AgreementState) => {
         this.agreementState = agreement;
+    }
 
-        // reload
+    @action
+    public reloadAgreement = () => {
+        this.agreementState = C.AgreementState.NONE;
         const url = this.agreementUrl;
+        const scroll = this.agreementScroll;
         this.agreementUrl = '';
-        Scheduler.setTimeout('', () => this.agreementUrl = url, 100);
+        Scheduler.setTimeout('', () => {
+            this.agreementScroll = scroll;
+            this.agreementUrl = url;
+        }, 100);
     }
 
     @action
