@@ -13,7 +13,7 @@ import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 const js = (agreementScroll: number) => {
     return `
-${WebViewJs.postMessageFunc}
+${WebViewJs.init}
 
 var timer;
 function checkScroll() {
@@ -44,7 +44,7 @@ export default class Agreement extends Component {
             <Root>
                 <Screen
                     javaScriptEnabled={true}
-                    injectedJavaScript={js(ArenaScenarioStore.agreementScroll)}
+                    injectedJavaScript={"setTimeout(function() {"+js(ArenaScenarioStore.agreementScroll)+"}, 0)"}
                     source={{uri: ArenaScenarioStore.agreementUrl}}
                     onMessage={this.onMessage}
                 />

@@ -24,7 +24,6 @@ export default class ArenaStoreAdmin extends Component<props> {
 
     constructor(props) {
         super(props);
-        // ArenaStore.arenaState = C.ArenaState.CHECK;
         ArenaStore.id = 555555;
         ArenaStore.time = 10;
     }

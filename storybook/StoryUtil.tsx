@@ -13,6 +13,7 @@ import ConfigStore from '../src/store/ConfigStore';
 import UserStore from '../src/store/UserStore';
 import SkywayStore from '../src/store/SkywayStore';
 import ArenaStore from '../src/store/ArenaStore';
+import ArenaScenarioStore from '../src/store/ArenaScenarioStore';
 
 export const init = () => {
     // ConfigStore.setInitLoad('font');
@@ -36,6 +37,10 @@ export const init = () => {
         //SkywayStore.connect(userId);
         SkywayStore.connect(userId + Moment().unix().toString());
     });
+
+    // for scenario test
+    ArenaStore.arenaState = C.ArenaState.CHECK;
+    // ArenaScenarioStore.agreementState = C.AgreementState.AGREE;
 }
 
 export const CenteredView = (children) => {

@@ -11,29 +11,19 @@ import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 const js = (start, end) => {
     return `
-${WebViewJs.postMessageFunc}
+${WebViewJs.init}
+${WebViewJs.loadScriptFunction}
 
-function loadScript(src, callback) {
-    var done;
-    var head = document.getElementsByTagName('head')[0];
-    var script = document.createElement('script');
-    script.src = src;
-    head.appendChild(script);
-
-    script.onload = script.onreadystatechange = function() {
-        if ( !done && (!this.readyState ||
-                    this.readyState === "loaded" || this.readyState === "complete") ) {
-            done = true;
-            callback();
-        }
-    };
+window.ActArena.scroll2Top = function() {
+   window.ActArena.body.stop().animate({scrollTop:0}, 500);
 }
 
-var startPos = 0;
-var body;
+window.ActArena.scroll2Start = function() {
+   window.ActArena.body.stop().animate({scrollTop:window.ActArena.startPos}, 500);
+}
 
-var color = function() {
-    var text = body[0].textContent;
+window.ActArena.color = function() {
+    var text = window.ActArena.body[0].textContent;
     var start = '${start}';
     var end = '${end}';
 
@@ -49,36 +39,27 @@ var color = function() {
         line.push(l);
     }
 
-    body.highlightRegex(new RegExp(line.join('|'), 'g'), {
-            className: 'act_arena_highlight',
-            attrs: {'style': 'background: #FFCCCC'},
+    window.ActArena.body.highlightRegex(new RegExp(line.join('|'), 'g'), {
+        className: 'act_arena_highlight',
+        attrs: {'style': 'background: #FFCCCC'},
     });
 
     for (elm of $('.act_arena_highlight')) {
         if (!elm.textContent) continue;
         if (elm.textContent.indexOf(start) === -1) continue;
 
-        startPos = elm.offsetTop - 100;
+        window.ActArena.startPos = elm.offsetTop - 100;
         break;
     }
 
     window.ReactNativeWebView.postMessage('colored');
-    
 };
 
-var scroll2Top = function() {
-    body.stop().animate({scrollTop:0}, 500);
-}
-
-var scroll2Start = function() {
-    body.stop().animate({scrollTop:startPos}, 500);
-}
-
-loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", function() {
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/jQuery.highlightRegex/0.1.2/highlightRegex.min.js", function() {
-        body = $('body');
-        color();
-        scroll2Start();       
+window.ActArena.loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", function() {
+    window.ActArena.loadScript("https://cdnjs.cloudflare.com/ajax/libs/jQuery.highlightRegex/0.1.2/highlightRegex.min.js", function() {
+        window.ActArena.body = $('body');
+        window.ActArena.color();
+        window.ActArena.scroll2Start();       
     });
 });
 `;
@@ -99,21 +80,22 @@ export default class Scenario extends Component {
         super(props);
 
         ArenaScenarioStore.scroll2Top = () => {
-            this.webview.injectJavaScript('scroll2Top();');
+            this.webview.injectJavaScript('window.ActArena.scroll2Top();');
         }
         ArenaScenarioStore.scroll2Start = () => {
-            this.webview.injectJavaScript('scroll2Start();');
+            this.webview.injectJavaScript('window.ActArena.scroll2Start();');
         }
     }
 
     render() {
+        console.log("setTimeout(function() { "+js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)+"}, 0)")
         return (
             <Root>
                 <Spinner visible={!ArenaScenarioStore.colored} />
                 <WebView
                     javaScriptEnabled={true}
                     ref={ref => this.webview = ref}
-                    injectedJavaScript={js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)}
+                    injectedJavaScript={"setTimeout(function() { "+js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)+"}, 0)"}
                     source={{ uri: ArenaScenarioStore.scenarioUrl }}
                     onMessage={this.onMessage}
                 />
