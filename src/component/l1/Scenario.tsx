@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { ActivityIndicator, } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import * as WebViewJs from '../../lib/WebViewJs';
 
@@ -72,7 +72,7 @@ export default class Scenario extends Component {
     private onMessage = (event) => {
         const { data } = event.nativeEvent;
         if (data === 'colored') {
-            ArenaScenarioStore.colored = true;
+            ArenaScenarioStore.isColored = true;
         }
     };
 
@@ -88,10 +88,8 @@ export default class Scenario extends Component {
     }
 
     render() {
-        console.log("setTimeout(function() { "+js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)+"}, 0)")
         return (
             <Root>
-                <Spinner visible={!ArenaScenarioStore.colored} />
                 <WebView
                     javaScriptEnabled={true}
                     ref={ref => this.webview = ref}
@@ -99,6 +97,7 @@ export default class Scenario extends Component {
                     source={{ uri: ArenaScenarioStore.scenarioUrl }}
                     onMessage={this.onMessage}
                 />
+                {!ArenaScenarioStore.isColored && <Spinner size='large' />}
             </Root>
         );
     }
@@ -107,3 +106,12 @@ export default class Scenario extends Component {
 const Root = styled.View`
     flex: 1;
 `;
+
+const Spinner = styled(ActivityIndicator)`
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+`

@@ -2,7 +2,6 @@ import { observable, computed, action } from 'mobx';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
-import Scheduler from '../lib/Scheduler';
 
 
 interface Characters {
@@ -15,6 +14,7 @@ interface Characters {
 class ArenaScenarioStore {
     public scroll2Top = () => {};
     public scroll2Start = () => {};
+    public reload = () => {};
 
     @observable title:string = '';
     @observable agreementUrl:string = '';
@@ -25,9 +25,9 @@ class ArenaScenarioStore {
     @observable characters:Array<Characters> = [];
 
     // private state
-    @observable _colored:boolean = false;
-    get colored() { return this._colored}
-    set colored(colored:boolean) { this._colored = colored; }
+    @observable _isColored:boolean = false;
+    get isColored() { return this._isColored}
+    set isColored(isColored:boolean) { this._isColored = isColored; }
     @observable agreementState:C.AgreementState = C.AgreementState.NONE;
 
     @computed get isReadAgreement() {
@@ -46,15 +46,8 @@ class ArenaScenarioStore {
     @action
     public reloadAgreement = () => {
         this.agreementState = C.AgreementState.NONE;
-        this.colored = false;
-
-        const url = this.agreementUrl;
-        const scroll = this.agreementScroll;
-        this.agreementUrl = '';
-        Scheduler.setTimeout('', () => {
-            this.agreementScroll = scroll;
-            this.agreementUrl = url;
-        }, 100);
+        this.isColored = false;
+        this.reload();
     }
 
     @action

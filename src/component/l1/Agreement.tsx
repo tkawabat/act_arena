@@ -31,6 +31,16 @@ timer = setInterval(checkScroll, 500);
 
 @observer
 export default class Agreement extends Component {
+    private webview:WebView;
+
+    constructor(props) {
+        super(props);
+
+        ArenaScenarioStore.reload = () => {
+            if (!this.webview) return;
+            this.webview.reload();
+        }
+    }
 
     private onMessage = (event) => {
         const { data } = event.nativeEvent;
@@ -44,6 +54,7 @@ export default class Agreement extends Component {
             <Root>
                 <Screen
                     javaScriptEnabled={true}
+                    ref={ref => this.webview = ref}
                     injectedJavaScript={"setTimeout(function() {"+js(ArenaScenarioStore.agreementScroll)+"}, 0)"}
                     source={{uri: ArenaScenarioStore.agreementUrl}}
                     onMessage={this.onMessage}

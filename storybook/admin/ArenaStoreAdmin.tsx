@@ -23,9 +23,7 @@ interface props {
 export default class ArenaStoreAdmin extends Component<props> {
 
     constructor(props) {
-        super(props);
-        ArenaStore.id = 555555;
-        ArenaStore.time = 10;
+        super(props);        
     }
 
     render() {

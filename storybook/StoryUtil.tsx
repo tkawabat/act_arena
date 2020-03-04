@@ -38,6 +38,54 @@ export const init = () => {
         SkywayStore.connect(userId + Moment().unix().toString());
     });
 
+
+    // ArenaScenarioStore.scenarioUrl = 'http://doodletxt.web.fc2.com/para6v3.html';
+    // ArenaScenarioStore.agreementUrl = 'http://doodletxt.web.fc2.com/';
+    // ArenaScenarioStore.agreementScroll = 2500;
+    // ArenaScenarioStore.startText = '田中：……雨が止んだら。';
+    // ArenaScenarioStore.endText = 'Ｎ：男は漆黒に染まった瞳で少女を捉えながら、ゆっくりと歩みを進める。';
+    // ArenaScenarioStore.title = 'パラノーマンズ・ブギー⑥『大馬鹿者　前編』';
+    // const character1 = {
+    //     name: '妖紅',
+    //     gender: C.Gender.Female,
+    //     user: '1',
+    //     userName: 'はなこ'
+    // };
+    // const character2 = {
+    //     name: '田中＆N',
+    //     gender: C.Gender.Male,
+    //     user: '2',
+    //     userName: 'たろう'
+    // };
+
+    ArenaStore.id = 555555;
+    ArenaStore.time = 10;
+
+    ArenaScenarioStore.scenarioUrl = 'http://doodletxt.web.fc2.com/hgw.html';
+    ArenaScenarioStore.agreementUrl = 'http://doodletxt.web.fc2.com/';
+    ArenaScenarioStore.agreementScroll = 2500;
+    ArenaScenarioStore.startText = '堂島：親臣、お前さ。';
+    ArenaScenarioStore.endText = '　　　今は、いつだ？';
+    ArenaScenarioStore.title = 'ハローグッドワールド';
+    const character1 = {
+        name: '蝶野',
+        gender: C.Gender.Male,
+        user: '1',
+        userName: 'aaaa'
+    };
+    const character2 = {
+        name: '堂島',
+        gender: C.Gender.Male,
+        user: '2',
+        userName: 'たろう'
+    };
+
+
+    ArenaScenarioStore.characters = [
+        character1,
+        character2,
+    ];
+
     // for scenario test
     ArenaStore.arenaState = C.ArenaState.CHECK;
     // ArenaScenarioStore.agreementState = C.AgreementState.AGREE;
