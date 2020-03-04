@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'native-base';
 //import * as Font from 'expo-font';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import styled from 'styled-components/native';
 import Moment from 'moment';
 import { css } from 'styled-components';
 
 import * as C from '../src/lib/Const';
-import Firebase from '../src/lib/Firebase';
 import * as BasicStyle from '../src/lib/BasicStyle';
 
 import ConfigStore from '../src/store/ConfigStore';
@@ -32,7 +32,7 @@ export const init = () => {
         if (!user) {
             alert('ユーザー情報の取得に失敗しました。');
         }
-        const userId = (user as Firebase.auth.UserCredential).user.uid;
+        const userId = (user as FirebaseAuthTypes.UserCredential).user.uid;
         //SkywayStore.connect(userId);
         SkywayStore.connect(userId + Moment().unix().toString());
     });
