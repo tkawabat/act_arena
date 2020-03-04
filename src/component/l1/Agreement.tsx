@@ -15,6 +15,7 @@ const js = (agreementScroll: number) => {
     return `
 ${WebViewJs.postMessageFunc}
 
+var timer;
 function checkScroll() {
     var h;
     h = window.scrollY + window.parent.screen.height;
