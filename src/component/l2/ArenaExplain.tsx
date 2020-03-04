@@ -19,7 +19,6 @@ export default class ArenaExplain extends Component {
                 <SubTitle>2 {C.ArenaStateString[C.ArenaState.READ]} ({C.ArenaStateTime[C.ArenaState.READ]}秒)</SubTitle>
                 <Explain>・規約を読んで、『同意』をぽちっ</Explain>
                 <Explain>　　　※演じる箇所までは自動でスクロール</Explain>
-                <Explain>・台本をチェック</Explain>
                 <CenterText>〜〜通話開始〜〜</CenterText>
                 <SubTitle>3 {C.ArenaStateString[C.ArenaState.CHECK]} ({C.ArenaStateTime[C.ArenaState.CHECK]}秒)</SubTitle>
                 <Explain>・画面の下が<Microphone name='microphone' type='FontAwesome5'/>に変化</Explain>
@@ -33,7 +32,7 @@ export default class ArenaExplain extends Component {
 
 const Root = styled(View)`
     flex: 1;
-    padding: 20px;
+    padding: 15px;
 `
 
 const ExplainTitle = styled(Text)`
