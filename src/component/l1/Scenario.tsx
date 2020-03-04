@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { WebView } from 'react-native-webview';
 import { observer } from 'mobx-react';
+import styled from 'styled-components/native';
+import Spinner from 'react-native-loading-spinner-overlay';
 
-import ArenaStore from '../../store/ArenaStore';
+import * as WebViewJs from '../../lib/WebViewJs';
+
 import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 
 const js = (start, end) => {
     return `
+${WebViewJs.postMessageFunc}
+
 function loadScript(src, callback) {
     var done;
     var head = document.getElementsByTagName('head')[0];
@@ -56,6 +61,8 @@ var color = function() {
         startPos = elm.offsetTop - 100;
         break;
     }
+
+    window.ReactNativeWebView.postMessage('colored');
     
 };
 
@@ -81,6 +88,13 @@ loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js", 
 export default class Scenario extends Component {
     private webview:WebView;
 
+    private onMessage = (event) => {
+        const { data } = event.nativeEvent;
+        if (data === 'colored') {
+            ArenaScenarioStore.colored = true;
+        }
+    };
+
     constructor(props) {
         super(props);
 
@@ -94,12 +108,20 @@ export default class Scenario extends Component {
 
     render() {
         return (
-            <WebView
-                javaScriptEnabled={true}
-                ref={ref => this.webview = ref}
-                injectedJavaScript={js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)}
-                source={{ uri: ArenaScenarioStore.scenarioUrl }}
-            />
+            <Root>
+                <Spinner visible={!ArenaScenarioStore.colored} />
+                <WebView
+                    javaScriptEnabled={true}
+                    ref={ref => this.webview = ref}
+                    injectedJavaScript={js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)}
+                    source={{ uri: ArenaScenarioStore.scenarioUrl }}
+                    onMessage={this.onMessage}
+                />
+            </Root>
         );
     }
 }
+
+const Root = styled.View`
+    flex: 1;
+`;

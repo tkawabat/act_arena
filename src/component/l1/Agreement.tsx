@@ -6,23 +6,14 @@ import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
+import * as WebViewJs from '../../lib/WebViewJs';
 
 import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
 
 const js = (agreementScroll: number) => {
     return `
-// patch post message
-var originalPostMessage = window.postMessage;
-var patchedPostMessage = function(message, targetOrigin, transfer) { 
-    originalPostMessage(message, targetOrigin, transfer);
-};
-var timer;
-
-patchedPostMessage.toString = function() { 
-    return String(Object.hasOwnProperty).replace('hasOwnProperty', 'postMessage'); 
-};
-window.postMessage = patchedPostMessage;
+${WebViewJs.postMessageFunc}
 
 function checkScroll() {
     var h;

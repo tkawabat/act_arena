@@ -25,7 +25,10 @@ class ArenaScenarioStore {
     @observable characters:Array<Characters> = [];
 
     // private state
-    @observable agreementState:C.AgreementState;
+    @observable _colored:boolean = false;
+    get colored() { return this._colored}
+    set colored(colored:boolean) { this._colored = colored; }
+    @observable agreementState:C.AgreementState = C.AgreementState.NONE;
 
     @computed get isReadAgreement() {
         return this.agreementState !== C.AgreementState.NONE;
@@ -43,6 +46,8 @@ class ArenaScenarioStore {
     @action
     public reloadAgreement = () => {
         this.agreementState = C.AgreementState.NONE;
+        this.colored = false;
+
         const url = this.agreementUrl;
         const scroll = this.agreementScroll;
         this.agreementUrl = '';
