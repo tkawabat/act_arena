@@ -8,14 +8,15 @@ import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
 
+import MatchingStore from '../../store/MatchingStore';
+
 interface props {
-    joinArena: (id:number) => void
 }
 
 @observer
 export default class LobbyCardMatching extends Component<props> {
     private onPress = () => {
-        this.props.joinArena(0);
+        MatchingStore.entry();
     }
     
     render() {

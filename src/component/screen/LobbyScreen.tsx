@@ -118,7 +118,7 @@ export default class LobbyScreen extends ScreenBase {
                 <ScreenBody>
                     <LobbyCardArena joinArena={this.joinArena} />
                     <LobbyCardPrivateArena joinArena={this.joinArena} />
-                    <LobbyCardMatching joinArena={this.joinArena} />
+                    <LobbyCardMatching />
                 </ScreenBody>
 
                 <Footer>
