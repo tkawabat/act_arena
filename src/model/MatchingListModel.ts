@@ -17,12 +17,13 @@ class MatchingListModel {
         return this.ref.id;
     }
 
-    constructor() {
+    constructor(userId: string) {
         this.db = Firebase.firestore().collection('MatchingList');
+        this.ref = this.db.doc(userId);
     }
 
     public asyncSet = async (user: User): Promise<void> => {
-        return this.db.doc(user.id).set({
+        return this.ref.set({
             name: user.name,
             gender: user.gender,
         })
@@ -30,10 +31,18 @@ class MatchingListModel {
         ;
     }
 
-    public asyncDelete = async (user: User): Promise<void> => {
-        return this.db.doc(user.id).delete()
+    public asyncDelete = async (): Promise<void> => {
+        return this.ref.delete()
         .catch((error) => Amplitude.error('MatchingListModel asyncDelete', error))
         ;
+    }
+
+    public observe = (updated:(snapshot :FirebaseFirestoreTypes.DocumentSnapshot) => void) => {
+        this.unsubscribe = this.ref.onSnapshot(updated);
+    }
+
+    public stopObserve = () => {
+        this.unsubscribe();
     }
 }
 

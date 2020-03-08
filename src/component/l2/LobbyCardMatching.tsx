@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { TextInput, Alert } from 'react-native';
-import { Icon, Card, Item, Label } from "native-base";
+import { Alert } from 'react-native';
+import { Icon, Card, } from "native-base";
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
@@ -16,7 +16,7 @@ interface props {
 @observer
 export default class LobbyCardMatching extends Component<props> {
     private onPress = () => {
-        MatchingStore.entry();
+        MatchingStore.toggle();
     }
     
     render() {

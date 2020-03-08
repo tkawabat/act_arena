@@ -11,7 +11,7 @@ import ArenaScenarioStore from './ArenaScenarioStore';
 import ArenaUserStore from './ArenaUserStore';
 import ChatStore from './ChatStore';
 import ConfigStore from './ConfigStore';
-import UserStore from './UserStore';
+import UserStore, { User } from './UserStore';
 import SkywayStore from './SkywayStore';
 import SoundStore from './SoundStore';
 import OverlayMessageStore from './OverlayMessageStore';
@@ -23,8 +23,28 @@ import MatchingListModel from '../model/MatchingListModel';
 class MatchingStore {
     private matchingListModel:MatchingListModel;
 
-    constructor() {
-        this.matchingListModel = new MatchingListModel();
+    @observable isMatching:boolean = false;
+
+    constructor() {        
+    }
+
+    public init = (userId:string) => {
+        this.matchingListModel = new MatchingListModel(userId);
+        this.matchingListModel.observe(this.matchingListUpdated);
+        ConfigStore.setInitLoadComplete('matching');
+    }
+
+    @action
+    private matchingListUpdated = (snapshot :FirebaseFirestoreTypes.DocumentSnapshot) => {
+        this.isMatching = snapshot.exists;
+    }
+
+    public toggle = async () => {
+        if (this.isMatching) {
+            return this.leave();
+        } else {
+            return this.entry();
+        }
     }
 
     public entry = async () => {
@@ -42,7 +62,7 @@ class MatchingStore {
     public leave = async () => {
         ConfigStore.load(true);
         Scheduler.setTimeout('', () => {
-            this.matchingListModel.asyncDelete(UserStore)
+            this.matchingListModel.asyncDelete()
             .then(() => {
                 Amplitude.info('MatchingLeave', null);
                 ConfigStore.load(false);
@@ -50,6 +70,7 @@ class MatchingStore {
             ;
         }, 1000);
     }
+    
 
 }
 

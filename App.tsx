@@ -29,6 +29,7 @@ import LobbyStore from './src/store/LobbyStore';
 import UserStore from './src/store/UserStore';
 import SkywayStore from './src/store/SkywayStore';
 import PushStore from './src/store/PushStore';
+import MatchingStore from './src/store/MatchingStore';
 
 
 @observer
@@ -63,6 +64,7 @@ export default class App extends Component {
         ConfigStore.setInitLoad('user');
         ConfigStore.setInitLoad('lobby');
         ConfigStore.setInitLoad('push');
+        ConfigStore.setInitLoad('matching');
 
         Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -81,6 +83,7 @@ export default class App extends Component {
             SkywayStore.connect(userId + Moment().unix().toString());
             LobbyStore.asyncInit(0);
             PushStore.asyncInit(userId);
+            MatchingStore.init(userId);
         });
 
         AppState.addEventListener('change', this.handleAppStateChange);
