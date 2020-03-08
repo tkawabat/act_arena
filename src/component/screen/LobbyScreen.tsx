@@ -21,6 +21,7 @@ import Bell from '../l1/Bell';
 import PushSettingModal from '../l3/PushSettingModal';
 import LobbyCardArena from '../l2/LobbyCardArena';
 import LobbyCardPrivateArena from '../l2/LobbyCardPrivateArena';
+import LobbyCardMatching from '../l2/LobbyCardMatching';
 import TestTellButton from '../l1/TestTellButton';
 
 
@@ -117,6 +118,7 @@ export default class LobbyScreen extends ScreenBase {
                 <ScreenBody>
                     <LobbyCardArena joinArena={this.joinArena} />
                     <LobbyCardPrivateArena joinArena={this.joinArena} />
+                    <LobbyCardMatching joinArena={this.joinArena} />
                 </ScreenBody>
 
                 <Footer>

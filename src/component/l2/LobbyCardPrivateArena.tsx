@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
 import { TextInput, Alert } from 'react-native';
-import { Icon, Card, Item, Input, Button, Label } from "native-base";
+import { Icon, Card, Item, Label } from "native-base";
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
-
-import SquareTextButton from '../l1/SquareTextButton';
 
 
 interface props {
