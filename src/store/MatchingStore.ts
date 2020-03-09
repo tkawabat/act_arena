@@ -7,14 +7,9 @@ import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
 
-import ArenaScenarioStore from './ArenaScenarioStore';
-import ArenaUserStore from './ArenaUserStore';
-import ChatStore from './ChatStore';
+
 import ConfigStore from './ConfigStore';
 import UserStore, { User } from './UserStore';
-import SkywayStore from './SkywayStore';
-import SoundStore from './SoundStore';
-import OverlayMessageStore from './OverlayMessageStore';
 
 
 import MatchingListModel from '../model/MatchingListModel';

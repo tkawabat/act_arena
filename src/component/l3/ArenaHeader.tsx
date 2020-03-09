@@ -109,3 +109,10 @@ const UserNumText = styled.Text`
     margin-left: 2px;
     margin-right: 2px;
 `
+
+const badgeColor = {
+    [C.ArenaState.WAIT]: { 'success': true },
+    [C.ArenaState.READ]: { 'warning': true },
+    [C.ArenaState.CHECK]: { 'warning': true },
+    [C.ArenaState.ACT]: { 'danger': true },
+}
