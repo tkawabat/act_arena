@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { Alert } from 'react-native';
-import { Icon, Card, } from "native-base";
+import { Card, Badge } from "native-base";
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
+import * as Animatable from 'react-native-animatable';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
@@ -20,6 +21,23 @@ export default class LobbyCardMatching extends Component<props> {
     }
     
     render() {
+        let animation = null;
+            if (MatchingStore.isMatching) {
+                animation = (
+                <Animatable.View animation={'jello'} duration={4000} iterationCount={'infinite'}>
+                    <Badge {...badgeColor}>
+                        <BadgeText>マッチング中</BadgeText>
+                    </Badge>
+                </Animatable.View>
+                );
+            } else {
+                animation = (
+                <Animatable.View animation={'fadeIn'} easing={'ease-in-out'} duration={4000} iterationCount={'infinite'}>
+                        <PressText>タップしてマッチング</PressText>
+                </Animatable.View>
+                );
+            }
+
         return (
             <Touch onPress={this.onPress}>
                 <Root>
@@ -32,7 +50,7 @@ export default class LobbyCardMatching extends Component<props> {
                         </ExplainRoot>
                     </Main>
                     <Right>
-                        <EnterIcon name='sign-out-alt' type='FontAwesome5' />
+                        {animation}
                     </Right>
                 </Root>
             </Touch>
@@ -42,8 +60,9 @@ export default class LobbyCardMatching extends Component<props> {
 
 
 const Root = styled(Card)`
+    min-height: 100px;
     margin: 10px;
-    padding: 10px;
+    padding: 10px;    
     color: #000;
 `;
 
@@ -54,7 +73,9 @@ const Main = styled.View`
 `;
 
 const Right = styled.View`
+    flex: 1;
     align-self: flex-end;
+    justify-content: flex-end;
 `;
 
 const CardTitle = styled.View`
@@ -68,20 +89,17 @@ const TitleText = styled.Text`
     color: #000044;
 `;
 
-const UserNumRoot = styled.View`
-    flex-direction: row;
-    justify-content: flex-end;
-    color: #333;
-`;
+const BadgeText = styled.Text`
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+`
 
-const UserNumIcon = styled(Icon)`
-    font-size: 16px;
-`;
-
-const UserNumText = styled.Text`
-    font-size: 16px;
-    margin-left: 2px;
-`;
+const PressText = styled.Text`
+    color: gray;
+    font-size: 12px;
+    font-weight: 500;
+`
 
 const ExplainRoot = styled.View`
     flex-direction: row;
@@ -94,7 +112,7 @@ const ExplainText = styled.Text`
     font-size: 16px;
 `;
 
-const EnterIcon = styled(Icon)`
-    margin-top: 10px;
-    font-size: 24px;
-`
+const badgeColor = {
+    true: {'success':true},
+    false: {'warning':true},
+}

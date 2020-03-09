@@ -37,13 +37,6 @@ export const ArenaStateString = {
     [ArenaState.ACT]: '上演',
 }
 
-export const ArenaStateStyle = {
-    [ArenaState.WAIT]: {'success':true},
-    [ArenaState.READ]: {'warning':true},
-    [ArenaState.CHECK]: {'warning':true},
-    [ArenaState.ACT]: {'danger':true},
-}
-
 export const ArenaStateTime = {
     [ArenaState.WAIT]: 0,
     [ArenaState.READ]: 60,
@@ -61,12 +54,6 @@ export const ArenaUserStateString = {
     [ArenaUserState.LISTNER]: 'リスナー',
     [ArenaUserState.ENTRY]: 'リスナー',
     [ArenaUserState.ACTOR]: 'アクター',
-}
-
-export const ArenaUserStateStyle = {
-    [ArenaUserState.LISTNER]: {'warning':true},
-    [ArenaUserState.ENTRY]: {'warning':true},
-    [ArenaUserState.ACTOR]: {'danger':true},
 }
 
 export enum AgreementState {

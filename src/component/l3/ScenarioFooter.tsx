@@ -31,7 +31,7 @@ export default class ScenarioFooter extends Component {
                     {entryButton}
                 </Center>
                 <Right>
-                    <UserStaetBadge {...(C.ArenaUserStateStyle[ArenaUserStore.userState])}>
+                    <UserStaetBadge {...(badgeColor[ArenaUserStore.userState])}>
                         <BadgeText>{C.ArenaUserStateString[ArenaUserStore.userState]}</BadgeText>
                     </UserStaetBadge>
                 </Right>
@@ -74,3 +74,9 @@ const BadgeText = styled.Text`
     font-size: 12px;
     font-weight: 500;
 `
+
+const badgeColor = {
+    [C.ArenaUserState.LISTNER]: {'warning':true},
+    [C.ArenaUserState.ENTRY]: {'warning':true},
+    [C.ArenaUserState.ACTOR]: {'danger':true},
+}

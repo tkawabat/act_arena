@@ -33,7 +33,7 @@ export default class ArenaHeader extends Component<props> {
         return (
             <Root>
                 <Left>
-                    <ArenaStateBadge {...(C.ArenaStateStyle[ArenaStore.arenaState])}>
+                    <ArenaStateBadge {...(badgeColor[ArenaStore.arenaState])}>
                         <BadgeText>{C.ArenaStateString[ArenaStore.arenaState]}</BadgeText>
                     </ArenaStateBadge>
                     <Timer />
