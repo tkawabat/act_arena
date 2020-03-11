@@ -1,19 +1,16 @@
-import { YellowBox, AppState, Dimensions, Alert, Linking, Platform } from 'react-native';
 
+import * as Sentry from '@sentry/react-native';
+Sentry.init({
+    dsn: 'https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544',
+});
+
+import { YellowBox, AppState, Dimensions, Alert, Linking, Platform } from 'react-native';
 const ignoreWarnings = [
     'Setting a timer for a long period of time',
 ];
 YellowBox.ignoreWarnings(ignoreWarnings);
 console.disableYellowBox = true;
 console.ignoredYellowBox = ignoreWarnings;
-
-// import StorybookUI from './storybook';
-// export default StorybookUI;
-
-import * as Sentry from '@sentry/react-native';
-Sentry.init({
-    dsn: 'https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544',
-});
 
 import React, { Component } from 'react';
 import { Updates, SplashScreen, } from 'expo';
@@ -149,3 +146,6 @@ const Text = styled.Text`
     font-size: 24px;
     font-weight: 400;
 `
+
+// import StorybookUI from './storybook';
+// export default StorybookUI;
