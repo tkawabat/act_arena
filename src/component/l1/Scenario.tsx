@@ -69,6 +69,10 @@ window.ActArena.loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/
 export default class Scenario extends Component {
     private webview:WebView;
 
+    private setWebview = (ref) => {
+        this.webview = ref;
+    }
+
     private onMessage = (event) => {
         const { data } = event.nativeEvent;
         if (data === 'colored') {
@@ -92,7 +96,7 @@ export default class Scenario extends Component {
             <Root>
                 <WebView
                     javaScriptEnabled={true}
-                    ref={ref => this.webview = ref}
+                    ref={this.setWebview}
                     injectedJavaScript={"setTimeout(function() { "+js(ArenaScenarioStore.startText, ArenaScenarioStore.endText)+"}, 0)"}
                     source={{ uri: ArenaScenarioStore.scenarioUrl }}
                     onMessage={this.onMessage}
