@@ -109,7 +109,7 @@ export default class LobbyScreen extends ScreenBase {
                         <Title>ロビー</Title>
                     </Center>
                     <Right>
-                        <Button transparent onPress={() => Navigator.navigate('Setting', null)} >
+                        <Button transparent onPress={Navigator.navigate.bind(this, 'Setting', null)} >
                             <ConfigIcon name='cog' type='FontAwesome5' />
                         </Button>
                     </Right>

@@ -30,7 +30,7 @@ export default class PushSettingModal extends Component<props> {
                 key={key}
                 text={C.PushBasicSettingString[settingKey]}
                 checked={PushStore.basicSettings.includes(settingKey)}
-                onPress={() => PushStore.toggleBasicSetting(settingKey)}
+                onPress={PushStore.toggleBasicSetting.bind(this, settingKey)}
             />);
         });
 
