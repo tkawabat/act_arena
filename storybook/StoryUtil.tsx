@@ -41,7 +41,6 @@ export const init = () => {
 
     // ArenaScenarioStore.scenarioUrl = 'http://doodletxt.web.fc2.com/para6v3.html';
     // ArenaScenarioStore.agreementUrl = 'http://doodletxt.web.fc2.com/';
-    // ArenaScenarioStore.agreementScroll = 2500;
     // ArenaScenarioStore.startText = '田中：……雨が止んだら。';
     // ArenaScenarioStore.endText = 'Ｎ：男は漆黒に染まった瞳で少女を捉えながら、ゆっくりと歩みを進める。';
     // ArenaScenarioStore.title = 'パラノーマンズ・ブギー⑥『大馬鹿者　前編』';
@@ -63,7 +62,6 @@ export const init = () => {
 
     ArenaScenarioStore.scenarioUrl = 'http://doodletxt.web.fc2.com/hgw.html';
     ArenaScenarioStore.agreementUrl = 'http://doodletxt.web.fc2.com/';
-    ArenaScenarioStore.agreementScroll = 2500;
     ArenaScenarioStore.startText = '堂島：親臣、お前さ。';
     ArenaScenarioStore.endText = '　　　今は、いつだ？';
     ArenaScenarioStore.title = 'ハローグッドワールド';

@@ -28,10 +28,6 @@ export default class ArenaScenarioStoreAdmin extends Component<props> {
     render() {
         return (
             <Root>
-                <IntSelector
-                    name={'agreementScroll'}
-                    onChange={(value: string) => { ArenaScenarioStore.agreementScroll = parseInt(value); }}
-                />
                 <EnumSelector
                     name={'AgreementState'}
                     myEnum={C.AgreementState}

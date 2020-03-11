@@ -71,7 +71,6 @@ export const ArenaUserStateStyle = {
 
 export enum AgreementState {
     NONE,
-    READ,
     AGREE,
 }
 
