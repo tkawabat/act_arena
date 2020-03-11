@@ -25,6 +25,7 @@ UserInterfaceState.xcuserstate
 
 android/gradle.properties
 android/app/src/main/java/host/exp/exponent/generated/AppConstants.java
+android/app/src/main/java/host/exp/exponent/generated/DetachBuildConstants.java
 sentry.properties
 secret.json
 secret-dev.json
