@@ -32,7 +32,7 @@ class PushModel {
         }
 
         return this.ref.set(push)
-            .catch((error) => Amplitude.error('PushStore asyncCreate', error))
+            .catch((error) => Amplitude.error('PushModel.asyncCreate', error))
             ;
 
     }
@@ -45,7 +45,7 @@ class PushModel {
         };
 
         return this.ref.update(push)
-            .catch((error) => Amplitude.error('PushModel asyncUpdateToken', error))
+            .catch((error) => Amplitude.error('PushModel.asyncUpdateToken', error))
             ;
     }
 

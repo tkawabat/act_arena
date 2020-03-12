@@ -96,6 +96,9 @@ class PushStore {
             this.permission = await this.asyncCheckPermission();
 
             ConfigStore.setInitLoadComplete('push');
+        }).catch((error) => {
+            Amplitude.error('PushStore.asyncInit', {error: error});
+            alert('通知機能の初期化に失敗しました。');
         })
     }
 
@@ -105,7 +108,7 @@ class PushStore {
             if (this.token === token) return;
             this.model.asyncUpdateToken(token);
         })
-        .catch((error) => {Amplitude.error('PushModle messaging().getToken', {})})
+        .catch((error) => {Amplitude.error('PushStore.asyncUpdateToken', {})})
     }
 
     public asyncCreate = async () => {

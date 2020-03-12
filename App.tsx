@@ -57,7 +57,8 @@ export default class App extends Component {
         });
 
         UserStore.anonymousLogin().then((user) => {
-            if (!user) {
+            if (!user || !user.user) {
+                Amplitude.error('login', null);
                 alert('ユーザー情報の取得に失敗しました。');
             }
             const userId = (user as FirebaseAuthTypes.UserCredential).user.uid;

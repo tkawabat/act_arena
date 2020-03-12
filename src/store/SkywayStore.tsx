@@ -36,6 +36,7 @@ class SkywayStore {
     private onPeerError = () => {
         //this.dispose();
         Amplitude.error('onPeerError', null);
+        alert('通話機能の初期化に失敗しました。');
     }
 
     private onPeerClose = () => {
