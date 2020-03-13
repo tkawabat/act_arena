@@ -1,4 +1,3 @@
-
 import * as Sentry from '@sentry/react-native';
 Sentry.init({
     dsn: 'https://8d1598d88afe47cb857fe4f49ff829f2@sentry.io/1500544',
@@ -35,9 +34,25 @@ import PushStore from './src/store/PushStore';
 @observer
 export default class App extends Component {
 
-    constructor(props) {
-        super(props);
+    private handleAppStateChange = (nextAppState) => {
+        if (nextAppState === 'active') {
+            ConfigStore.checkExpoUpdates();
+        }
+    }
 
+    private requireAlert = (message: string, text: string, onPress: () => void) => {
+        setTimeout(() => {
+            Alert.alert(
+                '', message,
+                [{
+                    text: text,
+                    onPress: onPress
+                }], { cancelable: false }
+            )
+        }, 700);
+    }
+
+    componentDidMount() {
         Amplitude.info('init', null);
 
         SplashScreen.preventAutoHide();
@@ -62,32 +77,12 @@ export default class App extends Component {
                 alert('ユーザー情報の取得に失敗しました。');
             }
             const userId = (user as FirebaseAuthTypes.UserCredential).user.uid;
-            //SkywayStore.connect(userId);
+            UserStore.init(userId);
             SkywayStore.connect(userId + Moment().unix().toString());
             LobbyStore.asyncInit(0);
             PushStore.asyncInit(userId);
         });
-    }
 
-    private handleAppStateChange = (nextAppState) => {
-        if (nextAppState === 'active') {
-            ConfigStore.checkExpoUpdates();
-        }
-    }
-
-    private requireAlert = (message: string, text: string, onPress: () => void) => {
-        setTimeout(() => {
-            Alert.alert(
-                '', message,
-                [{
-                    text: text,
-                    onPress: onPress
-                }], { cancelable: false }
-            )
-        }, 700);
-    }
-
-    componentDidMount() {
         AppState.addEventListener('change', this.handleAppStateChange);
         ConfigStore.checkExpoUpdates();
     }

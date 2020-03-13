@@ -41,25 +41,19 @@ class UserStore implements User {
 
     constructor() {
         this.db = Firebase.firestore().collection('User');
-        // this.providerTwitter = new Firebase.auth.TwitterAuthProvider();
+    }
 
-        // サインインしているかどうかの判定
-        Firebase.auth().onAuthStateChanged(user => {
-            if (!user) {
-                return;
-            }
+    public init = (userId:string) => {
+        this.id = userId;
+        Amplitude.setUserId(this.id);
+        Amplitude.info('login', null);
 
-            this.id = user.uid;
-            Amplitude.setUserId(this.id);
-            Amplitude.info('login', null);
+        if (this.onSnapshot) this.onSnapshot(); // delete old listener
+        this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
 
-            if (this.onSnapshot) this.onSnapshot(); // delete old listener
-            this.onSnapshot = this.db.doc(this.id).onSnapshot(this.setSnapshot2field);
+        this.get().then(() => { ConfigStore.setInitLoadComplete('user'); })
 
-            this.get().then(() => {ConfigStore.setInitLoadComplete('user');})
-
-            this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
-        });
+        this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
     }
      
     private get = async () :Promise<void> => {
