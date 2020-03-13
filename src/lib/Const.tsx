@@ -1,7 +1,7 @@
 export const ConfigId = 'config';
 export const AppStoreUrl = {
     'ios': 'https://t.co/q28fs9e7cq?amp=1',
-    'android': 'https://t.co/1GNQkeYCfG?amp=1',
+    'android': 'market://details?id=act.arena',
 }
 
 export enum UserIconSize {
