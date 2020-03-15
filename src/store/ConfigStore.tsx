@@ -7,6 +7,7 @@ import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
 import Firebase from '../lib/Firebase';
+import Amplitude from '../lib/Amplitude';
 
 
 class ConfigStore {
@@ -61,6 +62,7 @@ class ConfigStore {
     }
 
     @action setInitLoadComplete = (name:string) :void => {
+        Amplitude.info('init completed ' + name, null);
         this.init[name] = true;
     }
 

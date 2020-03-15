@@ -53,6 +53,8 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+        if (ConfigStore.isInitLoaded) return; // 二重実行対策
+        ConfigStore.setInitLoadComplete('init');
         Amplitude.info('init', null);
 
         SplashScreen.preventAutoHide();
@@ -61,8 +63,7 @@ export default class App extends Component {
         ConfigStore.setInitLoad('skyway');
         ConfigStore.setInitLoad('user');
         ConfigStore.setInitLoad('lobby');
-        ConfigStore.setInitLoad('push');
-        ConfigStore.setInitLoadComplete('init');
+        ConfigStore.setInitLoad('push');        
 
         Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
