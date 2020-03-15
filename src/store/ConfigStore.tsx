@@ -58,6 +58,7 @@ class ConfigStore {
     }
 
     @action setInitLoad = (name:string) :void => {
+        if (this.init[name]) return; // 再設定はしない
         this.init[name] = false;
     }
 

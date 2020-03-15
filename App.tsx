@@ -52,18 +52,18 @@ export default class App extends Component {
         }, 700);
     }
 
-    componentDidMount() {
-        if (ConfigStore.isInitLoaded) return; // 二重実行対策
+    componentDidMount() {        
+        if (ConfigStore.init['init']) return; // 二重実行対策
+        ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoadComplete('init');
-        Amplitude.info('init', null);
 
+        Amplitude.info('init', null);
         SplashScreen.preventAutoHide();
         
-        ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoad('skyway');
         ConfigStore.setInitLoad('user');
         ConfigStore.setInitLoad('lobby');
-        ConfigStore.setInitLoad('push');        
+        ConfigStore.setInitLoad('push');
 
         Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
