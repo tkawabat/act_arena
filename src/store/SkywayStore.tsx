@@ -23,7 +23,6 @@ class SkywayStore {
     }
 
     private onPeerOpen = () => {
-        Amplitude.info('onPeerOpen', null);
         this.state = C.SkywayState.OPEN;
         ConfigStore.setInitLoadComplete('skyway');
         this.speakState = C.SpeakState.DISABLED;

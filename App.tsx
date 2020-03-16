@@ -57,7 +57,6 @@ export default class App extends Component {
         ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoadComplete('init');
 
-        Amplitude.info('init', null);
         SplashScreen.preventAutoHide();
         
         ConfigStore.setInitLoad('skyway');
