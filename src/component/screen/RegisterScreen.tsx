@@ -3,7 +3,6 @@ import { Alert } from 'react-native';
 import { Container, Content, Button, Text, Item, Input, Picker, Icon, Header, Left, Right, Body, Title } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import ScreenBase from './ScreenBase';
 
@@ -99,7 +98,6 @@ export default class RegisterScreen extends ScreenBase {
         
         return (
             <Root>
-                <Spinner visible={ConfigStore.isLoad} />
                 <Header_>
                     <Left></Left>
                     <Body>

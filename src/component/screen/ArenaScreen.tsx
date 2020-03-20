@@ -3,13 +3,11 @@ import { StyleSheet, Dimensions, } from 'react-native';
 import { Container, Content, View, Tabs, Tab, TabHeading, } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 
 import ScreenBase from './ScreenBase';
 import * as C from '../../lib/Const';
 
-import ConfigStore from '../../store/ConfigStore';
 import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
 
@@ -38,7 +36,6 @@ export default class Arena extends ScreenBase {
     render() { 
         return (
             <Container style={styles.container}>
-                <Spinner visible={ConfigStore.isLoad} />
                 <ArenaHeader userNum={ArenaUserStore.userNum} />
                 <Content style={styles.content} scrollEnabled={false}>
                     <View style={styles.body}>

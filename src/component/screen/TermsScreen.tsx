@@ -3,13 +3,10 @@ import {StyleSheet, ScrollView, } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon, H3 } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import TermsJson from '../../../terms.json';
 import ScreenBase from './ScreenBase';
 import Navigator from '../../lib/Navigator';
-
-import ConfigStore from '../../store/ConfigStore';
 
 
 @observer
@@ -44,7 +41,6 @@ export default class TermsScreen extends ScreenBase {
     render() {
         return (
             <Container style={styles.container}>
-                <Spinner visible={ConfigStore.isLoad} />
                 <Header style={styles.header}>
                     <Left>
                         <Button transparent>

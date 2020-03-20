@@ -31,6 +31,8 @@ import SkywayStore from './src/store/SkywayStore';
 import PushStore from './src/store/PushStore';
 import MatchingStore from './src/store/MatchingStore';
 
+import Spinner from './src/component/l1/Spinner';
+
 
 @observer
 export default class App extends Component {
@@ -128,6 +130,7 @@ export default class App extends Component {
 
         return (
             <Root>
+                <Spinner />
                 <AppContainer ref={Navigator.set} />
                 <FlashMessage position="top" />
             </Root>

@@ -3,7 +3,6 @@ import { ScrollView, } from 'react-native';
 import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon, H3 } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import PrivacyJson from '../../../privacy.json';
 import ScreenBase from './ScreenBase';
@@ -45,7 +44,6 @@ export default class PrivacyScreen extends ScreenBase {
     render() {
         return (
             <Root>
-                <Spinner visible={ConfigStore.isLoad} />
                 <Header_>
                     <Left>
                         <Button transparent>

@@ -2,14 +2,12 @@ import React from 'react';
 import { Linking } from 'react-native';
 import { Container, Content, Header, Left, Body, Right, Button, Text, Title, Icon, ListItem, Separator } from 'native-base';
 import { observer } from 'mobx-react';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import licenseJson from '../../../license.json';
 import ScreenBase from './ScreenBase';
 import * as BasicStyle from '../../lib/BasicStyle';
 import Navigator from '../../lib/Navigator';
 
-import ConfigStore from '../../store/ConfigStore';
 import styled from 'styled-components/native';
 
 
@@ -27,7 +25,6 @@ export default class CopyrightScreen extends ScreenBase {
     render() {
         return (
             <Root>
-                <Spinner visible={ConfigStore.isLoad} />
                 <Header_>
                     <Left>
                         <Button transparent>

@@ -4,13 +4,10 @@ import { Container, Content, Header, Left, Body, Right, Button, Title, Text, Ico
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import ScreenBase from './ScreenBase';
 import Navigator from '../../lib/Navigator';
 import * as BasicStyle from '../../lib/BasicStyle';
-
-import ConfigStore from '../../store/ConfigStore';
 
 
 @observer
@@ -23,7 +20,6 @@ export default class SettingScreen extends ScreenBase {
     render() {
         return (
             <Container style={styles.container}>
-                <Spinner visible={ConfigStore.isLoad} />
                 <Header style={styles.header}>
                     <Left>
                         <Button transparent>

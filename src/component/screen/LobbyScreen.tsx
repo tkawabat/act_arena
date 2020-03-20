@@ -2,7 +2,6 @@ import React from 'react';
 import { Alert, Platform, } from 'react-native';
 import { Header, Button, Title, Icon } from 'native-base';
 import { observer } from 'mobx-react';
-import Spinner from 'react-native-loading-spinner-overlay';
 import * as Permissions from 'react-native-permissions';
 import { showMessage, hideMessage } from "react-native-flash-message";
 import styled from 'styled-components/native';
@@ -106,7 +105,6 @@ export default class LobbyScreen extends ScreenBase {
         const theaterList = LobbyStore.theaters.map((theater) => (<LobbyCardTheater theater={theater} />));
         return (
             <Root>
-                <Spinner visible={ConfigStore.isLoad} />
                 <LobbyHeader>
                     <Left>
                         <Bell onPress={PushStore.viewSettingModal} />
