@@ -2,11 +2,12 @@ import { observable, computed, action } from 'mobx';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
-import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 
 import ArenaModel from '../model/ArenaModel';
 import ArenaUserModel, { ArenaUser} from '../model/ArenaUserModel';
+import { Theater } from '../model/TheaterModel';
+import TheaterListModel from '../model/TheaterListModel';
 
 import ConfigStore from './ConfigStore';
 
@@ -15,10 +16,12 @@ import ConfigStore from './ConfigStore';
 class LobbyStore {
     private arenaModel:ArenaModel;
     private arenaUserModel:ArenaUserModel;
+    private theaterListModel:TheaterListModel;
 
     private arenaId:number;
 
     @observable users:{ [id:string]:ArenaUser} = {};
+    @observable theaters: Theater[];
 
     @computed get userNum() {
         if (!this.users) return 0;
@@ -27,6 +30,7 @@ class LobbyStore {
 
     constructor() {
         this.arenaModel = new ArenaModel();
+        this.theaterListModel = new TheaterListModel();
     }
 
     private arenaUserUpdated = (snapshot :FirebaseFirestoreTypes.QuerySnapshot) => {
@@ -38,6 +42,10 @@ class LobbyStore {
         ConfigStore.setInitLoadComplete('lobby');
     }
 
+    private theaterListUpdated = (snapshot :FirebaseFirestoreTypes.QuerySnapshot) => {
+        this.theaters = snapshot.docs.map((v) => v.data() as Theater)
+    }
+
     public asyncInit = async (arenaId:number) :Promise<void> => {
         this.arenaId = arenaId;
 
@@ -45,7 +53,9 @@ class LobbyStore {
             this.arenaUserModel.stopObserve();
         }
 
-        return this.arenaModel.asyncGet(this.arenaId, false)
+        this.theaterListModel.observe(this.theaterListUpdated);
+
+        this.arenaModel.asyncGet(this.arenaId, false)
             .then((arenaRef) => {
                 if (!arenaRef) {
                     alert('エラーが発生しました。');
