@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Dimensions, } from 'react-native';
-import { Container, Content, View, Tabs, Tab, TabHeading, } from 'native-base';
+import { Dimensions, StyleSheet } from 'react-native';
+import { Container, Tabs, Tab, TabHeading, } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
+import styled from 'styled-components/native';
 
 
 import ScreenBase from './ScreenBase';
@@ -21,7 +22,7 @@ import ChatTab from '../l4/ChatTab';
 
 
 @observer
-export default class Arena extends ScreenBase {
+export default class ArenaScreen extends ScreenBase {
     private onChangeTab = (tab) => {
         switch (tab.ref.key) {
             case '.$scenario':
@@ -35,50 +36,44 @@ export default class Arena extends ScreenBase {
 
     render() { 
         return (
-            <Container style={styles.container}>
+            <Root>
                 <ArenaHeader userNum={ArenaUserStore.userNum} />
-                <Content style={styles.content} scrollEnabled={false}>
-                    <View style={styles.body}>
-                        <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} locked={true}>
-                            <Tab
-                                key={'scenario'}
-                                heading={<TabHeading style={styles.tab}>
-                                    <ScenarioTabHeader />
-                                    </TabHeading>
-                            }>
-                                <ScenarioTab />
-                                <ActInfoModal />
-                            </Tab>
-                            <Tab
-                                key={'chat'}
-                                heading={<TabHeading style={styles.tab}>
-                                    <ChatTabHeader />
-                                </TabHeading>}
-                            >
-                                <ChatTab />
-                            </Tab>
-                        </Tabs>
-                    </View>
-                </Content>
+                <Body>
+                    <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} locked={true}>
+                        <Tab
+                            key={'scenario'}
+                            heading={<TabHeading style={styles.tab}><ScenarioTabHeader /></TabHeading>}
+                        >
+                            <ScenarioTab />
+                            <ActInfoModal />
+                        </Tab>
+                        <Tab
+                            key={'chat'}
+                            heading={<TabHeading style={styles.tab}><ChatTabHeader /></TabHeading>}
+                        >
+                            <ChatTab />
+                        </Tab>
+                    </Tabs>
+                </Body>
                 <OverlayMessage />
-            </Container>
+            </Root>
         );
     }
 }
 
-let {height, width} = Dimensions.get('window');
+const {height, width} = Dimensions.get('window');
+
+const Root = styled(Container)`
+    flex: 1;
+    margin-top: ${getStatusBarHeight()}px;
+    margin-bottom: ${getBottomSpace()}px;
+`;
+
+const Body = styled.View`
+    height: ${height - 50 - getStatusBarHeight() - getBottomSpace()}px;
+`;
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: getStatusBarHeight(),
-        marginBottom: getBottomSpace(),
-    },
-    content: {
-    },
-    body: {
-        height: height - 50 - getStatusBarHeight() - getBottomSpace(),
-        justifyContent: 'center',
-    },
     tab: {
         backgroundColor: '#000044',
     },
