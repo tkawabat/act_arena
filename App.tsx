@@ -23,6 +23,7 @@ import FlashMessage from "react-native-flash-message";
 import * as C from './src/lib/Const';
 import Amplitude from './src/lib/Amplitude';
 import Navigator from './src/lib/Navigator';
+import { createContainer } from './src/lib/AppContainer';
 
 import ConfigStore from './src/store/ConfigStore';
 import LobbyStore from './src/store/LobbyStore';
@@ -126,7 +127,7 @@ export default class App extends Component {
         }
 
         const screen = UserStore.isRegisted ? 'Lobby' : 'Register';
-        const AppContainer = Navigator.init(screen);
+        const AppContainer = createContainer(screen);
 
         return (
             <Root>
