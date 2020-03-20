@@ -4,23 +4,17 @@ import { View } from 'native-base';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import styled from 'styled-components/native';
 import Moment from 'moment';
-import { css } from 'styled-components';
 
 import * as C from '../src/lib/Const';
 import * as BasicStyle from '../src/lib/BasicStyle';
 
-import ConfigStore from '../src/store/ConfigStore';
 import UserStore from '../src/store/UserStore';
 import SkywayStore from '../src/store/SkywayStore';
 import ArenaStore from '../src/store/ArenaStore';
+import ArenaUserStore, {ArenaUser} from '../src/store/ArenaUserStore';
 import ArenaScenarioStore from '../src/store/ArenaScenarioStore';
 
 export const init = () => {
-    // ConfigStore.setInitLoad('font');
-    ConfigStore.setInitLoad('skyway');
-    ConfigStore.setInitLoad('user');
-    ConfigStore.setInitLoad('arena');
-    ConfigStore.setInitLoadComplete('init');
 
     // Font.loadAsync({
     //     'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -34,8 +28,16 @@ export const init = () => {
             alert('ユーザー情報の取得に失敗しました。');
         }
         const userId = (user as FirebaseAuthTypes.UserCredential).user.uid;
+        UserStore.id = userId;
         //SkywayStore.connect(userId);
         SkywayStore.connect(userId + Moment().unix().toString());
+        ArenaUserStore.users = {[userId]: {
+            name: 'hoge',
+            gender: C.Gender.Male,
+            iconUrl: null,
+            state: C.ArenaUserState.LISTNER,
+        } as ArenaUser}
+        console.log('ArenaUserStore.users:', ArenaUserStore.users);
     });
 
 

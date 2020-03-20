@@ -2,12 +2,10 @@ import { observable, computed, action } from 'mobx';
 
 import * as C from '../lib/Const';
 
-import ChatStore from './ChatStore';
-import ConfigStore from './ConfigStore';
 import UserStore from './UserStore';
 
 
-interface ArenaUser {
+export interface ArenaUser {
     name: string
     gender: C.Gender
     iconUrl: string
