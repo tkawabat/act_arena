@@ -14,14 +14,17 @@ export default class TextBadge extends Component<props> {
 
     render() {
         return (
-            <Badge {...this.props}>
+            <Root {...this.props}>
                 <BadgeText>{this.props.text}</BadgeText>
-            </Badge>
+            </Root>
         );
 
     }
 }
 
+const Root = styled(Badge)`
+    ${BasicStyle.center};
+`;
 
 const BadgeText = styled.Text`
     color: #fff;

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Badge } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
@@ -11,6 +10,7 @@ import ArenaUserStore from '../../store/ArenaUserStore';
 
 import EntryButton from '../l1/EntryButton';
 import Microphone from '../l1/Microphone';
+import TextBadge from '../l1/TextBadge';
 
 
 @observer
@@ -31,9 +31,10 @@ export default class ScenarioFooter extends Component {
                     {entryButton}
                 </Center>
                 <Right>
-                    <UserStaetBadge {...(badgeColor[ArenaUserStore.userState])}>
-                        <BadgeText>{C.ArenaUserStateString[ArenaUserStore.userState]}</BadgeText>
-                    </UserStaetBadge>
+                    <UserStaetBadge
+                        text={C.ArenaUserStateString[ArenaUserStore.userState]}
+                        {...(badgeColor[ArenaUserStore.userState])}
+                    />
                 </Right>
             </Root>
         )
@@ -64,15 +65,8 @@ const Right = styled.View`
     justify-content: flex-end;
 `
 
-const UserStaetBadge = styled(Badge)`
-    ${BasicStyle.center}
+const UserStaetBadge = styled(TextBadge)`
     margin: 10px;
-`
-
-const BadgeText = styled.Text`
-    color: #fff;
-    font-size: 12px;
-    font-weight: 500;
 `
 
 const badgeColor = {

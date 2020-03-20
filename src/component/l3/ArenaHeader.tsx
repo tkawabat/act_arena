@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Alert } from 'react-native';
-import { Button, Icon, Badge } from 'native-base';
+import { Button, Icon, } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
@@ -11,6 +11,7 @@ import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
 
 import Timer from '../l1/Timer';
+import TextBadge from '../l1/TextBadge';
 
 
 interface props {
@@ -32,23 +33,24 @@ export default class ArenaHeader extends Component<props> {
         
         return (
             <Root>
-                <Left>
-                    <ArenaStateBadge {...(badgeColor[ArenaStore.arenaState])}>
-                        <BadgeText>{C.ArenaStateString[ArenaStore.arenaState]}</BadgeText>
-                    </ArenaStateBadge>
+                <BasicStyle.Left>
+                    <ArenaStateBadge
+                        text={C.ArenaStateString[ArenaStore.arenaState]}
+                        {...(badgeColor[ArenaStore.arenaState])}
+                    />
                     <Timer />
-                </Left>
-                <Center>
+                </BasicStyle.Left>
+                <BasicStyle.Center>
                     <RoomIcon name='home' type='FontAwesome5' />
                     <RoomName>{roomName}</RoomName>
-                </Center>
-                <Right>
+                </BasicStyle.Center>
+                <BasicStyle.Right>
                     <UesrIcon name='user' type='FontAwesome5' />
                     <UserNumText>{this.props.userNum}</UserNumText>
                     <Button transparent onPress={this.leave} disabled={!ArenaUserStore.canLeave}>
                         <Icon name='sign-out-alt' type='FontAwesome5' />
                     </Button>
-                </Right>
+                </BasicStyle.Right>
             </Root>
         )
     }
@@ -59,34 +61,8 @@ const Root = styled.View`
     ${BasicStyle.header};
 `;
 
-const Left = styled.View`
-    flex: 1;
-    justify-content: flex-start;
-    padding-left: 10px;
-`
-
-const Center = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`
-
-const Right = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-`
-
-const ArenaStateBadge = styled(Badge)`
+const ArenaStateBadge = styled(TextBadge)`
     height: 20px;
-`
-
-const BadgeText = styled.Text`
-    color: #fff;
-    font-size: 12px;
-    font-weight: 500;
 `
 
 const RoomIcon = styled(Icon)`

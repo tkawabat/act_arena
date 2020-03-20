@@ -58,6 +58,7 @@ export const Left = styled.View`
     flex: 1;
     align-items: flex-start;
     justify-content: center;
+    padding-left: 10px;
 `
 
 export const Center = styled.View`
@@ -72,4 +73,5 @@ export const Right = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
+    padding-right: 10px;
 `
