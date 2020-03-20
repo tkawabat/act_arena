@@ -7,6 +7,8 @@ import styled from 'styled-components/native';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
+import LobbyCardBase from '../l1/LobbyCardBase';
+
 
 interface props {
     joinArena: (id:number) => void
@@ -35,80 +37,48 @@ export default class LobbyCardPrivateArena extends Component<props> {
 
     render() {
         return (
-            <Touch onPress={this.onPress}>
-                <Root>
-                    <Main>
-                        <CardTitle>
-                            <TitleText>プライベート・アリーナ</TitleText>
-                        </CardTitle>
-                        <ExplainRoot>
-                            <ExplainText>友達とIDを共有して気軽に遊ぼう！</ExplainText>
-                        </ExplainRoot>
-                        <InputRoot>
-                            <Item>
-                                <Label>Room ID:</Label>
-                                <TextInput
-                                    placeholder='Room ID'
-                                    placeholderTextColor='#ccc'
-                                    keyboardType='numeric'
-                                    returnKeyType={'done'}
-                                    maxLength={6}
-                                    onChangeText={(value) => this.setState({ value })}
-                                    value={this.state.value > 0 ? this.state.value.toString() : ''}
-                                />
-                            </Item>
-                            <RandomButton onPress={this.createRandom}>
-                                <RandomButtonText>ランダム生成</RandomButtonText>
-                            </RandomButton>
-                        </InputRoot>
-                    </Main>
-                    <Right>
-                        <EnterIcon name='sign-out-alt' type='FontAwesome5' />
-                    </Right>
-                </Root>
-            </Touch>
-            
+            <LobbyCardBase
+                title={'プライベート・アリーナ'}
+                onPress={this.onPress}
+            >
+                <Body>
+                    <ExplainText>友達とIDを共有して気軽に遊ぼう！</ExplainText>
+                </Body>
+                <Footer>
+                    <InputRoot>
+                        <Item>
+                            <Label>Room ID:</Label>
+                            <TextInput
+                                placeholder='Room ID'
+                                placeholderTextColor='#ccc'
+                                keyboardType='numeric'
+                                returnKeyType={'done'}
+                                maxLength={6}
+                                onChangeText={(value) => this.setState({ value })}
+                                value={this.state.value > 0 ? this.state.value.toString() : ''}
+                            />
+                        </Item>
+                        <RandomButton onPress={this.createRandom}>
+                            <RandomButtonText>ランダム生成</RandomButtonText>
+                        </RandomButton>
+                    </InputRoot>
+                    <EnterIcon name='sign-out-alt' type='FontAwesome5' />
+                </Footer>
+            </LobbyCardBase>
         );
     }
 }
 
 
-const Root = styled(Card)`
-    margin: 10px;
-    padding: 10px;
+const Body = styled.View`
+    margin-top: 10px;
+`;
+
+const Footer = styled.View`
     flex-direction: row;
-    justify-content: space-between;
-    color: #000;
-`;
-
-const Touch = styled.TouchableOpacity`
-`;
-
-const Main = styled.View`
-`;
-
-const Right = styled.View`
-    align-self: flex-end;
-`;
-
-const CardTitle = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-`;
-
-const TitleText = styled.Text`
-    font-size: 24px;
-    font-weight: 600;
-    color: #000044;
-`;
-
-const ExplainRoot = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
 `;
 
 const ExplainText = styled.Text`
-    margin-top: 10px;
     margin-left: 15px;
     font-size: 16px;
 `;
@@ -136,5 +106,6 @@ const RandomButtonText = styled.Text`
 
 const EnterIcon = styled(Icon)`
     margin-top: 10px;
+    margin-left: auto;
     font-size: 24px;
 `
