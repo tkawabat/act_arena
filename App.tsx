@@ -83,7 +83,8 @@ export default class App extends Component {
             }
             const userId = (user as FirebaseAuthTypes.UserCredential).user.uid;
             UserStore.init(userId);
-            SkywayStore.connect(userId + Moment().unix().toString());
+            const peerId = userId + Math.floor(Math.random() * 10000);
+            SkywayStore.connect(peerId);
             LobbyStore.asyncInit(0);
             PushStore.asyncInit(userId);
             MatchingStore.init(userId);
