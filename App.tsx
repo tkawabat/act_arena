@@ -20,7 +20,6 @@ import styled from 'styled-components/native';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import FlashMessage from "react-native-flash-message";
 
-import AppContainer from './src/component/screen/AppContainer';
 import * as C from './src/lib/Const';
 import Amplitude from './src/lib/Amplitude';
 import Navigator from './src/lib/Navigator';
@@ -124,13 +123,12 @@ export default class App extends Component {
             )
         }
 
+        const screen = UserStore.isRegisted ? 'Lobby' : 'Register';
+        const AppContainer = Navigator.init(screen);
+
         return (
             <Root>
-                <AppContainer ref={(nav) => {
-                    Navigator.set(nav);
-                    const initailScreen = UserStore.isRegisted ? 'Lobby' : 'Register';
-                    Navigator.navigate(initailScreen, null);
-                }} />
+                <AppContainer ref={Navigator.set} />
                 <FlashMessage position="top" />
             </Root>
         );
