@@ -4,6 +4,7 @@ import { Header, Button, Title, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import * as Permissions from 'react-native-permissions';
+import { showMessage, hideMessage } from "react-native-flash-message";
 import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
@@ -16,12 +17,15 @@ import ConfigStore from '../../store/ConfigStore';
 import PushStore from '../../store/PushStore';
 import SkywayStore from '../../store/SkywayStore';
 import UserStore from '../../store/UserStore';
+import LobbyStore from '../../store/LobbyStore';
 
 import Bell from '../l1/Bell';
+import RectangleTextButton from '../l1/RectangleTextButton';
 import PushSettingModal from '../l3/PushSettingModal';
 import LobbyCardArena from '../l2/LobbyCardArena';
 import LobbyCardPrivateArena from '../l2/LobbyCardPrivateArena';
 import LobbyCardMatching from '../l2/LobbyCardMatching';
+import LobbyCardTheater from '../l2/LobbyCardTheater';
 import TestTellButton from '../l1/TestTellButton';
 
 
@@ -99,6 +103,7 @@ export default class LobbyScreen extends ScreenBase {
     }
 
     render() {
+        const theaterList = LobbyStore.theaters.map((theater) => (<LobbyCardTheater theater={theater} />));
         return (
             <Root>
                 <Spinner visible={ConfigStore.isLoad} />
@@ -119,9 +124,15 @@ export default class LobbyScreen extends ScreenBase {
                     <LobbyCardArena joinArena={this.joinArena} />
                     <LobbyCardPrivateArena joinArena={this.joinArena} />
                     <LobbyCardMatching />
+                    {theaterList}
                 </ScreenBody>
 
                 <Footer>
+                    <RectangleTextButton text='テスト' onPress={showMessage.bind(this, {
+                        autoHide: false,
+                        message: 'サシ劇マッチングしました。　⇛長押しして入室。',
+                        titleStyle: { fontSize: 16, fontFamily: 'arial black' },
+                    })} />
                     <TestTellButton onPress={this.testTell}></TestTellButton>
                 </Footer>
 
@@ -131,7 +142,7 @@ export default class LobbyScreen extends ScreenBase {
     }
 }
 
-const Root = styled.View`
+const Root = styled.ScrollView`
     ${BasicStyle.screenRoot}
 `
 

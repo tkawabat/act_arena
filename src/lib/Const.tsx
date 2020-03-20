@@ -66,6 +66,12 @@ export enum ArenaTab {
     CHAT,
 }
 
+export enum TheaterState {
+    READ = 0,
+    CHECK = 1,
+    ACT = 2,
+}
+
 export enum SkywayState {
     INIT,
     OPEN,
