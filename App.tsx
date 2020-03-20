@@ -18,6 +18,7 @@ import { observer } from 'mobx-react';
 import Moment from 'moment';
 import styled from 'styled-components/native';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import FlashMessage from "react-native-flash-message";
 
 import AppContainer from './src/component/screen/AppContainer';
 import * as C from './src/lib/Const';
@@ -124,11 +125,14 @@ export default class App extends Component {
         }
 
         return (
-            <AppContainer ref={(nav) => {
-                Navigator.set(nav);
-                const initailScreen = UserStore.isRegisted ? 'Lobby' : 'Register';
-                Navigator.navigate(initailScreen, null);
-            } } />
+            <Root>
+                <AppContainer ref={(nav) => {
+                    Navigator.set(nav);
+                    const initailScreen = UserStore.isRegisted ? 'Lobby' : 'Register';
+                    Navigator.navigate(initailScreen, null);
+                }} />
+                <FlashMessage position="top" />
+            </Root>
         );
     }
 }
