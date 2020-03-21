@@ -21,7 +21,9 @@ class LobbyStore {
     private arenaId:number;
 
     @observable users:{ [id:string]:ArenaUser} = {};
-    @observable theaters: Theater[];
+    @observable theaters: {
+        [id:string]: Theater
+    };
 
     @computed get userNum() {
         if (!this.users) return 0;
@@ -43,7 +45,12 @@ class LobbyStore {
     }
 
     private theaterListUpdated = (snapshot :FirebaseFirestoreTypes.QuerySnapshot) => {
-        this.theaters = snapshot.docs.map((v) => v.data() as Theater)
+        const theaters:{ [id:string]: Theater} = {} ;
+        snapshot.docs.forEach((v:FirebaseFirestoreTypes.QueryDocumentSnapshot) => {
+            const id = v.id;
+            theaters[id] = v.data() as Theater;
+        });
+        this.theaters = theaters;
     }
 
     public asyncInit = async (arenaId:number) :Promise<void> => {

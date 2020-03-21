@@ -9,17 +9,25 @@ import * as BasicStyle from '../../lib/BasicStyle';
 
 import { Theater } from '../../model/TheaterModel';
 
+import ConfigStore from '../../store/ConfigStore';
+import TheaterStore from '../../store/TheaterStore';
+
 import TextBadge from '../l1/TextBadge';
 import LobbyCardBase from '../l1/LobbyCardBase';
 
 interface props {
+    theaterId: string
     theater: Theater
 }
 
 @observer
 export default class LobbyCardTheater extends Component<props> {
-    private onPress = () => {
-        //MatchingStore.toggle();
+
+    private joinTheater = () => {
+        ConfigStore.load(true);
+        TheaterStore.join(this.props.theaterId).then(() => {
+            ConfigStore.load(false);
+        });
     }
     
     render() {
@@ -29,7 +37,7 @@ export default class LobbyCardTheater extends Component<props> {
         const end = Moment.unix(this.props.theater.endAt[C.TheaterState.ACT].seconds).format('HH:mm');
 
         return (
-            <Root title={title} onPress={this.onPress}>
+            <Root title={title} onPress={this.joinTheater}>
                 <Left>
                     <ExplainText>{'演者: ' + actors.join(', ')}</ExplainText>
                     <ExplainText>{start + '~' + end}</ExplainText>
