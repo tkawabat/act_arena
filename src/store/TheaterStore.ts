@@ -46,6 +46,12 @@ class TheaterStore {
         this._tab = tab;
     }
 
+    @computed get userState() :C.TheaterUserState {
+        if (!TheaterUserStore.users[UserStore.id]) return C.TheaterUserState.LISTNER;
+        const index = this.characters.findIndex((c) => c.user === UserStore.id);
+        return index === -1 ? C.TheaterUserState.LISTNER : C.TheaterUserState.ACTOR;
+    }
+
     @observable modal:boolean = false;
 
     constructor() {
@@ -140,7 +146,7 @@ class TheaterStore {
             case C.TheaterState.CHECK:
                 OverlayMessageStore.start('マイクチェック');
 
-                if (TheaterUserStore.userState === C.TheaterUserState.ACTOR) {
+                if (this.userState === C.TheaterUserState.ACTOR) {
                     // マイクオン
                     SkywayStore.setSpeakState(C.SpeakState.MUTE);
                     SkywayStore.toggleMicrophone();
