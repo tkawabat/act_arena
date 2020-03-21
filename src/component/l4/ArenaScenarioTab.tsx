@@ -9,7 +9,7 @@ import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 import ArenaExplain from '../l2/ArenaExplain';
 import Agreement from '../l1/Agreement';
 import ArenaScenario from '../l1/ArenaScenario';
-import ScenarioTools from '../l3/ScenarioTools';
+import ArenaScenarioTools from '../l3/ArenaScenarioTools';
 import ScenarioFooter from '../l3/ScenarioFooter';
 
 
@@ -24,7 +24,7 @@ export default class ArenaScenarioTab extends Component {
                 {ArenaStore.arenaState !== C.ArenaState.WAIT && !ArenaScenarioStore.isAgree && <Agreement />}
                 {ArenaStore.arenaState !== C.ArenaState.WAIT && ArenaScenarioStore.isAgree && <ArenaScenario />}
  
-                <ScenarioTools />
+                <ArenaScenarioTools />
                 
                 <ScenarioFooter />
             </Root>

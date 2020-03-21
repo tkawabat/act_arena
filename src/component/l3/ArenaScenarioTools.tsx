@@ -13,7 +13,7 @@ import ArenaAddTimeButton from '../l1/ArenaAddTimeButton';
 
 
 @observer
-export default class ScenarioTools extends Component {
+export default class ArenaScenarioTools extends Component {
 
     render() {
         const isWait = ArenaStore.arenaState === C.ArenaState.WAIT;
