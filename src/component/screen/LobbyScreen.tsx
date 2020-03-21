@@ -102,7 +102,8 @@ export default class LobbyScreen extends ScreenBase {
     }
 
     render() {
-        const theaterList = LobbyStore.theaters.map((theater) => (<LobbyCardTheater theater={theater} />));
+        const theaterList = Object.entries(LobbyStore.theaters)
+            .map(([id, theater]) => (<LobbyCardTheater theaterId={id} theater={theater} />));
         return (
             <Root>
                 <LobbyHeader>
