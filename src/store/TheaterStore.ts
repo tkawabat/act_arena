@@ -16,7 +16,8 @@ import SoundStore from './SoundStore';
 import OverlayMessageStore from '../store/OverlayMessageStore';
 
 import TheaterUserModel, { TheaterUser } from '../model/TheaterUserModel';
-import TheaterModel, { TheaterCharacter } from '../model/TheaterModel';
+import TheaterModel, { TheaterCharacter, } from '../model/TheaterModel';
+
 
 
 class TheaterStore {
@@ -57,6 +58,11 @@ class TheaterStore {
     }
 
     @action
+    public setAgreement = (agreement) => {
+        this.agreement = agreement;
+    }
+
+    @action
     public setModal = (modal:boolean) => {
         this.modal = modal;
     }
@@ -91,9 +97,9 @@ class TheaterStore {
         this.dealArenaMessageTransition(this.overlayMessage, data.message);
         this.overlayMessage = data.message;
 
-        this.endAt[C.ArenaState.READ] = Moment.unix(data.endAt[C.ArenaState.READ].seconds);
-        this.endAt[C.ArenaState.CHECK] = Moment.unix(data.endAt[C.ArenaState.CHECK].seconds);
-        this.endAt[C.ArenaState.ACT] = Moment.unix(data.endAt[C.ArenaState.ACT].seconds);
+        this.endAt[C.TheaterState.READ] = Moment.unix(data.endAt[C.TheaterState.READ].seconds);
+        this.endAt[C.TheaterState.CHECK] = Moment.unix(data.endAt[C.TheaterState.CHECK].seconds);
+        this.endAt[C.TheaterState.ACT] = Moment.unix(data.endAt[C.TheaterState.ACT].seconds);
         
         this.title = data.title;
         this.author = data.author;

@@ -19,6 +19,7 @@ export interface Theater {
     agreementUrl: string
     agreementScroll: number
     characters: Array<TheaterCharacter>
+    minutes: number
     message: string
     endAt: Array<FirebaseFirestoreTypes.Timestamp>
     createdAt: FirebaseFirestoreTypes.Timestamp

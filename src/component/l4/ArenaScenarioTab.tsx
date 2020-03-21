@@ -17,7 +17,6 @@ import ArenaScenarioFooter from '../l3/ArenaScenarioFooter';
 @observer
 export default class ArenaScenarioTab extends Component {
     private webview:WebView;
-
     private setWebView = (webview:WebView) => { this.webview = webview; }
 
     componentDidMount() {
