@@ -72,6 +72,27 @@ export enum TheaterState {
     ACT = 2,
 }
 
+export const TheaterStateString = {
+    [ArenaState.READ]: '台本チェック',
+    [ArenaState.CHECK]: 'マイクチェック',
+    [ArenaState.ACT]: '上演',
+}
+
+export enum TheaterUserState {
+    LISTNER = 0,
+    ACTOR = 1,
+}
+
+export const TheaterUserStateString = {
+    [TheaterUserState.LISTNER]: 'リスナー',
+    [TheaterUserState.ACTOR]: 'アクター',
+}
+
+export enum TheaterTab {
+    SCENARIO,
+    CHAT,
+}
+
 export enum SkywayState {
     INIT,
     OPEN,
@@ -143,4 +164,5 @@ export const SoundFadeDuration = 8000;
 export const OverlayDuration = 1000;
 
 export const SchedulerArenaTick = 'ArenaTick';
+export const SchedulerTheaterTick = 'TheaterTick';
 export const SchedulerAndroidReload = 'AndroidReload';
