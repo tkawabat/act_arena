@@ -10,6 +10,8 @@ import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStoreAdmin';
 import SkywayStoreAdmin from '../../../storybook/admin/SkywayStoreAdmin';
 
+import ArenaScenarioStore from '../../store/ArenaScenarioStore';
+
 import Agreement from './Agreement';
 import ArenaAddTimeButton from './ArenaAddTimeButton';
 import EntryButton from './EntryButton';
@@ -22,11 +24,12 @@ import Timer from './Timer';
 import TestTellButton from './TestTellButton';
 
 
+
 const components = storiesOf('L1', module);
 components
     .addDecorator(withKnobs)
     .add(Agreement.name, () => ([
-        StoryUtil.FullView(<Agreement />),
+        StoryUtil.FullView(<Agreement onPress={() => {}} setter={(webview) => {}} uri={ArenaScenarioStore.agreementUrl} />),
         StoryUtil.CenteredView(<ArenaScenarioStoreAdmin />),
     ]))
     .add(ArenaAddTimeButton.name, () => ([
