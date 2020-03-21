@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { Alert } from 'react-native';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
@@ -47,7 +48,7 @@ class TheaterModel {
             })
             .catch((error) => {
                 Amplitude.error('TheaterModel.getAsync', error);
-                alert('部屋情報の取得に失敗しました。');
+                Alert.alert('部屋情報の取得に失敗しました。');
             })
             ;
     }

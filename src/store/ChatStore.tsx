@@ -115,7 +115,7 @@ class ChatStore {
     public addNgListAlert = (user:any) => {
         if (UserStore.ngList && UserStore.ngList.indexOf(user._id) !== -1) return;
         if (UserStore.ngList && UserStore.ngList.length >= C.UserNgLimit) {
-            alert('NGリストは'+C.UserNgLimit+'件までです。');
+            Alert.alert('NGリストは'+C.UserNgLimit+'件までです。');
             return;
         }
 

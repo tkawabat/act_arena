@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { Alert } from 'react-native';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { observable, computed, action } from 'mobx';
 
@@ -280,7 +281,7 @@ class ArenaStore {
     @action
     public join = async (id:number) => {
         if (ArenaUserStore.userNum >= C.RoomUserLimit) {
-            alert('申し訳ありません、満員のため入室できません。');
+            Alert.alert('満員のため入室できません。');
             return;
         }
 
@@ -291,7 +292,7 @@ class ArenaStore {
 
         const arenaRef = await this.arenaModel.asyncGet(this.id, true);
         if (!arenaRef) {
-            alert('エラーが発生しました。');
+            Alert.alert('エラーが発生しました。');
             return;
         }
 

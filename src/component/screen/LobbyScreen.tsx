@@ -49,7 +49,7 @@ export default class LobbyScreen extends ScreenBase {
         const p = Permissions.PERMISSIONS.IOS.MICROPHONE;
         switch (await Permissions.check(p)) {
             case Permissions.RESULTS.UNAVAILABLE:
-                alert('このデバイスではマイクをご利用できないため、アリーナに参加できません。');
+                Alert.alert('このデバイスではマイクをご利用できないため、アリーナに参加できません。');
                 return false;
             case Permissions.RESULTS.BLOCKED:
                 Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [

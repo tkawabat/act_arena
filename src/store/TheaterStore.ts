@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { Alert } from 'react-native';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { observable, computed, action } from 'mobx';
 
@@ -74,22 +75,27 @@ class TheaterStore {
     }
 
     @action
-    private tick = () => {
+    public calcState = (endAt:Moment.Moment[]) : [C.TheaterState, number] => {
         // stateと残り時間の計算
-        let state:C.TheaterState = C.TheaterState.READ;
+        let state:C.TheaterState = C.TheaterState.END;
         let diff:number = -1;
-
         const now = Moment();
-        for (let [key, value] of this.endAt.entries()) {
-            if (key === C.TheaterState.READ) continue;
+        for (let [key, value] of endAt.entries()) {
             if (now > value) continue;
             
             state = key as C.TheaterState;
             diff = value.diff(now, 'second');
             break;
         }
+        return [state, diff];
+    }
 
+    @action
+    private tick = () => {
+        const [state, diff] = this.calcState(this.endAt);
+        
         this.dealArenaStateTransition(this.theaterState, state);
+        
         this.theaterState = state;
         this.time = diff;
         
@@ -249,7 +255,7 @@ class TheaterStore {
     @action
     public join = async (id:string) => {
         if (TheaterUserStore.userNum >= C.RoomUserLimit) {
-            alert('申し訳ありません、満員のため入室できません。');
+            Alert.alert('満員のため入室できません。');
             return;
         }
 
