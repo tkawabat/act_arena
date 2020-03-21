@@ -34,7 +34,7 @@ export const ArenaStateString = {
     [ArenaState.WAIT]: '演者募集',
     [ArenaState.READ]: '台本チェック',
     [ArenaState.CHECK]: 'マイクチェック',
-    [ArenaState.ACT]: '上演',
+    [ArenaState.ACT]: '上演中',
 }
 
 export const ArenaStateTime = {
@@ -70,12 +70,14 @@ export enum TheaterState {
     READ = 0,
     CHECK = 1,
     ACT = 2,
+    END = 3,
 }
 
 export const TheaterStateString = {
-    [ArenaState.READ]: '台本チェック',
-    [ArenaState.CHECK]: 'マイクチェック',
-    [ArenaState.ACT]: '上演',
+    [TheaterState.READ]: '台本チェック',
+    [TheaterState.CHECK]: 'マイクチェック',
+    [TheaterState.ACT]: '上演中',
+    [TheaterState.END]: '上演終了',
 }
 
 export enum TheaterUserState {

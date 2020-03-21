@@ -14,6 +14,7 @@ import TheaterStore from '../../store/TheaterStore';
 
 import TextBadge from '../l1/TextBadge';
 import LobbyCardBase from '../l1/LobbyCardBase';
+import { Alert } from 'react-native';
 
 interface props {
     theaterId: string
@@ -24,6 +25,16 @@ interface props {
 export default class LobbyCardTheater extends Component<props> {
 
     private joinTheater = () => {
+        const endAt:Moment.Moment[] = [];
+        endAt[C.TheaterState.READ] = Moment.unix(this.props.theater.endAt[C.TheaterState.READ].seconds);
+        endAt[C.TheaterState.CHECK] = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds);
+        endAt[C.TheaterState.ACT] = Moment.unix(this.props.theater.endAt[C.TheaterState.ACT].seconds);
+        const [state,] = TheaterStore.calcState(endAt);
+
+        if (state === C.TheaterState.END) {
+            Alert.alert('劇がすでに終了しています。');
+            return;
+        }
         ConfigStore.load(true);
         TheaterStore.join(this.props.theaterId).then(() => {
             ConfigStore.load(false);
@@ -33,17 +44,21 @@ export default class LobbyCardTheater extends Component<props> {
     render() {
         const title = '『'+this.props.theater.title+'』';
         const actors = this.props.theater.characters.map((v) => v.userName);
-        const start = Moment.unix(this.props.theater.createdAt.seconds).format('HH:mm');
-        const end = Moment.unix(this.props.theater.endAt[C.TheaterState.ACT].seconds).format('HH:mm');
+        const startTime = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds).format('HH:mm');
+        const endAt:Moment.Moment[] = [];
+        endAt[C.TheaterState.READ] = Moment.unix(this.props.theater.endAt[C.TheaterState.READ].seconds);
+        endAt[C.TheaterState.CHECK] = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds);
+        endAt[C.TheaterState.ACT] = Moment.unix(this.props.theater.endAt[C.TheaterState.ACT].seconds);
+        const [state,] = TheaterStore.calcState(endAt);
 
         return (
             <Root title={title} onPress={this.joinTheater}>
                 <Left>
                     <ExplainText>{'演者: ' + actors.join(', ')}</ExplainText>
-                    <ExplainText>{start + '~' + end}</ExplainText>
+                    <ExplainText>{'上演開始: ' + startTime}</ExplainText>
                 </Left>
                 <Right>
-                    <StateBadge text={'上演中'} />
+                    <StateBadge text={C.TheaterStateString[state]} {...(badgeColor[state])}/>
                     <EnterIcon name='sign-out-alt' type='FontAwesome5' />
                 </Right>
             </Root>
@@ -57,7 +72,7 @@ const Root = styled(LobbyCardBase)`
 `
 
 const Left = styled.View`
-    flex: 4;
+    flex: 3;
     align-self: flex-start;
     justify-content: flex-end;
 `;
@@ -75,6 +90,7 @@ const ExplainText = styled.Text`
 
 const StateBadge = styled(TextBadge)`
     margin-left: auto;
+    width: 80px;
 `
 
 const EnterIcon = styled(Icon)`
@@ -82,3 +98,10 @@ const EnterIcon = styled(Icon)`
     margin-left: auto;
     font-size: 24px;
 `
+
+const badgeColor = {
+    [C.TheaterState.READ]: { warning: true },
+    [C.TheaterState.CHECK]: { warning: true },
+    [C.TheaterState.ACT]: {  },
+    [C.TheaterState.END]: { danger: true },
+}
