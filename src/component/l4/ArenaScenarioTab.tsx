@@ -10,7 +10,7 @@ import ArenaExplain from '../l2/ArenaExplain';
 import Agreement from '../l1/Agreement';
 import ArenaScenario from '../l1/ArenaScenario';
 import ArenaScenarioTools from '../l3/ArenaScenarioTools';
-import ScenarioFooter from '../l3/ScenarioFooter';
+import ArenaScenarioFooter from '../l3/ArenaScenarioFooter';
 
 
 
@@ -26,7 +26,7 @@ export default class ArenaScenarioTab extends Component {
  
                 <ArenaScenarioTools />
                 
-                <ScenarioFooter />
+                <ArenaScenarioFooter />
             </Root>
         );
     }

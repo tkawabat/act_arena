@@ -10,7 +10,7 @@ import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 
 import ArenaHeader from './ArenaHeader';
-import ScenarioFooter from './ScenarioFooter';
+import ArenaScenarioFooter from './ArenaScenarioFooter';
 import ArenaScenarioTools from './ArenaScenarioTools';
 
 
@@ -24,8 +24,8 @@ components
             <ArenaStoreAdmin />
         ])
     ))
-    .add(ScenarioFooter.name, () => ([
-        StoryUtil.FullView(<ScenarioFooter />),
+    .add(ArenaScenarioFooter.name, () => ([
+        StoryUtil.FullView(<ArenaScenarioFooter />),
         StoryUtil.FullView(<ArenaStoreAdmin />),
     ]))
     .add(ArenaScenarioTools.name, () => ([

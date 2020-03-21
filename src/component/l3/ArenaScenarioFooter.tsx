@@ -14,7 +14,7 @@ import TextBadge from '../l1/TextBadge';
 
 
 @observer
-export default class ScenarioFooter extends Component {
+export default class ArenaScenarioFooter extends Component {
 
     render() {
         let entryButton;
