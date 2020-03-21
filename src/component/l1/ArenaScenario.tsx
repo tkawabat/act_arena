@@ -66,7 +66,7 @@ window.ActArena.loadScript("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/
 }
 
 @observer
-export default class Scenario extends Component {
+export default class ArenaScenario extends Component {
     private webview:WebView;
 
     private setWebview = (ref) => {

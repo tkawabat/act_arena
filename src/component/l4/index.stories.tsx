@@ -11,7 +11,7 @@ import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStore
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 
 import ChatTab from './ChatTab';
-import ScenarioTab from './ScenarioTab';
+import ArenaScenarioTab from './ArenaScenarioTab';
 
 
 
@@ -21,9 +21,9 @@ components
     .add(ChatTab.name, () => (
         StoryUtil.FullView(<ChatTab />)
     ))
-    .add(ScenarioTab.name, () => (
+    .add(ArenaScenarioTab.name, () => (
         StoryUtil.FullView([
-            <ScenarioTab />,
+            <ArenaScenarioTab />,
         ])
     ))
     ;

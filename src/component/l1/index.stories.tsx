@@ -14,7 +14,7 @@ import Agreement from './Agreement';
 import ArenaAddTimeButton from './ArenaAddTimeButton';
 import EntryButton from './EntryButton';
 import Microphone from './Microphone';
-import Scenario from './Scenario';
+import ArenaScenario from './ArenaScenario';
 import SquareIconButton from './SquareIconButton';
 import SquareTextButton from './SquareTextButton';
 import SquareTextIconButton from './SquareTextIconButton';
@@ -43,9 +43,9 @@ components
             StoryUtil.CenteredView(<SkywayStoreAdmin />),
         ])
     })
-    .add(Scenario.name, () => (
+    .add(ArenaScenario.name, () => (
         StoryUtil.FullView([
-            <Scenario />,
+            <ArenaScenario />,
             <ArenaScenarioStoreAdmin />,
         ])
     ))

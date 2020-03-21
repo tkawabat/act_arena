@@ -17,7 +17,7 @@ import ArenaHeader from '../l3/ArenaHeader';
 import ChatTabHeader from '../l2/ChatTabHeader';
 import ScenarioTabHeader from '../l2/ScenarioTabHeader';
 import OverlayMessage from '../l2/OverlayMessage';
-import ScenarioTab from '../l4/ScenarioTab';
+import ArenaScenarioTab from '../l4/ArenaScenarioTab';
 import ChatTab from '../l4/ChatTab';
 
 
@@ -44,7 +44,7 @@ export default class ArenaScreen extends ScreenBase {
                             key={'scenario'}
                             heading={<TabHeading style={styles.tab}><ScenarioTabHeader /></TabHeading>}
                         >
-                            <ScenarioTab />
+                            <ArenaScenarioTab />
                             <ActInfoModal />
                         </Tab>
                         <Tab
