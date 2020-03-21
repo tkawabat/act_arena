@@ -30,17 +30,24 @@ class TheaterModel {
     private ref:FirebaseFirestoreTypes.DocumentReference;
     private unsubscribe:Function;
 
+    get id() :string {
+        return this.ref.id;
+    }
+
     constructor() {
         this.db = Firebase.firestore().collection('Theater');
     }
 
-    public asyncGetById = async (id:string) :Promise<Theater|void> => {
+    public asyncGetById = async (id:string) :Promise<void|FirebaseFirestoreTypes.DocumentSnapshot> => {
         return this.db.doc(id).get()
             .then((snapshot) => {
                 this.ref = snapshot.ref;
-                return snapshot.data() as Theater;
+                return snapshot;
             })
-            .catch((error) => Amplitude.error('ArenaStore getAsync', error))
+            .catch((error) => {
+                Amplitude.error('TheaterModel.getAsync', error);
+                alert('部屋情報の取得に失敗しました。');
+            })
             ;
     }
 

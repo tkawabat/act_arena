@@ -6,42 +6,42 @@ import Amplitude from '../lib/Amplitude';
 import { User } from '../store/UserStore';
 
 
-export interface ArenaUser {
+export interface TheaterUser {
     name: string
     gender: C.Gender
-    iconUrl: string
     state: C.ArenaUserState
+    next: boolean
 }
 
-class ArenaUserModel {
+class TheaterUserModel {
     private ref:FirebaseFirestoreTypes.CollectionReference;
     private unsubscribe:Function;
 
-    constructor (arenaRef:FirebaseFirestoreTypes.DocumentReference) {
-        this.ref = arenaRef.collection('RoomUser');
+    constructor (theaterRef:FirebaseFirestoreTypes.DocumentReference) {
+        this.ref = theaterRef.collection('RoomUser');
     }
 
     public asyncSetRoomUser = async (user:User) :Promise<void> => {
         return this.ref.doc(user.id).set({
             name: user.name,
             gender: user.gender,
-            state: C.ArenaUserState.LISTNER,
+            next: false,
         })
-        .catch((error) => Amplitude.error('ArenaStore join add user', error))
+        .catch((error) => Amplitude.error('TheaterUserModel.asyncSetRoomUser', error))
         ;
     }
 
-    public asyncUpdateState = async (user:User, state:C.ArenaUserState) :Promise<void> => {
+    public asyncUpdateNext = async (user:User, next:boolean) :Promise<void> => {
         return this.ref.doc(user.id).update({
-            state: state
+            next: next
         })
-        .catch((error) => Amplitude.error('ArenaStore entry', error))
+        .catch((error) => Amplitude.error('TheaterUserModel.asyncUpdateNext', error))
         ;
     }
 
     public asyncDelete = async (user:User) :Promise<void> => {
         return this.ref.doc(user.id).delete()
-            .catch((error) => Amplitude.error('ArenaStore leave', error))
+            .catch((error) => Amplitude.error('TheaterUserModel.asyncDelete', error))
         ;
     }
 
@@ -55,4 +55,4 @@ class ArenaUserModel {
 }
 
 
-export default ArenaUserModel;
+export default TheaterUserModel;
