@@ -15,7 +15,6 @@ import React, { Component } from 'react';
 import { Updates, SplashScreen, } from 'expo';
 import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
-import Moment from 'moment';
 import styled from 'styled-components/native';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import FlashMessage from "react-native-flash-message";
@@ -56,7 +55,7 @@ export default class App extends Component {
         }, 700);
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         if (ConfigStore.init['init']) return; // 二重実行対策
         ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoadComplete('init');
