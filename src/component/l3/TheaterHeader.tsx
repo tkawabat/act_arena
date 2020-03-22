@@ -34,8 +34,8 @@ export default class TheaterHeader extends Component<props> {
             <Root>
                 <BasicStyle.Left>
                     <TheaterStateBadge
-                        text={C.TheaterStateString[TheaterStore.TheaterState]}
-                        {...(badgeColor[TheaterStore.TheaterState])}
+                        text={C.TheaterStateString[TheaterStore.theaterState]}
+                        {...(badgeColor[TheaterStore.theaterState])}
                     />
                     <Timer />
                 </BasicStyle.Left>
@@ -86,8 +86,8 @@ const UserNumText = styled.Text`
 `
 
 const badgeColor = {
-    [C.TheaterState.WAIT]: { 'success': true },
-    [C.TheaterState.READ]: { 'warning': true },
-    [C.TheaterState.CHECK]: { 'warning': true },
-    [C.TheaterState.ACT]: { 'danger': true },
+    [C.TheaterState.READ]: { warning: true },
+    [C.TheaterState.CHECK]: { warning: true },
+    [C.TheaterState.ACT]: { },
+    [C.TheaterState.END]: { danger: true },
 }
