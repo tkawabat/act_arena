@@ -12,7 +12,7 @@ import * as C from '../../lib/Const';
 import TheaterStore from '../../store/TheaterStore';
 import TheaterUserStore from '../../store/TheaterUserStore';
 
-import ActInfoModal from '../l2/ActInfoModal';
+import TheaterActInfoModal from '../l2/TheaterActInfoModal';
 import TheaterHeader from '../l3/TheaterHeader';
 import ChatTabHeader from '../l2/ChatTabHeader';
 import ScenarioTabHeader from '../l2/ScenarioTabHeader';
@@ -45,7 +45,7 @@ export default class TheaterScreen extends ScreenBase {
                             heading={<TabHeading style={styles.tab}><ScenarioTabHeader /></TabHeading>}
                         >
                             <TheaterScenarioTab />
-                            <ActInfoModal />
+                            <TheaterActInfoModal />
                         </Tab>
                         <Tab
                             key={'chat'}
