@@ -66,9 +66,11 @@ const ExplainText = styled.Text`
 
 const Animation = styled(Animatable.View)`
     margin-left: auto;
+    height: 30px;
 `
 
 const PressText = styled.Text`
+    margin-top: auto;
     color: gray;
     font-size: 12px;
     font-weight: 500;
