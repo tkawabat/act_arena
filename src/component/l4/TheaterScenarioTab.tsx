@@ -9,8 +9,8 @@ import TheaterStore from '../../store/TheaterStore';
 
 import Agreement from '../l1/Agreement';
 import Scenario from '../l1/Scenario';
-import ArenaScenarioTools from '../l3/ArenaScenarioTools';
-import ArenaScenarioFooter from '../l3/ArenaScenarioFooter';
+import TheaterScenarioTools from '../l3/TheaterScenarioTools';
+import TheaterScenarioFooter from '../l3/TheaterScenarioFooter';
 
 
 @observer
@@ -29,8 +29,8 @@ export default class TheaterScenarioTab extends Component {
                         uri={TheaterStore.agreementUrl}
                     />}
  
-                <ArenaScenarioTools />
-                <ArenaScenarioFooter />
+                <TheaterScenarioTools />
+                <TheaterScenarioFooter />
             </Root>
         );
     }
