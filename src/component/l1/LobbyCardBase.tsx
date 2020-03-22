@@ -58,10 +58,11 @@ const Header = styled.View`
 
 const Main = styled.View`
     flex: 1;
+    font-size: 12px;
 `;
 
 const TitleText = styled.Text`
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     color: #000044;
 `;

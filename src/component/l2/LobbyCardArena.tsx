@@ -52,10 +52,9 @@ const Footer = styled.View`
 
 const ExplainText = styled.Text`
     margin-left: 15px;
-    font-size: 16px;
 `;
 
 const EnterIcon = styled(Icon)`
     margin-top: 10px;
-    font-size: 24px;
+    font-size: 20px;
 `

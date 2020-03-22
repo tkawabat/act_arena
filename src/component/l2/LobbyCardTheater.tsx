@@ -31,10 +31,10 @@ export default class LobbyCardTheater extends Component<props> {
         endAt[C.TheaterState.ACT] = Moment.unix(this.props.theater.endAt[C.TheaterState.ACT].seconds);
         const [state,] = TheaterStore.calcState(endAt);
 
-        if (state === C.TheaterState.END) {
-            Alert.alert('劇がすでに終了しています。');
-            return;
-        }
+        // if (state === C.TheaterState.END) {
+        //     Alert.alert('劇はすでに終了しています。');
+        //     return;
+        // }
         ConfigStore.load(true);
         TheaterStore.join(this.props.theaterId).then(() => {
             ConfigStore.load(false);
@@ -84,7 +84,6 @@ const Right = styled.View`
 const ExplainText = styled.Text`
     margin-top: 10px;
     margin-left: 15px;
-    font-size: 16px;
     color: #333;
 `;
 
@@ -96,7 +95,7 @@ const StateBadge = styled(TextBadge)`
 const EnterIcon = styled(Icon)`
     margin-top: 10px;
     margin-left: auto;
-    font-size: 24px;
+    font-size: 20px;
 `
 
 const badgeColor = {

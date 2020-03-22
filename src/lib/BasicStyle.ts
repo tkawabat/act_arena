@@ -73,5 +73,5 @@ export const Right = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 10px;
+    padding-right: 5px;
 `

@@ -80,7 +80,6 @@ const Footer = styled.View`
 
 const ExplainText = styled.Text`
     margin-left: 15px;
-    font-size: 16px;
 `;
 
 const InputRoot = styled.View`
@@ -107,5 +106,5 @@ const RandomButtonText = styled.Text`
 const EnterIcon = styled(Icon)`
     margin-top: 10px;
     margin-left: auto;
-    font-size: 24px;
+    font-size: 20px;
 `
