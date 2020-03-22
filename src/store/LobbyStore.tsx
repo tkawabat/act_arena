@@ -32,12 +32,15 @@ class LobbyStore {
     }
 
     @computed get actTheaterId():string {
+        if (!this.theaters) return undefined;
+
         const now = Moment().unix();
-        const [theaterId,] = Object.entries(this.theaters).find(([id, theater]) => {
+        const pair = Object.entries(this.theaters).find(([id, theater]) => {
             if (theater.endAt[C.TheaterState.ACT].seconds < now) return false;
             return theater.characters.findIndex((c) => c.user === UserStore.id) !== -1;
-        })
-        return theaterId;
+        });
+        if (!pair) return undefined;
+        return pair[0];
     }
 
     constructor() {
