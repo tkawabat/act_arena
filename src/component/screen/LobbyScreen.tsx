@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Platform, Dimensions, } from 'react-native';
+import { Alert, Platform, } from 'react-native';
 import { Header, Button, Title, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import * as Permissions from 'react-native-permissions';
@@ -65,17 +65,16 @@ export default class LobbyScreen extends ScreenBase {
 
     private asyncCheckAndroidPermissions = async () => {
         const microphone = await Permissions.request(Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO);
-        const camera = await Permissions.request(Permissions.PERMISSIONS.ANDROID.CAMERA);
-        if (microphone === Permissions.RESULTS.UNAVAILABLE || camera === Permissions.RESULTS.UNAVAILABLE) {
-            alert('このデバイスではマイク・カメラをご利用できないため、アリーナに参加できません。');
+        if (microphone === Permissions.RESULTS.UNAVAILABLE) {
+            alert('このデバイスではマイクをご利用できないため、アリーナに参加できません。');
             return false;
         }
 
-        if (microphone === Permissions.RESULTS.GRANTED && camera === Permissions.RESULTS.GRANTED) {
+        if (microphone === Permissions.RESULTS.GRANTED) {
             return true;
         }
         
-        Alert.alert('', 'アリーナに参加するためにはマイク・カメラの利用許可が必要です。（カメラは実際には使用しません。）', [
+        Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
             { text: '設定へ', onPress: Permissions.openSettings }
             , { text: 'Cancel' }
         ]);
