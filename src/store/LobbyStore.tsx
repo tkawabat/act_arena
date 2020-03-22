@@ -14,6 +14,9 @@ import TheaterListModel from '../model/TheaterListModel';
 import ConfigStore from './ConfigStore';
 import UserStore from './UserStore';
 import TheaterStore from './TheaterStore';
+import ArenaStore from './ArenaStore';
+import Scheduler from '../lib/Scheduler';
+import SoundStore from './SoundStore';
 
 
 class LobbyStore {
@@ -50,6 +53,28 @@ class LobbyStore {
         this.theaterListModel = new TheaterListModel();
     }
 
+    private showmessage = (theaterId:string) => {
+        const f = () => {
+            SoundStore.se(C.SeKey.MATCHING);
+            showMessage({
+                autoHide: false,
+                message: 'マッチングしました！　⇛長押しして入室。',
+                titleStyle: { fontSize: 16 },
+                onLongPress: () => {
+                    ArenaStore.leave();
+                    TheaterStore.leave();
+                    TheaterStore.join(theaterId);
+                }
+            });
+        }
+
+        if (ConfigStore.isInitLoaded) {
+            f();
+        } else {
+            Scheduler.setTimeout('', f, 2000);
+        }
+    }
+
     private arenaUserUpdated = (snapshot :FirebaseFirestoreTypes.QuerySnapshot) => {
         const users = {};
         snapshot.docs.map((doc) => {
@@ -71,12 +96,7 @@ class LobbyStore {
 
         const afterActTheaterId = this.actTheaterId;
         if (typeof afterActTheaterId !== 'undefined' && beforeActTheaterId !== afterActTheaterId) {
-            setTimeout(showMessage.bind(this, {
-                autoHide: false,
-                message: 'サシ劇マッチングしました。　⇛長押しして入室。',
-                titleStyle: { fontSize: 16 },
-                onLongPress: TheaterStore.join.bind(this, afterActTheaterId)
-            }), 1000)
+            this.showmessage(afterActTheaterId);
         }
     }
 
