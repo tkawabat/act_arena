@@ -22,6 +22,8 @@ import TheaterModel, { TheaterCharacter, } from '../model/TheaterModel';
 
 
 class TheaterStore {
+    public reload = () => {};
+    
     private theaterModel:TheaterModel;
     private theaterUserModel:TheaterUserModel;
 
@@ -72,6 +74,12 @@ class TheaterStore {
     @action
     public setModal = (modal:boolean) => {
         this.modal = modal;
+    }
+
+    @action
+    public reloadAgreement = () => {
+        this.agreement = false;
+        this.reload();
     }
 
     @action
