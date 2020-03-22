@@ -1,9 +1,8 @@
 import React from 'react';
-import { Alert, Platform, } from 'react-native';
+import { Alert, Platform, Dimensions, } from 'react-native';
 import { Header, Button, Title, Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import * as Permissions from 'react-native-permissions';
-import { showMessage, hideMessage } from "react-native-flash-message";
 import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
@@ -19,7 +18,6 @@ import UserStore from '../../store/UserStore';
 import LobbyStore from '../../store/LobbyStore';
 
 import Bell from '../l1/Bell';
-import RectangleTextButton from '../l1/RectangleTextButton';
 import PushSettingModal from '../l3/PushSettingModal';
 import LobbyCardArena from '../l2/LobbyCardArena';
 import LobbyCardPrivateArena from '../l2/LobbyCardPrivateArena';
@@ -107,17 +105,17 @@ export default class LobbyScreen extends ScreenBase {
         return (
             <Root>
                 <LobbyHeader>
-                    <Left>
+                    <BasicStyle.Left>
                         <Bell onPress={PushStore.viewSettingModal} />
-                    </Left>
-                    <Center>
+                    </BasicStyle.Left>
+                    <BasicStyle.Center>
                         <Title>ロビー</Title>
-                    </Center>
-                    <Right>
+                    </BasicStyle.Center>
+                    <BasicStyle.Right>
                         <Button transparent onPress={Navigator.navigate.bind(this, 'Setting', null)} >
                             <ConfigIcon name='cog' type='FontAwesome5' />
                         </Button>
-                    </Right>
+                    </BasicStyle.Right>
                 </LobbyHeader>
                 <ScreenBody>
                     <LobbyCardArena joinArena={this.joinArena} />
@@ -127,11 +125,6 @@ export default class LobbyScreen extends ScreenBase {
                 </ScreenBody>
 
                 <Footer>
-                    <RectangleTextButton text='テスト' onPress={showMessage.bind(this, {
-                        autoHide: false,
-                        message: 'サシ劇マッチングしました。　⇛長押しして入室。',
-                        titleStyle: { fontSize: 16, fontFamily: 'arial black' },
-                    })} />
                     <TestTellButton onPress={this.testTell}></TestTellButton>
                 </Footer>
 
@@ -141,31 +134,11 @@ export default class LobbyScreen extends ScreenBase {
     }
 }
 
-const Root = styled.ScrollView`
+const Root = styled.View`
     ${BasicStyle.screenRoot}
 `
 
-const Left = styled.View`
-    flex: 1;
-    align-items: flex-start;
-    justify-content: center;
-`
-
-const Center = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`
-
-const Right = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-`
-
-const ScreenBody = styled.View`
+const ScreenBody = styled.ScrollView`
     flex: 1;
 `
 
@@ -175,10 +148,12 @@ const LobbyHeader = styled(Header)`
 `
 
 const Footer = styled.View`
-    height: 50px;
-    margin: 10px;
+    background-color: #000044;
     flex-direction: row;
+    align-items: center;
     justify-content: flex-end;
+    padding: 10px;
+    height: 50px;
 `
 
 const ConfigIcon = styled(Icon)`

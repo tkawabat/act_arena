@@ -5,6 +5,9 @@ import styled from 'styled-components/native';
 
 
 let { height, width } = Dimensions.get('window');
+
+export const bottom = height - getStatusBarHeight() - getBottomSpace();
+
 export const screenWidth = css`
     width: ${width}px;
 `

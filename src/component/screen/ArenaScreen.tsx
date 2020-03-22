@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet, } from 'react-native';
 import { Container, Tabs, Tab, TabHeading, } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
@@ -8,6 +8,7 @@ import styled from 'styled-components/native';
 
 import ScreenBase from './ScreenBase';
 import * as C from '../../lib/Const';
+import * as BasicStyle from '../../lib/BasicStyle';
 
 import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
@@ -59,8 +60,6 @@ export default class ArenaScreen extends ScreenBase {
     }
 }
 
-const {height, width} = Dimensions.get('window');
-
 const Root = styled(Container)`
     flex: 1;
     margin-top: ${getStatusBarHeight()}px;
@@ -68,7 +67,7 @@ const Root = styled(Container)`
 `;
 
 const Body = styled.View`
-    height: ${height - 50 - getStatusBarHeight() - getBottomSpace()}px;
+    height: ${BasicStyle.bottom - 50}px;
 `;
 
 const styles = StyleSheet.create({
