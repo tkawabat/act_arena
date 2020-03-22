@@ -37,12 +37,11 @@ export default class TheaterHeader extends Component<props> {
                         text={C.TheaterStateString[TheaterStore.theaterState]}
                         {...(badgeColor[TheaterStore.theaterState])}
                     />
-                    <Timer />
+                    <Timer time={TheaterStore.time} />
                 </BasicStyle.Left>
-                <BasicStyle.Center>
-                    <RoomIcon name='home' type='FontAwesome5' />
-                    <RoomName>『{TheaterStore.time}』</RoomName>
-                </BasicStyle.Center>
+                <Center>
+                    <RoomName>『{TheaterStore.title}』</RoomName>
+                </Center>
                 <BasicStyle.Right>
                     <UesrIcon name='user' type='FontAwesome5' />
                     <UserNumText>{this.props.userNum}</UserNumText>
@@ -60,17 +59,16 @@ const Root = styled.View`
     ${BasicStyle.header};
 `;
 
+const Center = styled(BasicStyle.Center)`
+    flex: 2
+`
+
 const TheaterStateBadge = styled(TextBadge)`
     height: 20px;
 `
 
-const RoomIcon = styled(Icon)`
-    font-size: 16px;
-`
-
 const RoomName = styled.Text`
     color: #333;
-    margin-left: 3px;
     font-size: 18px;
     font-weight: 600;
 `
@@ -82,7 +80,6 @@ const UesrIcon = styled(Icon)`
 const UserNumText = styled.Text`
     font-size: 16px;
     margin-left: 2px;
-    margin-right: 2px;
 `
 
 const badgeColor = {

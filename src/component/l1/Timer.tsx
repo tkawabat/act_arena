@@ -3,19 +3,20 @@ import { Icon } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
-import ArenaStore from '../../store/ArenaStore';
 
+interface props {
+    time: number
+}
 
 @observer
-export default class Timer extends Component {
+export default class Timer extends Component<props> {
     render() {
-        const time = ArenaStore.time > 0 ? ArenaStore.time.toString() : '---';
+        const time = this.props.time > 0 ? this.props.time.toString() : '---';
         return (
             <Root>
                 <TimerIcon name='clock' type='FontAwesome5' />
                 <TimerText>{time}</TimerText>
             </Root>
-            
         );
     }
 }

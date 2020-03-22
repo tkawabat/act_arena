@@ -38,7 +38,7 @@ export default class ArenaHeader extends Component<props> {
                         text={C.ArenaStateString[ArenaStore.arenaState]}
                         {...(badgeColor[ArenaStore.arenaState])}
                     />
-                    <Timer />
+                    <Timer time={ArenaStore.time} />
                 </BasicStyle.Left>
                 <BasicStyle.Center>
                     <RoomIcon name='home' type='FontAwesome5' />
