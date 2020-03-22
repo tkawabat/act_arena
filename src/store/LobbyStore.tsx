@@ -1,6 +1,7 @@
 import Moment from 'moment';
 import { observable, computed, action } from 'mobx';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import { showMessage, } from "react-native-flash-message";
 
 import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
@@ -12,6 +13,7 @@ import TheaterListModel from '../model/TheaterListModel';
 
 import ConfigStore from './ConfigStore';
 import UserStore from './UserStore';
+import TheaterStore from './TheaterStore';
 
 
 class LobbyStore {
@@ -58,12 +60,24 @@ class LobbyStore {
     }
 
     private theaterListUpdated = (snapshot :FirebaseFirestoreTypes.QuerySnapshot) => {
+        const beforeActTheaterId = this.actTheaterId;
+
         const theaters:{ [id:string]: Theater} = {} ;
         snapshot.docs.forEach((v:FirebaseFirestoreTypes.QueryDocumentSnapshot) => {
             const id = v.id;
             theaters[id] = v.data() as Theater;
         });
         this.theaters = theaters;
+
+        const afterActTheaterId = this.actTheaterId;
+        if (typeof afterActTheaterId !== 'undefined' && beforeActTheaterId !== afterActTheaterId) {
+            setTimeout(showMessage.bind(this, {
+                autoHide: false,
+                message: 'サシ劇マッチングしました。　⇛長押しして入室。',
+                titleStyle: { fontSize: 16 },
+                onLongPress: TheaterStore.join.bind(this, afterActTheaterId)
+            }), 1000)
+        }
     }
 
     public asyncInit = async (arenaId:number) :Promise<void> => {
