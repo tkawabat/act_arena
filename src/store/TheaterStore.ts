@@ -31,7 +31,7 @@ class TheaterStore {
 
     @observable id:string = null;
     @observable theaterState:C.TheaterState = C.TheaterState.READ;
-    @observable time:number;
+    @observable time:number = -1;
     @observable agreement: boolean;
     @observable overlayMessage:string = null;
 
@@ -102,7 +102,7 @@ class TheaterStore {
     private tick = () => {
         const [state, diff] = this.calcState(this.endAt);
         
-        this.dealArenaStateTransition(this.theaterState, state);
+        this.dealTheaterStateTransition(this.theaterState, state);
         
         this.theaterState = state;
         this.time = diff;
@@ -153,7 +153,7 @@ class TheaterStore {
         TheaterUserStore.users = users;
     }
 
-    private dealArenaStateTransition = (before:C.TheaterState, after:C.TheaterState) :void => {
+    private dealTheaterStateTransition = (before:C.TheaterState, after:C.TheaterState) :void => {
         if (before === null || before === after) return;
 
         switch (after) {
