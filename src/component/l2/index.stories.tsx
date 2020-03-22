@@ -10,7 +10,7 @@ import * as StoryUtil from '../../../storybook/StoryUtil';
 import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStoreAdmin';
 
-import ActInfoModal from './ActInfoModal';
+import ArenaActInfoModal from './ArenaActInfoModal';
 import ArenaExplain from './ArenaExplain';
 import ChatTabHeader from './ChatTabHeader';
 import LobbyCard from './LobbyCardArena';
@@ -19,9 +19,9 @@ import LobbyCardPrivateArena from './LobbyCardPrivateArena';
 const components = storiesOf('L2', module);
 components
     .addDecorator(withKnobs)
-    .add(ActInfoModal.name, () => (
+    .add(ArenaActInfoModal.name, () => (
         StoryUtil.CenteredView([
-            <ActInfoModal />,
+            <ArenaActInfoModal />,
             <ArenaScenarioStoreAdmin />,
             <ArenaStoreAdmin />,
         ])

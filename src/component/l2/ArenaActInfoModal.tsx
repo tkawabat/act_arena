@@ -16,7 +16,7 @@ interface props {
 }
 
 @observer
-export default class ActInfoModal extends Component<props> {
+export default class ArenaActInfoModal extends Component<props> {
 
     private getCharactersText = () => {
         let result = [];
