@@ -16,7 +16,6 @@ import TheaterActInfoModal from '../l2/TheaterActInfoModal';
 import TheaterHeader from '../l3/TheaterHeader';
 import ChatTabHeader from '../l2/ChatTabHeader';
 import ScenarioTabHeader from '../l2/ScenarioTabHeader';
-import OverlayMessage from '../l2/OverlayMessage';
 import TheaterScenarioTab from '../l4/TheaterScenarioTab';
 import ChatTab from '../l4/ChatTab';
 
@@ -55,7 +54,6 @@ export default class TheaterScreen extends ScreenBase {
                         </Tab>
                     </Tabs>
                 </Body>
-                <OverlayMessage />
             </Root>
         );
     }

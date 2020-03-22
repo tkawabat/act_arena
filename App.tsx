@@ -32,6 +32,7 @@ import PushStore from './src/store/PushStore';
 import MatchingStore from './src/store/MatchingStore';
 
 import Spinner from './src/component/l1/Spinner';
+import OverlayMessage from './src/component/l2/OverlayMessage';
 
 
 @observer
@@ -133,6 +134,7 @@ export default class App extends Component {
             <Root>
                 <Spinner />
                 <AppContainer ref={Navigator.set} />
+                <OverlayMessage />
                 <FlashMessage position="top" />
             </Root>
         );
