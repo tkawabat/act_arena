@@ -10,6 +10,7 @@ import * as BasicStyle from '../../lib/BasicStyle';
 interface props {
     title: string
     userNum?: number
+    disabled?: boolean
     onPress: () => void
 }
 
@@ -26,8 +27,8 @@ export default class LobbyAdmin extends Component<props> {
         }
 
         return (
-            <Touch onPress={this.props.onPress}>
-                <Root>
+            <Touch onPress={this.props.onPress} disabled={this.props.disabled}>
+                <Root disabled={this.props.disabled}>
                     <Header>
                         <TitleText>{this.props.title}</TitleText>
                         {userNum}
@@ -50,6 +51,7 @@ const Root = styled(Card)`
     margin: 10px;
     padding: 10px;    
     color: #000;
+    ${BasicStyle.disabled}
 `;
 
 const Header = styled.View`

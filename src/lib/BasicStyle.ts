@@ -53,6 +53,12 @@ export const disabledButton = css`
     box-shadow: none;
 `
 
+export const disabled = props => {
+    if (props.disabled) {
+        return `background-color: #999;`;
+    }
+}
+
 // Modules
 export const Left = styled.View`
     flex: 1;

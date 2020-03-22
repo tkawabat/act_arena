@@ -25,16 +25,6 @@ interface props {
 export default class LobbyCardTheater extends Component<props> {
 
     private joinTheater = () => {
-        const endAt:Moment.Moment[] = [];
-        endAt[C.TheaterState.READ] = Moment.unix(this.props.theater.endAt[C.TheaterState.READ].seconds);
-        endAt[C.TheaterState.CHECK] = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds);
-        endAt[C.TheaterState.ACT] = Moment.unix(this.props.theater.endAt[C.TheaterState.ACT].seconds);
-        const [state,] = TheaterStore.calcState(endAt);
-
-        // if (state === C.TheaterState.END) {
-        //     Alert.alert('劇はすでに終了しています。');
-        //     return;
-        // }
         ConfigStore.load(true);
         TheaterStore.join(this.props.theaterId).then(() => {
             ConfigStore.load(false);
@@ -44,7 +34,8 @@ export default class LobbyCardTheater extends Component<props> {
     render() {
         const title = '『'+this.props.theater.title+'』';
         const actors = this.props.theater.characters.map((v) => v.userName);
-        const startTime = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds).format('HH:mm');
+        const startTime = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds).format('MM/DD HH:mm');
+
         const endAt:Moment.Moment[] = [];
         endAt[C.TheaterState.READ] = Moment.unix(this.props.theater.endAt[C.TheaterState.READ].seconds);
         endAt[C.TheaterState.CHECK] = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds);
@@ -52,10 +43,10 @@ export default class LobbyCardTheater extends Component<props> {
         const [state,] = TheaterStore.calcState(endAt);
 
         return (
-            <Root title={title} onPress={this.joinTheater}>
+            <Root title={title} onPress={this.joinTheater} disabled={state===C.TheaterState.END}>
                 <Left>
                     <ExplainText>{'演者: ' + actors.join(', ')}</ExplainText>
-                    <ExplainText>{'上演開始: ' + startTime}</ExplainText>
+                    <ExplainText>{'上演予定時間: ' + startTime}</ExplainText>
                 </Left>
                 <Right>
                     <StateBadge text={C.TheaterStateString[state]} {...(badgeColor[state])}/>

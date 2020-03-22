@@ -1,3 +1,4 @@
+import Moment from 'moment';
 import { observable, computed, action } from 'mobx';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
@@ -10,7 +11,7 @@ import { Theater } from '../model/TheaterModel';
 import TheaterListModel from '../model/TheaterListModel';
 
 import ConfigStore from './ConfigStore';
-
+import UserStore from './UserStore';
 
 
 class LobbyStore {
@@ -28,6 +29,15 @@ class LobbyStore {
     @computed get userNum() {
         if (!this.users) return 0;
         return Object.keys(this.users).length;
+    }
+
+    @computed get actTheaterId():string {
+        const now = Moment().unix();
+        const [theaterId,] = Object.entries(this.theaters).find(([id, theater]) => {
+            if (theater.endAt[C.TheaterState.ACT].seconds < now) return false;
+            return theater.characters.findIndex((c) => c.user === UserStore.id) !== -1;
+        })
+        return theaterId;
     }
 
     constructor() {
