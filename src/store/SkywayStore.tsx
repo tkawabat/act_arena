@@ -1,6 +1,6 @@
 import Moment from 'moment';
 import { Alert } from 'react-native';
-import { Peer } from 'react-native-skyway';
+import { Peer, MediaConstraints } from 'react-native-skyway';
 import { observable, action } from 'mobx';
 
 import * as C from '../lib/Const';
@@ -92,7 +92,7 @@ class SkywayStore {
     }
 
     public connect = (id: string): void => {
-        this.peer = new Peer(id, Secret.skyway);
+        this.peer = new Peer(id, Secret.skyway, {videoFlag: false, audioFlag: true} as MediaConstraints);
 
         this.peer.addEventListener('peer-open', this.onPeerOpen);
         this.peer.addEventListener('peer-close', this.onPeerClose);
