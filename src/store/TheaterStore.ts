@@ -8,7 +8,7 @@ import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
 
-import TheaterUserStore from './ArenaUserStore';
+import TheaterUserStore from './TheaterUserStore';
 import ChatStore from './ChatStore';
 import ConfigStore from './ConfigStore';
 import UserStore from './UserStore';
