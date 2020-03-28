@@ -20,6 +20,11 @@ class TheaterUserStore {
         return Object.keys(this.users).length;
     }
 
+    @computed get next():boolean {
+        if (!this.users[UserStore.id]) return false;
+        return this.users[UserStore.id].next;
+    }
+
 }
 
 

@@ -80,6 +80,13 @@ export const TheaterStateString = {
     [TheaterState.END]: '上演終了',
 }
 
+export const TheaterNextString = {
+    [TheaterState.READ]: '確認\n完了',
+    [TheaterState.CHECK]: '確認\n完了',
+    [TheaterState.ACT]: '上演\n終了',
+    [TheaterState.END]: '上演\n終了',
+}
+
 export enum TheaterUserState {
     LISTNER = 0,
     ACTOR = 1,
