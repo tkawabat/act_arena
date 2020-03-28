@@ -10,7 +10,7 @@ export interface TheaterUser {
     name: string
     gender: C.Gender
     state: C.ArenaUserState
-    next: boolean
+    next: C.TheaterState
 }
 
 class TheaterUserModel {
@@ -25,13 +25,13 @@ class TheaterUserModel {
         return this.ref.doc(user.id).set({
             name: user.name,
             gender: user.gender,
-            next: false,
+            next: C.TheaterState.UNSET,
         })
         .catch((error) => Amplitude.error('TheaterUserModel.asyncSetRoomUser', error))
         ;
     }
 
-    public asyncUpdateNext = async (user:User, next:boolean) :Promise<void> => {
+    public asyncUpdateNext = async (user:User, next:C.TheaterState) :Promise<void> => {
         return this.ref.doc(user.id).update({
             next: next
         })

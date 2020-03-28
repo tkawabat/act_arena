@@ -19,8 +19,8 @@ export default class TheaterScenarioTools extends Component {
 
         const text = C.TheaterNextString[TheaterStore.theaterState];
         const disabled = TheaterStore.userState === C.TheaterUserState.LISTNER
+            || TheaterUserStore.next === TheaterStore.theaterState    
             || TheaterStore.theaterState === C.TheaterState.END
-            || TheaterUserStore.next
             ;
 
         return (

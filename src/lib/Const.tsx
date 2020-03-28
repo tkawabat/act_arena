@@ -67,6 +67,7 @@ export enum ArenaTab {
 }
 
 export enum TheaterState {
+    UNSET = -1,
     READ = 0,
     CHECK = 1,
     ACT = 2,

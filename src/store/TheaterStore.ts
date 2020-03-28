@@ -257,7 +257,7 @@ class TheaterStore {
     }
 
     public asyncSetNext = async () :Promise<void> => {
-        return this.theaterUserModel.asyncUpdateNext(UserStore, true);
+        return this.theaterUserModel.asyncUpdateNext(UserStore, this.theaterState);
     }
 
     @action
