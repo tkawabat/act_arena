@@ -62,6 +62,12 @@ export const disabled = props => {
     }
 }
 
+export const disabledColor = props => {
+    if (props.disabled) {
+        return `color: #999;`;
+    }
+}
+
 // Modules
 export const Left = styled.View`
     flex: 1;
@@ -82,5 +88,5 @@ export const Right = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 5px;
+    padding-right: 10px;
 `

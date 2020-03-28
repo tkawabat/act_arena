@@ -33,7 +33,6 @@ const Root = styled.View`
     border-color: #555;
     text-align: center;
     justify-content: flex-start;
-    margin-left: 5px;
 `
 
 const TimerIcon = styled(Icon)`

@@ -12,6 +12,7 @@ import ArenaUserStore from '../../store/ArenaUserStore';
 
 import Timer from '../l1/Timer';
 import TextBadge from '../l1/TextBadge';
+import IconButton from '../l1/IconButton';
 
 
 interface props {
@@ -47,9 +48,7 @@ export default class ArenaHeader extends Component<props> {
                 <BasicStyle.Right>
                     <UesrIcon name='user' type='FontAwesome5' />
                     <UserNumText>{this.props.userNum}</UserNumText>
-                    <Button transparent onPress={this.leave} disabled={!ArenaUserStore.canLeave}>
-                        <Icon name='sign-out-alt' type='FontAwesome5' />
-                    </Button>
+                    <IconButton icon={'sign-out-alt'} onPress={this.leave} disabled={!ArenaUserStore.canLeave} />
                 </BasicStyle.Right>
             </Root>
         )
