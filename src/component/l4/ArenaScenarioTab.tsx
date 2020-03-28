@@ -16,13 +16,14 @@ import ArenaScenarioFooter from '../l3/ArenaScenarioFooter';
 
 @observer
 export default class ArenaScenarioTab extends Component {
-    private webview:WebView;
-    private setWebView = (webview:WebView) => { this.webview = webview; }
+    private agreement:Agreement;
 
-    componentDidMount() {
+    constructor() {
+        super();
+        this.agreement = React.createRef();
         ArenaScenarioStore.reload = () => {
-            if (!this.webview) return;
-            this.webview.reload();
+            if (!this.agreement.current) return;
+            this.agreement.current.setState({reload: this.agreement.current.state.reload+1})
         };
     }
 
@@ -32,8 +33,8 @@ export default class ArenaScenarioTab extends Component {
                 {ArenaStore.arenaState === C.ArenaState.WAIT && <ArenaExplain />}
                 {ArenaStore.arenaState !== C.ArenaState.WAIT && !ArenaScenarioStore.isAgree
                     && <Agreement
+                        ref={this.agreement}
                         onPress={ArenaScenarioStore.setAgreement.bind(this, C.AgreementState.AGREE)}
-                        setter={this.setWebView}
                         uri={ArenaScenarioStore.agreementUrl}
                     />}
                 {ArenaStore.arenaState !== C.ArenaState.WAIT && ArenaScenarioStore.isAgree && <ArenaScenario />}

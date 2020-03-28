@@ -15,17 +15,25 @@ import TheaterScenarioFooter from '../l3/TheaterScenarioFooter';
 
 @observer
 export default class TheaterScenarioTab extends Component {
-    private webview:WebView;
-    private setWebView = (webview:WebView) => { this.webview = webview; }
+    private agreement:Agreement;
+
+    constructor() {
+        super();
+        this.agreement = React.createRef();
+        TheaterStore.reload = () => {
+            if (!this.agreement.current) return;
+            this.agreement.current.setState({reload: this.agreement.current.state.reload+1})
+        };
+    }
 
     render() {
         return (
             <Root>
                 {TheaterStore.agreement ?
                     <Scenario uri={TheaterStore.scenarioUrl} />
-                    : <Agreement 
+                    : <Agreement
+                        ref={this.agreement}
                         onPress={TheaterStore.setAgreement.bind(this, true)}
-                        setter={this.setWebView}
                         uri={TheaterStore.agreementUrl}
                     />}
  

@@ -10,25 +10,27 @@ import * as BasicStyle from '../../lib/BasicStyle';
 
 interface props {
     onPress: () => void
-    setter: (webview:WebView) => void
     uri: string
 }
 
 @observer
 export default class Agreement extends Component<props> {
+    state = {
+        reload: 0
+    }
 
     render() {
         return (
             <Root>
                 <Screen
-                    ref={this.props.setter}
+                    key={this.state.reload}
                     source={{uri: this.props.uri}}
                 />
                 <AgreeButton onPress={this.props.onPress.bind(this)}>
                     <AgreeButtonText>規約に同意</AgreeButtonText>
                 </AgreeButton>
             </Root>
-               );
+        );
     }
 }
 
