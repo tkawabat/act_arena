@@ -313,7 +313,12 @@ class TheaterStore {
 
         this.id = null;
         this.theaterState = C.TheaterState.READ;
-        //TheaterUserStore.userState = C.ArenaUserState.LISTNER;
+        this.overlayMessage = null;
+        this.title = '';
+        this.author = '';
+        this.agreementUrl = '';
+        this.scenarioUrl = '';
+        this.characters = [];
         this.theaterUserModel = null;
 
         Navigator.backTo('Lobby');

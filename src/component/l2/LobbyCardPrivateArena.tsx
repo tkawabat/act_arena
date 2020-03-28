@@ -75,6 +75,7 @@ const Body = styled.View`
 `;
 
 const Footer = styled.View`
+    height: 30px;
     flex-direction: row;
 `;
 
