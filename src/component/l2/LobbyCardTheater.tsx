@@ -46,7 +46,7 @@ export default class LobbyCardTheater extends Component<props> {
             <Root title={title} onPress={this.joinTheater} disabled={state===C.TheaterState.END}>
                 <Left>
                     <ExplainText>{'演者: ' + actors.join(', ')}</ExplainText>
-                    <ExplainText>{'上演予定時間: ' + startTime}</ExplainText>
+                    <ExplainText>{'開始予定: ' + startTime}</ExplainText>
                 </Left>
                 <Right>
                     <StateBadge text={C.TheaterStateString[state]} {...(badgeColor[state])}/>
@@ -93,5 +93,5 @@ const badgeColor = {
     [C.TheaterState.READ]: { warning: true },
     [C.TheaterState.CHECK]: { warning: true },
     [C.TheaterState.ACT]: {  },
-    [C.TheaterState.END]: { danger: true },
+    [C.TheaterState.END]: { style: { opacity: 0.2} },
 }

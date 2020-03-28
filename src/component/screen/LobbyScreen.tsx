@@ -17,11 +17,12 @@ import SkywayStore from '../../store/SkywayStore';
 import UserStore from '../../store/UserStore';
 import LobbyStore from '../../store/LobbyStore';
 
+import Tips from '../l1/Tips';
 import Bell from '../l1/Bell';
 import PushSettingModal from '../l3/PushSettingModal';
 import LobbyCardArena from '../l2/LobbyCardArena';
 import LobbyCardPrivateArena from '../l2/LobbyCardPrivateArena';
-import LobbyCardMatching from '../l2/LobbyCardMatching';
+import MatchingButton from '../l2/MatchingButton';
 import LobbyCardTheater from '../l2/LobbyCardTheater';
 import TestTellButton from '../l1/TestTellButton';
 
@@ -117,9 +118,17 @@ export default class LobbyScreen extends ScreenBase {
                     </BasicStyle.Right>
                 </LobbyHeader>
                 <ScreenBody>
+                    <TitleRow>
+                        <ScreenTitle>3分アリーナ</ScreenTitle>
+                        <_Tips text={'台本の一場面をその場で演じる新しい遊び方！'} />
+                    </TitleRow>
                     <LobbyCardArena joinArena={this.joinArena} />
                     <LobbyCardPrivateArena joinArena={this.joinArena} />
-                    <LobbyCardMatching />
+                    <TitleRow>
+                        <ScreenTitle>サシ劇マッチング</ScreenTitle>
+                        <_Tips text={'読み10分 + 上演15~45分の約１時間の劇。'} />
+                    </TitleRow>
+                    <_MatchingButton />
                     {theaterList}
                 </ScreenBody>
 
@@ -137,14 +146,43 @@ const Root = styled.View`
     ${BasicStyle.screenRoot}
 `
 
-const ScreenBody = styled.ScrollView`
-    flex: 1;
-`
-
 const LobbyHeader = styled(Header)`
     padding-top: 0;
     height: 50px;
 `
+
+const ConfigIcon = styled(Icon)`
+    font-size: 24px;
+    color: gray;
+    margin-right: 5px;
+`
+
+const ScreenBody = styled.ScrollView`
+    flex: 1;
+`
+
+const TitleRow = styled.View`
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+`;
+
+const _Tips = styled(Tips)`
+    margin-left: 2px;
+`;
+
+const ScreenTitle = styled.Text`    
+    margin-left: 20px;
+    font-size: 24px;
+    font-weight: 500;
+`;
+
+const _MatchingButton = styled(MatchingButton)`
+    align-self: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+`;
 
 const Footer = styled.View`
     background-color: #000044;
@@ -153,10 +191,4 @@ const Footer = styled.View`
     justify-content: flex-end;
     padding: 10px;
     height: 50px;
-`
-
-const ConfigIcon = styled(Icon)`
-    font-size: 24px;
-    color: gray;
-    margin-right: 5px;
 `
