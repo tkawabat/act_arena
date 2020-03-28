@@ -11,7 +11,13 @@ interface props {
 @observer
 export default class Timer extends Component<props> {
     render() {
-        const time = this.props.time > 0 ? this.props.time.toString() : '---';
+        let time = '---';
+        if (this.props.time > 600) {
+            time = Math.floor(this.props.time / 60) + '分';
+        } else if (this.props.time > 0) {
+            time = this.props.time.toString();
+        }
+
         return (
             <Root>
                 <TimerIcon name='clock' type='FontAwesome5' />
