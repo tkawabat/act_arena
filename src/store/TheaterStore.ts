@@ -55,6 +55,11 @@ class TheaterStore {
         return index === -1 ? C.TheaterUserState.LISTNER : C.TheaterUserState.ACTOR;
     }
 
+    @computed get canLeave() {
+        if (!TheaterUserStore.users[UserStore.id]) return true;
+        return this.userState !== C.TheaterUserState.ACTOR || this.theaterState === C.TheaterState.END;
+    }
+
     @observable modal:boolean = false;
 
     constructor() {
