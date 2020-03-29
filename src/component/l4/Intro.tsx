@@ -16,22 +16,21 @@ const slides = [
         key: '0',
         title: 'アクト・アリーナとは？',
         text:
-            '声劇をするまでの手間と時間をギュッと短縮するアプリ',
+            '声劇をするまでの手間と時間を\nギュッと短縮するアプリ',
         icon: 'ios-images-outline',
         colors: ['#63E2FF', '#B066FE'],
     },
     {
         key: '1',
-        title: '必要なことはエントリーボタンを押すだけ',
-        text:
-            '',
+        title: '遊び方は２通り',
+        text: '3分アリーナと\nサシ劇マッチング（1時間）',
         icon: 'ios-options-outline',
         colors: ['#A3A1FF', '#3A3897'],
     },
     {
         key: '2',
-        title: 'ユーザー登録をしてはじめよう！',
-        text: 'まずはリスナーとしてアリーナを覗いてみよう',
+        title: '必要なことは？',
+        text: 'エントリーボタンを押すだけ！',
         icon: 'ios-beer-outline',
         colors: ['#29ABE2', '#4F00BC'],
     },
@@ -65,7 +64,7 @@ const Root = styled(LinearGradient)`
 `
 
 const Title = styled.Text`
-    font-size: 24px;
+    font-size: 28px;
     color: white;
     background-color: transparent;
     text-align: center;
@@ -74,9 +73,10 @@ const Title = styled.Text`
 `
 
 const Explain = styled.Text`
-    font-size: 20px;
+    font-size: 18px;
     color: rgba(255, 255, 255, 0.8);
     background-color: transparent;
     text-align: center;
+    margin-top: 40px;
     padding-horizontal: 30px;
 `
