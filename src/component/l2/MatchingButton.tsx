@@ -18,20 +18,22 @@ interface props {
 export default class TestTellButton extends Component<props> {
 
     render() {
-        const animation = MatchingStore.isMatching ? 'flash' : '';
-        const text = MatchingStore.isMatching ? 'マッチング中' : 'エントリー';
-        const color = MatchingStore.isMatching ? {danger:true} : {success:true};
+        const disabled = LobbyStore.actTheaterId !== undefined;
+        const isMatching = MatchingStore.isMatching && !disabled;
+        const animation = isMatching ? 'flash' : '';
+        const text = isMatching ? 'マッチング中' : 'エントリー';
+        const color = isMatching ? {danger:true} : {success:true};
         return (
             <Animatable.View animation={animation} duration={4000} iterationCount={'infinite'}>
-                <ButtonEntried onPress={MatchingStore.toggle.bind(this)} {...color} {...this.props}>
+                <EntryButton {...color} disabled={disabled} onPress={MatchingStore.toggle.bind(this)} {...this.props}>
                     <ButtonText>{text}</ButtonText>
-                </ButtonEntried>
+                </EntryButton>
             </Animatable.View>
         );
     }
 }
 
-const ButtonEntried = styled(Button)`
+const EntryButton = styled(Button)`
     width: 100px;
     height: 40px;
     ${BasicStyle.center};
