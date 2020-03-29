@@ -41,8 +41,20 @@ export default class CopyrightScreen extends ScreenBase {
                         <SubTitle>台本</SubTitle>
                     </Separator>
                     <ListItem>
-                        <Text>doodle.txt © 2008 ススキドミノ</Text>
+                        <Text>doodle.txt © ススキドミノ</Text>
                         <LinkIcon name='external-link-alt' type='FontAwesome5' onPress={() =>  Linking.openURL('http://doodletxt.web.fc2.com/')} />
+                    </ListItem>
+                    <ListItem>
+                        <Text>VOX◆BOX © Soromon / Genn Torikata</Text>
+                        <LinkIcon name='external-link-alt' type='FontAwesome5' onPress={() =>  Linking.openURL('https://srmntrktgnn.wixsite.com/voxbox')} />
+                    </ListItem>
+                    <ListItem>
+                        <Text>ぴよぴよつづる。。。 © 早川ふう</Text>
+                        <LinkIcon name='external-link-alt' type='FontAwesome5' onPress={() =>  Linking.openURL('http://piyo2script.starfree.jp/')} />
+                    </ListItem>
+                    <ListItem>
+                        <Text>台本棚 © agemakiyorika</Text>
+                        <LinkIcon name='external-link-alt' type='FontAwesome5' onPress={() =>  Linking.openURL('http://agemakitxt.webcrow.jp/txt/text00.html')} />
                     </ListItem>
 
                     <Separator bordered>
