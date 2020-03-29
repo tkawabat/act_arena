@@ -15,7 +15,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@babel/compat-data",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/compat-data/LICENSE"
   },
-  "@babel/core@7.8.3": {
+  "@babel/core@7.8.7": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel/tree/master/packages/babel-core",
     "publisher": "Sebastian McKenzie",
@@ -30,6 +30,14 @@
     "email": "sebmck@gmail.com",
     "path": "/Users/tune/git/act_arena/node_modules/@babel/generator",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/generator/LICENSE"
+  },
+  "@babel/generator@7.8.8": {
+    "licenses": "MIT",
+    "repository": "https://github.com/babel/babel/tree/master/packages/babel-generator",
+    "publisher": "Sebastian McKenzie",
+    "email": "sebmck@gmail.com",
+    "path": "/Users/tune/git/act_arena/node_modules/@babel/core/node_modules/@babel/generator",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/core/node_modules/@babel/generator/LICENSE"
   },
   "@babel/helper-annotate-as-pure@7.8.3": {
     "licenses": "MIT",
@@ -185,7 +193,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@babel/helper-wrap-function",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/helper-wrap-function/LICENSE"
   },
-  "@babel/helpers@7.8.3": {
+  "@babel/helpers@7.8.4": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel/tree/master/packages/babel-helpers",
     "publisher": "Sebastian McKenzie",
@@ -208,6 +216,14 @@
     "email": "sebmck@gmail.com",
     "path": "/Users/tune/git/act_arena/node_modules/@babel/parser",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/parser/LICENSE"
+  },
+  "@babel/parser@7.8.8": {
+    "licenses": "MIT",
+    "repository": "https://github.com/babel/babel/tree/master/packages/babel-parser",
+    "publisher": "Sebastian McKenzie",
+    "email": "sebmck@gmail.com",
+    "path": "/Users/tune/git/act_arena/node_modules/@babel/helpers/node_modules/@babel/parser",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/helpers/node_modules/@babel/parser/LICENSE"
   },
   "@babel/plugin-external-helpers@7.8.3": {
     "licenses": "MIT",
@@ -606,7 +622,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@babel/preset-env",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/preset-env/LICENSE"
   },
-  "@babel/register@7.8.3": {
+  "@babel/register@7.8.6": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel/tree/master/packages/babel-register",
     "publisher": "Sebastian McKenzie",
@@ -630,6 +646,14 @@
     "path": "/Users/tune/git/act_arena/node_modules/@babel/template",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/template/LICENSE"
   },
+  "@babel/template@7.8.6": {
+    "licenses": "MIT",
+    "repository": "https://github.com/babel/babel/tree/master/packages/babel-template",
+    "publisher": "Sebastian McKenzie",
+    "email": "sebmck@gmail.com",
+    "path": "/Users/tune/git/act_arena/node_modules/@babel/core/node_modules/@babel/template",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/core/node_modules/@babel/template/LICENSE"
+  },
   "@babel/traverse@7.8.3": {
     "licenses": "MIT",
     "repository": "https://github.com/babel/babel/tree/master/packages/babel-traverse",
@@ -637,6 +661,14 @@
     "email": "sebmck@gmail.com",
     "path": "/Users/tune/git/act_arena/node_modules/@babel/traverse",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/traverse/LICENSE"
+  },
+  "@babel/traverse@7.8.6": {
+    "licenses": "MIT",
+    "repository": "https://github.com/babel/babel/tree/master/packages/babel-traverse",
+    "publisher": "Sebastian McKenzie",
+    "email": "sebmck@gmail.com",
+    "path": "/Users/tune/git/act_arena/node_modules/@babel/helpers/node_modules/@babel/traverse",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/helpers/node_modules/@babel/traverse/LICENSE"
   },
   "@babel/types@7.8.3": {
     "licenses": "MIT",
@@ -646,6 +678,14 @@
     "path": "/Users/tune/git/act_arena/node_modules/@babel/types",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/types/LICENSE"
   },
+  "@babel/types@7.8.7": {
+    "licenses": "MIT",
+    "repository": "https://github.com/babel/babel/tree/master/packages/babel-types",
+    "publisher": "Sebastian McKenzie",
+    "email": "sebmck@gmail.com",
+    "path": "/Users/tune/git/act_arena/node_modules/@babel/core/node_modules/@babel/types",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@babel/core/node_modules/@babel/types/LICENSE"
+  },
   "@cnakazawa/watch@1.0.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/mikeal/watch",
@@ -654,7 +694,13 @@
     "path": "/Users/tune/git/act_arena/node_modules/@cnakazawa/watch",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@cnakazawa/watch/LICENSE"
   },
-  "@emotion/is-prop-valid@0.8.6": {
+  "@egjs/hammerjs@2.0.17": {
+    "licenses": "MIT",
+    "repository": "https://github.com/naver/hammer.js",
+    "path": "/Users/tune/git/act_arena/node_modules/@egjs/hammerjs",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@egjs/hammerjs/LICENSE.md"
+  },
+  "@emotion/is-prop-valid@0.8.8": {
     "licenses": "MIT",
     "repository": "https://github.com/emotion-js/emotion/tree/master/packages/is-prop-valid",
     "path": "/Users/tune/git/act_arena/node_modules/@emotion/is-prop-valid",
@@ -807,11 +853,11 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-community/cli-types",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-community/cli-types/LICENSE"
   },
-  "@react-native-community/cli@3.2.0": {
+  "@react-native-community/cli@3.2.1": {
     "licenses": "MIT",
     "repository": "https://github.com/react-native-community/react-native-cli",
     "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/@react-native-community/cli",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/@react-native-community/cli/LICENSE"
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/@react-native-community/cli/README.md"
   },
   "@react-native-community/masked-view@0.1.5": {
     "licenses": "MIT",
@@ -821,7 +867,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-community/masked-view",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-community/masked-view/README.md"
   },
-  "@react-native-community/push-notification-ios@1.0.5": {
+  "@react-native-community/push-notification-ios@1.0.7": {
     "licenses": "MIT",
     "repository": "https://github.com/react-native-community/react-native-push-notification-ios",
     "publisher": "Rafael Lincoln",
@@ -829,7 +875,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-community/push-notification-ios",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-community/push-notification-ios/LICENSE"
   },
-  "@react-native-firebase/app-types@6.3.1": {
+  "@react-native-firebase/app-types@6.3.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/invertase/react-native-firebase/tree/master/packages/app-types",
     "publisher": "Invertase",
@@ -838,7 +884,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/app-types",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/app-types/LICENSE"
   },
-  "@react-native-firebase/app@6.3.1": {
+  "@react-native-firebase/app@6.3.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/invertase/react-native-firebase/tree/master/packages/app",
     "publisher": "Invertase",
@@ -847,7 +893,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/app",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/app/LICENSE"
   },
-  "@react-native-firebase/auth@6.3.1": {
+  "@react-native-firebase/auth@6.3.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/invertase/react-native-firebase/tree/master/packages/auth",
     "publisher": "Invertase",
@@ -856,7 +902,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/auth",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/auth/LICENSE"
   },
-  "@react-native-firebase/database@6.3.1": {
+  "@react-native-firebase/database@6.3.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/invertase/react-native-firebase/tree/master/packages/database",
     "publisher": "Invertase",
@@ -865,7 +911,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/database",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/database/LICENSE"
   },
-  "@react-native-firebase/firestore@6.3.1": {
+  "@react-native-firebase/firestore@6.3.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/invertase/react-native-firebase/tree/master/packages/firestore",
     "publisher": "Invertase",
@@ -874,7 +920,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/firestore",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/firestore/LICENSE"
   },
-  "@react-native-firebase/messaging@6.3.1": {
+  "@react-native-firebase/messaging@6.3.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/invertase/react-native-firebase/tree/master/packages/messaging",
     "publisher": "Invertase",
@@ -883,39 +929,39 @@
     "path": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/messaging",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-firebase/messaging/LICENSE"
   },
-  "@react-navigation/core@3.5.1": {
+  "@react-navigation/core@3.6.1": {
     "licenses": "MIT",
     "repository": "https://github.com/react-navigation/react-navigation-core",
     "path": "/Users/tune/git/act_arena/node_modules/@react-navigation/core",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-navigation/core/LICENSE.md"
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-navigation/core/LICENSE"
   },
-  "@react-navigation/native@3.6.2": {
+  "@react-navigation/native@3.7.3": {
     "licenses": "MIT",
     "repository": "https://github.com/react-navigation/react-navigation-native",
     "path": "/Users/tune/git/act_arena/node_modules/@react-navigation/native",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-navigation/native/LICENSE.md"
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-navigation/native/LICENSE"
   },
-  "@sentry/browser@5.12.4": {
+  "@sentry/browser@5.14.2": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/getsentry/sentry-javascript",
     "publisher": "Sentry",
     "path": "/Users/tune/git/act_arena/node_modules/@sentry/browser",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/browser/LICENSE"
   },
-  "@sentry/cli@1.51.0": {
+  "@sentry/cli@1.52.0": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/getsentry/sentry-cli",
     "path": "/Users/tune/git/act_arena/node_modules/@sentry/cli",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/cli/LICENSE"
   },
-  "@sentry/core@5.12.4": {
+  "@sentry/core@5.14.2": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/getsentry/sentry-javascript",
     "publisher": "Sentry",
     "path": "/Users/tune/git/act_arena/node_modules/@sentry/core",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/core/LICENSE"
   },
-  "@sentry/hub@5.12.4": {
+  "@sentry/hub@5.14.2": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/getsentry/sentry-javascript",
     "publisher": "Sentry",
@@ -929,14 +975,14 @@
     "path": "/Users/tune/git/act_arena/node_modules/@sentry/integrations",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/integrations/LICENSE"
   },
-  "@sentry/minimal@5.12.4": {
+  "@sentry/minimal@5.14.2": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/getsentry/sentry-javascript",
     "publisher": "Sentry",
     "path": "/Users/tune/git/act_arena/node_modules/@sentry/minimal",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/minimal/LICENSE"
   },
-  "@sentry/react-native@1.3.1": {
+  "@sentry/react-native@1.3.3": {
     "licenses": "MIT",
     "repository": "https://github.com/getsentry/sentry-react-native",
     "publisher": "Sentry",
@@ -950,12 +996,26 @@
     "path": "/Users/tune/git/act_arena/node_modules/@sentry/types",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/types/LICENSE"
   },
+  "@sentry/types@5.14.2": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/getsentry/sentry-javascript",
+    "publisher": "Sentry",
+    "path": "/Users/tune/git/act_arena/node_modules/@sentry/hub/node_modules/@sentry/types",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/hub/node_modules/@sentry/types/LICENSE"
+  },
   "@sentry/utils@5.12.4": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/getsentry/sentry-javascript",
     "publisher": "Sentry",
     "path": "/Users/tune/git/act_arena/node_modules/@sentry/utils",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/utils/LICENSE"
+  },
+  "@sentry/utils@5.14.2": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/getsentry/sentry-javascript",
+    "publisher": "Sentry",
+    "path": "/Users/tune/git/act_arena/node_modules/@sentry/hub/node_modules/@sentry/utils",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/hub/node_modules/@sentry/utils/LICENSE"
   },
   "@sentry/wizard@1.1.1": {
     "licenses": "MIT",
@@ -977,6 +1037,12 @@
     "email": "https://github.com/kmxz",
     "path": "/Users/tune/git/act_arena/node_modules/@types/fbemitter",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@types/fbemitter/README.md"
+  },
+  "@types/hammerjs@2.0.36": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "/Users/tune/git/act_arena/node_modules/@types/hammerjs",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@types/hammerjs/LICENSE"
   },
   "@types/hoist-non-react-statics@3.3.1": {
     "licenses": "MIT",
@@ -1032,7 +1098,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@types/qs",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@types/qs/LICENSE"
   },
-  "@types/react@16.9.17": {
+  "@types/react@16.9.23": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
     "path": "/Users/tune/git/act_arena/node_modules/@types/react",
@@ -1070,7 +1136,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/@types/yargs",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@types/yargs/LICENSE"
   },
-  "@types/yargs@15.0.3": {
+  "@types/yargs@15.0.4": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
     "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/@types/yargs",
@@ -1125,13 +1191,13 @@
     "path": "/Users/tune/git/act_arena/node_modules/acorn-jsx",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/acorn-jsx/LICENSE"
   },
-  "acorn@5.7.3": {
+  "acorn@6.4.1": {
     "licenses": "MIT",
     "repository": "https://github.com/acornjs/acorn",
     "path": "/Users/tune/git/act_arena/node_modules/acorn",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/acorn/LICENSE"
   },
-  "acorn@7.1.0": {
+  "acorn@7.1.1": {
     "licenses": "MIT",
     "repository": "https://github.com/acornjs/acorn",
     "path": "/Users/tune/git/act_arena/node_modules/espree/node_modules/acorn",
@@ -1158,8 +1224,8 @@
     "repository": "https://github.com/doowb/ansi-colors",
     "publisher": "Brian Woodward",
     "url": "https://github.com/doowb",
-    "path": "/Users/tune/git/act_arena/node_modules/ansi-colors",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/ansi-colors/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/fbjs-scripts/node_modules/ansi-colors",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/fbjs-scripts/node_modules/ansi-colors/LICENSE"
   },
   "ansi-cyan@0.1.1": {
     "licenses": "MIT",
@@ -1217,8 +1283,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/ansi-regex",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/ansi-regex/license"
+    "path": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/ansi-regex",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/ansi-regex/license"
   },
   "ansi-regex@3.0.0": {
     "licenses": "MIT",
@@ -1244,8 +1310,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/ansi-regex",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/ansi-regex/license"
+    "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/@react-native-community/cli/node_modules/ansi-regex",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/@react-native-community/cli/node_modules/ansi-regex/license"
   },
   "ansi-styles@2.2.1": {
     "licenses": "MIT",
@@ -1488,7 +1554,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/babel-plugin-react-native-web",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/babel-plugin-react-native-web/README.md"
   },
-  "babel-plugin-styled-components@1.10.6": {
+  "babel-plugin-styled-components@1.10.7": {
     "licenses": "MIT",
     "repository": "https://github.com/styled-components/babel-plugin-styled-components",
     "path": "/Users/tune/git/act_arena/node_modules/babel-plugin-styled-components",
@@ -1663,8 +1729,8 @@
     "publisher": "TJ Holowaychuk",
     "email": "tj@vision-media.ca",
     "url": "http://tjholowaychuk.com",
-    "path": "/Users/tune/git/act_arena/node_modules/bytes",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/bytes/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/compression/node_modules/bytes",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/compression/node_modules/bytes/LICENSE"
   },
   "cache-base@1.0.1": {
     "licenses": "MIT",
@@ -1716,8 +1782,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/camelcase",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/camelcase/license"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/camelcase",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/camelcase/license"
   },
   "camelcase@5.0.0": {
     "licenses": "MIT",
@@ -1794,16 +1860,16 @@
     "repository": "https://github.com/runk/node-chardet",
     "publisher": "Dmitry Shirokov",
     "email": "deadrunk@gmail.com",
-    "path": "/Users/tune/git/act_arena/node_modules/chardet",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/chardet/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/chardet",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/chardet/LICENSE"
   },
   "chardet@0.7.0": {
     "licenses": "MIT",
     "repository": "https://github.com/runk/node-chardet",
     "publisher": "Dmitry Shirokov",
     "email": "deadrunk@gmail.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/chardet",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/chardet/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/chardet",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/chardet/LICENSE"
   },
   "chownr@1.1.3": {
     "licenses": "ISC",
@@ -1880,16 +1946,16 @@
     "repository": "https://github.com/yargs/cliui",
     "publisher": "Ben Coe",
     "email": "ben@npmjs.com",
-    "path": "/Users/tune/git/act_arena/node_modules/cliui",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/cliui/LICENSE.txt"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/cliui",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/cliui/LICENSE.txt"
   },
   "cliui@4.1.0": {
     "licenses": "ISC",
     "repository": "https://github.com/yargs/cliui",
     "publisher": "Ben Coe",
     "email": "ben@npmjs.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/cliui",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/cliui/LICENSE.txt"
+    "path": "/Users/tune/git/act_arena/node_modules/cliui",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/cliui/LICENSE.txt"
   },
   "cliui@5.0.0": {
     "licenses": "ISC",
@@ -1904,8 +1970,8 @@
     "repository": "https://github.com/jonschlinkert/clone-deep",
     "publisher": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert",
-    "path": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/clone-deep",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/clone-deep/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/clone-deep",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/clone-deep/LICENSE"
   },
   "clone@1.0.4": {
     "licenses": "MIT",
@@ -2007,16 +2073,16 @@
     "repository": "https://github.com/tj/commander.js",
     "publisher": "TJ Holowaychuk",
     "email": "tj@vision-media.ca",
-    "path": "/Users/tune/git/act_arena/node_modules/uglify-es/node_modules/commander",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/uglify-es/node_modules/commander/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-minify-uglify/node_modules/commander",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-minify-uglify/node_modules/commander/LICENSE"
   },
   "commander@2.20.3": {
     "licenses": "MIT",
     "repository": "https://github.com/tj/commander.js",
     "publisher": "TJ Holowaychuk",
     "email": "tj@vision-media.ca",
-    "path": "/Users/tune/git/act_arena/node_modules/commander",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/commander/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/commander",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/commander/LICENSE"
   },
   "commondir@1.0.1": {
     "licenses": "MIT",
@@ -2151,8 +2217,8 @@
     "publisher": "IndigoUnited",
     "email": "hello@indigounited.com",
     "url": "http://indigounited.com",
-    "path": "/Users/tune/git/act_arena/node_modules/os-locale/node_modules/cross-spawn",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/os-locale/node_modules/cross-spawn/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/cross-spawn",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/cross-spawn/LICENSE"
   },
   "cross-spawn@6.0.5": {
     "licenses": "MIT",
@@ -2182,10 +2248,10 @@
     "licenses": "MIT",
     "repository": "https://github.com/styled-components/css-to-react-native",
     "publisher": "Jacob Parker",
-    "path": "/Users/tune/git/act_arena/node_modules/css-to-react-native",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/css-to-react-native/LICENSE.md"
+    "path": "/Users/tune/git/act_arena/node_modules/styled-components/node_modules/css-to-react-native",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/styled-components/node_modules/css-to-react-native/LICENSE.md"
   },
-  "csstype@2.6.8": {
+  "csstype@2.6.9": {
     "licenses": "MIT",
     "repository": "https://github.com/frenic/csstype",
     "publisher": "Fredrik Nicol",
@@ -2193,7 +2259,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/csstype",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/csstype/LICENSE"
   },
-  "dayjs@1.8.20": {
+  "dayjs@1.8.23": {
     "licenses": "MIT",
     "repository": "https://github.com/iamkun/dayjs",
     "publisher": "iamkun",
@@ -2468,7 +2534,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-webview/node_modules/escape-string-regexp",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-webview/node_modules/escape-string-regexp/license"
   },
-  "eslint-config-prettier@6.9.0": {
+  "eslint-config-prettier@6.10.0": {
     "licenses": "MIT",
     "repository": "https://github.com/prettier/eslint-config-prettier",
     "publisher": "Simon Lydell",
@@ -2563,8 +2629,8 @@
     "licenses": "MIT",
     "repository": "https://github.com/primus/eventemitter3",
     "publisher": "Arnout Kazemier",
-    "path": "/Users/tune/git/act_arena/node_modules/eventemitter3",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/eventemitter3/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro/node_modules/eventemitter3",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro/node_modules/eventemitter3/LICENSE"
   },
   "exec-sh@0.3.4": {
     "licenses": "MIT",
@@ -2580,8 +2646,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/os-locale/node_modules/execa",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/os-locale/node_modules/execa/license"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/execa",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/execa/license"
   },
   "execa@1.0.0": {
     "licenses": "MIT",
@@ -2698,7 +2764,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/expo",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/expo/README.md"
   },
-  "expokit@36.0.0": {
+  "expokit@36.0.1": {
     "licenses": "MIT",
     "path": "/Users/tune/git/act_arena/node_modules/expokit"
   },
@@ -2732,8 +2798,8 @@
     "publisher": "Kevin Gravier",
     "email": "kevin@mrkmg.com",
     "url": "https://mrkmg.com",
-    "path": "/Users/tune/git/act_arena/node_modules/external-editor",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/external-editor/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/external-editor",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/external-editor/LICENSE"
   },
   "external-editor@3.1.0": {
     "licenses": "MIT",
@@ -2741,8 +2807,8 @@
     "publisher": "Kevin Gravier",
     "email": "kevin@mrkmg.com",
     "url": "https://mrkmg.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/external-editor",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/external-editor/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/external-editor",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/external-editor/LICENSE"
   },
   "extglob@2.0.4": {
     "licenses": "MIT",
@@ -2906,8 +2972,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/find-up",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/find-up/license"
+    "path": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/find-up",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/find-up/license"
   },
   "find-up@4.1.0": {
     "licenses": "MIT",
@@ -2963,8 +3029,8 @@
     "repository": "https://github.com/jonschlinkert/for-own",
     "publisher": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert",
-    "path": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/for-own",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/for-own/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/for-own",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/for-own/LICENSE"
   },
   "fragment-cache@0.2.1": {
     "licenses": "MIT",
@@ -3101,8 +3167,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/os-locale/node_modules/get-stream",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/os-locale/node_modules/get-stream/license"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/get-stream",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/get-stream/license"
   },
   "get-stream@4.1.0": {
     "licenses": "MIT",
@@ -3172,11 +3238,9 @@
     "path": "/Users/tune/git/act_arena/node_modules/growly",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/growly/README.md"
   },
-  "hammerjs@2.0.8": {
+  "hammerjs@2.0.17-snapshot": {
     "licenses": "MIT",
-    "repository": "https://github.com/hammerjs/hammer.js",
-    "publisher": "Jorik Tangelder",
-    "email": "j.tangelder@gmail.com",
+    "repository": "https://github.com/naver/hammer.js",
     "path": "/Users/tune/git/act_arena/node_modules/hammerjs",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/hammerjs/LICENSE.md"
   },
@@ -3267,8 +3331,8 @@
     "repository": "https://github.com/mridgway/hoist-non-react-statics",
     "publisher": "Michael Ridgway",
     "email": "mridgway@yahoo-inc.com",
-    "path": "/Users/tune/git/act_arena/node_modules/hoist-non-react-statics",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/hoist-non-react-statics/LICENSE.md"
+    "path": "/Users/tune/git/act_arena/node_modules/native-base-shoutem-theme/node_modules/hoist-non-react-statics",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/native-base-shoutem-theme/node_modules/hoist-non-react-statics/LICENSE.md"
   },
   "hoist-non-react-statics@2.5.5": {
     "licenses": "BSD-3-Clause",
@@ -3286,7 +3350,15 @@
     "path": "/Users/tune/git/act_arena/node_modules/@types/hoist-non-react-statics/node_modules/hoist-non-react-statics",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/@types/hoist-non-react-statics/node_modules/hoist-non-react-statics/LICENSE.md"
   },
-  "hosted-git-info@2.8.5": {
+  "hoist-non-react-statics@3.3.2": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/mridgway/hoist-non-react-statics",
+    "publisher": "Michael Ridgway",
+    "email": "mcridgway@gmail.com",
+    "path": "/Users/tune/git/act_arena/node_modules/@react-navigation/core/node_modules/hoist-non-react-statics",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-navigation/core/node_modules/hoist-non-react-statics/LICENSE.md"
+  },
+  "hosted-git-info@2.8.8": {
     "licenses": "ISC",
     "repository": "https://github.com/npm/hosted-git-info",
     "publisher": "Rebecca Turner",
@@ -3295,7 +3367,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/hosted-git-info",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/hosted-git-info/LICENSE"
   },
-  "http-errors@1.7.3": {
+  "http-errors@1.7.2": {
     "licenses": "MIT",
     "repository": "https://github.com/jshttp/http-errors",
     "publisher": "Jonathan Ong",
@@ -3396,6 +3468,12 @@
     "path": "/Users/tune/git/act_arena/node_modules/inflight",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/inflight/LICENSE"
   },
+  "inherits@2.0.3": {
+    "licenses": "ISC",
+    "repository": "https://github.com/isaacs/inherits",
+    "path": "/Users/tune/git/act_arena/node_modules/http-errors/node_modules/inherits",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/http-errors/node_modules/inherits/LICENSE"
+  },
   "inherits@2.0.4": {
     "licenses": "ISC",
     "repository": "https://github.com/isaacs/inherits",
@@ -3423,16 +3501,16 @@
     "repository": "https://github.com/SBoudrias/Inquirer.js",
     "publisher": "Simon Boudrias",
     "email": "admin@simonboudrias.com",
-    "path": "/Users/tune/git/act_arena/node_modules/inquirer",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/inquirer/README.md"
+    "path": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/inquirer",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/node_modules/inquirer/README.md"
   },
-  "inquirer@6.5.2": {
+  "inquirer@6.5.0": {
     "licenses": "MIT",
     "repository": "https://github.com/SBoudrias/Inquirer.js",
     "publisher": "Simon Boudrias",
     "email": "admin@simonboudrias.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/inquirer",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/inquirer/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/inquirer",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/inquirer/LICENSE"
   },
   "inquirer@7.0.3": {
     "licenses": "MIT",
@@ -3464,8 +3542,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "http://sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/invert-kv",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/invert-kv/readme.md"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/invert-kv",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/invert-kv/readme.md"
   },
   "invert-kv@2.0.0": {
     "licenses": "MIT",
@@ -3473,8 +3551,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/invert-kv",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/invert-kv/license"
+    "path": "/Users/tune/git/act_arena/node_modules/invert-kv",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/invert-kv/license"
   },
   "is-accessor-descriptor@0.1.6": {
     "licenses": "MIT",
@@ -3596,8 +3674,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/is-fullwidth-code-point",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/is-fullwidth-code-point/license"
+    "path": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/is-fullwidth-code-point",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/is-fullwidth-code-point/license"
   },
   "is-fullwidth-code-point@2.0.0": {
     "licenses": "MIT",
@@ -3689,8 +3767,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/is-wsl",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/is-wsl/license"
+    "path": "/Users/tune/git/act_arena/node_modules/opn/node_modules/is-wsl",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/opn/node_modules/is-wsl/license"
   },
   "isarray@0.0.1": {
     "licenses": "MIT",
@@ -3793,8 +3871,8 @@
   "jest-worker@24.9.0": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/jest",
-    "path": "/Users/tune/git/act_arena/node_modules/jest-worker",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/jest-worker/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/jest-haste-map/node_modules/jest-worker",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/jest-haste-map/node_modules/jest-worker/LICENSE"
   },
   "jetifier@1.6.5": {
     "licenses": "MIT",
@@ -3943,10 +4021,10 @@
     "repository": "https://github.com/jonschlinkert/kind-of",
     "publisher": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert",
-    "path": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/shallow-clone/node_modules/kind-of",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/shallow-clone/node_modules/kind-of/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/shallow-clone/node_modules/kind-of",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/shallow-clone/node_modules/kind-of/LICENSE"
   },
-  "kind-of@6.0.2": {
+  "kind-of@6.0.3": {
     "licenses": "MIT",
     "repository": "https://github.com/jonschlinkert/kind-of",
     "publisher": "Jon Schlinkert",
@@ -3967,8 +4045,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/lcid",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/lcid/license"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/lcid",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/lcid/license"
   },
   "lcid@2.0.0": {
     "licenses": "MIT",
@@ -3976,8 +4054,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/lcid",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/lcid/license"
+    "path": "/Users/tune/git/act_arena/node_modules/lcid",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/lcid/license"
   },
   "leven@3.1.0": {
     "licenses": "MIT",
@@ -4028,8 +4106,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/locate-path",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/locate-path/license"
+    "path": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/locate-path",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/locate-path/license"
   },
   "locate-path@5.0.0": {
     "licenses": "MIT",
@@ -4087,8 +4165,8 @@
     "repository": "https://github.com/isaacs/node-lru-cache",
     "publisher": "Isaac Z. Schlueter",
     "email": "i@izs.me",
-    "path": "/Users/tune/git/act_arena/node_modules/lru-cache",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/lru-cache/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/lru-cache",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/lru-cache/LICENSE"
   },
   "make-dir@2.1.0": {
     "licenses": "MIT",
@@ -4146,8 +4224,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/mem",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/mem/license"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/mem",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/mem/license"
   },
   "mem@4.3.0": {
     "licenses": "MIT",
@@ -4155,24 +4233,24 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/mem",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/mem/license"
+    "path": "/Users/tune/git/act_arena/node_modules/mem",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/mem/license"
   },
   "merge-stream@1.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/grncdr/merge-stream",
     "publisher": "Stephen Sugden",
     "email": "me@stephensugden.com",
-    "path": "/Users/tune/git/act_arena/node_modules/merge-stream",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/merge-stream/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro/node_modules/merge-stream",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro/node_modules/merge-stream/LICENSE"
   },
   "merge-stream@2.0.0": {
     "licenses": "MIT",
     "repository": "https://github.com/grncdr/merge-stream",
     "publisher": "Stephen Sugden",
     "email": "me@stephensugden.com",
-    "path": "/Users/tune/git/act_arena/node_modules/jest-worker/node_modules/merge-stream",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/jest-worker/node_modules/merge-stream/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/merge-stream",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/merge-stream/LICENSE"
   },
   "metro-babel-register@0.56.4": {
     "licenses": "MIT",
@@ -4283,8 +4361,8 @@
     "publisher": "Robert Kieffer",
     "email": "robert@broofa.com",
     "url": "http://github.com/broofa",
-    "path": "/Users/tune/git/act_arena/node_modules/mime",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/mime/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/send/node_modules/mime",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/send/node_modules/mime/LICENSE"
   },
   "mime@2.4.4": {
     "licenses": "MIT",
@@ -4292,8 +4370,8 @@
     "publisher": "Robert Kieffer",
     "email": "robert@broofa.com",
     "url": "http://github.com/broofa",
-    "path": "/Users/tune/git/act_arena/node_modules/@react-native-community/cli-tools/node_modules/mime",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-native-community/cli-tools/node_modules/mime/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/mime",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/mime/LICENSE"
   },
   "mimic-fn@1.2.0": {
     "licenses": "MIT",
@@ -4310,8 +4388,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/mimic-fn",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/mimic-fn/license"
+    "path": "/Users/tune/git/act_arena/node_modules/mem/node_modules/mimic-fn",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/mem/node_modules/mimic-fn/license"
   },
   "minimatch@3.0.4": {
     "licenses": "ISC",
@@ -4332,6 +4410,15 @@
     "licenseFile": "/Users/tune/git/act_arena/node_modules/mkdirp/node_modules/minimist/LICENSE"
   },
   "minimist@1.2.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/substack/minimist",
+    "publisher": "James Halliday",
+    "email": "mail@substack.net",
+    "url": "http://substack.net",
+    "path": "/Users/tune/git/act_arena/node_modules/fsevents/node_modules/rc/node_modules/minimist",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/fsevents/node_modules/rc/node_modules/minimist/LICENSE"
+  },
+  "minimist@1.2.5": {
     "licenses": "MIT",
     "repository": "https://github.com/substack/minimist",
     "publisher": "James Halliday",
@@ -4383,6 +4470,12 @@
     "path": "/Users/tune/git/act_arena/node_modules/mkdirp",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/mkdirp/LICENSE"
   },
+  "mkdirp@1.0.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/isaacs/node-mkdirp",
+    "path": "/Users/tune/git/act_arena/node_modules/@sentry/cli/node_modules/mkdirp",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/cli/node_modules/mkdirp/LICENSE"
+  },
   "mobx-react-lite@1.5.2": {
     "licenses": "MIT",
     "repository": "https://github.com/mobxjs/mobx-react-lite",
@@ -4390,14 +4483,14 @@
     "path": "/Users/tune/git/act_arena/node_modules/mobx-react-lite",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/mobx-react-lite/LICENSE"
   },
-  "mobx-react@6.1.5": {
+  "mobx-react@6.1.8": {
     "licenses": "MIT",
     "repository": "https://github.com/mobxjs/mobx-react",
     "publisher": "Michel Weststrate",
     "path": "/Users/tune/git/act_arena/node_modules/mobx-react",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/mobx-react/LICENSE"
   },
-  "mobx@5.15.2": {
+  "mobx@5.15.4": {
     "licenses": "MIT",
     "repository": "https://github.com/mobxjs/mobx",
     "publisher": "Michel Weststrate",
@@ -4598,8 +4691,8 @@
     "repository": "https://github.com/jonschlinkert/normalize-path",
     "publisher": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert",
-    "path": "/Users/tune/git/act_arena/node_modules/normalize-path",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/normalize-path/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/anymatch/node_modules/normalize-path",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/anymatch/node_modules/normalize-path/LICENSE"
   },
   "npm-bundled@1.1.1": {
     "licenses": "ISC",
@@ -4826,8 +4919,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/os-locale",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/os-locale/license"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/os-locale",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/os-locale/license"
   },
   "os-locale@3.1.0": {
     "licenses": "MIT",
@@ -4835,8 +4928,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/os-locale",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/os-locale/license"
+    "path": "/Users/tune/git/act_arena/node_modules/os-locale",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/os-locale/license"
   },
   "os-tmpdir@1.0.2": {
     "licenses": "MIT",
@@ -4898,8 +4991,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/p-limit",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/p-limit/license"
+    "path": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/p-limit",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/p-limit/license"
   },
   "p-locate@2.0.0": {
     "licenses": "MIT",
@@ -4916,8 +5009,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/p-locate",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/p-locate/license"
+    "path": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/p-locate",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/p-locate/license"
   },
   "p-locate@4.1.0": {
     "licenses": "MIT",
@@ -4943,8 +5036,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/p-try",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/p-try/license"
+    "path": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/p-try",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/node_modules/p-try/license"
   },
   "parent-module@1.0.1": {
     "licenses": "MIT",
@@ -5061,8 +5154,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/path-type",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/path-type/license"
+    "path": "/Users/tune/git/act_arena/node_modules/read-pkg/node_modules/path-type",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/read-pkg/node_modules/path-type/license"
   },
   "performance-now@2.1.0": {
     "licenses": "MIT",
@@ -5141,13 +5234,13 @@
     "path": "/Users/tune/git/act_arena/node_modules/posix-character-classes",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/posix-character-classes/LICENSE"
   },
-  "postcss-value-parser@4.0.2": {
+  "postcss-value-parser@4.0.3": {
     "licenses": "MIT",
     "repository": "https://github.com/TrySound/postcss-value-parser",
     "publisher": "Bogdan Chadkin",
     "email": "trysound@yandex.ru",
-    "path": "/Users/tune/git/act_arena/node_modules/postcss-value-parser",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/postcss-value-parser/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/styled-components/node_modules/postcss-value-parser",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/styled-components/node_modules/postcss-value-parser/LICENSE"
   },
   "pouchdb-collections@1.0.1": {
     "licenses": "UNKNOWN",
@@ -5233,14 +5326,14 @@
     "path": "/Users/tune/git/act_arena/node_modules/prop-types",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/prop-types/LICENSE"
   },
-  "proxy-from-env@1.0.0": {
+  "proxy-from-env@1.1.0": {
     "licenses": "MIT",
     "repository": "https://github.com/Rob--W/proxy-from-env",
     "publisher": "Rob Wu",
     "email": "rob@robwu.nl",
     "url": "https://robwu.nl/",
     "path": "/Users/tune/git/act_arena/node_modules/proxy-from-env",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/proxy-from-env/README.md"
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/proxy-from-env/LICENSE"
   },
   "pseudomap@1.0.2": {
     "licenses": "ISC",
@@ -5273,7 +5366,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/qs",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/qs/LICENSE.md"
   },
-  "query-string@6.9.0": {
+  "query-string@6.11.1": {
     "licenses": "MIT",
     "repository": "https://github.com/sindresorhus/query-string",
     "publisher": "Sindre Sorhus",
@@ -5337,6 +5430,13 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-dom",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-dom/LICENSE"
   },
+  "react-fast-compare@2.0.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/FormidableLabs/react-fast-compare",
+    "publisher": "Chris Bolin",
+    "path": "/Users/tune/git/act_arena/node_modules/react-fast-compare",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-fast-compare/LICENSE"
+  },
   "react-is@16.12.0": {
     "licenses": "MIT",
     "repository": "https://github.com/facebook/react",
@@ -5359,7 +5459,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-app-intro-slider",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-app-intro-slider/LICENSE"
   },
-  "react-native-background-timer@2.1.1": {
+  "react-native-background-timer@2.2.0": {
     "licenses": "MIT",
     "repository": "https://github.com/ocetnik/react-native-background-timer",
     "publisher": "David Ocetnik",
@@ -5389,7 +5489,15 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-easy-grid",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-easy-grid/LICENSE"
   },
-  "react-native-gesture-handler@1.5.3": {
+  "react-native-flash-message@0.1.15": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lucasferreira/react-native-flash-message",
+    "publisher": "Lucas Ferreira",
+    "email": "contato@lucasferreira.com",
+    "path": "/Users/tune/git/act_arena/node_modules/react-native-flash-message",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-flash-message/LICENSE"
+  },
+  "react-native-gesture-handler@1.5.6": {
     "licenses": "MIT",
     "repository": "https://github.com/software-mansion/react-native-gesture-handler",
     "publisher": "Krzysztof Magiera",
@@ -5434,7 +5542,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-lightbox",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-lightbox/LICENSE"
   },
-  "react-native-loading-spinner-overlay@1.0.1": {
+  "react-native-loading-spinner-overlay@1.1.0": {
     "licenses": "MIT",
     "repository": "https://github.com/joinspontaneous/react-native-loading-spinner-overlay",
     "publisher": "Nick Baugh",
@@ -5442,7 +5550,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-loading-spinner-overlay",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-loading-spinner-overlay/LICENSE"
   },
-  "react-native-modal@11.5.3": {
+  "react-native-modal@11.5.4": {
     "licenses": "MIT",
     "repository": "https://github.com/react-native-community/react-native-modal",
     "publisher": "Mazzarolo Matteo",
@@ -5456,7 +5564,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-parsed-text",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-parsed-text/LICENSE.txt"
   },
-  "react-native-permissions@2.0.9": {
+  "react-native-permissions@2.0.10": {
     "licenses": "MIT",
     "repository": "https://github.com/react-native-community/react-native-permissions",
     "publisher": "Mathieu Acthernoene",
@@ -5495,14 +5603,6 @@
     "url": "dpack3.0@gmail.com",
     "path": "/Users/tune/git/act_arena/node_modules/react-native-safe-area-view",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-safe-area-view/LICENSE"
-  },
-  "react-native-screens@1.0.0-alpha.23": {
-    "licenses": "MIT",
-    "repository": "https://github.com/kmagiera/react-native-screens",
-    "publisher": "Krzysztof Magiera",
-    "email": "krzys.magiera@gmail.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@react-navigation/native/node_modules/react-native-screens",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@react-navigation/native/node_modules/react-native-screens/LICENSE"
   },
   "react-native-screens@2.0.0-alpha.12": {
     "licenses": "MIT",
@@ -5557,6 +5657,13 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-view-shot",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-view-shot/LICENSE"
   },
+  "react-native-walkthrough-tooltip@1.1.7": {
+    "licenses": "MIT",
+    "repository": "https://github.com/jasongaare/react-native-walkthrough-tooltip",
+    "publisher": "Jason Gaare",
+    "path": "/Users/tune/git/act_arena/node_modules/react-native-walkthrough-tooltip",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-walkthrough-tooltip/LICENSE"
+  },
   "react-native-web@0.11.7": {
     "licenses": "MIT",
     "repository": "https://github.com/necolas/react-native-web",
@@ -5564,7 +5671,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native-web",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-web/README.md"
   },
-  "react-native-webview@7.4.3": {
+  "react-native-webview@7.6.0": {
     "licenses": "MIT",
     "repository": "https://github.com/react-native-community/react-native-webview",
     "publisher": "Jamon Holmgren",
@@ -5578,13 +5685,13 @@
     "path": "/Users/tune/git/act_arena/node_modules/react-native",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native/LICENSE"
   },
-  "react-navigation-stack@2.0.15": {
+  "react-navigation-stack@2.2.3": {
     "licenses": "MIT",
     "repository": "https://github.com/react-navigation/react-navigation-stack",
     "path": "/Users/tune/git/act_arena/node_modules/react-navigation-stack",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-navigation-stack/LICENSE.md"
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-navigation-stack/LICENSE"
   },
-  "react-navigation@4.0.10": {
+  "react-navigation@4.2.2": {
     "licenses": "MIT",
     "repository": "https://github.com/react-navigation/react-navigation",
     "publisher": "Adam Miskiewicz",
@@ -5793,8 +5900,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/resolve-from",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/resolve-from/license"
+    "path": "/Users/tune/git/act_arena/node_modules/import-fresh/node_modules/resolve-from",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/import-fresh/node_modules/resolve-from/license"
   },
   "resolve-from@4.0.0": {
     "licenses": "MIT",
@@ -5910,16 +6017,16 @@
     "repository": "https://github.com/ReactiveX/RxJS",
     "publisher": "Ben Lesh",
     "email": "ben@benlesh.com",
-    "path": "/Users/tune/git/act_arena/node_modules/rxjs",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/rxjs/LICENSE.txt"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/rxjs",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/rxjs/LICENSE.txt"
   },
   "rxjs@6.5.4": {
     "licenses": "Apache-2.0",
     "repository": "https://github.com/reactivex/rxjs",
     "publisher": "Ben Lesh",
     "email": "ben@benlesh.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/rxjs",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/rxjs/LICENSE.txt"
+    "path": "/Users/tune/git/act_arena/node_modules/rxjs",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/rxjs/LICENSE.txt"
   },
   "safe-buffer@5.1.2": {
     "licenses": "MIT",
@@ -5996,7 +6103,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/send",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/send/LICENSE"
   },
-  "sentry-expo@2.0.1": {
+  "sentry-expo@2.0.3": {
     "licenses": "MIT",
     "path": "/Users/tune/git/act_arena/node_modules/sentry-expo",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/sentry-expo/README.md"
@@ -6053,8 +6160,8 @@
     "repository": "https://github.com/jonschlinkert/shallow-clone",
     "publisher": "Jon Schlinkert",
     "url": "https://github.com/jonschlinkert",
-    "path": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/shallow-clone",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/superstruct/node_modules/shallow-clone/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/shallow-clone",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/shallow-clone/LICENSE"
   },
   "shallowequal@1.1.0": {
     "licenses": "MIT",
@@ -6130,8 +6237,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/slash",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/slash/license"
+    "path": "/Users/tune/git/act_arena/node_modules/@jest/console/node_modules/slash",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/@jest/console/node_modules/slash/license"
   },
   "slash@3.0.0": {
     "licenses": "MIT",
@@ -6285,7 +6392,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/stack-utils",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/stack-utils/license"
   },
-  "stacktrace-parser@0.1.8": {
+  "stacktrace-parser@0.1.9": {
     "licenses": "MIT",
     "repository": "https://github.com/errwischt/stacktrace-parser",
     "publisher": "Georg Tavonius",
@@ -6331,8 +6438,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/string-width",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/string-width/license"
+    "path": "/Users/tune/git/act_arena/node_modules/string-width",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/string-width/license"
   },
   "string-width@2.1.1": {
     "licenses": "MIT",
@@ -6340,8 +6447,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/string-width",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/string-width/license"
+    "path": "/Users/tune/git/act_arena/node_modules/inquirer/node_modules/string-width",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/inquirer/node_modules/string-width/license"
   },
   "string-width@3.1.0": {
     "licenses": "MIT",
@@ -6373,8 +6480,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/strip-ansi",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/wrap-ansi/node_modules/strip-ansi/license"
+    "path": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/strip-ansi",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/strip-ansi/license"
   },
   "strip-ansi@4.0.0": {
     "licenses": "MIT",
@@ -6382,8 +6489,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/strip-ansi",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/string-width/node_modules/strip-ansi/license"
+    "path": "/Users/tune/git/act_arena/node_modules/inquirer/node_modules/string-width/node_modules/strip-ansi",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/inquirer/node_modules/string-width/node_modules/strip-ansi/license"
   },
   "strip-ansi@5.2.0": {
     "licenses": "MIT",
@@ -6439,7 +6546,7 @@
     "path": "/Users/tune/git/act_arena/node_modules/strip-json-comments",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/strip-json-comments/license"
   },
-  "styled-components@5.0.0": {
+  "styled-components@5.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/styled-components/styled-components",
     "publisher": "Glen Maddern",
@@ -6483,8 +6590,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/jest-worker/node_modules/supports-color",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/jest-worker/node_modules/supports-color/license"
+    "path": "/Users/tune/git/act_arena/node_modules/jest-haste-map/node_modules/supports-color",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/jest-haste-map/node_modules/supports-color/license"
   },
   "supports-color@7.1.0": {
     "licenses": "MIT",
@@ -6665,8 +6772,8 @@
     "publisher": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com",
-    "path": "/Users/tune/git/act_arena/node_modules/type-fest",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/type-fest/license"
+    "path": "/Users/tune/git/act_arena/node_modules/stacktrace-parser/node_modules/type-fest",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/stacktrace-parser/node_modules/type-fest/license"
   },
   "type-fest@0.8.1": {
     "licenses": "(MIT OR CC0-1.0)",
@@ -6710,8 +6817,8 @@
     "publisher": "Mihai Bazon",
     "email": "mihai.bazon@gmail.com",
     "url": "http://lisperator.net/",
-    "path": "/Users/tune/git/act_arena/node_modules/uglify-es",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/uglify-es/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-minify-uglify/node_modules/uglify-es",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-minify-uglify/node_modules/uglify-es/LICENSE"
   },
   "ultron@1.0.2": {
     "licenses": "MIT",
@@ -7051,8 +7158,8 @@
     "publisher": "Rebecca Turner",
     "email": "me@re-becca.org",
     "url": "http://re-becca.org",
-    "path": "/Users/tune/git/act_arena/node_modules/write-file-atomic",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/write-file-atomic/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro/node_modules/write-file-atomic",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro/node_modules/write-file-atomic/LICENSE"
   },
   "write@1.0.3": {
     "licenses": "MIT",
@@ -7068,8 +7175,8 @@
     "publisher": "Einar Otto Stangvik",
     "email": "einaros@gmail.com",
     "url": "http://2x.io",
-    "path": "/Users/tune/git/act_arena/node_modules/ws",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/ws/README.md"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/ws",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/ws/README.md"
   },
   "ws@3.3.3": {
     "licenses": "MIT",
@@ -7084,13 +7191,6 @@
     "licenses": "Apache-2.0",
     "repository": "https://github.com/apache/cordova-node-xcode",
     "publisher": "Apache Software Foundation",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/xcode",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/xcode/LICENSE"
-  },
-  "xcode@2.1.0": {
-    "licenses": "Apache-2.0",
-    "repository": "https://github.com/apache/cordova-node-xcode",
-    "publisher": "Apache Software Foundation",
     "path": "/Users/tune/git/act_arena/node_modules/xcode",
     "licenseFile": "/Users/tune/git/act_arena/node_modules/xcode/LICENSE"
   },
@@ -7099,8 +7199,8 @@
     "repository": "https://github.com/oozcitak/xmlbuilder-js",
     "publisher": "Ozgur Ozcitak",
     "email": "oozcitak@gmail.com",
-    "path": "/Users/tune/git/act_arena/node_modules/xmlbuilder",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/xmlbuilder/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/plist/node_modules/xmlbuilder",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/plist/node_modules/xmlbuilder/LICENSE"
   },
   "xmldoc@1.1.2": {
     "licenses": "MIT",
@@ -7140,16 +7240,16 @@
     "repository": "https://github.com/yargs/y18n",
     "publisher": "Ben Coe",
     "email": "ben@npmjs.com",
-    "path": "/Users/tune/git/act_arena/node_modules/y18n",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/y18n/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/y18n",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/y18n/LICENSE"
   },
   "y18n@4.0.0": {
     "licenses": "ISC",
     "repository": "https://github.com/yargs/y18n",
     "publisher": "Ben Coe",
     "email": "ben@npmjs.com",
-    "path": "/Users/tune/git/act_arena/node_modules/react-native-vector-icons/node_modules/y18n",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/react-native-vector-icons/node_modules/y18n/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/y18n",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/y18n/LICENSE"
   },
   "yallist@2.1.2": {
     "licenses": "ISC",
@@ -7157,8 +7257,8 @@
     "publisher": "Isaac Z. Schlueter",
     "email": "i@izs.me",
     "url": "http://blog.izs.me/",
-    "path": "/Users/tune/git/act_arena/node_modules/yallist",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/yallist/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/yallist",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/yallist/LICENSE"
   },
   "yallist@3.1.1": {
     "licenses": "ISC",
@@ -7174,10 +7274,10 @@
     "repository": "https://github.com/yargs/yargs-parser",
     "publisher": "Ben Coe",
     "email": "ben@npmjs.com",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/yargs-parser",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/yargs-parser/LICENSE.txt"
+    "path": "/Users/tune/git/act_arena/node_modules/yargs-parser",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs-parser/LICENSE.txt"
   },
-  "yargs-parser@13.1.1": {
+  "yargs-parser@13.1.2": {
     "licenses": "ISC",
     "repository": "https://github.com/yargs/yargs-parser",
     "publisher": "Ben Coe",
@@ -7190,16 +7290,16 @@
     "repository": "https://github.com/yargs/yargs-parser",
     "publisher": "Ben Coe",
     "email": "ben@npmjs.com",
-    "path": "/Users/tune/git/act_arena/node_modules/yargs-parser",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs-parser/LICENSE.txt"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/yargs-parser",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/yargs-parser/LICENSE.txt"
   },
   "yargs@12.0.5": {
     "licenses": "MIT",
     "repository": "https://github.com/yargs/yargs",
-    "path": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/yargs",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/@sentry/wizard/node_modules/yargs/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/yargs",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/LICENSE"
   },
-  "yargs@13.3.0": {
+  "yargs@13.3.2": {
     "licenses": "MIT",
     "repository": "https://github.com/yargs/yargs",
     "path": "/Users/tune/git/act_arena/node_modules/react-native-vector-icons/node_modules/yargs",
@@ -7208,8 +7308,8 @@
   "yargs@9.0.1": {
     "licenses": "MIT",
     "repository": "https://github.com/yargs/yargs",
-    "path": "/Users/tune/git/act_arena/node_modules/yargs",
-    "licenseFile": "/Users/tune/git/act_arena/node_modules/yargs/LICENSE"
+    "path": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/yargs",
+    "licenseFile": "/Users/tune/git/act_arena/node_modules/metro-inspector-proxy/node_modules/yargs/LICENSE"
   }
 }
 
