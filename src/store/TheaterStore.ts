@@ -172,6 +172,10 @@ class TheaterStore {
                 }
                 break;
             case C.TheaterState.ACT:
+                if (this.userState === C.TheaterUserState.ACTOR) {
+                    // 再接続用
+                    SkywayStore.setEnable();
+                }
                 OverlayMessageStore.start('上演開始');
                 
                 break;

@@ -131,7 +131,7 @@ class ArenaStore {
             case C.ArenaState.WAIT:
                 OverlayMessageStore.start('上演終了');
 
-                SkywayStore.setDisabled();
+                SkywayStore.setDisable();
                 SkywayStore.leave();
 
                 ArenaScenarioStore.setAgreement(C.AgreementState.NONE);

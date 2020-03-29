@@ -147,7 +147,12 @@ class SkywayStore {
         return;
     }
 
-    public setDisabled = () :void => {
+    public setEnable = () :void => {
+        if (!this.peer || this.speakState !== C.SpeakState.DISABLED) return;
+        this.speakState = C.SpeakState.MUTE;
+    }
+
+    public setDisable = () :void => {
         this.speakState = C.SpeakState.DISABLED;
         if (this.peer) this.peer.setLocalStreamStatus(false);
     }
