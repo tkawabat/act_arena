@@ -7,6 +7,7 @@ import * as C from '../lib/Const';
 import Secret from '../lib/Secret';
 import Amplitude from '../lib/Amplitude';
 import Scheduler from '../lib/Scheduler';
+import Permission from '../lib/Permission';
 
 import ConfigStore from './ConfigStore';
 
@@ -157,8 +158,11 @@ class SkywayStore {
         if (this.peer) this.peer.setLocalStreamStatus(false);
     }
 
-    public testTell = (userId) :void => {
+    public asyncTestTell = async (userId) => {
         Amplitude.info('testTell', null);
+
+        const permission = await Permission.asyncCheckTell();
+        if (!permission) return;
 
         ConfigStore.load(true);
         if (!this.testPeer) {

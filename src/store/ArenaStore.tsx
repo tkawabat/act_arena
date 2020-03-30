@@ -7,6 +7,7 @@ import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
+import Permission from '../lib/Permission';
 
 import ArenaScenarioStore from './ArenaScenarioStore';
 import ArenaUserStore from './ArenaUserStore';
@@ -284,6 +285,9 @@ class ArenaStore {
             Alert.alert('満員のため入室できません。');
             return;
         }
+        
+        const permission = await Permission.asyncCheckTell();
+        if (!permission) return;
 
         this.id = id;
         ArenaScenarioStore.setAgreement(C.AgreementState.NONE);

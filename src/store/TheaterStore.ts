@@ -7,6 +7,7 @@ import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
+import Permission from '../lib/Permission';
 
 import TheaterUserStore from './TheaterUserStore';
 import ChatStore from './ChatStore';
@@ -275,6 +276,9 @@ class TheaterStore {
             Alert.alert('満員のため入室できません。');
             return;
         }
+
+        const permission = await Permission.asyncCheckTell();
+        if (!permission) return;
 
         this.id = id;
         this.agreement = false;

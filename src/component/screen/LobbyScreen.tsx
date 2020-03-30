@@ -1,8 +1,7 @@
 import React from 'react';
-import { Alert, Platform, } from 'react-native';
 import { Header, Button, Title, Icon } from 'native-base';
 import { observer } from 'mobx-react';
-import * as Permissions from 'react-native-permissions';
+
 import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
@@ -13,7 +12,6 @@ import * as BasicStyle from '../../lib/BasicStyle';
 import ArenaStore from '../../store/ArenaStore';
 import ConfigStore from '../../store/ConfigStore';
 import PushStore from '../../store/PushStore';
-import SkywayStore from '../../store/SkywayStore';
 import UserStore from '../../store/UserStore';
 import LobbyStore from '../../store/LobbyStore';
 
@@ -33,70 +31,12 @@ export default class LobbyScreen extends ScreenBase {
     constructor(props) {
         super(props);        
     }
-
-    private asyncCheckPermissions = async () => {
-        let ret:boolean = false;
-        if (Platform.OS === 'ios') {
-            ret = await this.asyncCheckIosPermissions();
-        } else {
-            ret = await this.asyncCheckAndroidPermissions();
-        }
-        return ret;
-    }
-
-    private asyncCheckIosPermissions = async () => {
-        const p = Permissions.PERMISSIONS.IOS.MICROPHONE;
-        switch (await Permissions.check(p)) {
-            case Permissions.RESULTS.UNAVAILABLE:
-                Alert.alert('このデバイスではマイクをご利用できないため、アリーナに参加できません。');
-                return false;
-            case Permissions.RESULTS.BLOCKED:
-                Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
-                    { text: '設定へ', onPress: Permissions.openSettings}
-                    , { text: 'Cancel'}
-                ]);
-                return false;
-            case Permissions.RESULTS.DENIED:
-                Permissions.request(p);
-                return false;
-            case Permissions.RESULTS.GRANTED:
-                return true;
-        }
-    }
-
-    private asyncCheckAndroidPermissions = async () => {
-        const microphone = await Permissions.request(Permissions.PERMISSIONS.ANDROID.RECORD_AUDIO);
-        if (microphone === Permissions.RESULTS.UNAVAILABLE) {
-            alert('このデバイスではマイクをご利用できないため、アリーナに参加できません。');
-            return false;
-        }
-
-        if (microphone === Permissions.RESULTS.GRANTED) {
-            return true;
-        }
-        
-        Alert.alert('', 'アリーナに参加するためにはマイクの利用許可が必要です。', [
-            { text: '設定へ', onPress: Permissions.openSettings }
-            , { text: 'Cancel' }
-        ]);
-
-        return false;
-    }
     
     private joinArena = async (id:number) => {
-        const p = await this.asyncCheckPermissions();
-        if (!p) return;
-
         ConfigStore.load(true);
         ArenaStore.join(id).then(() => {
             ConfigStore.load(false);
         });
-    }
-
-    private testTell = async () => {
-        const p = await this.asyncCheckPermissions();
-        if (!p) return;
-        SkywayStore.testTell(UserStore.id);
     }
 
     render() {
@@ -133,7 +73,7 @@ export default class LobbyScreen extends ScreenBase {
                 </ScreenBody>
 
                 <Footer>
-                    <TestTellButton onPress={this.testTell}></TestTellButton>
+                    <TestTellButton />
                 </Footer>
 
                 <PushSettingModal />
