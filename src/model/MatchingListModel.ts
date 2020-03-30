@@ -26,6 +26,7 @@ class MatchingListModel {
         return this.ref.set({
             name: user.name,
             gender: user.gender,
+            createdAt: Firebase.firestore.Timestamp.now(),
         })
         .catch((error) => Amplitude.error('MatchingListModel asyncSet', error))
         ;

@@ -1,15 +1,15 @@
 import Moment from 'moment';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { observable, computed, action } from 'mobx';
+import { showMessage, } from "react-native-flash-message";
 
 import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
-import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
-
 
 import ConfigStore from './ConfigStore';
 import UserStore, { User } from './UserStore';
+import SoundStore from './SoundStore';
 
 
 import MatchingListModel from '../model/MatchingListModel';
@@ -19,8 +19,9 @@ class MatchingStore {
     private matchingListModel:MatchingListModel;
 
     @observable isMatching:boolean = false;
+    private createdAt:FirebaseFirestoreTypes.Timestamp;
 
-    constructor() {        
+    constructor() {
     }
 
     public init = (userId:string) => {
@@ -29,9 +30,41 @@ class MatchingStore {
         ConfigStore.setInitLoadComplete('matching');
     }
 
+    private checkTimeLimit = () => {
+        const limit = Moment().unix() - C.MatchingTime;
+        if (this.createdAt.seconds >= limit) {
+            this.isMatching = true;
+            return;
+        }
+
+        // 時間切れ
+        Scheduler.clearInterval(C.SchedulerMatchingTimeLimitCheck);
+        this.matchingListModel.asyncDelete();
+        SoundStore.se(C.SeKey.CANCEL);
+        showMessage({
+            autoHide: false,
+            message: '時間切れのため、マッチングをキャンセルしました。',
+            titleStyle: { fontSize: 16 },
+        });
+        this.isMatching = false;
+    }
+
     @action
     private matchingListUpdated = (snapshot :FirebaseFirestoreTypes.DocumentSnapshot) => {
-        this.isMatching = snapshot.exists;
+        if (!snapshot.exists) {
+            this.isMatching = false;
+            return;
+        }
+
+        const data = snapshot.data();
+        this.createdAt = data.createdAt;
+
+        Scheduler.clearInterval(C.SchedulerMatchingTimeLimitCheck);
+        this.checkTimeLimit();
+        
+        if (this.isMatching) {
+            Scheduler.setInterval(C.SchedulerMatchingTimeLimitCheck, this.checkTimeLimit, 60 * 1000);
+        }
     }
 
     public toggle = async () => {

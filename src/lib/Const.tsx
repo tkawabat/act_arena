@@ -146,6 +146,7 @@ export const PushBasicSettingString  = {
     [PushBasicSettingKey.DAWN]:     '未明（０２：００〜０９：００）',
 }
 
+export const MatchingTime = 30 * 60; // 30minutes
 export const PushIntervalHour = 3;
 
 export const MusicList = [
@@ -177,4 +178,5 @@ export const OverlayDuration = 1000;
 
 export const SchedulerArenaTick = 'ArenaTick';
 export const SchedulerTheaterTick = 'TheaterTick';
+export const SchedulerMatchingTimeLimitCheck = 'MatchingTimeLimitCheck';
 export const SchedulerAndroidReload = 'AndroidReload';
