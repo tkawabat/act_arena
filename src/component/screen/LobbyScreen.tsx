@@ -106,30 +106,33 @@ const ScreenBody = styled.ScrollView`
 `
 
 const Section = styled.View`
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 `;
 
 const TitleRow = styled.View`
     flex-direction: row;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-`;
-
-const _Tips = styled(Tips)`
-    margin-left: 2px;
+    background-color: ${BasicStyle.colorMiddle};
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
 `;
 
 const ScreenTitle = styled.Text`    
-    margin-left: 20px;
+    margin-left: 10px;
     font-size: 24px;
     font-weight: 500;
+    color: #ddd;
+`;
+
+const _Tips = styled(Tips)`
+    margin-left: 3px;
 `;
 
 const _MatchingButton = styled(MatchingButton)`
     align-self: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 `;
 
 const Footer = styled.View`

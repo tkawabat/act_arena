@@ -68,6 +68,10 @@ export const disabledColor = props => {
     }
 }
 
+export const colorLight = `#447198`;
+export const colorMiddle = `#182F6E`;
+export const colorDeep = `#000044`;
+
 // Modules
 export const Left = styled.View`
     flex: 1;

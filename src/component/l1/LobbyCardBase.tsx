@@ -65,9 +65,9 @@ const Main = styled.View`
 `;
 
 const TitleText = styled.Text`
-    font-size: 20px;
-    font-weight: 600;
-    color: #000044;
+    font-size: 16px;
+    font-weight: 700;
+    color: ${BasicStyle.colorDeep};
 `;
 
 const UserNumRoot = styled.View`
