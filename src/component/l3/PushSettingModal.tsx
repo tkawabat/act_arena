@@ -5,6 +5,7 @@ import Modal from 'react-native-modal';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
+import { Left, Center, Right } from '../../lib/BasicModule';
 
 import PushStore from '../../store/PushStore';
 
@@ -150,12 +151,12 @@ const Footer = styled.View`
     flex-direction: row;
 `
 
-const FooterLeft = styled(BasicStyle.Left)`
+const FooterLeft = styled(Left)`
     flex: 2;
     justify-content: flex-end;
 `
 
-const FooterRight = styled(BasicStyle.Right)`
+const FooterRight = styled(Right)`
     flex: 1;
 `
 

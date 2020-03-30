@@ -5,7 +5,6 @@ import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
 
-
 import ScreenBase from './ScreenBase';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';

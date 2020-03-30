@@ -1,12 +1,14 @@
 import React from 'react';
 import {StyleSheet, ScrollView, } from 'react-native';
-import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon, H3 } from 'native-base';
+import { Container, View, Text, H3 } from 'native-base';
 import { observer } from 'mobx-react';
 import { getStatusBarHeight, getBottomSpace } from 'react-native-iphone-x-helper';
 
 import TermsJson from '../../../terms.json';
 import ScreenBase from './ScreenBase';
 import Navigator from '../../lib/Navigator';
+
+import BasicHeader from '../l3/BasicHeader';
 
 
 @observer
@@ -41,17 +43,7 @@ export default class TermsScreen extends ScreenBase {
     render() {
         return (
             <Container style={styles.container}>
-                <Header style={styles.header}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='arrow-back' onPress={Navigator.back} />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>利用規約</Title>
-                    </Body>
-                    <Right />
-                </Header>
+                <BasicHeader title={'利用規約'} back={true} />
                 <ScrollView style={styles.scrollView}>
                     <Text>{TermsJson.preface}</Text>
                     {this.createChapters()}

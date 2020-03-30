@@ -1,14 +1,17 @@
 import React from 'react';
 import { Linking } from 'react-native';
-import { Container, Content, Header, Left, Body, Right, Button, Text, Title, Icon, ListItem, Separator } from 'native-base';
+import { Content, Button, Text, Icon, ListItem, Separator } from 'native-base';
 import { observer } from 'mobx-react';
 
-import licenseJson from '../../../license.json';
 import ScreenBase from './ScreenBase';
 import * as BasicStyle from '../../lib/BasicStyle';
+import { ScreenRoot, } from '../../lib/BasicModule';
 import Navigator from '../../lib/Navigator';
+import licenseJson from '../../../license.json';
 
 import styled from 'styled-components/native';
+
+import BasicHeader from '../l3/BasicHeader';
 
 
 @observer
@@ -24,18 +27,9 @@ export default class CopyrightScreen extends ScreenBase {
 
     render() {
         return (
-            <Root>
-                <Header_>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='arrow-back' onPress={Navigator.back} />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>著作権表示</Title>
-                    </Body>
-                    <Right />
-                </Header_>
+            <ScreenRoot>
+                <BasicHeader title={'著作権表示'} back={true} />
+                
                 <Content>
                     <Separator bordered>
                         <SubTitle>台本</SubTitle>
@@ -80,20 +74,11 @@ export default class CopyrightScreen extends ScreenBase {
                         {this.softwares}
                     </SoftwareText>
                 </Content>
-            </Root>
+            </ScreenRoot>
         );
     }
 }
 
-
-const Root = styled(Container)`
-    ${BasicStyle.screenRoot}
-`
-
-const Header_ = styled(Header)`
-    padding-top: 0;
-    height: 50px;
-`
 
 const SubTitle = styled.Text`
     font-weight: 700;

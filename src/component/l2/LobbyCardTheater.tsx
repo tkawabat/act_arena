@@ -1,6 +1,6 @@
 import Moment from 'moment';
 import React, {Component} from 'react';
-import { Card, Icon, Badge } from "native-base";
+import { Icon } from "native-base";
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
@@ -14,7 +14,7 @@ import TheaterStore from '../../store/TheaterStore';
 
 import TextBadge from '../l1/TextBadge';
 import LobbyCardBase from '../l1/LobbyCardBase';
-import { Alert } from 'react-native';
+
 
 interface props {
     theaterId: string

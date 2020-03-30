@@ -6,6 +6,7 @@ import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
+import { Header, HeaderTitle, Left, Center, Right } from '../../lib/BasicModule';
 
 import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
@@ -33,32 +34,28 @@ export default class ArenaHeader extends Component<props> {
         const roomName = ArenaStore.id === 0 ? 'アリーナ' : ArenaStore.id;
         
         return (
-            <Root>
-                <BasicStyle.Left>
+            <Header>
+                <Left>
                     <ArenaStateBadge
                         text={C.ArenaStateString[ArenaStore.arenaState]}
                         {...(badgeColor[ArenaStore.arenaState])}
                     />
                     <Timer time={ArenaStore.time} />
-                </BasicStyle.Left>
-                <BasicStyle.Center>
+                </Left>
+                <Center>
                     <RoomIcon name='home' type='FontAwesome5' />
-                    <RoomName>{roomName}</RoomName>
-                </BasicStyle.Center>
-                <BasicStyle.Right>
+                    <HeaderTitle>{roomName}</HeaderTitle>
+                </Center>
+                <Right>
                     <UesrIcon name='user' type='FontAwesome5' />
                     <UserNumText>{this.props.userNum}</UserNumText>
                     <IconButton icon={'sign-out-alt'} onPress={this.leave} disabled={!ArenaUserStore.canLeave} />
-                </BasicStyle.Right>
-            </Root>
+                </Right>
+            </Header>
         )
     }
 }
 
-
-const Root = styled.View`
-    ${BasicStyle.header};
-`;
 
 const ArenaStateBadge = styled(TextBadge)`
     height: 20px;
@@ -66,13 +63,6 @@ const ArenaStateBadge = styled(TextBadge)`
 
 const RoomIcon = styled(Icon)`
     font-size: 16px;
-`
-
-const RoomName = styled.Text`
-    color: #333;
-    margin-left: 3px;
-    font-size: 18px;
-    font-weight: 600;
 `
 
 const UesrIcon = styled(Icon)`

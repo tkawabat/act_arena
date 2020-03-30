@@ -1,18 +1,20 @@
 import React from 'react';
 import { Alert } from 'react-native';
-import { Container, Content, Button, Text, Item, Input, Picker, Icon, Header, Left, Right, Body, Title } from 'native-base';
+import { Content, Button, Text, Item, Input, Picker, Icon, } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
 import ScreenBase from './ScreenBase';
 
 import * as C from '../../lib/Const';
-import Navigator from '../../lib/Navigator';
 import * as BasicStyle from '../../lib/BasicStyle';
+import { ScreenRoot, } from '../../lib/BasicModule';
+import Navigator from '../../lib/Navigator';
 
 import ConfigStore from '../../store/ConfigStore';
 import UserStore from '../../store/UserStore';
 
+import BasicHeader from '../l3/BasicHeader';
 import Intro from '../l4/Intro';
 
 
@@ -97,14 +99,8 @@ export default class RegisterScreen extends ScreenBase {
         }
         
         return (
-            <Root>
-                <Header_>
-                    <Left></Left>
-                    <Body>
-                        <Title>ユーザー登録</Title>
-                    </Body>
-                    <Right />
-                </Header_>
+            <ScreenRoot>
+                <BasicHeader title={'ユーザー登録'} />
                 <Content>
                     <InputView>
                         <Item>
@@ -149,19 +145,10 @@ export default class RegisterScreen extends ScreenBase {
                     {this.registCaution}
                     
                 </Content>
-            </Root>
+            </ScreenRoot>
         );
     }
 }
-
-const Root = styled(Container)`
-    ${BasicStyle.screenRoot};
-    ${BasicStyle.screenWidth};
-`
-
-const Header_ = styled(Header)`
-    ${BasicStyle.header};
-`
 
 const InputView = styled.View`
     margin-top: 50px;

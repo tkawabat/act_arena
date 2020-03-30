@@ -6,9 +6,9 @@ import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
+import { Header, HeaderTitle, Left, Center, Right } from '../../lib/BasicModule';
 
 import TheaterStore from '../../store/TheaterStore';
-import TheaterUserStore from '../../store/TheaterUserStore';
 
 import Timer from '../l1/Timer';
 import TextBadge from '../l1/TextBadge';
@@ -32,44 +32,30 @@ export default class TheaterHeader extends Component<props> {
     render() {
         
         return (
-            <Root>
-                <BasicStyle.Left>
+            <Header>
+                <Left>
                     <TheaterStateBadge
                         text={C.TheaterStateString[TheaterStore.theaterState]}
                         {...(badgeColor[TheaterStore.theaterState])}
                     />
                     <Timer time={TheaterStore.time} />
-                </BasicStyle.Left>
+                </Left>
                 <Center>
-                    <RoomName>『{TheaterStore.title}』</RoomName>
+                    <HeaderTitle>『{TheaterStore.title}』</HeaderTitle>
                 </Center>
-                <BasicStyle.Right>
+                <Right>
                     <UesrIcon name='user' type='FontAwesome5' />
                     <UserNumText>{this.props.userNum}</UserNumText>
                     <IconButton icon={'sign-out-alt'} onPress={this.leave} disabled={!TheaterStore.canLeave} />
-                </BasicStyle.Right>
-            </Root>
+                </Right>
+            </Header>
         )
     }
 }
 
 
-const Root = styled.View`
-    ${BasicStyle.header};
-`;
-
-const Center = styled(BasicStyle.Center)`
-    flex: 2
-`
-
 const TheaterStateBadge = styled(TextBadge)`
     height: 20px;
-`
-
-const RoomName = styled.Text`
-    color: #333;
-    font-size: 18px;
-    font-weight: 600;
 `
 
 const UesrIcon = styled(Icon)`

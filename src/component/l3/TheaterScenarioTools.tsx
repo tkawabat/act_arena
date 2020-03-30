@@ -40,7 +40,7 @@ const Root = styled.View`
     ${BasicStyle.screenWidth};
     flex-direction: row;
     align-items: center;
-    background-color: #000077;
+    background-color: ${BasicStyle.colorMiddle};
 `
 
 const Left = styled.View`

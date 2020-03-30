@@ -17,20 +17,6 @@ export const center = css`
     align-items: center;
 `
 
-export const header = css`
-    ${screenWidth};
-    height: 50px;
-    padding-top: 0px;
-    flex-direction: row;
-    align-items: center;
-`;
-
-export const screenRoot = css`
-    flex: 1;
-    margin-top: ${getStatusBarHeight()}px;
-    margin-bottom: ${getBottomSpace()}px;
-`
-
 export const button = css`
     border: 1px solid;
     box-shadow: 1px 1px 3px #c3e1ff;
@@ -71,26 +57,3 @@ export const disabledColor = props => {
 export const colorLight = `#447198`;
 export const colorMiddle = `#182F6E`;
 export const colorDeep = `#000044`;
-
-// Modules
-export const Left = styled.View`
-    flex: 1;
-    align-items: flex-start;
-    justify-content: center;
-    padding-left: 10px;
-`
-
-export const Center = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`
-
-export const Right = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 10px;
-`

@@ -1,15 +1,18 @@
 import React from 'react';
 import { ScrollView, } from 'react-native';
-import { Container, View, Header, Left, Body, Right, Button, Title, Text, Icon, H3 } from 'native-base';
+import { Text, H3 } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
-import PrivacyJson from '../../../privacy.json';
 import ScreenBase from './ScreenBase';
-import Navigator from '../../lib/Navigator';
 import * as BasicStyle from '../../lib/BasicStyle';
+import { ScreenRoot, } from '../../lib/BasicModule';
+import Navigator from '../../lib/Navigator';
+import PrivacyJson from '../../../privacy.json';
 
 import ConfigStore from '../../store/ConfigStore';
+
+import BasicHeader from '../l3/BasicHeader';
 
 
 @observer
@@ -43,36 +46,18 @@ export default class PrivacyScreen extends ScreenBase {
 
     render() {
         return (
-            <Root>
-                <Header_>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='arrow-back' onPress={Navigator.back} />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>プライバシーポリシー</Title>
-                    </Body>
-                    <Right />
-                </Header_>
+            <ScreenRoot>
+                <BasicHeader title={'プライバシーポリシー'} back={true} />
                 <ScrollView_>
                     <Text>{PrivacyJson.preface}</Text>
                     {this.createChapters()}
                     <Space />
                 </ScrollView_>
-            </Root>
+            </ScreenRoot>
         );
     }
 }
 
-
-const Root = styled.View`
-    ${BasicStyle.screenRoot}
-`
-
-const Header_ = styled(Header)`
-    ${BasicStyle.header}
-`
 
 const ScrollView_ = styled(ScrollView)`
     margin-horizontal: 10px;
