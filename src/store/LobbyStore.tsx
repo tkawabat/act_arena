@@ -53,7 +53,7 @@ class LobbyStore {
         this.theaterListModel = new TheaterListModel();
     }
 
-    private showmessage = (theaterId:string) => {
+    private showMessage = (theaterId:string) => {
         const f = () => {
             SoundStore.se(C.SeKey.MATCHING);
             showMessage({
@@ -96,7 +96,7 @@ class LobbyStore {
 
         const afterActTheaterId = this.actTheaterId;
         if (typeof afterActTheaterId !== 'undefined' && beforeActTheaterId !== afterActTheaterId) {
-            this.showmessage(afterActTheaterId);
+            this.showMessage(afterActTheaterId);
         }
     }
 
