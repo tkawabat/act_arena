@@ -58,18 +58,22 @@ export default class LobbyScreen extends ScreenBase {
                     </BasicStyle.Right>
                 </LobbyHeader>
                 <ScreenBody>
-                    <TitleRow>
-                        <ScreenTitle>3分アリーナ</ScreenTitle>
-                        <_Tips text={'台本の一場面をその場で演じる新しい遊び方！'} />
-                    </TitleRow>
-                    <LobbyCardArena joinArena={this.joinArena} />
-                    <LobbyCardPrivateArena joinArena={this.joinArena} />
-                    <TitleRow>
-                        <ScreenTitle>サシ劇マッチング</ScreenTitle>
-                        <_Tips text={'読み10分 + 上演15~45分の約１時間の劇。\nエントリーは30分経つか、アプリを終了すると自動でキャンセルされます。'} />
-                    </TitleRow>
-                    <_MatchingButton />
-                    {theaterList}
+                    <Section>
+                        <TitleRow>
+                            <ScreenTitle>3分アリーナ</ScreenTitle>
+                            <_Tips text={'台本の一場面をその場で演じる新しい遊び方！'} />
+                        </TitleRow>
+                        <LobbyCardArena joinArena={this.joinArena} />
+                        <LobbyCardPrivateArena joinArena={this.joinArena} />
+                    </Section>
+                    <Section>
+                        <TitleRow>
+                            <ScreenTitle>サシ劇マッチング</ScreenTitle>
+                            <_Tips text={'読み10分 + 上演15~45分の約１時間の劇。\nエントリーは30分経つか、アプリを終了すると自動でキャンセルされます。'} />
+                        </TitleRow>
+                        <_MatchingButton />
+                        {theaterList}
+                    </Section>
                 </ScreenBody>
 
                 <Footer>
@@ -101,11 +105,15 @@ const ScreenBody = styled.ScrollView`
     flex: 1;
 `
 
+const Section = styled.View`
+    margin-bottom: 20px;
+`;
+
 const TitleRow = styled.View`
     flex-direction: row;
     align-items: center;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 `;
 
 const _Tips = styled(Tips)`
