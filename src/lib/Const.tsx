@@ -156,10 +156,11 @@ export const MusicList = [
 ]
 
 export enum SeKey {
-    ACT_START = 1,
-    ACT_END = 2,
-    MATCHING = 3,
-    ENTER_ROOM = 4,
+    ACT_START,
+    ACT_END,
+    MATCHING,
+    ENTER_ROOM,
+    CANCEL,
 }
 
 export const SePath = '../../resource/se';
@@ -168,6 +169,7 @@ export const SeList = {
     [SeKey.ACT_END]:    { file: 'people_people_stadium_cheer1.mp3', site: '効果音ラボ'},
     [SeKey.MATCHING]:   { file: 'tin2.mp3', site: '効果音ラボ'},
     [SeKey.ENTER_ROOM]: { file: 'cursor1.mp3', site: '効果音ラボ'},
+    [SeKey.CANCEL]: { file: 'cancel8.mp3', site: 'ポケットサウンド'},
 }
 
 export const SoundFadeDuration = 8000;

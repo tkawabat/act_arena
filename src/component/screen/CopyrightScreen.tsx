@@ -66,6 +66,14 @@ export default class CopyrightScreen extends ScreenBase {
                     </ListItem>
 
                     <Separator bordered>
+                        <SubTitle>SE</SubTitle>
+                    </Separator>
+                    <ListItem>
+                        <Text>ポケットサウンド</Text>
+                        <LinkIcon name='external-link-alt' type='FontAwesome5' onPress={() =>  Linking.openURL('https://pocket-se.info/')} />
+                    </ListItem>
+
+                    <Separator bordered>
                         <SubTitle>ソフトウェア</SubTitle>
                     </Separator>
                     <SoftwareText>
