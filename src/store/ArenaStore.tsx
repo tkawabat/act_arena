@@ -304,7 +304,7 @@ class ArenaStore {
 
         const p = [];
         p.push(this.arenaUserModel.asyncSetRoomUser(UserStore));
-        p.push(UserStore.asyncSetRoom(this.arenaModel.id));
+        p.push(UserStore.asyncSetArena(this.arenaModel.id));
         //p.push(UserStore.asyncSetConnect(true));
         await Promise.all(p).catch(e => console.log(e));
 

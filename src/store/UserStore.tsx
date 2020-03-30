@@ -131,11 +131,19 @@ class UserStore implements User {
         ;
     }
 
-    public asyncSetRoom = async (id:string) :Promise<void> => {
+    public asyncSetArena = async (id:string) :Promise<void> => {
         return this.db.doc(this.id).update({
             arena: id
         })
-        .catch((error) => Amplitude.error('UserStore setRoom', error))
+        .catch((error) => Amplitude.error('UserStore.setArena', error))
+        ;
+    }
+
+    public asyncSetTheater = async (id:string) :Promise<void> => {
+        return this.db.doc(this.id).update({
+            theater: id
+        })
+        .catch((error) => Amplitude.error('UserStore.setTheater', error))
         ;
     }
 

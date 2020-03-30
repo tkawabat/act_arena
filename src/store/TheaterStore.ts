@@ -297,7 +297,7 @@ class TheaterStore {
 
         const p = [];
         p.push(this.theaterUserModel.asyncSetRoomUser(UserStore));
-        p.push(UserStore.asyncSetRoom(this.theaterModel.id));
+        p.push(UserStore.asyncSetTheater(this.theaterModel.id));
         await Promise.all(p).catch(e => console.log(e));
 
         this.observe();
