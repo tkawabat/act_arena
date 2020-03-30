@@ -19,7 +19,14 @@ class MatchingStore {
     private matchingListModel:MatchingListModel;
 
     @observable isMatching:boolean = false;
-    private createdAt:FirebaseFirestoreTypes.Timestamp;
+    private createdAt:FirebaseFirestoreTypes.Timestamp = null;
+
+    get limit() :Moment.Moment {
+        if (!this.createdAt) {
+            return null;
+        }
+        return Moment.unix(this.createdAt.seconds).add(C.MatchingTime, 'seconds');
+    }
 
     constructor() {
     }
@@ -31,8 +38,13 @@ class MatchingStore {
     }
 
     private checkTimeLimit = () => {
-        const limit = Moment().unix() - C.MatchingTime;
-        if (this.createdAt.seconds >= limit) {
+        if (!this.limit) {
+            this.isMatching = false;
+            Scheduler.clearInterval(C.SchedulerMatchingTimeLimitCheck);
+            return;
+        }
+
+        if (Moment().unix() <= this.limit.unix()) {
             this.isMatching = true;
             return;
         }
@@ -53,6 +65,7 @@ class MatchingStore {
     private matchingListUpdated = (snapshot :FirebaseFirestoreTypes.DocumentSnapshot) => {
         if (!snapshot.exists) {
             this.isMatching = false;
+            this.createdAt = null;
             return;
         }
 
