@@ -54,6 +54,7 @@ class UserStore implements User {
         this.get().then(() => { ConfigStore.setInitLoadComplete('user'); })
 
         this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
+        this.observeConnectionChange();
     }
      
     private get = async () :Promise<void> => {

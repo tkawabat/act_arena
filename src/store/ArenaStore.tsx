@@ -258,7 +258,6 @@ class ArenaStore {
         this.arenaModel.observe(this.arenaUpdated);
         this.arenaUserModel.observe(this.usersUpdated);
 
-        UserStore.observeConnectionChange();
         ChatStore.observe();
     }
 
@@ -266,7 +265,6 @@ class ArenaStore {
         this.arenaModel.stopObserve();
         this.arenaUserModel.stopObserve();
 
-        UserStore.stopObserveConnectionChange();
         ChatStore.stopObserve();
     }
 
