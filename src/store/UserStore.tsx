@@ -26,8 +26,6 @@ class UserStore implements User {
     @observable gender: C.Gender;
     @observable iconUrl: string;
     @observable ngList: Array<string>;
-    createdAt: FirebaseFirestoreTypes.FieldValue;
-    updatedAt: FirebaseFirestoreTypes.FieldValue;
 
     @computed get isRegisted() :boolean {
         return this.name ? true : false;
