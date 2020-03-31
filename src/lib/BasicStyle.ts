@@ -54,7 +54,7 @@ export const disabledColor = props => {
     }
 }
 
-export const colorLight = `#2889db`;
+export const colorLight = `#1F86DB`;
 export const colorMiddle = `#182F6E`;
 export const colorDeep = `#000044`;
 export const colorWarning = `#f0ad4e`;

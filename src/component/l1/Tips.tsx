@@ -44,7 +44,7 @@ const Root = styled.TouchableOpacity`
     width: 24px;
     height: 24px;
     border-width: 1px;
-    border-color: #999;
+    border-color: #aaa;
     border-radius: 50;
     padding: 5px;
 `;
@@ -56,5 +56,5 @@ const PopupText = styled.Text`
 
 const _Icon = styled(Icon)`
     font-size: 12px;
-    color: #555;
+    color: #333;
 `;
