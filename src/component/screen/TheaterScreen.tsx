@@ -39,7 +39,7 @@ export default class TheaterScreen extends ScreenBase {
             <Root>
                 <TheaterHeader userNum={TheaterUserStore.userNum} />
                 <Body>
-                    <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} abBarUnderlineStyle={styles.tabbar} locked={true}>
+                    <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} tabBarUnderlineStyle={styles.tabbar} locked={true}>
                         <Tab
                             key={'scenario'}
                             heading={<TabHeading style={styles.tab}><ScenarioTabHeader /></TabHeading>}

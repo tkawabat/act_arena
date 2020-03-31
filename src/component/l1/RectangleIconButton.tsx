@@ -12,11 +12,11 @@ interface props {
     onPress: () => void,
 }
 
-export default class SquareIconButton extends Component<props> {
+export default class RectangleIconButton extends Component<props> {
 
     render() {
         return (
-            <Root onPress={this.props.onPress} disabled={this.props.disabled}>
+            <Root onPress={this.props.onPress} disabled={this.props.disabled} {...this.props}>
                 <_Icon name={this.props.icon} type='FontAwesome5' />
             </Root>
         );
@@ -25,7 +25,7 @@ export default class SquareIconButton extends Component<props> {
 }
 
 const Root = styled.TouchableOpacity`
-    ${BasicStyle.squareButton};
+    ${BasicStyle.rectangleButton};
     ${BasicStyle.center};
     ${p => p.disabled && BasicStyle.disabledButton};
 `

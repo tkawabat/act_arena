@@ -41,6 +41,7 @@ class TheaterStore {
     @observable agreementUrl:string = '';
     @observable scenarioUrl:string = '';
     @observable characters:TheaterCharacter[] = [];
+    @observable minutes:number = 0;
 
     private _tab:C.TheaterTab;
     get tab() :C.TheaterTab { return this._tab }
@@ -132,6 +133,7 @@ class TheaterStore {
         this.agreementUrl = data.agreementUrl;
         this.scenarioUrl = data.scenarioUrl;
         this.characters = data.characters;
+        this.minutes = data.minutes;
 
         Scheduler.clearInterval(C.SchedulerArenaTick);
         Scheduler.setInterval(C.SchedulerArenaTick, this.tick, 1000);
