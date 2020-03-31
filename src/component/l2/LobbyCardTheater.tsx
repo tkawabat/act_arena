@@ -34,7 +34,10 @@ export default class LobbyCardTheater extends Component<props> {
     render() {
         const title = '『'+this.props.theater.title+'』';
         const actors = this.props.theater.characters.map((v) => v.userName);
-        const startTime = Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds).format('MM/DD HH:mm');
+        const time = '開始予定: '
+            + Moment.unix(this.props.theater.endAt[C.TheaterState.CHECK].seconds).format('MM/DD HH:mm')
+            + '（約'+this.props.theater.minutes+'分）'
+            ;
 
         const endAt:Moment.Moment[] = [];
         endAt[C.TheaterState.READ] = Moment.unix(this.props.theater.endAt[C.TheaterState.READ].seconds);
@@ -46,7 +49,7 @@ export default class LobbyCardTheater extends Component<props> {
             <Root title={title} onPress={this.joinTheater} disabled={state===C.TheaterState.END}>
                 <Left>
                     <ExplainText>{'演者: ' + actors.join(', ')}</ExplainText>
-                    <ExplainText>{'開始予定: ' + startTime}</ExplainText>
+                    <ExplainText>{time}</ExplainText>
                 </Left>
                 <Right>
                     <StateBadge text={C.TheaterStateString[state]} {...(badgeColor[state])}/>

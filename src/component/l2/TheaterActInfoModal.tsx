@@ -16,10 +16,13 @@ interface props {
 export default class TheaterActInfoModal extends Component<props> {
 
     private getCharactersText = () => {
-        let result = [];
+        const result = [];
+
+        result.push(<Middle key={'charactors'}>■CAST</Middle>)
+
         let i = 0;
         for (const character of TheaterStore.characters) {
-            result.push(<Text key={'charactor'+i}>{character.name+': '+character.userName}</Text>)
+            result.push(<Middle key={'charactor'+i}>{character.name+': '+character.userName}</Middle>)
             i++;
         }
         return result;
@@ -41,8 +44,13 @@ export default class TheaterActInfoModal extends Component<props> {
             >
                 <Root>
                     <Title>『{TheaterStore.title}』</Title>
-                    <Author>作: {TheaterStore.author}</Author>
-                    {this.getCharactersText()}
+                    <Section>
+                        <Small>作: {TheaterStore.author}</Small>
+                        <Small>上演時間: 約{TheaterStore.minutes}分</Small>
+                    </Section>
+                    <Section>
+                        {this.getCharactersText()}
+                    </Section>
                 </Root>
             </Modal>
         );
@@ -59,12 +67,19 @@ const Root = styled(View)`
 `
 
 const Title = styled.Text`
-    margin-bottom: 10px;
     font-size: 18px;
     font-weight: 500;
 `
 
-const Author = styled.Text`
-    margin-bottom: 10px;
-    font-size: 14px;
-`
+const Section = styled.View`
+    margin-top: 10px;
+`;
+
+const Small = styled.Text`
+    margin-bottom: 3px;
+    font-size: 12px;
+`;
+
+const Middle = styled.Text`
+    margin-top: 3px;
+`;
