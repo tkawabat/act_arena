@@ -41,6 +41,10 @@ export default class LobbyScreen extends ScreenBase {
         const theaterList = Object.entries(LobbyStore.theaters)
             .map(([id, theater]) => (<LobbyCardTheater key={id} theaterId={id} theater={theater} />));
 
+        const tipsTheater = '読み10分 + 上演15~45分の約１時間の劇。'
+            + '\nエントリーはバックグラウンドでも持続します。'
+            + '\n演者として登録された劇があるときはエントリーできません。'
+
         return (
             <ScreenRoot>
                 <LobbyHeader />
@@ -56,7 +60,7 @@ export default class LobbyScreen extends ScreenBase {
                     <Section>
                         <TitleRow>
                             <ScreenTitle>サシ劇マッチング</ScreenTitle>
-                            <_Tips text={'読み10分 + 上演15~45分の約１時間の劇。\nエントリーは30分経つか、アプリを終了すると自動でキャンセルされます。'} />
+                            <_Tips text={tipsTheater} />
                         </TitleRow>
                         <_MatchingButton />
                         {theaterList}
