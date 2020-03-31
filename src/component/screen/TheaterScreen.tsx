@@ -8,6 +8,7 @@ import styled from 'styled-components/native';
 
 import ScreenBase from './ScreenBase';
 import * as C from '../../lib/Const';
+import * as BasicStyle from '../../lib/BasicStyle';
 
 import TheaterStore from '../../store/TheaterStore';
 import TheaterUserStore from '../../store/TheaterUserStore';
@@ -38,7 +39,7 @@ export default class TheaterScreen extends ScreenBase {
             <Root>
                 <TheaterHeader userNum={TheaterUserStore.userNum} />
                 <Body>
-                    <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} locked={true}>
+                    <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} abBarUnderlineStyle={styles.tabbar} locked={true}>
                         <Tab
                             key={'scenario'}
                             heading={<TabHeading style={styles.tab}><ScenarioTabHeader /></TabHeading>}
@@ -73,6 +74,9 @@ const Body = styled.View`
 
 const styles = StyleSheet.create({
     tab: {
-        backgroundColor: '#000044',
+        backgroundColor: BasicStyle.colorLight,
+    },
+    tabbar: {
+        backgroundColor: BasicStyle.colorWarning
     },
 });

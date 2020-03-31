@@ -85,7 +85,7 @@ const Section = styled.View`
 const TitleRow = styled.View`
     flex-direction: row;
     align-items: center;
-    background-color: ${BasicStyle.colorMiddle};
+    background-color: ${BasicStyle.colorLight};
     margin-bottom: 5px;
     padding: 10px;
 `;
@@ -108,7 +108,7 @@ const _MatchingButton = styled(MatchingButton)`
 `;
 
 const Footer = styled.View`
-    background-color: #000044;
+    background-color: ${BasicStyle.colorLight};
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;

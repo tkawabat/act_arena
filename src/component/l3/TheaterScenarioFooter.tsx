@@ -43,7 +43,7 @@ const Root = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #000044;
+    background-color: ${BasicStyle.colorLight};
 `
 
 const Left = styled.View`

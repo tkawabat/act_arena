@@ -38,7 +38,7 @@ export default class ArenaScreen extends ScreenBase {
             <Root>
                 <ArenaHeader userNum={ArenaUserStore.userNum} />
                 <Body>
-                    <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} locked={true}>
+                    <Tabs scrollWithoutAnimation={false} onChangeTab={this.onChangeTab} tabBarUnderlineStyle={styles.tabbar} locked={true}>
                         <Tab
                             key={'scenario'}
                             heading={<TabHeading style={styles.tab}><ScenarioTabHeader /></TabHeading>}
@@ -71,6 +71,9 @@ const Body = styled.View`
 
 const styles = StyleSheet.create({
     tab: {
-        backgroundColor: '#000044',
+        backgroundColor: BasicStyle.colorLight
+    },
+    tabbar: {
+        backgroundColor: BasicStyle.colorWarning
     },
 });
