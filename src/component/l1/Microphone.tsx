@@ -8,6 +8,8 @@ import * as BasicStyle from '../../lib/BasicStyle';
 
 import SkywayStore from '../../store/SkywayStore';
 
+import RectangleIconButton from '../l1/RectangleIconButton';
+
 
 @observer
 export default class Microphone extends Component {
@@ -17,16 +19,8 @@ export default class Microphone extends Component {
         const disabled:boolean = SkywayStore.speakState === C.SpeakState.DISABLED;
         
         return (
-            <MicrophneButton onPress={SkywayStore.toggleMicrophone} disabled={disabled}>
-                <Icon name={name} type='FontAwesome5' />
-            </MicrophneButton>
+            <RectangleIconButton icon={name} onPress={SkywayStore.toggleMicrophone} disabled={disabled} />
         );
 
     }
 }
-
-const MicrophneButton = styled(Button)`
-    width: 100px;
-    height: 40px;
-    ${BasicStyle.center};
-`

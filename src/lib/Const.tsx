@@ -32,16 +32,9 @@ export enum ArenaState {
 
 export const ArenaStateString = {
     [ArenaState.WAIT]: '演者募集',
-    [ArenaState.READ]: '台本チェック',
-    [ArenaState.CHECK]: 'マイクチェック',
-    [ArenaState.ACT]: '上演',
-}
-
-export const ArenaStateStyle = {
-    [ArenaState.WAIT]: {'success':true},
-    [ArenaState.READ]: {'warning':true},
-    [ArenaState.CHECK]: {'warning':true},
-    [ArenaState.ACT]: {'danger':true},
+    [ArenaState.READ]: '台本確認',
+    [ArenaState.CHECK]: '音声確認',
+    [ArenaState.ACT]: '上演中',
 }
 
 export const ArenaStateTime = {
@@ -63,18 +56,49 @@ export const ArenaUserStateString = {
     [ArenaUserState.ACTOR]: 'アクター',
 }
 
-export const ArenaUserStateStyle = {
-    [ArenaUserState.LISTNER]: {'warning':true},
-    [ArenaUserState.ENTRY]: {'warning':true},
-    [ArenaUserState.ACTOR]: {'danger':true},
-}
-
 export enum AgreementState {
     NONE,
     AGREE,
 }
 
 export enum ArenaTab {
+    SCENARIO,
+    CHAT,
+}
+
+export enum TheaterState {
+    UNSET = -1,
+    READ = 0,
+    CHECK = 1,
+    ACT = 2,
+    END = 3,
+}
+
+export const TheaterStateString = {
+    [TheaterState.READ]: '台本確認',
+    [TheaterState.CHECK]: '音声確認',
+    [TheaterState.ACT]: '上演中',
+    [TheaterState.END]: '上演終了',
+}
+
+export const TheaterNextString = {
+    [TheaterState.READ]: '確認\n完了',
+    [TheaterState.CHECK]: '確認\n完了',
+    [TheaterState.ACT]: '上演\n終了',
+    [TheaterState.END]: '上演\n終了',
+}
+
+export enum TheaterUserState {
+    LISTNER = 0,
+    ACTOR = 1,
+}
+
+export const TheaterUserStateString = {
+    [TheaterUserState.LISTNER]: 'リスナー',
+    [TheaterUserState.ACTOR]: 'アクター',
+}
+
+export enum TheaterTab {
     SCENARIO,
     CHAT,
 }
@@ -122,6 +146,7 @@ export const PushBasicSettingString  = {
     [PushBasicSettingKey.DAWN]:     '未明（０２：００〜０９：００）',
 }
 
+export const MatchingTime = 30 * 60; // 30minutes
 export const PushIntervalHour = 3;
 
 export const MusicList = [
@@ -132,10 +157,11 @@ export const MusicList = [
 ]
 
 export enum SeKey {
-    ACT_START = 1,
-    ACT_END = 2,
-    MATCHING = 3,
-    ENTER_ROOM = 4,
+    ACT_START,
+    ACT_END,
+    MATCHING,
+    ENTER_ROOM,
+    CANCEL,
 }
 
 export const SePath = '../../resource/se';
@@ -144,10 +170,13 @@ export const SeList = {
     [SeKey.ACT_END]:    { file: 'people_people_stadium_cheer1.mp3', site: '効果音ラボ'},
     [SeKey.MATCHING]:   { file: 'tin2.mp3', site: '効果音ラボ'},
     [SeKey.ENTER_ROOM]: { file: 'cursor1.mp3', site: '効果音ラボ'},
+    [SeKey.CANCEL]: { file: 'cancel8.mp3', site: 'ポケットサウンド'},
 }
 
 export const SoundFadeDuration = 8000;
 export const OverlayDuration = 1000;
 
 export const SchedulerArenaTick = 'ArenaTick';
+export const SchedulerTheaterTick = 'TheaterTick';
+export const SchedulerMatchingTimeLimitCheck = 'MatchingTimeLimitCheck';
 export const SchedulerAndroidReload = 'AndroidReload';

@@ -8,6 +8,9 @@ import * as BasicStyle from '../../lib/BasicStyle';
 
 import LobbyStore from '../../store/LobbyStore';
 
+import LobbyCardBase from '../l1/LobbyCardBase';
+import TextBadge from '../l1/TextBadge';
+
 
 interface props {
     joinArena: (id:number) => void
@@ -22,84 +25,36 @@ export default class LobbyCardArena extends Component<props> {
     
     render() {
         return (
-            <Touch onPress={this.onPress}>
-                <Root>
-                    <Main>
-                        <CardTitle>
-                            <TitleText>オープン・アリーナ</TitleText>
-                            <UserNumRoot>
-                                <UserNumIcon name='user' type='FontAwesome5' />
-                                <UserNumText>{LobbyStore.userNum + '/' + C.RoomUserLimit}</UserNumText>
-                            </UserNumRoot>
-                        </CardTitle>
-                        <ExplainRoot>
-                            <ExplainText>みんなでワイワイ！　3分で演じる名場面！</ExplainText>
-                        </ExplainRoot>
-                    </Main>
-                    <Right>
-                        <EnterIcon name='sign-out-alt' type='FontAwesome5' />
-                    </Right>
-                </Root>
-            </Touch>
+            <LobbyCardBase
+                title={'オープン・アリーナ'}
+                userNum={LobbyStore.userNum}
+                onPress={this.onPress}
+            >
+                <Body>
+                    <ExplainText>みんなでワイワイ！　3分で演じる名場面！</ExplainText>
+                </Body>
+                <Footer>
+                    <EnterIcon name='sign-out-alt' type='FontAwesome5' />
+                </Footer>                
+            </LobbyCardBase>
         );
     }
 }
 
 
-const Root = styled(Card)`
-    margin: 10px;
-    padding: 10px;
-    color: #000;
+const Body = styled.View`
+    margin-top: 10px;
 `;
 
-const Touch = styled.TouchableOpacity`
-`;
-
-const Main = styled.View`
-`;
-
-const Right = styled.View`
+const Footer = styled.View`
     align-self: flex-end;
 `;
 
-const CardTitle = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-`;
-
-const TitleText = styled.Text`
-    font-size: 24px;
-    font-weight: 600;
-    color: #000044;
-`;
-
-const UserNumRoot = styled.View`
-    flex-direction: row;
-    justify-content: flex-end;
-    color: #333;
-`;
-
-const UserNumIcon = styled(Icon)`
-    font-size: 16px;
-`;
-
-const UserNumText = styled.Text`
-    font-size: 16px;
-    margin-left: 2px;
-`;
-
-const ExplainRoot = styled.View`
-    flex-direction: row;
-    justify-content: space-between;
-`;
-
 const ExplainText = styled.Text`
-    margin-top: 10px;
     margin-left: 15px;
-    font-size: 16px;
 `;
 
 const EnterIcon = styled(Icon)`
     margin-top: 10px;
-    font-size: 24px;
+    font-size: 20px;
 `

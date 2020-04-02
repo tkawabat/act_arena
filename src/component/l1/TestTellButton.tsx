@@ -6,9 +6,11 @@ import { observer } from 'mobx-react';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
+import SkywayStore from '../../store/SkywayStore';
+import UserStore from '../../store/UserStore';
+
 
 interface props {
-    onPress: () => void,
 }
 
 @observer
@@ -16,14 +18,14 @@ export default class TestTellButton extends Component<props> {
 
     render() {
         return (
-            <ButtonEntried warning {...this.props}>
+            <_Button warning {...this.props} onPress={SkywayStore.asyncTestTell.bind(this, UserStore.id)} >
                 <ButtonText>{'通話テスト'}</ButtonText>
-            </ButtonEntried>
+            </_Button>
         );
     }
 }
 
-const ButtonEntried = styled(Button)`
+const _Button = styled(Button)`
     width: 100px;
     height: 40px;
     ${BasicStyle.center};

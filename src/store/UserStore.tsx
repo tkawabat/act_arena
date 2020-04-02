@@ -26,8 +26,6 @@ class UserStore implements User {
     @observable gender: C.Gender;
     @observable iconUrl: string;
     @observable ngList: Array<string>;
-    createdAt: FirebaseFirestoreTypes.FieldValue;
-    updatedAt: FirebaseFirestoreTypes.FieldValue;
 
     @computed get isRegisted() :boolean {
         return this.name ? true : false;
@@ -54,6 +52,7 @@ class UserStore implements User {
         this.get().then(() => { ConfigStore.setInitLoadComplete('user'); })
 
         this.userStatusDatabaseRef = Firebase.database().ref('/status/' + this.id);
+        this.observeConnectionChange();
     }
      
     private get = async () :Promise<void> => {
@@ -130,11 +129,19 @@ class UserStore implements User {
         ;
     }
 
-    public asyncSetRoom = async (id:string) :Promise<void> => {
+    public asyncSetArena = async (id:string) :Promise<void> => {
         return this.db.doc(this.id).update({
             arena: id
         })
-        .catch((error) => Amplitude.error('UserStore setRoom', error))
+        .catch((error) => Amplitude.error('UserStore.setArena', error))
+        ;
+    }
+
+    public asyncSetTheater = async (id:string) :Promise<void> => {
+        return this.db.doc(this.id).update({
+            theater: id
+        })
+        .catch((error) => Amplitude.error('UserStore.setTheater', error))
         ;
     }
 

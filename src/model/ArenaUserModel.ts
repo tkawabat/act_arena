@@ -1,7 +1,6 @@
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 
 import * as C from '../lib/Const';
-import Firebase from '../lib/Firebase';
 import Amplitude from '../lib/Amplitude';
 
 import { User } from '../store/UserStore';
@@ -18,7 +17,7 @@ class ArenaUserModel {
     private ref:FirebaseFirestoreTypes.CollectionReference;
     private unsubscribe:Function;
 
-    public constructor (arenaRef:FirebaseFirestoreTypes.DocumentReference) {
+    constructor (arenaRef:FirebaseFirestoreTypes.DocumentReference) {
         this.ref = arenaRef.collection('RoomUser');
     }
 

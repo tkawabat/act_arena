@@ -15,20 +15,24 @@ import React, { Component } from 'react';
 import { Updates, SplashScreen, } from 'expo';
 import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
-import Moment from 'moment';
 import styled from 'styled-components/native';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import FlashMessage from "react-native-flash-message";
 
-import AppContainer from './src/component/screen/AppContainer';
 import * as C from './src/lib/Const';
 import Amplitude from './src/lib/Amplitude';
 import Navigator from './src/lib/Navigator';
+import { createContainer } from './src/lib/AppContainer';
 
 import ConfigStore from './src/store/ConfigStore';
 import LobbyStore from './src/store/LobbyStore';
 import UserStore from './src/store/UserStore';
 import SkywayStore from './src/store/SkywayStore';
 import PushStore from './src/store/PushStore';
+import MatchingStore from './src/store/MatchingStore';
+
+import Spinner from './src/component/l1/Spinner';
+import OverlayMessage from './src/component/l2/OverlayMessage';
 
 
 @observer
@@ -52,7 +56,7 @@ export default class App extends Component {
         }, 700);
     }
 
-    componentDidMount() {        
+    componentDidMount() {
         if (ConfigStore.init['init']) return; // 二重実行対策
         ConfigStore.setInitLoad('font');
         ConfigStore.setInitLoadComplete('init');
@@ -63,6 +67,7 @@ export default class App extends Component {
         ConfigStore.setInitLoad('user');
         ConfigStore.setInitLoad('lobby');
         ConfigStore.setInitLoad('push');
+        ConfigStore.setInitLoad('matching');
 
         Font.loadAsync({
             'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -78,9 +83,11 @@ export default class App extends Component {
             }
             const userId = (user as FirebaseAuthTypes.UserCredential).user.uid;
             UserStore.init(userId);
-            SkywayStore.connect(userId + Moment().unix().toString());
+            const peerId = userId + Math.floor(Math.random() * 10000);
+            SkywayStore.connect(peerId);
             LobbyStore.asyncInit(0);
             PushStore.asyncInit(userId);
+            MatchingStore.init(userId);
         });
 
         AppState.addEventListener('change', this.handleAppStateChange);
@@ -120,12 +127,16 @@ export default class App extends Component {
             )
         }
 
+        const screen = UserStore.isRegisted ? 'Lobby' : 'Register';
+        const AppContainer = createContainer(screen);
+
         return (
-            <AppContainer ref={(nav) => {
-                Navigator.set(nav);
-                const initailScreen = UserStore.isRegisted ? 'Lobby' : 'Register';
-                Navigator.navigate(initailScreen, null);
-            } } />
+            <Root>
+                <Spinner />
+                <AppContainer ref={Navigator.set} />
+                <OverlayMessage />
+                <FlashMessage position="top" />
+            </Root>
         );
     }
 }

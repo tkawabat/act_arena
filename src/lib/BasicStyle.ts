@@ -5,6 +5,9 @@ import styled from 'styled-components/native';
 
 
 let { height, width } = Dimensions.get('window');
+
+export const bottom = height - getStatusBarHeight() - getBottomSpace();
+
 export const screenWidth = css`
     width: ${width}px;
 `
@@ -12,20 +15,6 @@ export const screenWidth = css`
 export const center = css`
     justify-content: center;
     align-items: center;
-`
-
-export const header = css`
-    ${screenWidth};
-    height: 50px;
-    padding-top: 0px;
-    flex-direction: row;
-    align-items: center;
-`;
-
-export const screenRoot = css`
-    flex: 1;
-    margin-top: ${getStatusBarHeight()}px;
-    margin-bottom: ${getBottomSpace()}px;
 `
 
 export const button = css`
@@ -53,23 +42,19 @@ export const disabledButton = css`
     box-shadow: none;
 `
 
-// Modules
-export const Left = styled.View`
-    flex: 1;
-    align-items: flex-start;
-    justify-content: center;
-`
+export const disabled = props => {
+    if (props.disabled) {
+        return `background-color: #999;`;
+    }
+}
 
-export const Center = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`
+export const disabledColor = props => {
+    if (props.disabled) {
+        return `color: #999;`;
+    }
+}
 
-export const Right = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-`
+export const colorLight = `#1F86DB`;
+export const colorMiddle = `#182F6E`;
+export const colorDeep = `#000044`;
+export const colorWarning = `#f0ad4e`;

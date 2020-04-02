@@ -1,12 +1,13 @@
 import Moment from 'moment';
 import { Alert } from 'react-native';
-import { Peer } from 'react-native-skyway';
+import { Peer, MediaConstraints } from 'react-native-skyway';
 import { observable, action } from 'mobx';
 
 import * as C from '../lib/Const';
 import Secret from '../lib/Secret';
 import Amplitude from '../lib/Amplitude';
 import Scheduler from '../lib/Scheduler';
+import Permission from '../lib/Permission';
 
 import ConfigStore from './ConfigStore';
 
@@ -92,7 +93,7 @@ class SkywayStore {
     }
 
     public connect = (id: string): void => {
-        this.peer = new Peer(id, Secret.skyway);
+        this.peer = new Peer(id, Secret.skyway, {videoFlag: false, audioFlag: true} as MediaConstraints);
 
         this.peer.addEventListener('peer-open', this.onPeerOpen);
         this.peer.addEventListener('peer-close', this.onPeerClose);
@@ -147,13 +148,21 @@ class SkywayStore {
         return;
     }
 
-    public setDisabled = () :void => {
+    public setEnable = () :void => {
+        if (!this.peer || this.speakState !== C.SpeakState.DISABLED) return;
+        this.speakState = C.SpeakState.MUTE;
+    }
+
+    public setDisable = () :void => {
         this.speakState = C.SpeakState.DISABLED;
         if (this.peer) this.peer.setLocalStreamStatus(false);
     }
 
-    public testTell = (userId) :void => {
+    public asyncTestTell = async (userId) => {
         Amplitude.info('testTell', null);
+
+        const permission = await Permission.asyncCheckTell();
+        if (!permission) return;
 
         ConfigStore.load(true);
         if (!this.testPeer) {

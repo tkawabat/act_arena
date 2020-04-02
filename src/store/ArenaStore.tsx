@@ -1,4 +1,5 @@
 import Moment from 'moment';
+import { Alert } from 'react-native';
 import { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { observable, computed, action } from 'mobx';
 
@@ -6,6 +7,7 @@ import * as C from '../lib/Const';
 import Amplitude from '../lib/Amplitude';
 import Navigator from '../lib/Navigator';
 import Scheduler from '../lib/Scheduler';
+import Permission from '../lib/Permission';
 
 import ArenaScenarioStore from './ArenaScenarioStore';
 import ArenaUserStore from './ArenaUserStore';
@@ -130,7 +132,7 @@ class ArenaStore {
             case C.ArenaState.WAIT:
                 OverlayMessageStore.start('上演終了');
 
-                SkywayStore.setDisabled();
+                SkywayStore.setDisable();
                 SkywayStore.leave();
 
                 ArenaScenarioStore.setAgreement(C.AgreementState.NONE);
@@ -256,7 +258,6 @@ class ArenaStore {
         this.arenaModel.observe(this.arenaUpdated);
         this.arenaUserModel.observe(this.usersUpdated);
 
-        UserStore.observeConnectionChange();
         ChatStore.observe();
     }
 
@@ -264,7 +265,6 @@ class ArenaStore {
         this.arenaModel.stopObserve();
         this.arenaUserModel.stopObserve();
 
-        UserStore.stopObserveConnectionChange();
         ChatStore.stopObserve();
     }
 
@@ -280,9 +280,12 @@ class ArenaStore {
     @action
     public join = async (id:number) => {
         if (ArenaUserStore.userNum >= C.RoomUserLimit) {
-            alert('申し訳ありません、満員のため入室できません。');
+            Alert.alert('満員のため入室できません。');
             return;
         }
+        
+        const permission = await Permission.asyncCheckTell();
+        if (!permission) return;
 
         this.id = id;
         ArenaScenarioStore.setAgreement(C.AgreementState.NONE);
@@ -291,7 +294,7 @@ class ArenaStore {
 
         const arenaRef = await this.arenaModel.asyncGet(this.id, true);
         if (!arenaRef) {
-            alert('エラーが発生しました。');
+            Alert.alert('エラーが発生しました。');
             return;
         }
 
@@ -301,7 +304,7 @@ class ArenaStore {
 
         const p = [];
         p.push(this.arenaUserModel.asyncSetRoomUser(UserStore));
-        p.push(UserStore.asyncSetRoom(this.arenaModel.id));
+        p.push(UserStore.asyncSetArena(this.arenaModel.id));
         //p.push(UserStore.asyncSetConnect(true));
         await Promise.all(p).catch(e => console.log(e));
 

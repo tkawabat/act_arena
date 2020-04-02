@@ -10,11 +10,13 @@ import ArenaStoreAdmin from '../../../storybook/admin/ArenaStoreAdmin';
 import ArenaScenarioStoreAdmin from '../../../storybook/admin/ArenaScenarioStoreAdmin';
 import SkywayStoreAdmin from '../../../storybook/admin/SkywayStoreAdmin';
 
+import ArenaScenarioStore from '../../store/ArenaScenarioStore';
+
 import Agreement from './Agreement';
 import ArenaAddTimeButton from './ArenaAddTimeButton';
 import EntryButton from './EntryButton';
 import Microphone from './Microphone';
-import Scenario from './Scenario';
+import ArenaScenario from './ArenaScenario';
 import SquareIconButton from './SquareIconButton';
 import SquareTextButton from './SquareTextButton';
 import SquareTextIconButton from './SquareTextIconButton';
@@ -22,11 +24,12 @@ import Timer from './Timer';
 import TestTellButton from './TestTellButton';
 
 
+
 const components = storiesOf('L1', module);
 components
     .addDecorator(withKnobs)
     .add(Agreement.name, () => ([
-        StoryUtil.FullView(<Agreement />),
+        StoryUtil.FullView(<Agreement onPress={() => {}} setter={(webview) => {}} uri={ArenaScenarioStore.agreementUrl} />),
         StoryUtil.CenteredView(<ArenaScenarioStoreAdmin />),
     ]))
     .add(ArenaAddTimeButton.name, () => ([
@@ -43,9 +46,9 @@ components
             StoryUtil.CenteredView(<SkywayStoreAdmin />),
         ])
     })
-    .add(Scenario.name, () => (
+    .add(ArenaScenario.name, () => (
         StoryUtil.FullView([
-            <Scenario />,
+            <ArenaScenario />,
             <ArenaScenarioStoreAdmin />,
         ])
     ))

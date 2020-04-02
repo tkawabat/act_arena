@@ -30,6 +30,4 @@ const Root = styled.TouchableOpacity`
     ${p => p.disabled && BasicStyle.disabledButton};
 `
 
-const _Icon = styled(Icon)`
-    
-`
+const _Icon = styled(Icon)``;

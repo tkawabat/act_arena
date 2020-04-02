@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import { Alert } from 'react-native';
-import { Button, Icon, Badge } from 'native-base';
+import { Button, Icon, } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
+import { Header, HeaderTitle, Left, Center, Right } from '../../lib/BasicModule';
 
 import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
 
 import Timer from '../l1/Timer';
+import TextBadge from '../l1/TextBadge';
+import IconButton from '../l1/IconButton';
 
 
 interface props {
@@ -31,73 +34,35 @@ export default class ArenaHeader extends Component<props> {
         const roomName = ArenaStore.id === 0 ? 'アリーナ' : ArenaStore.id;
         
         return (
-            <Root>
+            <Header>
                 <Left>
-                    <ArenaStateBadge {...(C.ArenaStateStyle[ArenaStore.arenaState])}>
-                        <BadgeText>{C.ArenaStateString[ArenaStore.arenaState]}</BadgeText>
-                    </ArenaStateBadge>
-                    <Timer />
+                    <ArenaStateBadge
+                        text={C.ArenaStateString[ArenaStore.arenaState]}
+                        {...(badgeColor[ArenaStore.arenaState])}
+                    />
+                    <Timer time={ArenaStore.time} />
                 </Left>
                 <Center>
                     <RoomIcon name='home' type='FontAwesome5' />
-                    <RoomName>{roomName}</RoomName>
+                    <HeaderTitle>{roomName}</HeaderTitle>
                 </Center>
                 <Right>
                     <UesrIcon name='user' type='FontAwesome5' />
                     <UserNumText>{this.props.userNum}</UserNumText>
-                    <Button transparent onPress={this.leave} disabled={!ArenaUserStore.canLeave}>
-                        <Icon name='sign-out-alt' type='FontAwesome5' />
-                    </Button>
+                    <IconButton icon={'sign-out-alt'} onPress={this.leave} disabled={!ArenaUserStore.canLeave} />
                 </Right>
-            </Root>
+            </Header>
         )
     }
 }
 
 
-const Root = styled.View`
-    ${BasicStyle.header};
-`;
-
-const Left = styled.View`
-    flex: 1;
-    justify-content: flex-start;
-    padding-left: 10px;
-`
-
-const Center = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-`
-
-const Right = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-`
-
-const ArenaStateBadge = styled(Badge)`
+const ArenaStateBadge = styled(TextBadge)`
     height: 20px;
-`
-
-const BadgeText = styled.Text`
-    color: #fff;
-    font-size: 12px;
-    font-weight: 500;
 `
 
 const RoomIcon = styled(Icon)`
     font-size: 16px;
-`
-
-const RoomName = styled.Text`
-    color: #333;
-    margin-left: 3px;
-    font-size: 18px;
-    font-weight: 600;
 `
 
 const UesrIcon = styled(Icon)`
@@ -109,3 +74,10 @@ const UserNumText = styled.Text`
     margin-left: 2px;
     margin-right: 2px;
 `
+
+const badgeColor = {
+    [C.ArenaState.WAIT]: { 'success': true },
+    [C.ArenaState.READ]: { 'warning': true },
+    [C.ArenaState.CHECK]: { 'warning': true },
+    [C.ArenaState.ACT]: { 'danger': true },
+}

@@ -7,35 +7,30 @@ import styled from 'styled-components/native';
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
 
-import ArenaScenarioStore from '../../store/ArenaScenarioStore';
 
+interface props {
+    onPress: () => void
+    uri: string
+}
 
 @observer
-export default class Agreement extends Component {
-    private webview:WebView;
-
-    constructor(props) {
-        super(props);
-
-        ArenaScenarioStore.reload = () => {
-            if (!this.webview) return;
-            this.webview.reload();
-        }
+export default class Agreement extends Component<props> {
+    state = {
+        reload: 0
     }
 
     render() {
         return (
             <Root>
                 <Screen
-                    javaScriptEnabled={true}
-                    ref={ref => this.webview = ref}
-                    source={{uri: ArenaScenarioStore.agreementUrl}}
+                    key={this.state.reload}
+                    source={{uri: this.props.uri}}
                 />
-                <AgreeButton onPress={ArenaScenarioStore.setAgreement.bind(this, C.AgreementState.AGREE)}>
+                <AgreeButton onPress={this.props.onPress.bind(this)}>
                     <AgreeButtonText>規約に同意</AgreeButtonText>
                 </AgreeButton>
             </Root>
-               );
+        );
     }
 }
 
