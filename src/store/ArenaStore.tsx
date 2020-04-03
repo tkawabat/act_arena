@@ -325,7 +325,6 @@ class ArenaStore {
         SkywayStore.leave();
         SoundStore.stop();
 
-        UserStore.asyncSetConnect(false);
         this.arenaUserModel.asyncDelete(UserStore);
 
         this.id = null;

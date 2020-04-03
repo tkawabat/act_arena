@@ -318,7 +318,6 @@ class TheaterStore {
         SkywayStore.leave();
         SoundStore.stop();
 
-        UserStore.asyncSetConnect(false);
         this.theaterUserModel.asyncDelete(UserStore);
 
         this.id = null;
