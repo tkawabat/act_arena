@@ -131,7 +131,8 @@ class UserStore implements User {
 
     public asyncSetArena = async (id:string) :Promise<void> => {
         return this.db.doc(this.id).update({
-            arena: id
+            arena: id,
+            updatedAt: Firebase.firestore.FieldValue.serverTimestamp(),
         })
         .catch((error) => Amplitude.error('UserStore.setArena', error))
         ;
@@ -139,7 +140,8 @@ class UserStore implements User {
 
     public asyncSetTheater = async (id:string) :Promise<void> => {
         return this.db.doc(this.id).update({
-            theater: id
+            theater: id,
+            updatedAt: Firebase.firestore.FieldValue.serverTimestamp(),
         })
         .catch((error) => Amplitude.error('UserStore.setTheater', error))
         ;
@@ -149,7 +151,8 @@ class UserStore implements User {
         Amplitude.info('asyncBlockUser', null);
 
         return this.db.doc(this.id).update({
-            ngList: Firebase.firestore.FieldValue.arrayUnion(user._id)
+            ngList: Firebase.firestore.FieldValue.arrayUnion(user._id),
+            updatedAt: Firebase.firestore.FieldValue.serverTimestamp(),
         })
         .catch((error) => Amplitude.error('UserStore asyncBlockUser', error))
         ;
