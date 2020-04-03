@@ -46,7 +46,8 @@ export default class TheaterHeader extends Component<props> {
                 <Right>
                     <UesrIcon name='user' type='FontAwesome5' />
                     <UserNumText>{this.props.userNum}</UserNumText>
-                    <IconButton icon={'sign-out-alt'} onPress={this.leave} disabled={!TheaterStore.canLeave} />
+                    {/* <IconButton icon={'sign-out-alt'} onPress={this.leave} disabled={!TheaterStore.canLeave} /> */}
+                    <IconButton icon={'sign-out-alt'} onPress={this.leave} />
                 </Right>
             </Header>
         )
