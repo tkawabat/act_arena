@@ -89,7 +89,7 @@ class MatchingStore {
                 autoHide: false,
                 message: 'マッチング開始！',
                 description: 'バックグラウンドの間もマッチングは継続します。'
-                +'\nマッチングすると通知音でお知らせます。',
+                +'\nマッチングすると通知でお知らせます。',
                 titleStyle: { fontSize: 16 },
             });
             return this.entry();

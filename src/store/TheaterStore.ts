@@ -182,6 +182,14 @@ class TheaterStore {
                 OverlayMessageStore.start('上演開始');
                 
                 break;
+            case C.TheaterState.END:
+                    if (this.userState === C.TheaterUserState.ACTOR) {
+                        // 再接続用
+                        SkywayStore.setEnable();
+                    }
+                    OverlayMessageStore.start('上演終了');
+                    
+                    break;
         }
         this.playSound(before, after);
     }
@@ -243,6 +251,9 @@ class TheaterStore {
                 break;
             case C.TheaterState.ACT:
                 this.se(C.SeKey.ACT_START);
+                break;
+            case C.TheaterState.END:
+                this.se(C.SeKey.ACT_END);
                 break;
         }
     }
