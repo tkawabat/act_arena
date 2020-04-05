@@ -13,6 +13,7 @@ import SoundStore from './SoundStore';
 
 
 import MatchingListModel from '../model/MatchingListModel';
+import { Alert } from 'react-native';
 
 
 class MatchingStore {
@@ -84,6 +85,13 @@ class MatchingStore {
         if (this.isMatching) {
             return this.leave();
         } else {
+            showMessage({
+                autoHide: false,
+                message: 'マッチング開始！',
+                description: 'バックグラウンドの間もマッチングは継続します。'
+                +'\nマッチングすると通知音でお知らせます。',
+                titleStyle: { fontSize: 16 },
+            });
             return this.entry();
         }
     }
