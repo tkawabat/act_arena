@@ -45,7 +45,7 @@ const Root = styled.TouchableOpacity`
     height: 24px;
     border-width: 1px;
     border-color: #aaa;
-    border-radius: 50;
+    border-radius: 50px;
     padding: 5px;
 `;
 
