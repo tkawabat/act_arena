@@ -24,6 +24,7 @@ class ConfigStore {
     //@observable mustUpdate:boolean = false;
     @observable expoReload:boolean = false;
     @observable message:string = '';
+    @observable notices:string[] = [];
 
     @computed get isInitLoaded() :boolean {
         for (const key in this.init) {
@@ -73,6 +74,7 @@ class ConfigStore {
         if (!data) return;
 
         this.message = data.maintenance as string;
+        this.notices = data.notices;
         this.requireVersion = Platform.OS === 'ios' ? data.iosVersion : data.androidVersion;
     }
 

@@ -15,6 +15,7 @@ import LobbyStore from '../../store/LobbyStore';
 
 import PushSettingModal from '../l3/PushSettingModal';
 import LobbyHeader from '../l3/LobbyHeader';
+import LobbyNotice from '../l2/LobbyNotice';
 import LobbyCardArena from '../l2/LobbyCardArena';
 import LobbyCardPrivateArena from '../l2/LobbyCardPrivateArena';
 import MatchingButton from '../l2/MatchingButton';
@@ -38,6 +39,7 @@ export default class LobbyScreen extends ScreenBase {
     }
 
     render() {
+        const notices = ConfigStore.notices.map((notice, i) => (<LobbyNotice key={'notice'+i} text={notice} />));
         const theaterList = Object.entries(LobbyStore.theaters)
             .map(([id, theater]) => (<LobbyCardTheater key={id} theaterId={id} theater={theater} />));
 
@@ -49,6 +51,7 @@ export default class LobbyScreen extends ScreenBase {
             <ScreenRoot>
                 <LobbyHeader />
                 <ScreenBody>
+                    {notices}
                     <Section>
                         <TitleRow>
                             <ScreenTitle>3分アリーナ</ScreenTitle>
