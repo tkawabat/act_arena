@@ -150,6 +150,7 @@ const Root = styled.View`
 
 const Text = styled.Text`
     align-self: center;
+    padding: 15px;
     font-size: 24px;
     font-weight: 400;
 `
