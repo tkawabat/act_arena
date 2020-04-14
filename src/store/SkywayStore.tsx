@@ -16,6 +16,7 @@ class SkywayStore {
     @observable state = C.SkywayState.INIT;
     @observable speakState = C.SpeakState.DISABLED;
 
+    private roomName:string;
     private peer : Peer;
     private testPeer: Peer;
 
@@ -84,16 +85,19 @@ class SkywayStore {
     private onRoomClose = () => {
         this.state = C.SkywayState.OPEN;
         this.speakState = C.SpeakState.DISABLED;
+        this.roomName = null;
     }
 
     private onRoomError = () => {
         Amplitude.error('onRoomError', null);
         this.state = C.SkywayState.OPEN;
         this.speakState = C.SpeakState.DISABLED;
+        this.roomName = null;
     }
 
     public connect = (id: string): void => {
-        this.peer = new Peer(id, Secret.skyway, {videoFlag: false, audioFlag: true} as MediaConstraints);
+        const peerId = id + Math.floor(Math.random() * 10000);
+        this.peer = new Peer(peerId, Secret.skyway, {videoFlag: false, audioFlag: true} as MediaConstraints);
 
         this.peer.addEventListener('peer-open', this.onPeerOpen);
         this.peer.addEventListener('peer-close', this.onPeerClose);
@@ -118,8 +122,36 @@ class SkywayStore {
         this.peer.disconnect();
     }
 
+    @action
+    public reconnect = (id: string) :void => {
+        ConfigStore.load(true);
+        const roomName = this.roomName;
+        const speakState = this.speakState;
+
+        this.peer.disconnect();
+
+        Scheduler.setTimeout('', () => {
+            this.connect(id);
+        }, 1000);
+
+        Scheduler.setTimeout('', () => {
+            if (roomName) {
+                this.join(roomName);
+            }
+        }, 2000);
+
+        Scheduler.setTimeout('', () => {
+            this.speakState = speakState;
+            if (speakState === C.SpeakState.SPEAK) {
+                this.setLocalStreamStatus(true);
+            }
+            ConfigStore.load(false);
+        }, 3000);
+    }
+
     public join = (roomName:string) :void => {
         if (this.state === C.SkywayState.OPEN) {
+            this.roomName = roomName;
             this.peer.joinRoom(roomName);
         }
     }
