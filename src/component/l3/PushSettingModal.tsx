@@ -153,7 +153,6 @@ const Footer = styled.View`
 
 const FooterLeft = styled(Left)`
     flex: 2;
-    justify-content: flex-end;
 `
 
 const FooterRight = styled(Right)`

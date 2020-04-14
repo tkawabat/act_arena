@@ -29,6 +29,14 @@ export const HeaderTitle = styled.Text`
 
 export const Left = styled.View`
     flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10px;
+`;
+
+export const ColumnLeft = styled.View`
+    flex: 1;
     align-items: flex-start;
     justify-content: center;
     padding-left: 10px;

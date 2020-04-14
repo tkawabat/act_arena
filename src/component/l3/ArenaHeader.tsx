@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import { Alert } from 'react-native';
-import { Button, Icon, } from 'native-base';
+import { Icon, } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
 
 import * as C from '../../lib/Const';
 import * as BasicStyle from '../../lib/BasicStyle';
-import { Header, HeaderTitle, Left, Center, Right } from '../../lib/BasicModule';
+import { Header, HeaderTitle, ColumnLeft, Center, Right } from '../../lib/BasicModule';
 
 import ArenaStore from '../../store/ArenaStore';
 import ArenaUserStore from '../../store/ArenaUserStore';
@@ -35,13 +35,13 @@ export default class ArenaHeader extends Component<props> {
         
         return (
             <Header>
-                <Left>
+                <ColumnLeft>
                     <ArenaStateBadge
                         text={C.ArenaStateString[ArenaStore.arenaState]}
                         {...(badgeColor[ArenaStore.arenaState])}
                     />
                     <Timer time={ArenaStore.time} />
-                </Left>
+                </ColumnLeft>
                 <Center>
                     <RoomIcon name='home' type='FontAwesome5' />
                     <HeaderTitle>{roomName}</HeaderTitle>
