@@ -26,7 +26,7 @@ export default class ArenaAddTimeButton extends Component {
         const count = disabled ? 0 : ArenaStore.addTimeCount;
 
         return (
-            <Root onPress={this.addActTime} disabled={disabled}>
+            <Root onPress={this.addActTime} disabled={disabled} {...this.props}>
                 <Text>+30秒</Text>
                 <Remind>あと{count}回</Remind>
 

@@ -16,7 +16,7 @@ export default class SquareIconButton extends Component<props> {
 
     render() {
         return (
-            <Root onPress={this.props.onPress} disabled={this.props.disabled}>
+            <Root onPress={this.props.onPress} disabled={this.props.disabled}  {...this.props}>
                 <_Icon name={this.props.icon} type='FontAwesome5' />
             </Root>
         );

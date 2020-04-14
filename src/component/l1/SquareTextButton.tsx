@@ -15,7 +15,7 @@ export default class SquareTextButton extends Component<props> {
 
     render() {
         return (
-            <Root onPress={this.props.onPress} disabled={this.props.disabled}>
+            <Root onPress={this.props.onPress} disabled={this.props.disabled} {...this.props}>
                 <Text>{this.props.text}</Text>
             </Root>
         );
