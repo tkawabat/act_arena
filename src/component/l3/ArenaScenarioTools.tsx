@@ -32,7 +32,7 @@ export default class ArenaScenarioTools extends Component {
                 </Left>
                 
                 <Right>
-                    <TextIconButton icon={'redo'} text={'再接続'} onPress={SkywayStore.reconnect.bind(this, UserStore.id)}/>
+                    <TextIconButton icon={'microphone'} text={'再接続'} onPress={SkywayStore.reconnect.bind(this, UserStore.id)}/>
                     <_ArenaAddTimeButton />
                 </Right>
             </Root>
