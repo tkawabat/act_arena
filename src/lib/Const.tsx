@@ -147,7 +147,7 @@ export const PushBasicSettingString  = {
 }
 
 export const MatchingTime = 30 * 60; // 30minutes
-export const PushIntervalHour = 3;
+export const PushIntervalHour = 1;
 
 export const MusicList = [
     //{ file: 'amanojack.mp3', name: '天邪鬼の子', site: '騒音のない世界'},
