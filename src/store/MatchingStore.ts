@@ -11,17 +11,37 @@ import ConfigStore from './ConfigStore';
 import UserStore, { User } from './UserStore';
 import SoundStore from './SoundStore';
 
-
 import MatchingListModel from '../model/MatchingListModel';
-import { Alert } from 'react-native';
 
 
 class MatchingStore {
     private matchingListModel:MatchingListModel;
 
-    @observable isMatching:boolean = false;
-    private createdAt:FirebaseFirestoreTypes.Timestamp = null;
+    @observable showStartDatePicker:boolean = false;
+    @observable showEndDatePicker:boolean = false;
+    @observable startDate:Moment.Moment = Moment();
+    @observable endDate:Moment.Moment = Moment().add(1, 'hour');
 
+    @observable actArena:boolean = true;
+    @action toggleActArena = () => this.actArena = !this.actArena;
+    @observable discord:boolean = true;
+    @action toggleDiscord = () => this.discord = !this.discord;
+    @observable pair:boolean = true;
+    @action togglePair = () => this.pair = !this.pair;
+    @observable smallNumber:boolean = true;
+    @action toggleSmallNumber = () => this.smallNumber = !this.smallNumber;
+    @observable half:boolean = true;
+    @action toggleHalf = () => this.half = !this.half;
+    @observable one:boolean = true;
+    @action toggleOne = () => this.one = !this.one;
+    @observable oneHalf:boolean = true;
+    @action toggleOneHalf = () => this.oneHalf = !this.oneHalf;
+    @observable two:boolean = true;
+    @action toggleTwo = () => this.two = !this.two;
+
+    @observable isMatching:boolean = false;
+
+    private createdAt:FirebaseFirestoreTypes.Timestamp = null;
     get limit() :Moment.Moment {
         if (!this.createdAt) {
             return null;

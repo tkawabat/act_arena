@@ -62,7 +62,7 @@ export default class LobbyScreen extends ScreenBase {
                     </Section>
                     <Section>
                         <TitleRow>
-                            <ScreenTitle>サシ劇マッチング</ScreenTitle>
+                            <ScreenTitle>マッチング劇</ScreenTitle>
                             <_Tips text={tipsTheater} />
                         </TitleRow>
                         <_MatchingButton />
