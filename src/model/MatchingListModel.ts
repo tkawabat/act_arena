@@ -34,7 +34,7 @@ class MatchingListModel {
             name: user.name,
             gender: user.gender,
             playNumbers: playNumbers,
-            playTime: playTimes,
+            playTimes: playTimes,
             places: places,
             startAt: Firebase.firestore.Timestamp.fromDate(startAt.toDate()),
             endAt: Firebase.firestore.Timestamp.fromDate(endAt.toDate()),

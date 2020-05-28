@@ -17,29 +17,30 @@ import MatchingListModel from '../model/MatchingListModel';
 class MatchingStore {
     private matchingListModel:MatchingListModel;
 
+    @observable isMatching:boolean = false;
+
     @observable showStartDatePicker:boolean = false;
     @observable showEndDatePicker:boolean = false;
     @observable startAt:Moment.Moment = Moment();
-    @observable endAt:Moment.Moment = Moment().add(1, 'hour');
+    @observable endAt:Moment.Moment = Moment().add(1, 'hours');
 
     @observable actArena:boolean = true;
-    @action toggleActArena = () => this.actArena = !this.actArena;
     @observable discord:boolean = true;
-    @action toggleDiscord = () => this.discord = !this.discord;
     @observable pair:boolean = true;
-    @action togglePair = () => this.pair = !this.pair;
     @observable smallNumber:boolean = true;
-    @action toggleSmallNumber = () => this.smallNumber = !this.smallNumber;
     @observable half:boolean = true;
-    @action toggleHalf = () => this.half = !this.half;
     @observable one:boolean = true;
-    @action toggleOne = () => this.one = !this.one;
     @observable oneHalf:boolean = true;
-    @action toggleOneHalf = () => this.oneHalf = !this.oneHalf;
     @observable two:boolean = true;
-    @action toggleTwo = () => this.two = !this.two;
 
-    @observable isMatching:boolean = false;
+    @action toggleActArena = () => this.actArena = !this.actArena;
+    @action toggleDiscord = () => this.discord = !this.discord;
+    @action togglePair = () => this.pair = !this.pair;
+    @action toggleSmallNumber = () => this.smallNumber = !this.smallNumber;
+    @action toggleHalf = () => this.half = !this.half;
+    @action toggleOne = () => this.one = !this.one;
+    @action toggleOneHalf = () => this.oneHalf = !this.oneHalf;
+    @action toggleTwo = () => this.two = !this.two;
 
     private createdAt:FirebaseFirestoreTypes.Timestamp = null;
     get limit() :Moment.Moment {
@@ -91,6 +92,16 @@ class MatchingStore {
         }
 
         const data = snapshot.data();
+        this.actArena = data.places.includes(C.MatchingPlace.ACTARENA);
+        this.discord = data.places.includes(C.MatchingPlace.DISCORD);
+        this.pair = data.playNumbers.includes(2);
+        this.smallNumber = data.playNumbers.includes(3) || data.playNumbers.includes(4) || data.playNumbers.includes(5);
+        this.half = data.playTimes.includes(C.MatchingPlayTime.HALF);
+        this.one = data.playTimes.includes(C.MatchingPlayTime.ONE);
+        this.oneHalf = data.playTimes.includes(C.MatchingPlayTime.ONEHALF);
+        this.two = data.playTimes.includes(C.MatchingPlayTime.TWO);
+        this.startAt = Moment.unix(data.startAt.seconds);
+        this.endAt = Moment.unix(data.endAt.seconds);
         this.createdAt = data.createdAt;
 
         Scheduler.clearInterval(C.SchedulerMatchingTimeLimitCheck);
@@ -123,6 +134,10 @@ class MatchingStore {
 
         if (this.pair) playNumbers.push(2);
         if (this.smallNumber) playNumbers.push(3,4,5);
+        if (playNumbers.length < 1) {
+            // Alert.alert
+            //TODO
+        }
 
         if (this.half) playTimes.push(C.MatchingPlayTime.HALF);
         if (this.one) playTimes.push(C.MatchingPlayTime.ONE);
