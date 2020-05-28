@@ -146,6 +146,18 @@ export const PushBasicSettingString  = {
     [PushBasicSettingKey.DAWN]:     '未明（０２：００〜０９：００）',
 }
 
+export enum MatchingPlayTime {
+    HALF = 1,
+    ONE = 2,
+    ONEHALF = 3,
+    TWO = 4,
+}
+
+export enum MatchingPlace {
+    ACTARENA = 1,
+    DISCORD = 2,
+}
+
 export const MatchingTime = 30 * 60; // 30minutes
 export const PushIntervalHour = 1;
 

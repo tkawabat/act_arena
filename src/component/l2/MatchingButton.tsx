@@ -35,10 +35,10 @@ export default class MatchingButton extends Component<props> {
             <Root>
                 <DateTimePickerModal
                     isVisible={MatchingStore.showStartDatePicker}
-                    date={MatchingStore.startDate.toDate()}
+                    date={MatchingStore.startAt.toDate()}
                     mode={"datetime"}
                     onConfirm={(date) => {
-                        MatchingStore.startDate = Moment(date);
+                        MatchingStore.startAt = Moment(date);
                         MatchingStore.showStartDatePicker = false;
                     }}
                     onCancel={() => {
@@ -47,10 +47,10 @@ export default class MatchingButton extends Component<props> {
                 />
                 <DateTimePickerModal
                     isVisible={MatchingStore.showEndDatePicker}
-                    date={MatchingStore.endDate.toDate()}
+                    date={MatchingStore.endAt.toDate()}
                     mode={"datetime"}
                     onConfirm={(date) => {
-                        MatchingStore.endDate = Moment(date);
+                        MatchingStore.endAt = Moment(date);
                         MatchingStore.showEndDatePicker = false;
                     }}
                     onCancel={() => {
@@ -60,12 +60,12 @@ export default class MatchingButton extends Component<props> {
                 <Row>
                     <Label>開始：</Label>
                     <DateButton
-                        text={MatchingStore.startDate.format('MM/DD HH:mm')}
+                        text={MatchingStore.startAt.format('MM/DD HH:mm')}
                         onPress={() => MatchingStore.showStartDatePicker = !MatchingStore.showStartDatePicker}
                     />
                     <Text>〜</Text>
                     <DateButton
-                        text={MatchingStore.endDate.format('MM/DD HH:mm')}
+                        text={MatchingStore.endAt.format('MM/DD HH:mm')}
                         onPress={() => MatchingStore.showEndDatePicker = !MatchingStore.showEndDatePicker}
                     />                
                 </Row>

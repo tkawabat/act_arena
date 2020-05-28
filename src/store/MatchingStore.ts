@@ -19,8 +19,8 @@ class MatchingStore {
 
     @observable showStartDatePicker:boolean = false;
     @observable showEndDatePicker:boolean = false;
-    @observable startDate:Moment.Moment = Moment();
-    @observable endDate:Moment.Moment = Moment().add(1, 'hour');
+    @observable startAt:Moment.Moment = Moment();
+    @observable endAt:Moment.Moment = Moment().add(1, 'hour');
 
     @observable actArena:boolean = true;
     @action toggleActArena = () => this.actArena = !this.actArena;
@@ -117,9 +117,32 @@ class MatchingStore {
     }
 
     public entry = async () => {
+        const playNumbers = [];
+        const playTimes = [];
+        const places = [];
+
+        if (this.pair) playNumbers.push(2);
+        if (this.smallNumber) playNumbers.push(3,4,5);
+
+        if (this.half) playTimes.push(C.MatchingPlayTime.HALF);
+        if (this.one) playTimes.push(C.MatchingPlayTime.ONE);
+        if (this.oneHalf) playTimes.push(C.MatchingPlayTime.ONEHALF);
+        if (this.two) playTimes.push(C.MatchingPlayTime.TWO);
+
+        if (this.actArena) places.push(C.MatchingPlace.ACTARENA);
+        if (this.discord) places.push(C.MatchingPlace.DISCORD);
+
+        // set
         ConfigStore.load(true);
         Scheduler.setTimeout('', () => {
-            this.matchingListModel.asyncSet(UserStore)
+            this.matchingListModel.asyncSet(
+                UserStore,
+                playNumbers,
+                playTimes,
+                places,
+                this.startAt,
+                this.endAt,    
+            )
             .then(() => {
                 Amplitude.info('MatchingEntry', null);
                 ConfigStore.load(false);

@@ -22,10 +22,22 @@ class MatchingListModel {
         this.ref = this.db.doc(userId);
     }
 
-    public asyncSet = async (user: User): Promise<void> => {
+    public asyncSet = async (
+        user: User,
+        playNumbers:number[],
+        playTimes:number[],
+        places:number[],
+        startAt:Moment.Moment,
+        endAt:Moment.Moment,
+    ): Promise<void> => {
         return this.ref.set({
             name: user.name,
             gender: user.gender,
+            playNumbers: playNumbers,
+            playTime: playTimes,
+            places: places,
+            startAt: Firebase.firestore.Timestamp.fromDate(startAt.toDate()),
+            endAt: Firebase.firestore.Timestamp.fromDate(endAt.toDate()),
             createdAt: Firebase.firestore.Timestamp.now(),
         })
         .catch((error) => Amplitude.error('MatchingListModel asyncSet', error))
