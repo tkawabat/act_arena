@@ -10,6 +10,7 @@ interface props {
     checked: boolean,
     text: string,
     onPress: () => void,
+    disabled?: boolean,
 }
 
 export default class _CheckBox extends Component<props> {
@@ -17,7 +18,7 @@ export default class _CheckBox extends Component<props> {
     render() {
         return (
             <Root>
-                <Box checked={this.props.checked} color={'green'} {...this.props} />
+                <Box disabled={this.props.disabled} checked={this.props.checked} color={'green'} {...this.props} />
                 <Text>{this.props.text}</Text>
             </Root>
         );
@@ -32,6 +33,7 @@ const Root = styled.View`
 
 const Box = styled(CheckBox)`
     margin-right: 15px;
+    ${BasicStyle.disabled}
 `
 
 const Text = styled.Text`

@@ -1,9 +1,8 @@
 import Moment from 'moment';
-import React, {Component, useState} from 'react';
-import { Button, CheckBox } from 'native-base';
+import React, {Component, } from 'react';
+import { Button } from 'native-base';
 import { observer } from 'mobx-react';
 import styled from 'styled-components/native';
-import * as Animatable from 'react-native-animatable';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import * as C from '../../lib/Const';
@@ -12,7 +11,7 @@ import * as BasicStyle from '../../lib/BasicStyle';
 import MatchingStore from '../../store/MatchingStore';
 import LobbyStore from '../../store/LobbyStore';
 
-import TextCheckBox from '../l1/TextCheckBox';
+import CheckBox from '../l1/CheckBox';
 import RectangleTextButton from '../l1/RectangleTextButton';
 
 
@@ -26,9 +25,7 @@ export default class MatchingButton extends Component<props> {
         const disabled = LobbyStore.actTheaterId !== undefined;
         const isMatching = MatchingStore.isMatching && !disabled;
 
-        const limit = MatchingStore.limit ? MatchingStore.limit.format('HH:mm') : '';
-        const animation = isMatching ? 'flash' : '';
-        const text = isMatching ? 'マッチング中\n~'+limit : 'エントリー';
+        const text = isMatching ? 'マッチング中' : 'エントリー';
         const color = isMatching ? {danger:true} : {success:true};
 
         return (
@@ -62,35 +59,76 @@ export default class MatchingButton extends Component<props> {
                     <DateButton
                         text={MatchingStore.startAt.format('MM/DD HH:mm')}
                         onPress={() => MatchingStore.showStartDatePicker = !MatchingStore.showStartDatePicker}
+                        disabled={disabled || isMatching}
                     />
                     <Text>〜</Text>
                     <DateButton
                         text={MatchingStore.endAt.format('MM/DD HH:mm')}
                         onPress={() => MatchingStore.showEndDatePicker = !MatchingStore.showEndDatePicker}
+                        disabled={disabled || isMatching}
                     />                
                 </Row>
                 <Row>
                     <Label>場所：</Label>
-                    <TextCheckBox text={'アクトアリーナ'} onoff={MatchingStore.actArena} onPress={MatchingStore.toggleActArena} />
-                    <TextCheckBox text={'Discord'} onoff={MatchingStore.discord} onPress={MatchingStore.toggleDiscord} />
+                    <CheckBox
+                        text={'アクトアリーナ'}
+                        checked={MatchingStore.actArena}
+                        onPress={MatchingStore.toggleActArena}
+                        disabled={disabled || isMatching}
+                    />
+                    <CheckBox
+                        text={'Discord'}
+                        checked={MatchingStore.discord}
+                        onPress={MatchingStore.toggleDiscord}
+                        disabled={disabled || isMatching}
+                    />
                 </Row>
                 <Row>
                     <Label>人数：</Label>
-                    <TextCheckBox text={'2人'} onoff={MatchingStore.pair} onPress={MatchingStore.togglePair} />
-                    <TextCheckBox text={'3~5人'} onoff={MatchingStore.smallNumber} onPress={MatchingStore.toggleSmallNumber} />
+                    <CheckBox
+                        text={'2人'}
+                        checked={MatchingStore.pair}
+                        onPress={MatchingStore.togglePair}
+                        disabled={disabled || isMatching}
+                    />
+                    <CheckBox
+                        text={'3~5人'}
+                        checked={MatchingStore.smallNumber}
+                        onPress={MatchingStore.toggleSmallNumber}
+                        disabled={disabled || isMatching}
+                    />
                 </Row>
                 <Row>
                     <Label>時間：</Label>
-                    <TextCheckBox text={'~30分'} onoff={MatchingStore.half} onPress={MatchingStore.toggleHalf} />
-                    <TextCheckBox text={'~1時間'} onoff={MatchingStore.one} onPress={MatchingStore.toggleOne} />
-                    <TextCheckBox text={'~1.5時間'} onoff={MatchingStore.oneHalf} onPress={MatchingStore.toggleOneHalf} />
-                    <TextCheckBox text={'~2時間'} onoff={MatchingStore.two} onPress={MatchingStore.toggleTwo} />
+                    <CheckBox
+                        text={'~30分'}
+                        checked={MatchingStore.half}
+                        onPress={MatchingStore.toggleHalf}
+                        disabled={disabled || isMatching}
+                    />
+                    <CheckBox 
+                        text={'~1時間'}
+                        checked={MatchingStore.one}
+                        onPress={MatchingStore.toggleOne}
+                        disabled={disabled || isMatching}
+                    />
+                    <CheckBox 
+                        text={'~1.5時間'}
+                        checked={MatchingStore.oneHalf}
+                        onPress={MatchingStore.toggleOneHalf}
+                        disabled={disabled || isMatching}
+                    />
+                    <CheckBox 
+                        text={'~2時間'}
+                        checked={MatchingStore.two}
+                        onPress={MatchingStore.toggleTwo}
+                        disabled={disabled || isMatching}
+                    />
                 </Row>
-                <Animatable.View animation={animation} duration={6000} iterationCount={'infinite'}>
-                    <EntryButton {...color} disabled={disabled} onPress={MatchingStore.toggle.bind(this)} {...this.props}>
-                        <ButtonText>{text}</ButtonText>
-                    </EntryButton>
-                </Animatable.View>
+
+                <EntryButton {...color} disabled={disabled} onPress={MatchingStore.toggle.bind(this)} {...this.props}>
+                    <ButtonText>{text}</ButtonText>
+                </EntryButton>
             </Root>
         );
     }
