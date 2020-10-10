@@ -12,6 +12,7 @@ import UserStore, { User } from './UserStore';
 import SoundStore from './SoundStore';
 
 import MatchingListModel from '../model/MatchingListModel';
+import { Alert } from 'react-native';
 
 
 class MatchingStore {
@@ -116,13 +117,6 @@ class MatchingStore {
         if (this.isMatching) {
             return this.leave();
         } else {
-            showMessage({
-                autoHide: false,
-                message: 'マッチング開始！',
-                description: 'バックグラウンドの間もマッチングは継続します。'
-                +'\nマッチングすると通知でお知らせます。',
-                titleStyle: { fontSize: 16 },
-            });
             return this.entry();
         }
     }
@@ -135,17 +129,25 @@ class MatchingStore {
         if (this.pair) playNumbers.push(2);
         if (this.smallNumber) playNumbers.push(3,4,5);
         if (playNumbers.length < 1) {
-            // Alert.alert
-            //TODO
+            Alert.alert('人数を１つ以上チェックしてください。');
+            return
         }
 
         if (this.half) playTimes.push(C.MatchingPlayTime.HALF);
         if (this.one) playTimes.push(C.MatchingPlayTime.ONE);
         if (this.oneHalf) playTimes.push(C.MatchingPlayTime.ONEHALF);
         if (this.two) playTimes.push(C.MatchingPlayTime.TWO);
+        if (playTimes.length < 1) {
+            Alert.alert('時間を１つ以上チェックしてください。');
+            return
+        }
 
         if (this.actArena) places.push(C.MatchingPlace.ACTARENA);
         if (this.discord) places.push(C.MatchingPlace.DISCORD);
+        if (places.length < 1) {
+            Alert.alert('場所を１つ以上チェックしてください。');
+            return
+        }
 
         // set
         ConfigStore.load(true);
@@ -164,6 +166,14 @@ class MatchingStore {
             })
             ;
         }, 1000);
+        
+        showMessage({
+            autoHide: false,
+            message: 'マッチング開始！',
+            description: 'バックグラウンドの間もマッチングは継続します。'
+            +'\nマッチングすると通知でお知らせます。',
+            titleStyle: { fontSize: 16 },
+        });
     }
 
     public leave = async () => {
